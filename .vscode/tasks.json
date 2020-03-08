@@ -3,23 +3,20 @@
     "tasks": [
         {
             "label": "start:bridge:android",
-            "type": "npm",
-            "script": "android",
-            "path": "./",
+            "type": "shell",
+            "command": "cd eurofood && npm run android",
             "problemMatcher": []
         },
         {
             "label": "start:bridge:ios",
-            "type": "npm",
-            "script": "ios",
-            "path": "./",
+            "type": "shell",
+            "command": "cd eurofood && npm run ios",
             "problemMatcher": []
         },
         {
             "label": "start:bundler",
-            "type": "npm",
-            "script": "start",
-            "path": "./",
+            "type": "shell",
+            "command": "cd eurofood && npm start",
             "problemMatcher": []
         },
         {
