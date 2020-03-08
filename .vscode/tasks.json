@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "start:bridge:android",
+            "type": "npm",
+            "script": "android",
+            "path": "./",
+            "problemMatcher": []
+        },
+        {
+            "label": "start:bridge:ios",
+            "type": "npm",
+            "script": "ios",
+            "path": "./",
+            "problemMatcher": []
+        },
+        {
+            "label": "start:bundler",
+            "type": "npm",
+            "script": "start",
+            "path": "./",
+            "problemMatcher": []
+        },
+        {
+            "label": "start:android",
+            "dependsOn": ["start:bundler", "start:bridge:android"]
+        },
+        {
+            "label": "start:ios",
+            "dependsOn": ["start:bundler", "start:bridge:ios"]
+        }
+    ]
+}
