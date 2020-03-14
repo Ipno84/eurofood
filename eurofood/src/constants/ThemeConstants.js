@@ -9,6 +9,7 @@ export const dark = Color('#ffffff');
 export const red = Color('#ae2018');
 export const darkRed = Color('#da3215');
 export const gray = Color('#7f7f7f');
+export const alterGray = Color('#c6c6c6');
 export const lightGray = Color('#f5f5f5');
 export const azure = Color('#48aaed');
 
@@ -33,6 +34,8 @@ export default {
         darkRed: (opacity = 1, darken = 0) =>
             getColor(darkRed, opacity, darken),
         gray: (opacity = 1, darken = 0) => getColor(gray, opacity, darken),
+        alterGray: (opacity = 1, darken = 0) =>
+            getColor(alterGray, opacity, darken),
         lightGray: (opacity = 1, darken = 0) =>
             getColor(lightGray, opacity, darken),
         azure: (opacity = 1, darken = 0) => getColor(azure, opacity, darken),
