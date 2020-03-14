@@ -46,6 +46,7 @@
 		00E356F21AD99517003FC87E /* eurofoodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eurofoodTests.m; sourceTree = "<group>"; };
 		00ED30B19E45C734A8A5E076 /* Pods-eurofood-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofood-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-eurofood-tvOSTests/Pods-eurofood-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		087A44D21A1CB0239768B849 /* Pods-eurofood-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofood-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-eurofood-tvOSTests/Pods-eurofood-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		130F0A6736614EDCB3FB4FD6 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* eurofood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eurofood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = eurofood/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = eurofood/AppDelegate.m; sourceTree = "<group>"; };
@@ -53,19 +54,34 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = eurofood/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = eurofood/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = eurofood/main.m; sourceTree = "<group>"; };
+		208FEA0DA9F340ED8BF79BF6 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		292211B4A9B8440597AADAD5 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* eurofood-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eurofood-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* eurofood-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eurofood-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DA1C25378D451E9358D532 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		4648876AE870491695C1E89F /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		4CADD34319FD44E6B52BD952 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		527A06A9EC1C119B418BE6FC /* libPods-eurofood-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eurofood-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		594D551520C2440CB8FB2242 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		609B9DE4374E3159FE6A0848 /* Pods-eurofoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofoodTests.release.xcconfig"; path = "Target Support Files/Pods-eurofoodTests/Pods-eurofoodTests.release.xcconfig"; sourceTree = "<group>"; };
 		73E0D35FFF8D5F74F34403CE /* Pods-eurofoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofoodTests.debug.xcconfig"; path = "Target Support Files/Pods-eurofoodTests/Pods-eurofoodTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7ABC9C088A3A47969EEAA5DE /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		8C7B2638C0C77A1937938276 /* Pods-eurofood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofood.release.xcconfig"; path = "Target Support Files/Pods-eurofood/Pods-eurofood.release.xcconfig"; sourceTree = "<group>"; };
+		95DEA1383DA0494F924DBFF9 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		96FA628E58E932B31F3E557A /* Pods-eurofood-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofood-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-eurofood-tvOS/Pods-eurofood-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9B4E9C42B9BEB39DAF978ED4 /* libPods-eurofood.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eurofood.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D7DDFF448EE4221BE243F32 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		A1807CF4B8DA4E93A2FCCCA2 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		BE7317EC342A33CB4902528B /* Pods-eurofood-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofood-tvOS.release.xcconfig"; path = "Target Support Files/Pods-eurofood-tvOS/Pods-eurofood-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		C1C3A7A8DBBD73C372401374 /* libPods-eurofoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eurofoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9365DE9783543448804F9ED /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		CB7EDFB0C16342E580FBF9F5 /* Pods-eurofood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eurofood.debug.xcconfig"; path = "Target Support Files/Pods-eurofood/Pods-eurofood.debug.xcconfig"; sourceTree = "<group>"; };
+		D760E9F144B14F47B250E623 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F347FEDA20B84105BDBF2B79 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		F4608AC2951640479AEDAFF5 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		FCD049C4CAD3438B95E40C8A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		FFBBCAAF6E3072178786071C /* libPods-eurofood-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eurofood-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,6 +165,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		35012EB3DA294BB99EFA7F7D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4648876AE870491695C1E89F /* AntDesign.ttf */,
+				4CADD34319FD44E6B52BD952 /* Entypo.ttf */,
+				7ABC9C088A3A47969EEAA5DE /* EvilIcons.ttf */,
+				292211B4A9B8440597AADAD5 /* Feather.ttf */,
+				594D551520C2440CB8FB2242 /* FontAwesome.ttf */,
+				D760E9F144B14F47B250E623 /* FontAwesome5_Brands.ttf */,
+				F4608AC2951640479AEDAFF5 /* FontAwesome5_Regular.ttf */,
+				C9365DE9783543448804F9ED /* FontAwesome5_Solid.ttf */,
+				208FEA0DA9F340ED8BF79BF6 /* Fontisto.ttf */,
+				9D7DDFF448EE4221BE243F32 /* Foundation.ttf */,
+				F347FEDA20B84105BDBF2B79 /* Ionicons.ttf */,
+				130F0A6736614EDCB3FB4FD6 /* MaterialCommunityIcons.ttf */,
+				95DEA1383DA0494F924DBFF9 /* MaterialIcons.ttf */,
+				30DA1C25378D451E9358D532 /* Octicons.ttf */,
+				A1807CF4B8DA4E93A2FCCCA2 /* SimpleLineIcons.ttf */,
+				FCD049C4CAD3438B95E40C8A /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +204,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				AE33E6FA1FD839DA258EC97E /* Pods */,
+				35012EB3DA294BB99EFA7F7D /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -194,7 +234,6 @@
 				73E0D35FFF8D5F74F34403CE /* Pods-eurofoodTests.debug.xcconfig */,
 				609B9DE4374E3159FE6A0848 /* Pods-eurofoodTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -286,7 +325,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -309,6 +348,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

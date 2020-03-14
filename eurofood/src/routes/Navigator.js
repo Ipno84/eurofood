@@ -3,6 +3,7 @@ import {
     ROUTE_NAME_LOGIN,
 } from './../constants/RouteConstants';
 
+import HeaderButton from './../components/layout/atoms/HeaderButton';
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
@@ -17,6 +18,20 @@ const RoutesMap = [
         options: {
             title: 'Home',
             headerTitle: props => <Logo {...props} />,
+            headerLeft: () => (
+                <HeaderButton
+                    isLeft={true}
+                    onPress={() => alert('Cart button!')}
+                    name="menu"
+                />
+            ),
+            headerRight: () => (
+                <HeaderButton
+                    isLeft={false}
+                    onPress={() => alert('Cart button!')}
+                    name="shopping-cart"
+                />
+            ),
         },
     },
     ,

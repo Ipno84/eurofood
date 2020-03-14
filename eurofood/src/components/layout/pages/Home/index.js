@@ -1,21 +1,14 @@
-import { Button, SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
+import Banner from '../../atoms/Banner';
 import React from 'react';
-import getCategories from '../../../../api/calls/getCategories';
+import { home } from './../../../../assets/images/banners';
 
 const Home = ({ navigation }) => {
     return (
         <SafeAreaView>
-            <View style={{ padding: 16 }}>
-                <Text>Home</Text>
-                <Button
-                    title="Go to Login"
-                    onPress={() =>
-                        getCategories()
-                            .then(res => console.log(res))
-                            .catch(err => console.error(err))
-                    }
-                />
+            <View>
+                <Banner source={home} />
             </View>
         </SafeAreaView>
     );
