@@ -5,8 +5,10 @@ import {
 
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
+import Logo from './../components/layout/atoms/Logo';
 import React from 'react';
 import Stack from './Stack';
+import { lightGray } from './../constants/ThemeConstants';
 
 const RoutesMap = [
     {
@@ -14,6 +16,7 @@ const RoutesMap = [
         component: Home,
         options: {
             title: 'Home',
+            headerTitle: props => <Logo {...props} />,
         },
     },
     ,
@@ -28,7 +31,13 @@ const RoutesMap = [
 
 const Routes = () => {
     return (
-        <Stack.Navigator initialRouteName={ROUTE_NAME_HOME}>
+        <Stack.Navigator
+            initialRouteName={ROUTE_NAME_HOME}
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: lightGray.toString(),
+                },
+            }}>
             {RoutesMap.map(({ name, component, options }, i) => (
                 <Stack.Screen
                     key={`route-${name}-${i}`}

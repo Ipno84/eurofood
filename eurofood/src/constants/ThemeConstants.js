@@ -1,16 +1,16 @@
 import Color from 'color';
 
-const black = Color('#000000');
-const white = Color('#3d3d3d');
-const orange = Color('#fe9c00');
-const lightOrange = Color('#f4a400');
-const darkOrange = Color('#f34c00');
-const dark = Color('#ffffff');
-const red = Color('#ae2018');
-const darkRed = Color('#da3215');
-const gray = Color('#7f7f7f');
-const lightGray = Color('#f5f5f5');
-const azure = Color('#48aaed');
+export const black = Color('#000000');
+export const white = Color('#3d3d3d');
+export const orange = Color('#fe9c00');
+export const lightOrange = Color('#f4a400');
+export const darkOrange = Color('#f34c00');
+export const dark = Color('#ffffff');
+export const red = Color('#ae2018');
+export const darkRed = Color('#da3215');
+export const gray = Color('#7f7f7f');
+export const lightGray = Color('#f5f5f5');
+export const azure = Color('#48aaed');
 
 const getColor = (color, opacity = 1, darken = 0) => {
     return color
