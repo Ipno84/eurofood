@@ -1,3 +1,7 @@
 module.exports = {
-    assets: ['./src/assets/fonts/roboto'],
+    project: {
+        ios: {},
+        android: {}, // grouped into "project"
+    },
+    assets: ['./src/assets/fonts/roboto/'],
 };

@@ -20,6 +20,32 @@ const getColor = (color, opacity = 1, darken = 0) => {
         .string();
 };
 
+const getFont = (prefix, weight, isItalic, isCondensed) => {
+    let fontFamily = `${prefix}-`;
+    switch (weight) {
+        case 100:
+            fontFamily = `${fontFamily}Thin`;
+            break;
+        case 300:
+            fontFamily = `${fontFamily}Light`;
+            break;
+        case 500:
+            fontFamily = `${fontFamily}Medium`;
+            break;
+        case 700:
+            fontFamily = `${fontFamily}Bold`;
+            break;
+        case 900:
+            fontFamily = `${fontFamily}Black`;
+            break;
+        case 400:
+        default:
+            fontFamily = `${fontFamily}Regular`;
+    }
+    if (isItalic) fontFamily = `${fontFamily}Italic`;
+    return fontFamily;
+};
+
 export default {
     colors: {
         black: (opacity = 1, darken = 0) => getColor(black, opacity, darken),
@@ -39,5 +65,9 @@ export default {
         lightGray: (opacity = 1, darken = 0) =>
             getColor(lightGray, opacity, darken),
         azure: (opacity = 1, darken = 0) => getColor(azure, opacity, darken),
+    },
+    fonts: {
+        roboto: (weight = 400, isItalic = false, isCondensed = false) =>
+            getFont('Roboto', weight, isItalic, isCondensed),
     },
 };

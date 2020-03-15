@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 const SelectorPlaceholder = styled.Text`
     text-transform: uppercase;
-    font-family: 'Roboto';
+    font-family: 'Roboto-Regular';
     font-weight: 300;
     color: ${({ theme }) => theme.colors.orange(1)};
     flex: 1;

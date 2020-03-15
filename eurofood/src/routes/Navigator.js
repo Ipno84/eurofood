@@ -51,6 +51,11 @@ const Routes = () => {
             screenOptions={{
                 headerStyle: {
                     backgroundColor: lightGray.toString(),
+                    shadowColor: 'transparent',
+                    shadowRadius: 0,
+                    shadowOffset: {
+                        height: 0,
+                    },
                 },
             }}>
             {RoutesMap.map(({ name, component, options }, i) => (
