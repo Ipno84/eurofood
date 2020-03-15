@@ -1,4 +1,5 @@
 import Color from 'color';
+import { Dimensions } from 'react-native';
 
 export const black = Color('#000000');
 export const white = Color('#ffffff');
@@ -12,6 +13,9 @@ export const gray = Color('#7f7f7f');
 export const alterGray = Color('#c6c6c6');
 export const lightGray = Color('#f5f5f5');
 export const azure = Color('#48aaed');
+
+export const screenWidth = Dimensions.get('window').width;
+export const screenHeight = Dimensions.get('window').height;
 
 const getColor = (color, opacity = 1, darken = 0) => {
     return color
@@ -69,5 +73,11 @@ export default {
     fonts: {
         roboto: (weight = 400, isItalic = false, isCondensed = false) =>
             getFont('Roboto', weight, isItalic, isCondensed),
+    },
+    sizes: {
+        screen: {
+            width: screenWidth,
+            height: screenHeight,
+        },
     },
 };
