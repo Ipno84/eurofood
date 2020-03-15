@@ -1,11 +1,11 @@
 import Color from 'color';
 
 export const black = Color('#000000');
-export const white = Color('#3d3d3d');
+export const white = Color('#ffffff');
 export const orange = Color('#fe9c00');
 export const lightOrange = Color('#f4a400');
 export const darkOrange = Color('#f34c00');
-export const dark = Color('#ffffff');
+export const dark = Color('#3d3d3d');
 export const red = Color('#ae2018');
 export const darkRed = Color('#da3215');
 export const gray = Color('#7f7f7f');

@@ -1,14 +1,13 @@
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Input from './../../atoms/Input';
+import Input from './../../atoms/Input/SearchInput';
 import React from 'react';
+import SearchIcon from './../../atoms/Icon/SearchIcon';
 import Styled from './styled';
-import { alterGray } from './../../../../constants/ThemeConstants';
 
 const SearchInput = () => {
     return (
         <Styled>
-            <Icon name="search" size={24} color={alterGray.toString()} />
-            <Input value={'TEST'} returnKeyType="search" />
+            <SearchIcon />
+            <Input placeholder="Cosa stai cercando?" returnKeyType="search" />
         </Styled>
     );
 };

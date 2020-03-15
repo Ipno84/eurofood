@@ -1,18 +1,20 @@
 import { SafeAreaView, View } from 'react-native';
 
 import Banner from '../../atoms/Banner';
-import Container from '../../atoms/Container';
+import CategorySelector from '../../molecules/CategorySelector';
 import React from 'react';
+import SearchContainer from '../../atoms/Container/SearchContainer';
 import SearchInput from '../../molecules/SearchInput';
 import { home } from './../../../../assets/images/banners';
 
 const Home = ({ navigation }) => {
     return (
         <SafeAreaView>
+            <SearchContainer>
+                <SearchInput />
+                <CategorySelector />
+            </SearchContainer>
             <View>
-                <Container>
-                    <SearchInput />
-                </Container>
                 <Banner source={home} />
             </View>
         </SafeAreaView>
