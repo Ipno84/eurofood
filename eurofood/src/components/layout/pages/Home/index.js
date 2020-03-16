@@ -1,19 +1,15 @@
-import { SafeAreaView, ScrollView, Text } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 
 import Banner from '../../atoms/Banner';
-import CategorySelector from '../../molecules/CategorySelector';
-import { FlatGrid } from 'react-native-super-grid';
-import ProductCard from '../../molecules/ProductCard';
+import FlatButton from '../../atoms/Button/FlatButton';
+import ProductsGrid from '../../organisms/ProductsGrid';
 import React from 'react';
-import SearchContainer from '../../atoms/Container/SearchContainer';
-import SearchInput from '../../molecules/SearchInput';
-import SectionTitle from '../../atoms/Text/SectionTitle';
+import SearchSection from '../../organisms/SearchSection';
 import { home } from './../../../../assets/images/banners';
 import { product } from './../../../../assets/images/placeholder';
-import { screenWidth } from './../../../../constants/ThemeConstants';
 
 const Home = ({ navigation }) => {
-    const superOffers = [
+    const products = [
         { name: 'Product 1', image: product, price: { regular: 10, offer: 9 } },
         { name: 'Product 2', image: product, price: { regular: 10, offer: 9 } },
         { name: 'Product 3', image: product, price: { regular: 10, offer: 9 } },
@@ -22,72 +18,32 @@ const Home = ({ navigation }) => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <SearchContainer>
-                    <SearchInput />
-                    <CategorySelector />
-                </SearchContainer>
+                <SearchSection />
                 <Banner source={home} />
-                <SectionTitle>Super Offerte</SectionTitle>
-                <FlatGrid
-                    itemDimension={screenWidth / 3}
-                    items={superOffers}
-                    style={{ flex: 1 }}
-                    spacing={16}
-                    renderItem={({ item }) => (
-                        <ProductCard
-                            name={item.name}
-                            image={item.image}
-                            price={item.price}
-                            isHalf={true}
-                        />
-                    )}
+                <ProductsGrid
+                    sectionTitle="Super Offerte"
+                    products={products}
+                    isHalf={true}
                 />
-                <SectionTitle>Offerte</SectionTitle>
-                <FlatGrid
-                    itemDimension={screenWidth / 3}
-                    items={superOffers}
-                    style={{ flex: 1 }}
-                    spacing={16}
-                    renderItem={({ item }) => (
-                        <ProductCard
-                            name={item.name}
-                            image={item.image}
-                            price={item.price}
-                            isHalf={true}
-                        />
-                    )}
+                <FlatButton
+                    onPress={() => alert('Scopri tutte le offerte')}
+                    darkOrange={true}>
+                    Scopri tutte le offerte
+                </FlatButton>
+                <ProductsGrid
+                    sectionTitle="Offerte"
+                    products={products}
+                    isHalf={true}
                 />
-                <SectionTitle>
-                    Simili ai prodotti che hai già acquistato
-                </SectionTitle>
-                <FlatGrid
-                    itemDimension={screenWidth / 3}
-                    items={superOffers}
-                    style={{ flex: 1 }}
-                    spacing={16}
-                    renderItem={({ item }) => (
-                        <ProductCard
-                            name={item.name}
-                            image={item.image}
-                            price={item.price}
-                            isHalf={true}
-                        />
-                    )}
+                <ProductsGrid
+                    sectionTitle="Simili ai prodotti che hai già acquistato"
+                    products={products}
+                    isHalf={true}
                 />
-                <SectionTitle>I piú venduti</SectionTitle>
-                <FlatGrid
-                    itemDimension={screenWidth / 3}
-                    items={superOffers}
-                    style={{ flex: 1 }}
-                    spacing={16}
-                    renderItem={({ item }) => (
-                        <ProductCard
-                            name={item.name}
-                            image={item.image}
-                            price={item.price}
-                            isHalf={true}
-                        />
-                    )}
+                <ProductsGrid
+                    sectionTitle="I piú venduti"
+                    products={products}
+                    isHalf={true}
                 />
             </ScrollView>
         </SafeAreaView>

@@ -26,25 +26,35 @@ const getColor = (color, opacity = 1, darken = 0) => {
 
 const getFont = (prefix, weight, isItalic, isCondensed) => {
     let fontFamily = `${prefix}-`;
-    switch (weight) {
-        case 100:
-            fontFamily = `${fontFamily}Thin`;
-            break;
-        case 300:
-            fontFamily = `${fontFamily}Light`;
-            break;
-        case 500:
-            fontFamily = `${fontFamily}Medium`;
-            break;
-        case 700:
-            fontFamily = `${fontFamily}Bold`;
-            break;
-        case 900:
-            fontFamily = `${fontFamily}Black`;
-            break;
-        case 400:
-        default:
-            fontFamily = `${fontFamily}Regular`;
+    if (isCondensed) {
+        switch (weight) {
+            case 700:
+                fontFamily = `${fontFamily}BoldCondensed`;
+                break;
+            default:
+                fontFamily = `${fontFamily}Condensed`;
+        }
+    } else {
+        switch (weight) {
+            case 100:
+                fontFamily = `${fontFamily}Thin`;
+                break;
+            case 300:
+                fontFamily = `${fontFamily}Light`;
+                break;
+            case 500:
+                fontFamily = `${fontFamily}Medium`;
+                break;
+            case 700:
+                fontFamily = `${fontFamily}Bold`;
+                break;
+            case 900:
+                fontFamily = `${fontFamily}Black`;
+                break;
+            case 400:
+            default:
+                fontFamily = `${fontFamily}Regular`;
+        }
     }
     if (isItalic) fontFamily = `${fontFamily}Italic`;
     return fontFamily;
