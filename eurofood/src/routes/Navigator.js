@@ -21,7 +21,7 @@ const RoutesMap = [
             headerLeft: () => (
                 <HeaderButton
                     isLeft={true}
-                    onPress={() => alert('Cart button!')}
+                    onPress={() => alert('Menu button!')}
                     name="menu"
                 />
             ),

@@ -1,4 +1,3 @@
-import { FlatGrid } from 'react-native-super-grid';
 import ProductCard from '../../molecules/ProductCard';
 import React from 'react';
 import SectionTitle from '../../atoms/Text/SectionTitle';

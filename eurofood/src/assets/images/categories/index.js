@@ -2,7 +2,7 @@ import bevande from './bevande.png';
 import carni from './carni.png';
 import condimenti from './condimenti.png';
 import farinePanature from './farine-panature.png';
-import latticin from './latticini.png';
+import latticini from './latticini.png';
 import noFood from './no-food.png';
 import noGlutine from './no-glutine.png';
 import pane from './pane.png';
@@ -19,7 +19,7 @@ export {
     carni,
     condimenti,
     farinePanature,
-    latticin,
+    latticini,
     noFood,
     noGlutine,
     pane,

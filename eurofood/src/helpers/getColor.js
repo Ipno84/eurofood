@@ -33,6 +33,6 @@ export default function getColor(colors) {
     const colorsKeys = Object.keys(colors);
     const index = colorsValues.findIndex(e => e);
     const key = colorsKeys[index];
-    if (key && ThemeColors[key]) return ThemeColors[key];
-    return dark;
+    if (key && ThemeColors[key]) return ThemeColors[key].toString();
+    return dark.toString();
 }

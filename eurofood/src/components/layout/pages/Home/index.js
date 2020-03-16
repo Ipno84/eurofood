@@ -1,6 +1,7 @@
 import { SafeAreaView, ScrollView } from 'react-native';
 
 import Banner from '../../atoms/Banner';
+import CategoriesHorizontalSelector from '../../organisms/CategoriesHorizontalSelector';
 import FlatButton from '../../atoms/Button/FlatButton';
 import ProductsGrid from '../../organisms/ProductsGrid';
 import React from 'react';
@@ -30,6 +31,7 @@ const Home = ({ navigation }) => {
                     darkOrange={true}>
                     Scopri tutte le offerte
                 </FlatButton>
+                <CategoriesHorizontalSelector />
                 <ProductsGrid
                     sectionTitle="Offerte"
                     products={products}
