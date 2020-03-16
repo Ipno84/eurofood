@@ -4,8 +4,10 @@ import Banner from '../../atoms/Banner';
 import CategoriesHorizontalSelector from '../../organisms/CategoriesHorizontalSelector';
 import FlatButton from '../../atoms/Button/FlatButton';
 import ProductsGrid from '../../organisms/ProductsGrid';
+import PromoCard from '../../molecules/PromoCard';
 import React from 'react';
 import SearchSection from '../../organisms/SearchSection';
+import SectionTitle from './../../atoms/Text/SectionTitle';
 import { home } from './../../../../assets/images/banners';
 import { product } from './../../../../assets/images/placeholder';
 
@@ -32,21 +34,56 @@ const Home = ({ navigation }) => {
                     Scopri tutte le offerte
                 </FlatButton>
                 <CategoriesHorizontalSelector />
+                <PromoCard
+                    text="Nome promozione"
+                    buttonLabel="Scopri"
+                    onPress={() => alert('Nome promozione')}
+                />
+                <PromoCard
+                    text="Nome promozione"
+                    buttonLabel="Scopri"
+                    onPress={() => alert('Nome promozione')}
+                />
+                <PromoCard
+                    text="Nome promozione"
+                    buttonLabel="Scopri"
+                    onPress={() => alert('Nome promozione')}
+                />
                 <ProductsGrid
                     sectionTitle="Offerte"
                     products={products}
                     isHalf={true}
                 />
+                <FlatButton
+                    onPress={() => alert('Scopri tutte le offerte')}
+                    darkOrange={true}>
+                    Scopri tutte le offerte
+                </FlatButton>
                 <ProductsGrid
                     sectionTitle="Simili ai prodotti che hai già acquistato"
                     products={products}
                     isHalf={true}
                 />
+                <FlatButton
+                    onPress={() => alert('Visualizza altri prodotti')}
+                    darkOrange={true}>
+                    Visualizza altri prodotti
+                </FlatButton>
+                <FlatButton
+                    onPress={() => alert('Scopri la ricetta del giorno')}
+                    darkOrange={true}>
+                    Scopri la ricetta del giorno
+                </FlatButton>
                 <ProductsGrid
                     sectionTitle="I piú venduti"
                     products={products}
                     isHalf={true}
                 />
+                <FlatButton
+                    onPress={() => alert('Visualizza altri prodotti')}
+                    darkOrange={true}>
+                    Visualizza altri prodotti
+                </FlatButton>
             </ScrollView>
         </SafeAreaView>
     );
