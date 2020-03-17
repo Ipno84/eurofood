@@ -8,9 +8,9 @@ import React from 'react';
 import { promo } from './../../../../assets/images/placeholder';
 import styled from 'styled-components';
 
-const PromoCard = ({ text, buttonLabel, onPress }) => {
+const PromoCard = ({ text, buttonLabel, onPress, isFirst }) => {
     return (
-        <PromoWrapper>
+        <PromoWrapper isFirst={isFirst}>
             <PromoImage resizeMode="cover" source={promo} />
             <PromoFooter>
                 <PromoTitle>

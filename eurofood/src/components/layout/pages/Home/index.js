@@ -10,12 +10,12 @@ import React from 'react';
 import SearchSection from '../../organisms/SearchSection';
 import SimilarProducts from '../../templates/SimilarProducts';
 import SuperOffers from '../../templates/SuperOffers';
-import VideoRecipe from '../../templates/VideoRecipe';
+import VideoRecipe from '../../organisms/VideoRecipe';
 
 const Home = ({ navigation }) => {
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ paddingBottom: 16 }}>
                 <SearchSection />
                 <HomeBanner />
                 <SuperOffers />
