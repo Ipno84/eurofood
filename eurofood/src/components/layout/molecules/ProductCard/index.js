@@ -1,4 +1,3 @@
-import HalfWrapper from '../../atoms/Card/HalfWrapper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProductImage from '../../atoms/Card/ProductImage';
 import ProductImageWrapper from '../../atoms/Card/ProductImageWrapper';
@@ -7,17 +6,16 @@ import ProductNameWrapper from '../../atoms/Card/ProductNameWrapper';
 import ProductPrice from '../../atoms/Card/ProductPrice';
 import ProductPriceWrapper from '../../atoms/Card/ProductPriceWrapper';
 import ProductRatingWrapper from '../../atoms/Card/ProductRatingWrapper';
+import ProductWrapper from '../../atoms/Card/ProductWrapper';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import Wrapper from '../../atoms/Card/Wrapper';
 import generateArrayOfN from './../../../../helpers/generateArrayOfN';
 import { gray } from './../../../../constants/ThemeConstants';
 
-const ProductCard = ({ name, image, price, isHalf }) => {
-    const Container = isHalf ? HalfWrapper : Wrapper;
+const ProductCard = ({ name, image, price, inHorizontal, isFirst }) => {
     return (
         <TouchableOpacity onPress={() => alert(name)}>
-            <Container>
+            <ProductWrapper inHorizontal={inHorizontal} isFirst={isFirst}>
                 <ProductImageWrapper>
                     <ProductImage
                         resizeMethod="scale"
@@ -41,7 +39,7 @@ const ProductCard = ({ name, image, price, isHalf }) => {
                         />
                     ))}
                 </ProductRatingWrapper>
-            </Container>
+            </ProductWrapper>
         </TouchableOpacity>
     );
 };

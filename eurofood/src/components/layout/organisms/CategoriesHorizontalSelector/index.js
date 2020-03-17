@@ -41,7 +41,7 @@ const CategoriesHorizontalSelector = () => {
         { title: 'Vegetali', image: vegetali },
     ];
     return (
-        <HorizontalScollerContainer>
+        <HorizontalScollerContainer plainBackground={true} shadow={true}>
             <InScreenTitle>Scegli per categoria</InScreenTitle>
             <HorizontalList
                 data={items}

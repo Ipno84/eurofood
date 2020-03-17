@@ -17,7 +17,6 @@ const ProductsGrid = ({ sectionTitle, products, isHalf }) => {
                         name={item.name}
                         image={item.image}
                         price={item.price}
-                        isHalf={isHalf}
                     />
                 )}
             />
