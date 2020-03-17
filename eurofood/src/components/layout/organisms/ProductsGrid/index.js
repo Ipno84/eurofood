@@ -4,7 +4,7 @@ import SectionTitle from '../../atoms/Text/SectionTitle';
 import StyledFlatGrid from './styled';
 import { screenWidth } from './../../../../constants/ThemeConstants';
 
-const ProductsGrid = ({ sectionTitle, products, isHalf }) => {
+const ProductsGrid = ({ sectionTitle, products }) => {
     return (
         <>
             <SectionTitle>{sectionTitle}</SectionTitle>

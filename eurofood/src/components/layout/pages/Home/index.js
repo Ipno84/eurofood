@@ -4,6 +4,7 @@ import BestSellers from '../../templates/BestSellers';
 import CategoriesHorizontalSelector from '../../organisms/CategoriesHorizontalSelector';
 import HomeBanner from '../../templates/HomeBanner';
 import HorizontalProducts from '../../organisms/HorizontalProducts';
+import Infoblock from '../../molecules/Infoblock';
 import LoginBlock from '../../templates/LoginBlock';
 import Offers from '../../templates/Offers';
 import PromoCards from '../../templates/PromoCards';
@@ -30,6 +31,7 @@ const Home = () => {
                 <HorizontalProducts sectionTitle="Ristoranti" />
                 <HorizontalProducts sectionTitle="Pizzerie" />
                 <HorizontalProducts sectionTitle="Hotel" />
+                <Infoblock />
                 <BestSellers />
             </ScrollView>
         </SafeAreaView>
