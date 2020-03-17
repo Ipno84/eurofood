@@ -12,6 +12,7 @@ import React from 'react';
 import SearchSection from '../../organisms/SearchSection';
 import SimilarProducts from '../../templates/SimilarProducts';
 import SuperOffers from '../../templates/SuperOffers';
+import TopProducts from '../../templates/TopProducts';
 import VideoRecipe from '../../organisms/VideoRecipe';
 
 const Home = () => {
@@ -32,6 +33,8 @@ const Home = () => {
                 <HorizontalProducts sectionTitle="Pizzerie" />
                 <HorizontalProducts sectionTitle="Hotel" />
                 <Infoblock />
+                <TopProducts label="Bar - Top 5" />
+                <TopProducts label="Ristoranti - Top 5" />
                 <BestSellers />
             </ScrollView>
         </SafeAreaView>
