@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 const FlatButton = styled.TouchableOpacity`
     flex-direction: row;
@@ -8,10 +8,14 @@ const FlatButton = styled.TouchableOpacity`
     padding-bottom: 8px;
     padding-left: 32px;
     padding-right: 28px;
-    shadow-color: ${({ theme }) => theme.colors.alterGray(1)};
-    shadow-offset: 0 0;
-    shadow-opacity: 1;
-    shadow-radius: 6px;
+    ${({ shadow }) =>
+        shadow &&
+        css`
+            shadow-color: ${({ theme }) => theme.colors.alterGray(1)};
+            shadow-offset: 0 0;
+            shadow-opacity: 1;
+            shadow-radius: 6px;
+        `}
 `;
 
 export default FlatButton;

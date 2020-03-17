@@ -4,14 +4,16 @@ import Styled from './styled';
 import Text from './Text';
 import getColor from './../../../../../helpers/getColor';
 
-const FlatButton = ({ children, onPress, darkOrange }) => {
+const FlatButton = ({ children, shadow, onPress, darkOrange, azure }) => {
     return (
-        <Styled onPress={onPress}>
-            <Text darkOrange={darkOrange}>{children}</Text>
+        <Styled onPress={onPress} shadow={shadow}>
+            <Text darkOrange={darkOrange} azure={azure}>
+                {children}
+            </Text>
             <Icon
                 name="chevron-right"
                 size={24}
-                color={getColor({ darkOrange })}
+                color={getColor({ darkOrange, azure })}
             />
         </Styled>
     );
