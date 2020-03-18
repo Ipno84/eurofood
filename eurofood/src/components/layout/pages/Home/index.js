@@ -27,8 +27,8 @@ const Home = () => {
                 <SuperOffers />
                 <CategoriesHorizontalSelector />
                 <LoginBlock />
-                {/* <PromoCards />
-                <Offers />
+                <PromoCards />
+                {/* <Offers />
                 <SimilarProducts />
                 <VideoRecipe />
                 <HorizontalProducts sectionTitle="Bar" />

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-const PromoTouchable = styled.TouchableOpacity`
+const PromoTouchable = styled.View`
     background-color: ${({ theme }) => theme.colors.darkRed(1)};
     margin-top: 8px;
     margin-bottom: 8px;

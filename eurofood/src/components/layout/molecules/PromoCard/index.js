@@ -5,8 +5,8 @@ import PromoTitle from './../../atoms/Card/Promo/PromoTitle';
 import PromoTouchable from './../../atoms/Card/Promo/PromoTouchable';
 import PromoWrapper from './../../atoms/Card/Promo/PromoWrapper';
 import React from 'react';
+import Touchable from './../../atoms/Button/Touchable';
 import { promo } from './../../../../assets/images/placeholder';
-import styled from 'styled-components';
 
 const PromoCard = ({ text, buttonLabel, onPress, isFirst }) => {
     return (
@@ -16,9 +16,11 @@ const PromoCard = ({ text, buttonLabel, onPress, isFirst }) => {
                 <PromoTitle>
                     <PromoText>{text}</PromoText>
                 </PromoTitle>
-                <PromoTouchable onPress={onPress}>
-                    <PromoText isWhite={true}>{buttonLabel}</PromoText>
-                </PromoTouchable>
+                <Touchable onPress={onPress}>
+                    <PromoTouchable>
+                        <PromoText isWhite={true}>{buttonLabel}</PromoText>
+                    </PromoTouchable>
+                </Touchable>
             </PromoFooter>
         </PromoWrapper>
     );
