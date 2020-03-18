@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
-const ProductLine = styled.TouchableOpacity`
+const ProductLine = styled.View`
     height: 150px;
     flex-direction: row;
     ${({ odd, theme }) =>

@@ -8,23 +8,28 @@ import PriceContainer from './PriceContainer';
 import React from 'react';
 import Right from './Right';
 import Styled from './styled';
+import Touchable from './../../atoms/Button/Touchable';
 
 const ProductLine = ({ name, image, price, odd, onPress }) => {
     return (
-        <Styled odd={odd} onPress={onPress}>
-            <Left>
-                <Image resizeMode="contain" source={image} />
-            </Left>
-            <Right>
-                <InfoContainer>
-                    <Name>{name}</Name>
-                    <PriceContainer>
-                        <CurrentPrice>{price.offer.toFixed(2)} €</CurrentPrice>
-                        <OldPrice>{price.regular.toFixed(2)} €</OldPrice>
-                    </PriceContainer>
-                </InfoContainer>
-            </Right>
-        </Styled>
+        <Touchable onPress={onPress}>
+            <Styled odd={odd}>
+                <Left>
+                    <Image resizeMode="contain" source={image} />
+                </Left>
+                <Right>
+                    <InfoContainer>
+                        <Name>{name}</Name>
+                        <PriceContainer>
+                            <CurrentPrice>
+                                {price.offer.toFixed(2)} €
+                            </CurrentPrice>
+                            <OldPrice>{price.regular.toFixed(2)} €</OldPrice>
+                        </PriceContainer>
+                    </InfoContainer>
+                </Right>
+            </Styled>
+        </Touchable>
     );
 };
 
