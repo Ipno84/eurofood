@@ -9,9 +9,9 @@ import React from 'react';
 import Right from './Right';
 import Styled from './styled';
 
-const ProductLine = ({ name, image, price, odd }) => {
+const ProductLine = ({ name, image, price, odd, onPress }) => {
     return (
-        <Styled odd={odd}>
+        <Styled odd={odd} onPress={onPress}>
             <Left>
                 <Image resizeMode="contain" source={image} />
             </Left>

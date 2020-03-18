@@ -30,6 +30,7 @@ const TopProducts = ({ label }) => {
                             name={item.name}
                             image={item.image}
                             price={item.price}
+                            onPress={() => alert(item.name)}
                         />
                     )}
                 />
