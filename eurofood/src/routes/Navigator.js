@@ -57,6 +57,7 @@ const Routes = () => {
                     shadowOffset: {
                         height: 0,
                     },
+                    elevation: 0,
                 },
             }}>
             {RoutesMap.map(({ name, component, options }, i) => (
