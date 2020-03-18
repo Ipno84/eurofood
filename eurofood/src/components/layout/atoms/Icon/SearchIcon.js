@@ -6,7 +6,7 @@ import { alterGray } from './../../../../constants/ThemeConstants';
 const SearchIcon = () => {
     return (
         <IconWrapper>
-            <Icon name="search" size={28} color={alterGray.toString()} />
+            <Icon name="search" size={26} color={alterGray.toString()} />
         </IconWrapper>
     );
 };

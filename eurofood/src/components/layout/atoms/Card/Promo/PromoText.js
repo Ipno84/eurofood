@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 const PromoText = styled.Text`
     font-family: ${({ theme }) => theme.fonts.roboto(700, false, true)};
-    font-size: 22px;
+    font-size: 18px;
     text-transform: uppercase;
     flex: 1;
     ${({ isWhite }) =>

@@ -8,6 +8,7 @@ const InfoItem = styled(Wrapper)`
     padding-left: 16px;
     padding-bottom: 16px;
     padding-right: 16px;
+    height: 130px;
 `;
 
 export default InfoItem;

@@ -1,4 +1,5 @@
 import {
+    ROUTE_NAME_CART,
     ROUTE_NAME_CATEGORY,
     ROUTE_NAME_HOME,
     ROUTE_NAME_LOGIN,
@@ -8,8 +9,11 @@ import {
     ROUTE_NAME_RECIPE,
     ROUTE_NAME_REGISTER,
 } from './../constants/RouteConstants';
+import { Text, View } from 'react-native';
 
+import Cart from './../components/layout/pages/Cart';
 import Category from './../components/layout/pages/Category';
+import Drawer from './Drawer';
 import HeaderButton from './../components/layout/atoms/HeaderButton';
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
@@ -27,78 +31,87 @@ const RoutesMap = [
     {
         name: ROUTE_NAME_HOME,
         component: Home,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Home',
             headerTitleAlign: 'center',
             headerTitle: props => <Logo {...props} />,
             headerLeft: () => (
                 <HeaderButton
                     isLeft={true}
-                    onPress={() => alert('Menu button!')}
+                    onPress={() => navigation.toggleDrawer()}
                     name="menu"
                 />
             ),
-            headerRight: () => (
-                <HeaderButton
-                    isLeft={false}
-                    onPress={() => alert('Cart button!')}
-                    name="shopping-cart"
-                />
-            ),
-        },
+            headerRight: () => {
+                return (
+                    <HeaderButton
+                        isLeft={false}
+                        onPress={() => navigation.navigate(ROUTE_NAME_CART)}
+                        name="shopping-cart"
+                    />
+                );
+            },
+        }),
     },
     {
         name: ROUTE_NAME_LOGIN,
         component: Login,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Login',
-        },
+        }),
     },
     {
         name: ROUTE_NAME_REGISTER,
         component: Register,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Register',
-        },
+        }),
     },
     {
         name: ROUTE_NAME_CATEGORY,
         component: Category,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Category',
-        },
+        }),
     },
     {
         name: ROUTE_NAME_PRODUCT,
         component: Product,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Product',
-        },
+        }),
     },
     {
         name: ROUTE_NAME_PROMO,
         component: Promo,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Promo',
-        },
+        }),
     },
     {
         name: ROUTE_NAME_OFFER,
         component: Offer,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Offer',
-        },
+        }),
     },
     {
         name: ROUTE_NAME_RECIPE,
         component: Recipe,
-        options: {
+        options: ({ navigation, route }) => ({
             title: 'Recipe',
-        },
+        }),
+    },
+    {
+        name: ROUTE_NAME_CART,
+        component: Cart,
+        options: ({ navigation, route }) => ({
+            title: 'Cart',
+        }),
     },
 ];
 
-const Routes = () => {
+const StackNavigator = () => {
     return (
         <Stack.Navigator
             initialRouteName={ROUTE_NAME_HOME}
@@ -118,11 +131,25 @@ const Routes = () => {
                     key={`route-${name}-${i}`}
                     name={name}
                     component={component}
-                    options={options}
+                    options={props => options(props)}
                 />
             ))}
         </Stack.Navigator>
     );
 };
 
-export default Routes;
+const DrawerNavigator = () => {
+    return (
+        <Drawer.Navigator
+            initialRouteName="Stack"
+            drawerContent={() => (
+                <View>
+                    <Text>Drawer</Text>
+                </View>
+            )}>
+            <Drawer.Screen name="Stack" component={StackNavigator} />
+        </Drawer.Navigator>
+    );
+};
+
+export default DrawerNavigator;

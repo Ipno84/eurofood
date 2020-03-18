@@ -9,8 +9,8 @@ const ProductWrapper = styled(Wrapper)`
     ${({ inHorizontal }) =>
         inHorizontal &&
         css`
-            width: 240px;
-            height: 250px;
+            width: 180px;
+            height: 210px;
             ${({ isFirst }) =>
                 isFirst
                     ? css`

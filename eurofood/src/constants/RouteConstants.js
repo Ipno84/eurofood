@@ -6,3 +6,4 @@ export const ROUTE_NAME_PRODUCT = 'Product';
 export const ROUTE_NAME_PROMO = 'Promo';
 export const ROUTE_NAME_OFFER = 'Offer';
 export const ROUTE_NAME_RECIPE = 'Recipe';
+export const ROUTE_NAME_CART = 'Cart';

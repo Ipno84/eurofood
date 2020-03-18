@@ -6,10 +6,10 @@ const PromoTouchable = styled.View`
     margin-bottom: 8px;
     margin-left: 16px;
     margin-right: 16px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
     border-radius: 4px;
 `;
 

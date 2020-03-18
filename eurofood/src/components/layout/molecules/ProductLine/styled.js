@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/native';
 
 const ProductLine = styled.View`
-    height: 150px;
+    height: 140px;
     flex-direction: row;
     ${({ odd, theme }) =>
         !odd &&
