@@ -26,8 +26,8 @@ const Home = () => {
                 <HomeBanner />
                 <SuperOffers />
                 <CategoriesHorizontalSelector />
-                {/* <LoginBlock />
-                <PromoCards />
+                <LoginBlock />
+                {/* <PromoCards />
                 <Offers />
                 <SimilarProducts />
                 <VideoRecipe />
