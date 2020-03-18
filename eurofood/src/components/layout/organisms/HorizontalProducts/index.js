@@ -23,7 +23,7 @@ const HorizontalProducts = ({ sectionTitle }) => {
                 contentContainerStyle={{
                     paddingTop: 18,
                     paddingRight: 16,
-                    paddingBottom: 10,
+                    paddingBottom: 2,
                 }}
                 renderItem={({ item, index }) => (
                     <ProductCard

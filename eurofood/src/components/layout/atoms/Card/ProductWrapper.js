@@ -5,6 +5,7 @@ import Wrapper from './Wrapper';
 const ProductWrapper = styled(Wrapper)`
     height: 220px;
     elevation: 5;
+    margin-bottom: 8px;
     ${({ inHorizontal }) =>
         inHorizontal &&
         css`
