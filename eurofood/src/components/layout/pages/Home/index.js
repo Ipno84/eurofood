@@ -38,10 +38,10 @@ const Home = () => {
                 <Infoblock />
                 <TopProducts label="Bar - Top 5" />
                 <TopProducts label="Ristoranti - Top 5" />
-                {/* <BestSellers />
+                <BestSellers />
                 <Spacer top={24} />
                 <Alert>Hai raggiuto la fine. continua a esplorare!</Alert>
-                <CategoriesGrid title="SCOPRI LE NOSTRE CATEGORIE" /> */}
+                <CategoriesGrid title="SCOPRI LE NOSTRE CATEGORIE" />
             </ScrollView>
         </SafeAreaView>
     );

@@ -40,6 +40,7 @@ const CategoriesGrid = ({ title }) => {
                         title={item.title}
                         imageLeft={item.imageLeft}
                         imageRight={item.imageRight}
+                        onPress={() => alert(item.title)}
                     />
                 )}
             />

@@ -7,22 +7,25 @@ import Right from './Right';
 import RightTextContainer from './RightTextContainer';
 import Styled from './styled';
 import Text from './Text';
+import Touchable from './../../atoms/Button/Touchable';
 
-const CategoryCard = ({ title, imageLeft, imageRight }) => {
+const CategoryCard = ({ title, imageLeft, imageRight, onPress }) => {
     return (
-        <Styled>
-            <Left>
-                <ImageLeft resizeMode="cover" source={imageLeft} />
-            </Left>
-            <Right>
-                <ImageRightContainer>
-                    <ImageRight resizeMode="contain" source={imageRight} />
-                </ImageRightContainer>
-                <RightTextContainer>
-                    <Text numberOfLines={1}>{title.toLowerCase()}</Text>
-                </RightTextContainer>
-            </Right>
-        </Styled>
+        <Touchable onPress={onPress}>
+            <Styled>
+                <Left>
+                    <ImageLeft resizeMode="cover" source={imageLeft} />
+                </Left>
+                <Right>
+                    <ImageRightContainer>
+                        <ImageRight resizeMode="contain" source={imageRight} />
+                    </ImageRightContainer>
+                    <RightTextContainer>
+                        <Text numberOfLines={1}>{title.toLowerCase()}</Text>
+                    </RightTextContainer>
+                </Right>
+            </Styled>
+        </Touchable>
     );
 };
 

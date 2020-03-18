@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-const CategoryCard = styled.TouchableOpacity`
+const CategoryCard = styled.View`
     flex-direction: row;
     height: 80px;
     border-radius: 4px;
