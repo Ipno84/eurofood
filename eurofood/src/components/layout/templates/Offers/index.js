@@ -1,7 +1,9 @@
 import FlatButton from '../../atoms/Button/FlatButton';
 import ProductsGrid from '../../organisms/ProductsGrid';
+import { ROUTE_NAME_OFFER } from '../../../../constants/RouteConstants';
 import React from 'react';
 import { product } from './../../../../assets/images/placeholder';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const products = [
     { name: 'Product 1', image: product, price: { regular: 10, offer: 9 } },
@@ -11,16 +13,13 @@ const products = [
 ];
 
 const Offers = () => {
+    const { navigate } = useAppNavigation();
     return (
         <>
-            <ProductsGrid
-                sectionTitle="Super Offerte"
-                products={products}
-                isHalf={true}
-            />
+            <ProductsGrid sectionTitle="Offerte" products={products} />
             <FlatButton
                 shadow={true}
-                onPress={() => alert('Scopri tutte le offerte')}
+                onPress={() => navigate(ROUTE_NAME_OFFER)}
                 darkOrange={true}>
                 Scopri tutte le offerte
             </FlatButton>

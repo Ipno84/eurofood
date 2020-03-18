@@ -1,9 +1,11 @@
 import HorizontalList from './../../atoms/ScrollView/HorizontalList';
 import HorizontalScollerContainer from './../../atoms/ScrollView/HorizontalScollerContainer';
 import ProductCard from '../../molecules/ProductCard';
+import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
 import { product } from './../../../../assets/images/placeholder';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const products = [
     { name: 'Product 1', image: product, price: { regular: 10, offer: 9 } },
@@ -13,6 +15,7 @@ const products = [
 ];
 
 const HorizontalProducts = ({ sectionTitle }) => {
+    const { navigate } = useAppNavigation();
     return (
         <HorizontalScollerContainer>
             <SectionTitle>{sectionTitle}</SectionTitle>
@@ -32,6 +35,7 @@ const HorizontalProducts = ({ sectionTitle }) => {
                         image={item.image}
                         price={item.price}
                         inHorizontal={true}
+                        onPress={() => navigate(ROUTE_NAME_PRODUCT)}
                     />
                 )}
                 keyExtractor={({ name }) => name}

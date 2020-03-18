@@ -12,9 +12,16 @@ import Touchable from '../../atoms/Button/Touchable';
 import generateArrayOfN from './../../../../helpers/generateArrayOfN';
 import { gray } from './../../../../constants/ThemeConstants';
 
-const ProductCard = ({ name, image, price, inHorizontal, isFirst }) => {
+const ProductCard = ({
+    name,
+    image,
+    price,
+    inHorizontal,
+    isFirst,
+    onPress,
+}) => {
     return (
-        <Touchable onPress={() => alert(name)}>
+        <Touchable onPress={onPress}>
             <ProductWrapper inHorizontal={inHorizontal} isFirst={isFirst}>
                 <ProductImageWrapper>
                     <ProductImage

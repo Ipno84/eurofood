@@ -20,7 +20,9 @@ import CategoryItem from './../../molecules/CategoryItem';
 import HorizontalList from './../../atoms/ScrollView/HorizontalList';
 import HorizontalScollerContainer from './../../atoms/ScrollView/HorizontalScollerContainer';
 import InScreenTitle from './../../atoms/Text/InScreenTitle';
+import { ROUTE_NAME_CATEGORY } from '../../../../constants/RouteConstants';
 import React from 'react';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const items = [
     { title: 'Bevande', image: bevande },
@@ -41,6 +43,7 @@ const items = [
 ];
 
 const CategoriesHorizontalSelector = () => {
+    const { navigate } = useAppNavigation();
     return (
         <HorizontalScollerContainer plainBackground={true} shadow={true}>
             <InScreenTitle>Scegli per categoria</InScreenTitle>
@@ -51,7 +54,7 @@ const CategoriesHorizontalSelector = () => {
                 contentContainerStyle={{ paddingRight: 16 }}
                 renderItem={({ item }) => (
                     <CategoryItem
-                        onPress={() => alert(item.title)}
+                        onPress={() => navigate(ROUTE_NAME_CATEGORY)}
                         image={item.image}
                         title={item.title}
                     />

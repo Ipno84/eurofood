@@ -1,10 +1,13 @@
 import ProductCard from '../../molecules/ProductCard';
+import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import SectionTitle from '../../atoms/Text/SectionTitle';
 import StyledFlatGrid from './styled';
 import { screenWidth } from './../../../../constants/ThemeConstants';
+import useAppNavigation from './../../../../hooks/useAppNavigation';
 
 const ProductsGrid = ({ sectionTitle, products }) => {
+    const { navigate } = useAppNavigation();
     return (
         <>
             <SectionTitle>{sectionTitle}</SectionTitle>
@@ -17,6 +20,7 @@ const ProductsGrid = ({ sectionTitle, products }) => {
                         name={item.name}
                         image={item.image}
                         price={item.price}
+                        onPress={() => navigate(ROUTE_NAME_PRODUCT)}
                     />
                 )}
             />

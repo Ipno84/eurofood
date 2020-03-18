@@ -1,10 +1,12 @@
 import { FlatList } from 'react-native';
 import ListHeaderText from './../../atoms/Text/ListHeaderText';
 import ProductLine from './../../molecules/ProductLine';
+import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import Styled from './styled';
 import Wrapper from './Wrapper';
 import { product } from './../../../../assets/images/placeholder';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const products = [
     { name: 'Product 1', image: product, price: { regular: 10, offer: 9 } },
@@ -15,6 +17,7 @@ const products = [
 ];
 
 const TopProducts = ({ label }) => {
+    const { navigate } = useAppNavigation();
     return (
         <Styled>
             <Wrapper>
@@ -30,7 +33,7 @@ const TopProducts = ({ label }) => {
                             name={item.name}
                             image={item.image}
                             price={item.price}
-                            onPress={() => alert(item.name)}
+                            onPress={() => navigate(ROUTE_NAME_PRODUCT)}
                         />
                     )}
                 />

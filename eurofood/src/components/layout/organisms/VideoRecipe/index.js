@@ -1,12 +1,15 @@
 import FlatButton from '../../atoms/Button/FlatButton';
 import PreviewWrapper from '../../atoms/Wrapper/PreviewWrapper';
+import { ROUTE_NAME_RECIPE } from '../../../../constants/RouteConstants';
 import React from 'react';
 import RecipePreview from '../../atoms/Image/RecipePreview';
 import RecipeWrapper from '../../atoms/Wrapper/RecipeWrapper';
 import SectionTitle from '../../atoms/Text/SectionTitle';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 import { video } from './../../../../assets/images/placeholder';
 
 const VideoRecipe = () => {
+    const { navigate } = useAppNavigation();
     return (
         <>
             <SectionTitle>FRASE VIDEO/RICETTA</SectionTitle>
@@ -16,7 +19,7 @@ const VideoRecipe = () => {
                 </PreviewWrapper>
                 <FlatButton
                     shadow={true}
-                    onPress={() => alert('Scopri la ricetta del giorno')}
+                    onPress={() => navigate(ROUTE_NAME_RECIPE)}
                     darkOrange={true}>
                     Scopri la ricetta del giorno
                 </FlatButton>

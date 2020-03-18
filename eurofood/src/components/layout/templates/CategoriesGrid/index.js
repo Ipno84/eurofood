@@ -9,12 +9,14 @@ import {
 
 import CategoryCard from '../../molecules/CategoryCard';
 import InScreenTitle from '../../atoms/Text/InScreenTitle';
+import { ROUTE_NAME_CATEGORY } from '../../../../constants/RouteConstants';
 import React from 'react';
 import StyledFlatGrid from './styled';
 import TitleWrapper from './TitleWrapper';
 import { category } from './../../../../assets/images/placeholder';
 import { screenWidth } from './../../../../constants/ThemeConstants';
 import styled from 'styled-components/native';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const categories = [
     { title: 'Pane', imageRight: pane, imageLeft: category },
@@ -26,6 +28,7 @@ const categories = [
 ];
 
 const CategoriesGrid = ({ title }) => {
+    const { navigate } = useAppNavigation();
     return (
         <>
             <TitleWrapper>
@@ -40,7 +43,7 @@ const CategoriesGrid = ({ title }) => {
                         title={item.title}
                         imageLeft={item.imageLeft}
                         imageRight={item.imageRight}
-                        onPress={() => alert(item.title)}
+                        onPress={() => navigate(ROUTE_NAME_CATEGORY)}
                     />
                 )}
             />
