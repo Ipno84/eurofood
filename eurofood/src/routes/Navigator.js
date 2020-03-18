@@ -17,6 +17,7 @@ const RoutesMap = [
         component: Home,
         options: {
             title: 'Home',
+            headerTitleAlign: 'center',
             headerTitle: props => <Logo {...props} />,
             headerLeft: () => (
                 <HeaderButton
