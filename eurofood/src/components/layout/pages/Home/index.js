@@ -2,6 +2,7 @@ import { SafeAreaView, ScrollView } from 'react-native';
 
 import Alert from '../../atoms/Alert';
 import BestSellers from '../../templates/BestSellers';
+import CategoriesGrid from '../../templates/CategoriesGrid';
 import CategoriesHorizontalSelector from '../../organisms/CategoriesHorizontalSelector';
 import HomeBanner from '../../templates/HomeBanner';
 import HorizontalProducts from '../../organisms/HorizontalProducts';
@@ -40,6 +41,7 @@ const Home = () => {
                 <BestSellers />
                 <Spacer top={24} />
                 <Alert>Hai raggiuto la fine. continua a esplorare!</Alert>
+                <CategoriesGrid title="SCOPRI LE NOSTRE CATEGORIE" />
             </ScrollView>
         </SafeAreaView>
     );
