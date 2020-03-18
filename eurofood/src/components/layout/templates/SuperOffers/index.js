@@ -13,11 +13,7 @@ const products = [
 const SuperOffers = () => {
     return (
         <>
-            <ProductsGrid
-                sectionTitle="Super Offerte"
-                products={products}
-                isHalf={true}
-            />
+            <ProductsGrid sectionTitle="Super Offerte" products={products} />
             <FlatButton
                 shadow={true}
                 onPress={() => alert('Scopri tutte le offerte')}

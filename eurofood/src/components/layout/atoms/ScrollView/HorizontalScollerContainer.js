@@ -17,6 +17,7 @@ const HorizontalScollerContainer = styled.View`
             shadow-offset: 0 0;
             shadow-opacity: 1;
             shadow-radius: 6px;
+            elevation: 5;
         `}
 `;
 

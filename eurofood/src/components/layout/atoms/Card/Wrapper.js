@@ -6,6 +6,7 @@ const Card = styled.View`
     shadow-offset: 0 0;
     shadow-opacity: 1;
     shadow-radius: 6px;
+    elevation: 5;
     border-radius: 8px;
     flex-direction: column;
 `;

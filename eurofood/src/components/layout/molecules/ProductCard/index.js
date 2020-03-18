@@ -8,13 +8,13 @@ import ProductPriceWrapper from '../../atoms/Card/ProductPriceWrapper';
 import ProductRatingWrapper from '../../atoms/Card/ProductRatingWrapper';
 import ProductWrapper from '../../atoms/Card/ProductWrapper';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import Touchable from '../../atoms/Button/Touchable';
 import generateArrayOfN from './../../../../helpers/generateArrayOfN';
 import { gray } from './../../../../constants/ThemeConstants';
 
 const ProductCard = ({ name, image, price, inHorizontal, isFirst }) => {
     return (
-        <TouchableOpacity onPress={() => alert(name)}>
+        <Touchable onPress={() => alert(name)}>
             <ProductWrapper inHorizontal={inHorizontal} isFirst={isFirst}>
                 <ProductImageWrapper>
                     <ProductImage
@@ -40,7 +40,7 @@ const ProductCard = ({ name, image, price, inHorizontal, isFirst }) => {
                     ))}
                 </ProductRatingWrapper>
             </ProductWrapper>
-        </TouchableOpacity>
+        </Touchable>
     );
 };
 

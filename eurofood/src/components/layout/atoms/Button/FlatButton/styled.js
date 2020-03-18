@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
-const FlatButton = styled.TouchableOpacity`
+const FlatButton = styled.View`
     flex-direction: row;
     background-color: ${({ theme }) => theme.colors.white(1)};
     font-family: ${({ theme }) => theme.fonts.roboto(700, false, true)};
@@ -15,6 +15,7 @@ const FlatButton = styled.TouchableOpacity`
             shadow-offset: 0 0;
             shadow-opacity: 1;
             shadow-radius: 6px;
+            elevation: 5;
         `}
 `;
 

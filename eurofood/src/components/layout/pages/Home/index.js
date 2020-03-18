@@ -25,7 +25,7 @@ const Home = () => {
                 <SearchSection />
                 <HomeBanner />
                 <SuperOffers />
-                <CategoriesHorizontalSelector />
+                {/* <CategoriesHorizontalSelector />
                 <LoginBlock />
                 <PromoCards />
                 <Offers />
@@ -41,7 +41,7 @@ const Home = () => {
                 <BestSellers />
                 <Spacer top={24} />
                 <Alert>Hai raggiuto la fine. continua a esplorare!</Alert>
-                <CategoriesGrid title="SCOPRI LE NOSTRE CATEGORIE" />
+                <CategoriesGrid title="SCOPRI LE NOSTRE CATEGORIE" /> */}
             </ScrollView>
         </SafeAreaView>
     );
