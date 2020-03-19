@@ -1,6 +1,12 @@
+import {
+    REDUCER_NAME_CONTENTS,
+    REDUCER_NAME_SETTINGS
+} from './../../constants/StoreConstants';
+
 import ContentsReducer from './ContentsReducer';
-import { REDUCER_NAME_CONTENTS } from './../../constants/StoreConstants';
+import SettingsReducer from './SettingsReducer';
 
 export default {
     [REDUCER_NAME_CONTENTS]: ContentsReducer,
+    [REDUCER_NAME_SETTINGS]: SettingsReducer
 };

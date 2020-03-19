@@ -1,5 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 
+import SettingsSaga from './../middlewares/sagas/SettingsSaga';
 import composeEnhancers from './composeEnhancers';
 import createReducer from './createReducer';
 import createSagaMiddleware from 'redux-saga';
@@ -13,7 +14,7 @@ function configureStore(initialState) {
     let store = createStore(
         createReducer({}),
         initialState,
-        composeEnhancers(applyMiddleware(sagaMiddleware)),
+        composeEnhancers(applyMiddleware(sagaMiddleware))
     );
     let persistor = persistStore(store, null, () => store.getState());
 
@@ -27,7 +28,7 @@ function configureStore(initialState) {
     };
 
     store.asyncSagas = {
-        // RedisSaga
+        SettingsSaga
     };
     store.injectSaga = (key, asyncSaga) => {
         function* combinedSagas() {
@@ -47,7 +48,7 @@ const { store, persistor } = configureStore();
 sagaMiddleware.run(combinedSaga);
 
 function* combinedSaga() {
-    // yield fork(RedisSaga);
+    yield fork(SettingsSaga);
 }
 
 export { store, persistor };
