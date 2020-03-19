@@ -8,6 +8,7 @@ export default function setupAxios() {
         config => {
             if (process.env.NODE_ENV == 'development')
                 config.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
+            config.headers['Output-Format'] = 'JSON';
             console.log(config);
             return config;
         },

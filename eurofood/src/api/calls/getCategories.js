@@ -9,9 +9,7 @@ import axios from 'axios';
 export default function getCategories() {
     const endpoint = [HOST, ENDPOINT_CATEGORIES].join('/');
     return axios
-        .get(endpoint, {
-            params: BASIC_PARAMS,
-        })
+        .get(endpoint)
         .then(({ data }) => data)
         .catch(error => {
             throw error;
