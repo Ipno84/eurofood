@@ -7,7 +7,7 @@ const TEMPLATE = [
         component: 'ScrollView',
         props: {
             contentContainerStyle: {
-                paddingBottom: 16
+                paddingBottom: 16,
             },
             children: [
                 { component: 'SearchSection' },
@@ -21,64 +21,66 @@ const TEMPLATE = [
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        sectionTitle: 'Bar'
-                    }
+                        sectionTitle: 'Bar',
+                    },
                 },
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        sectionTitle: 'Ristoranti'
-                    }
+                        sectionTitle: 'Ristoranti',
+                    },
                 },
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        sectionTitle: 'Pizzerie'
-                    }
+                        sectionTitle: 'Pizzerie',
+                    },
                 },
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        sectionTitle: 'Hotel'
-                    }
+                        sectionTitle: 'Hotel',
+                    },
                 },
                 { component: 'Infoblock' },
                 {
                     component: 'TopProducts',
                     props: {
-                        label: 'Bar - Top 5'
-                    }
+                        label: 'Bar - Top 5',
+                    },
                 },
                 {
                     component: 'TopProducts',
                     props: {
-                        label: 'Ristoranti - Top 5'
-                    }
+                        label: 'Ristoranti - Top 5',
+                    },
                 },
                 { component: 'BestSellers' },
                 {
                     component: 'Spacer',
                     props: {
-                        top: 24
-                    }
+                        top: 24,
+                    },
                 },
                 {
                     component: 'Alert',
                     props: {
-                        children: 'Hai raggiuto la fine. continua a esplorare!'
-                    }
+                        children: 'Hai raggiuto la fine. continua a esplorare!',
+                    },
                 },
                 {
                     component: 'CategoriesGrid',
                     props: {
-                        title: 'SCOPRI LE NOSTRE CATEGORIE'
-                    }
-                }
-            ]
-        }
-    }
+                        title: 'SCOPRI LE NOSTRE CATEGORIE',
+                    },
+                },
+            ],
+        },
+    },
 ];
 
-const Home = () => <SafeAreaView>{generateTemplate(TEMPLATE)}</SafeAreaView>;
+const Template = () => (
+    <SafeAreaView>{generateTemplate(TEMPLATE)}</SafeAreaView>
+);
 
-export default Home;
+export default Template;

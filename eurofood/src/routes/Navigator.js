@@ -8,6 +8,7 @@ import {
     ROUTE_NAME_PROMO,
     ROUTE_NAME_RECIPE,
     ROUTE_NAME_REGISTER,
+    ROUTE_NAME_TEMPLATE
 } from './../constants/RouteConstants';
 
 import Cart from './../components/layout/pages/Cart';
@@ -25,6 +26,7 @@ import React from 'react';
 import Recipe from './../components/layout/pages/Recipe';
 import Register from './../components/layout/pages/Register';
 import Stack from './Stack';
+import Template from './../components/layout/pages/Template';
 import { lightGray } from './../constants/ThemeConstants';
 
 const RoutesMap = [
@@ -50,65 +52,72 @@ const RoutesMap = [
                         name="shopping-cart"
                     />
                 );
-            },
-        }),
+            }
+        })
     },
     {
         name: ROUTE_NAME_LOGIN,
         component: Login,
         options: ({ navigation, route }) => ({
-            title: 'Login',
-        }),
+            title: 'Login'
+        })
     },
     {
         name: ROUTE_NAME_REGISTER,
         component: Register,
         options: ({ navigation, route }) => ({
-            title: 'Register',
-        }),
+            title: 'Register'
+        })
     },
     {
         name: ROUTE_NAME_CATEGORY,
         component: Category,
         options: ({ navigation, route }) => ({
-            title: 'Category',
-        }),
+            title: 'Category'
+        })
     },
     {
         name: ROUTE_NAME_PRODUCT,
         component: Product,
         options: ({ navigation, route }) => ({
-            title: 'Product',
-        }),
+            title: 'Product'
+        })
     },
     {
         name: ROUTE_NAME_PROMO,
         component: Promo,
         options: ({ navigation, route }) => ({
-            title: 'Promo',
-        }),
+            title: 'Promo'
+        })
     },
     {
         name: ROUTE_NAME_OFFER,
         component: Offer,
         options: ({ navigation, route }) => ({
-            title: 'Offer',
-        }),
+            title: 'Offer'
+        })
     },
     {
         name: ROUTE_NAME_RECIPE,
         component: Recipe,
         options: ({ navigation, route }) => ({
-            title: 'Recipe',
-        }),
+            title: 'Recipe'
+        })
     },
     {
         name: ROUTE_NAME_CART,
         component: Cart,
         options: ({ navigation, route }) => ({
-            title: 'Cart',
-        }),
+            title: 'Cart'
+        })
     },
+    {
+        name: ROUTE_NAME_TEMPLATE,
+        component: Template,
+        options: ({ navigation, route }) => ({
+            title: 'Template'
+        })
+    }
 ];
 
 const StackNavigator = () => {
@@ -121,10 +130,10 @@ const StackNavigator = () => {
                     shadowColor: 'transparent',
                     shadowRadius: 0,
                     shadowOffset: {
-                        height: 0,
+                        height: 0
                     },
-                    elevation: 0,
-                },
+                    elevation: 0
+                }
             }}>
             {RoutesMap.map(({ name, component, options }, i) => (
                 <Stack.Screen

@@ -7,3 +7,4 @@ export const ROUTE_NAME_PROMO = 'Promo';
 export const ROUTE_NAME_OFFER = 'Offer';
 export const ROUTE_NAME_RECIPE = 'Recipe';
 export const ROUTE_NAME_CART = 'Cart';
+export const ROUTE_NAME_TEMPLATE = 'Template';
