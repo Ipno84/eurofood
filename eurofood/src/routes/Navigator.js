@@ -9,11 +9,11 @@ import {
     ROUTE_NAME_RECIPE,
     ROUTE_NAME_REGISTER,
 } from './../constants/RouteConstants';
-import { Text, View } from 'react-native';
 
 import Cart from './../components/layout/pages/Cart';
 import Category from './../components/layout/pages/Category';
 import Drawer from './Drawer';
+import DrawerContent from './../components/layout/templates/DrawerContent';
 import HeaderButton from './../components/layout/atoms/HeaderButton';
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
@@ -142,11 +142,7 @@ const DrawerNavigator = () => {
     return (
         <Drawer.Navigator
             initialRouteName="Stack"
-            drawerContent={() => (
-                <View>
-                    <Text>Drawer</Text>
-                </View>
-            )}>
+            drawerContent={() => <DrawerContent />}>
             <Drawer.Screen name="Stack" component={StackNavigator} />
         </Drawer.Navigator>
     );
