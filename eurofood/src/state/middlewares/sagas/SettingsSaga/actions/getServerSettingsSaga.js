@@ -1,14 +1,16 @@
-import { call, put } from 'redux-saga/effects';
+import { all, call, put } from 'redux-saga/effects';
 
 import getServerSettingsAction from './../../../../actions/SettingsActions/getServerSettingsAction';
 import getServerSettingsCall from './../../../../../api/calls/SettingsCalls/getServerSettingsCall';
+import setHomeTemplateAction from './../../../../actions/SettingsActions/setHomeTemplateAction';
 
 export default function* getServerSettingsSaga() {
     try {
-        const server = yield call(getServerSettingsCall);
-        if (server) {
-            yield put(getServerSettingsAction({ server }));
-        } else throw new Error(`Something's gone wrong`);
+        const { server, home } = yield call(getServerSettingsCall);
+        yield all([
+            put(getServerSettingsAction({ server })),
+            put(setHomeTemplateAction({ home }))
+        ]);
     } catch (error) {
         yield put(getServerSettingsAction({ error }));
     }

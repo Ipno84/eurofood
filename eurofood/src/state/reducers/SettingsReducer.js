@@ -1,10 +1,14 @@
 import { FAILURE, SUCCESS } from './../../constants/BaseConstants';
+import {
+    GET_SERVER_SETTINGS,
+    SET_HOME_TEMPLATE
+} from './../../constants/SettingsConstants';
 
-import { GET_SERVER_SETTINGS } from './../../constants/SettingsConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
-    server: {}
+    server: {},
+    home: []
 };
 
 export const SettingsReducerTransform = createTransform(
@@ -22,15 +26,15 @@ export const SettingsReducerTransform = createTransform(
 const SettingsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SERVER_SETTINGS + SUCCESS:
-            return {
-                ...state,
-                server: action.server
-            };
+            return { ...state, server: action.server };
         case GET_SERVER_SETTINGS + FAILURE:
             return {
                 ...state,
-                server: initialState.server
+                server: initialState.server,
+                home: initialState.home
             };
+        case SET_HOME_TEMPLATE:
+            return { ...state, home: action.home };
         default:
             return state;
     }

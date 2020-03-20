@@ -9,7 +9,6 @@ export default function useGetSettings() {
     const hasServerSettings = useSelector(state =>
         hasServerSettingsSelector(state)
     );
-    console.log(hasServerSettings);
     const getServerSettings = useCallback(
         () => dispatch(getServerSettingsAction()),
         [dispatch]

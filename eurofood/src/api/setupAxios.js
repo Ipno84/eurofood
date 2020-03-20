@@ -9,14 +9,13 @@ export default function setupAxios() {
             if (process.env.NODE_ENV == 'development')
                 config.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
             config.headers['Output-Format'] = 'JSON';
-            console.log(config);
             return config;
         },
-        error => Promise.reject(error),
+        error => Promise.reject(error)
     );
 
     axios.interceptors.response.use(
         response => response,
-        error => Promise.reject(error),
+        error => Promise.reject(error)
     );
 }
