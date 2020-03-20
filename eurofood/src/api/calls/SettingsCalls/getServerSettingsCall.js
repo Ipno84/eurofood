@@ -8,7 +8,7 @@ const home = [
             children: [
                 { component: 'SearchSection' },
                 { component: 'HomeBanner' },
-                { component: 'CategoriesHorizontalSelector' },
+                { component: 'MainSectionsHorizontal' },
                 { component: 'LoginBlock' },
                 { component: 'PromoCards' },
                 { component: 'Offers' },

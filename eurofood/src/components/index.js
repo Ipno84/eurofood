@@ -6,6 +6,7 @@ import HomeBanner from './layout/templates/HomeBanner';
 import HorizontalProducts from './layout/organisms/HorizontalProducts';
 import Infoblock from './layout/molecules/Infoblock';
 import LoginBlock from './layout/templates/LoginBlock';
+import MainSectionsHorizontal from './layout/templates/MainSections/MainSectionsHorizontal';
 import Offers from './layout/templates/Offers';
 import PromoCards from './layout/templates/PromoCards';
 import SearchSection from './layout/organisms/SearchSection';
@@ -20,6 +21,7 @@ const Components = {
     BestSellers,
     CategoriesGrid,
     CategoriesHorizontalSelector,
+    MainSectionsHorizontal,
     HomeBanner,
     HorizontalProducts,
     Infoblock,
@@ -31,6 +33,6 @@ const Components = {
     Spacer,
     SuperOffers,
     TopProducts,
-    VideoRecipe,
+    VideoRecipe
 };
 export default Components;

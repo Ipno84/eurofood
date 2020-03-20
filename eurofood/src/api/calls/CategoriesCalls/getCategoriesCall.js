@@ -1,8 +1,8 @@
-import { ENDPOINT_CATEGORIES, HOST } from './../../constants/ApiConstants';
+import { ENDPOINT_CATEGORIES, HOST } from './../../../constants/ApiConstants';
 
 import axios from 'axios';
 
-export default function getCategories(params = {}) {
+export default function getCategoriesCall(params = {}) {
     const endpoint = [HOST, ENDPOINT_CATEGORIES].join('/');
     return axios
         .get(endpoint, { params })

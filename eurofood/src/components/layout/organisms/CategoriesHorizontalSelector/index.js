@@ -1,65 +1,32 @@
-import {
-    bevande,
-    carni,
-    condimenti,
-    farinePanature,
-    latticini,
-    noFood,
-    noGlutine,
-    pane,
-    pastaRiso,
-    pesce,
-    piattiProntiPanini,
-    salumi,
-    stuzzicherie,
-    vegano,
-    vegetali,
-} from './../../../../assets/images/categories';
-
 import CategoryItem from './../../molecules/CategoryItem';
 import HorizontalList from './../../atoms/ScrollView/HorizontalList';
 import HorizontalScollerContainer from './../../atoms/ScrollView/HorizontalScollerContainer';
 import InScreenTitle from './../../atoms/Text/InScreenTitle';
 import { ROUTE_NAME_CATEGORY } from '../../../../constants/RouteConstants';
 import React from 'react';
+import { bevande } from './../../../../assets/images/categories';
 import useAppNavigation from '../../../../hooks/useAppNavigation';
 
-const items = [
-    { title: 'Bevande', image: bevande },
-    { title: 'Carni', image: carni },
-    { title: 'Condimenti', image: condimenti },
-    { title: 'Farine e Panature', image: farinePanature },
-    { title: 'Latticini', image: latticini },
-    { title: 'No Food', image: noFood },
-    { title: 'No Glutine', image: noGlutine },
-    { title: 'Pane', image: pane },
-    { title: 'Pasta e Riso', image: pastaRiso },
-    { title: 'Pesce', image: pesce },
-    { title: 'Piatti Pronti e Panini', image: piattiProntiPanini },
-    { title: 'Salumi', image: salumi },
-    { title: 'Stuzzicherie', image: stuzzicherie },
-    { title: 'Vegano', image: vegano },
-    { title: 'Vegetali', image: vegetali },
-];
-
-const CategoriesHorizontalSelector = () => {
+const CategoriesHorizontalSelector = ({ categories, title }) => {
     const { navigate } = useAppNavigation();
     return (
         <HorizontalScollerContainer plainBackground={true} shadow={true}>
-            <InScreenTitle>Scegli per categoria</InScreenTitle>
+            <InScreenTitle>{title}</InScreenTitle>
             <HorizontalList
-                data={items}
+                data={categories}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ paddingRight: 16 }}
                 renderItem={({ item }) => (
                     <CategoryItem
-                        onPress={() => navigate(ROUTE_NAME_CATEGORY)}
-                        image={item.image}
-                        title={item.title}
+                        onPress={() =>
+                            navigate(ROUTE_NAME_CATEGORY, { id: item.id })
+                        }
+                        image={item.image ? item.image : bevande}
+                        name={item.name}
                     />
                 )}
-                keyExtractor={({ title }) => title}
+                keyExtractor={({ id }) => id.toString()}
             />
         </HorizontalScollerContainer>
     );
