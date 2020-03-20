@@ -1,4 +1,5 @@
 import {
+    REDUCER_NAME_CACHE,
     REDUCER_NAME_CATEGORIES,
     REDUCER_NAME_CONTENTS,
     REDUCER_NAME_PRODUCTS,
@@ -8,6 +9,7 @@ import {
 } from './StoreConstants';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import { CacheReducerTransform } from './../state/reducers/CacheReducer';
 import { CategoriesReducerTransform } from './../state/reducers/CategoriesReducer';
 import { ContentsReducerTransform } from './../state/reducers/ContentsReducer';
 import { ProductsReducerTransform } from './../state/reducers/ProductsReducer';
@@ -22,13 +24,15 @@ export default {
         REDUCER_NAME_CONTENTS,
         REDUCER_NAME_SETTINGS,
         REDUCER_NAME_CATEGORIES,
-        REDUCER_NAME_PRODUCTS
+        REDUCER_NAME_PRODUCTS,
+        REDUCER_NAME_CACHE
     ],
     blacklist: [],
     transforms: [
         ContentsReducerTransform,
         SettingsReducerTransform,
         CategoriesReducerTransform,
-        ProductsReducerTransform
+        ProductsReducerTransform,
+        CacheReducerTransform
     ]
 };

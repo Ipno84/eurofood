@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CategoriesHorizontalSelector from '../../organisms/CategoriesHorizontalSelector';
 import getMainSectionAction from './../../../../state/actions/CategoriesActions/getMainSectionsAction';
-import getMainSectionsSelector from '../../../../state/selectors/CategoriesSelector/getMainSectionsSelector';
+import getMainSectionsSelector from '../../../../state/selectors/CategoriesSelectors/getMainSectionsSelector';
 
 const MainSectionsHorizontal = () => {
     const mainSections = useSelector(state => getMainSectionsSelector(state));

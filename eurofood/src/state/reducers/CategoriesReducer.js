@@ -23,6 +23,12 @@ export const CategoriesReducerTransform = createTransform(
 const CategoriesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CATEGORIES_ITEMS:
+            if (action.force) {
+                return {
+                    ...state,
+                    items: action.items
+                };
+            }
             return {
                 ...state,
                 items: {
