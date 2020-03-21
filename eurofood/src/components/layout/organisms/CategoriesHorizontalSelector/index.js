@@ -19,14 +19,18 @@ const CategoriesHorizontalSelector = ({ categories, title }) => {
                 contentContainerStyle={{ paddingRight: 16 }}
                 renderItem={({ item }) => (
                     <CategoryItem
-                        onPress={() =>
-                            navigate(ROUTE_NAME_CATEGORY, { id: item.id })
-                        }
-                        image={item.image ? item.image : bevande}
-                        name={item.name}
+                        onPress={() => {
+                            if (item) {
+                                navigate(ROUTE_NAME_CATEGORY, { id: item.id });
+                            }
+                        }}
+                        image={item && item.image ? item.image : bevande}
+                        name={item ? item.name : ''}
                     />
                 )}
-                keyExtractor={({ id }) => id.toString()}
+                keyExtractor={(item, index) =>
+                    item && item.id ? String(item.id) : String(index)
+                }
             />
         </HorizontalScollerContainer>
     );

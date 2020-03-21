@@ -4,7 +4,6 @@ import getMainSectionsIdsSelector from './getMainSectionsIdsSelector';
 
 export default createSelector(
     [getCategoriesItemsSelector, getMainSectionsIdsSelector],
-    (items, mainSections) => {
-        return mainSections.map(id => (items && items[id] ? items[id] : null));
-    }
+    (items, mainSections) =>
+        mainSections.map(id => (items && items[id] ? items[id] : null))
 );

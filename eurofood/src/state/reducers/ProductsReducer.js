@@ -1,3 +1,4 @@
+import { REDUCER_NAME_PRODUCTS } from '../../constants/StoreConstants';
 import { SET_PRODUCTS_ITEMS } from '../../constants/ProductsConstants';
 import { createTransform } from 'redux-persist';
 
@@ -11,7 +12,8 @@ export const ProductsReducerTransform = createTransform(
     },
     outboundState => {
         return { ...outboundState };
-    }
+    },
+    { whitelist: REDUCER_NAME_PRODUCTS }
 );
 
 const ProductsReducer = (state = initialState, action) => {

@@ -51,6 +51,10 @@ function configureStore(initialState) {
 }
 const { store, persistor } = configureStore();
 
+global.purge = () => {
+    persistor.purge();
+};
+
 sagaMiddleware.run(combinedSaga);
 
 function* combinedSaga() {

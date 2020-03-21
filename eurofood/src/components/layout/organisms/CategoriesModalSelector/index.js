@@ -16,16 +16,20 @@ const CategoriesModalSelector = ({ visibility, setVisibility }) => {
         <ModalSelector
             visibility={visibility}
             setVisibility={setVisibility}
-            onPressItem={({ id }) => {
-                setSearchSelectedCategoryId(id);
-                setVisibility(false);
+            onPressItem={item => {
+                if (item) {
+                    setSearchSelectedCategoryId(item.id);
+                    setVisibility(false);
+                }
             }}
             onPressNotItem={() => {
                 setSearchSelectedCategoryId(null);
             }}
             headerTitle="Seleziona una categoria"
             items={mainSections}
-            keyExtractor={({ id }) => String(id)}
+            keyExtractor={(item, index) =>
+                item ? String(item.id) : String(index)
+            }
         />
     );
 };

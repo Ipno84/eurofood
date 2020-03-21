@@ -4,6 +4,7 @@ import {
     SET_CATEGORIES_ITEMS
 } from '../../constants/CategoriesConstants';
 
+import { REDUCER_NAME_CATEGORIES } from '../../constants/StoreConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
@@ -17,7 +18,8 @@ export const CategoriesReducerTransform = createTransform(
     },
     outboundState => {
         return { ...outboundState };
-    }
+    },
+    { whitelist: REDUCER_NAME_CATEGORIES }
 );
 
 const CategoriesReducer = (state = initialState, action) => {

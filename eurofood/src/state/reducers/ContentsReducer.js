@@ -1,3 +1,4 @@
+import { REDUCER_NAME_CONTENTS } from '../../constants/StoreConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
@@ -13,7 +14,8 @@ export const ContentsReducerTransform = createTransform(
             ...outboundState,
             products: initialState.products
         };
-    }
+    },
+    { whitelist: REDUCER_NAME_CONTENTS }
 );
 
 const ContentsReducer = (state = initialState, action) => {

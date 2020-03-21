@@ -4,6 +4,7 @@ import {
     SET_HOME_TEMPLATE
 } from './../../constants/SettingsConstants';
 
+import { REDUCER_NAME_SETTINGS } from '../../constants/StoreConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
@@ -20,6 +21,9 @@ export const SettingsReducerTransform = createTransform(
             ...outboundState,
             server: initialState.server
         };
+    },
+    {
+        whitelist: REDUCER_NAME_SETTINGS
     }
 );
 

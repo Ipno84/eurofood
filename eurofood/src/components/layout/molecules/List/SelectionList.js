@@ -53,14 +53,14 @@ const SelectionList = ({
             renderItem={({ item }) => (
                 <ListItem
                     onPress={() => onPressItem && onPressItem(item)}
-                    text={item.name}
+                    text={item ? item.name : ''}
                 />
             )}
             renderSectionHeader={({ section: { title } }) => (
                 <ListSectionHeader shadow={reachedTop} text={title} />
             )}
             keyExtractor={(item, index) =>
-                keyExtractor ? keyExtractor(item, index) : index
+                keyExtractor ? keyExtractor(item, index) : String(index)
             }
         />
     );

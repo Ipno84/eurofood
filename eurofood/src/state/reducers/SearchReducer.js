@@ -4,6 +4,7 @@ import {
     SET_SEARCH_TEXT
 } from './../../constants/SearchConstants';
 
+import { REDUCER_NAME_SEARCH } from '../../constants/StoreConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
@@ -22,7 +23,8 @@ export const SearchReducerTransform = createTransform(
             searchText: initialState.searchText,
             selectedCategoryId: initialState.selectedCategoryId
         };
-    }
+    },
+    { whitelist: REDUCER_NAME_SEARCH }
 );
 
 const SearchReducer = (state = initialState, action) => {

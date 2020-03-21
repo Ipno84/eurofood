@@ -33,7 +33,9 @@ const ModalSelector = ({
                         headerTitle={headerTitle}
                         items={items}
                         keyExtractor={(item, index) =>
-                            keyExtractor ? keyExtractor(item, index) : index
+                            keyExtractor
+                                ? keyExtractor(item, index)
+                                : String(index)
                         }
                     />
                 </ModalWrapper>

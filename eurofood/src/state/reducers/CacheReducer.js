@@ -1,17 +1,15 @@
-import { FAILURE, SUCCESS } from './../../constants/BaseConstants';
+import {
+    PURGE_EXPIRED_CONTENTS,
+    SET_CACHE_KEY
+} from './../../constants/CacheConstants';
 
-import { GET_MAIN_SECTIONS } from '../../constants/CategoriesConstants';
-import { PURGE_EXPIRED_CONTENTS } from './../../constants/CacheConstants';
-import { REDUCER_NAME_CATEGORIES } from './../../constants/StoreConstants';
+import { REDUCER_NAME_CACHE } from '../../constants/StoreConstants';
+import { SUCCESS } from './../../constants/BaseConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
     isCachePurged: false,
-    cache: {
-        [REDUCER_NAME_CATEGORIES]: {
-            mainSections: 0
-        }
-    }
+    cache: {}
 };
 
 export const CacheReducerTransform = createTransform(
@@ -23,7 +21,8 @@ export const CacheReducerTransform = createTransform(
             ...outboundState,
             isCachePurged: initialState.isCachePurged
         };
-    }
+    },
+    { whitelist: REDUCER_NAME_CACHE }
 );
 
 const CacheReducer = (state = initialState, action) => {
@@ -33,28 +32,12 @@ const CacheReducer = (state = initialState, action) => {
                 ...state,
                 isCachePurged: true
             };
-        case GET_MAIN_SECTIONS + SUCCESS:
+        case SET_CACHE_KEY:
             return {
                 ...state,
                 cache: {
                     ...state.cache,
-                    [REDUCER_NAME_CATEGORIES]: {
-                        ...state.cache[REDUCER_NAME_CATEGORIES],
-                        mainSections: Math.floor(Date.now() / 1000)
-                    }
-                }
-            };
-        case GET_MAIN_SECTIONS + FAILURE:
-            return {
-                ...state,
-                cache: {
-                    ...state.cache,
-                    [REDUCER_NAME_CATEGORIES]: {
-                        ...state.cache[REDUCER_NAME_CATEGORIES],
-                        mainSections:
-                            initialState.cache[REDUCER_NAME_CATEGORIES]
-                                .mainSections
-                    }
+                    [action.key]: action.value
                 }
             };
         default:

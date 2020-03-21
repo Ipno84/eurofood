@@ -22,17 +22,24 @@ export default {
     key: STORE_KEY,
     storage: AsyncStorage,
     debug: process.env.NODE_ENV === 'development',
-    whietelist: [
-        REDUCER_NAME_CONTENTS,
-        REDUCER_NAME_SETTINGS,
-        REDUCER_NAME_CATEGORIES,
-        REDUCER_NAME_PRODUCTS,
-        REDUCER_NAME_CACHE,
-        REDUCER_NAME_SEARCH
-    ],
-    blacklist: [],
+    // whitelist: [
+    //     REDUCER_NAME_CONTENTS,
+    //     REDUCER_NAME_SETTINGS,
+    //     REDUCER_NAME_CATEGORIES,
+    //     REDUCER_NAME_PRODUCTS,
+    //     REDUCER_NAME_CACHE,
+    //     REDUCER_NAME_SEARCH
+    // ],
+    // blacklist: [
+    //     REDUCER_NAME_CONTENTS,
+    //     REDUCER_NAME_SETTINGS,
+    //     REDUCER_NAME_CATEGORIES,
+    //     REDUCER_NAME_PRODUCTS,
+    //     REDUCER_NAME_CACHE,
+    //     REDUCER_NAME_SEARCH
+    // ],
     transforms: [
-        ContentsReducerTransform,
+        // ContentsReducerTransform,
         SettingsReducerTransform,
         CategoriesReducerTransform,
         ProductsReducerTransform,
