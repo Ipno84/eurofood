@@ -3,6 +3,7 @@ import {
     REDUCER_NAME_CATEGORIES,
     REDUCER_NAME_CONTENTS,
     REDUCER_NAME_PRODUCTS,
+    REDUCER_NAME_SEARCH,
     REDUCER_NAME_SETTINGS,
     STORE_KEY,
     STORE_VERSION
@@ -13,6 +14,7 @@ import { CacheReducerTransform } from './../state/reducers/CacheReducer';
 import { CategoriesReducerTransform } from './../state/reducers/CategoriesReducer';
 import { ContentsReducerTransform } from './../state/reducers/ContentsReducer';
 import { ProductsReducerTransform } from './../state/reducers/ProductsReducer';
+import { SearchReducerTransform } from './../state/reducers/SearchReducer';
 import { SettingsReducerTransform } from './../state/reducers/SettingsReducer';
 
 export default {
@@ -25,7 +27,8 @@ export default {
         REDUCER_NAME_SETTINGS,
         REDUCER_NAME_CATEGORIES,
         REDUCER_NAME_PRODUCTS,
-        REDUCER_NAME_CACHE
+        REDUCER_NAME_CACHE,
+        REDUCER_NAME_SEARCH
     ],
     blacklist: [],
     transforms: [
@@ -33,6 +36,7 @@ export default {
         SettingsReducerTransform,
         CategoriesReducerTransform,
         ProductsReducerTransform,
-        CacheReducerTransform
+        CacheReducerTransform,
+        SearchReducerTransform
     ]
 };

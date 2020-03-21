@@ -1,24 +1,30 @@
-import { Modal, SafeAreaView, Text, View } from 'react-native';
 import React, { useState } from 'react';
 
-import CategoriesModalSelector from '../CategoriesModalSelector';
+import CategoriesModalSelector from './../../organisms/CategoriesModalSelector';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import SelectorIconWrapper from './../../atoms/Selector/SelectorIconWrapper';
 import SelectorPlaceholder from './../../atoms/Selector/SelectorPlaceholder';
 import SelectorPlaceholderContainer from './../../atoms/Selector/SelectorPlaceholderContainer';
 import Styled from './styled';
 import Touchable from './../../atoms/Button/Touchable';
+import getSearchSelectedCategorySelectorNameSelector from './../../../../state/selectors/SearchSelectors/getSearchSelectedCategorySelectorNameSelector';
 import { orange } from './../../../../constants/ThemeConstants';
+import { useSelector } from 'react-redux';
 
 const CategorySelector = () => {
     const [modalVisibility, setModalVisibility] = useState(false);
+    const searchSelectorCategoryName = useSelector(state =>
+        getSearchSelectedCategorySelectorNameSelector(state)
+    );
     return (
         <>
             <Touchable onPress={() => setModalVisibility(true)}>
                 <Styled>
                     <SelectorPlaceholderContainer>
                         <SelectorPlaceholder>
-                            Scegli per categoria
+                            {searchSelectorCategoryName
+                                ? searchSelectorCategoryName
+                                : 'Scegli per categoria'}
                         </SelectorPlaceholder>
                     </SelectorPlaceholderContainer>
                     <SelectorIconWrapper>
