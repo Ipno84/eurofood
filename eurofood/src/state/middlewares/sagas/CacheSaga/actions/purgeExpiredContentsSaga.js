@@ -1,4 +1,4 @@
-import { all, call, put, select } from 'redux-saga/effects';
+import { all, put, select } from 'redux-saga/effects';
 
 import getCacheSelector from './../../../../selectors/CacheSelectors/getCacheSelector';
 import getCategoriesItemsSelector from './../../../../selectors/CategoriesSelectors/getCategoriesItemsSelector';

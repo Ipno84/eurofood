@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
-const HeaderButton = styled.TouchableOpacity`
+const HeaderButton = styled.View`
     ${({ isLeft }) =>
         isLeft
             ? css`

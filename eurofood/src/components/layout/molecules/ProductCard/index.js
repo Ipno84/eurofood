@@ -18,7 +18,7 @@ const ProductCard = ({
     price,
     inHorizontal,
     isFirst,
-    onPress,
+    onPress
 }) => {
     return (
         <Touchable onPress={onPress}>
@@ -31,10 +31,10 @@ const ProductCard = ({
                     />
                 </ProductImageWrapper>
                 <ProductNameWrapper>
-                    <ProductName>{name}</ProductName>
+                    <ProductName numberOfLines={2}>{name}</ProductName>
                 </ProductNameWrapper>
                 <ProductPriceWrapper>
-                    <Price {...price} />
+                    <Price price={price} />
                 </ProductPriceWrapper>
                 <ProductRatingWrapper>
                     {generateArrayOfN(5).map((e, i) => (
@@ -53,16 +53,20 @@ const ProductCard = ({
 
 export default ProductCard;
 
-const Price = ({ regular, offer }) => {
-    if (regular !== undefined && offer !== undefined) {
-        return (
-            <>
-                <ProductPrice>{offer.toFixed(2)} €</ProductPrice>
-                <ProductPrice strikedthrough={true}>
-                    {regular.toFixed(2)} €
-                </ProductPrice>
-            </>
-        );
+const Price = ({ price }) => {
+    if (!price) return null;
+    if (typeof price === 'object') {
+        if (price.regular !== undefined && price.offer !== undefined) {
+            return (
+                <>
+                    <ProductPrice>{price.offer.toFixed(2)} €</ProductPrice>
+                    <ProductPrice strikedthrough={true}>
+                        {price.regular.toFixed(2)} €
+                    </ProductPrice>
+                </>
+            );
+        }
+        return <ProductPrice>{regular.toFixed(2)} €</ProductPrice>;
     }
-    return <ProductPrice>{regular.toFixed(2)}</ProductPrice>;
+    return <ProductPrice>{Number(price).toFixed(2)} €</ProductPrice>;
 };

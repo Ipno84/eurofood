@@ -1,14 +1,21 @@
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 import Styled from './styled';
-import { TouchableOpacity } from 'react-native';
+import Touchable from './../Button/Touchable';
 import { orange } from './../../../../constants/ThemeConstants';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 
-const HeaderButton = ({ isLeft, name, onPress }) => {
+const HeaderButton = ({ isLeft, name, onPress, canGoBack }) => {
+    const { goBack } = useAppNavigation();
+    const Icon = isLeft && name.indexOf('back') > -1 ? Ionicons : MaterialIcons;
+    const onPressAction = isLeft && canGoBack ? goBack : onPress;
     return (
-        <Styled isLeft={isLeft} onPress={onPress}>
-            <Icon size={28} name={name} color={orange.toString()} />
-        </Styled>
+        <Touchable onPress={onPressAction}>
+            <Styled isLeft={isLeft}>
+                <Icon size={28} name={name} color={orange.toString()} />
+            </Styled>
+        </Touchable>
     );
 };
 
