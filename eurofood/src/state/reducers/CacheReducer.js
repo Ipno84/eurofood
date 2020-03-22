@@ -1,5 +1,6 @@
 import {
     PURGE_EXPIRED_CONTENTS,
+    SET_CACHE_ITEMS,
     SET_CACHE_KEY
 } from './../../constants/CacheConstants';
 
@@ -39,6 +40,11 @@ const CacheReducer = (state = initialState, action) => {
                     ...state.cache,
                     [action.key]: action.value
                 }
+            };
+        case SET_CACHE_ITEMS:
+            return {
+                ...state,
+                cache: action.items
             };
         default:
             return state;
