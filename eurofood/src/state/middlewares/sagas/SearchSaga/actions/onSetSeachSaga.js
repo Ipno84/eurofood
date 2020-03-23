@@ -8,6 +8,10 @@ import {
     select
 } from 'redux-saga/effects';
 
+import NavigatorRef from './../../../../../helpers/NavigatorRef';
+import { ROUTE_NAME_SEARCH_RESULTS } from '../../../../../constants/RouteConstants';
+import { StackActions } from '@react-navigation/native';
+import getSearchResultsAction from './../../../../actions/SearchActions/getSearchResultsAction';
 import getSearchSelectedCategoryIdSelector from './../../../../selectors/SearchSelectors/getSearchSelectedCategoryIdSelector';
 import getSearchTextSelector from './../../../../selectors/SearchSelectors/getSearchTextSelector';
 import searchProductsCall from './../../../../../api/calls/SearchCalls/searchProductsCall';
@@ -15,12 +19,13 @@ import setProductsItemsAction from './../../../../actions/ProductsActions/setPro
 import setSearchResultsAction from './../../../../actions/SearchActions/setSearchResultsAction';
 
 let searchTask;
-export default function* onSetSeachSaga() {
+export default function* onSetSeachSaga({ limit, offset }) {
     if (searchTask) yield cancel(searchTask);
-    searchTask = yield fork(waitSearchTask);
+    searchTask = yield fork(waitSearchTaskSaga, { limit, offset });
 }
 
-function* waitSearchTask(minTime = 500) {
+export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
+    console.log(limit, offset);
     try {
         yield delay(minTime);
         const searchText = yield select(getSearchTextSelector);
@@ -35,11 +40,31 @@ function* waitSearchTask(minTime = 500) {
                     selectedCategoryId
                 };
             }
+            if (limit) params = { ...params, limit };
+            if (offset) params = { ...params, offset };
             const results = yield call(searchProductsCall, params);
-            console.log(results);
-            // yield all([
-            //     put(setProductsItemsAction(results.products))
-            // ])
+            const productIds =
+                !results || !results.products
+                    ? []
+                    : results.products.map(e => e.id);
+            const navRef = new NavigatorRef();
+            const currentRouteName = navRef.getCurrentRouteName();
+            if (limit && offset) {
+                yield all([
+                    put(getSearchResultsAction({ ids: productIds })),
+                    put(setProductsItemsAction(results.products))
+                ]);
+            } else {
+                yield all([
+                    put(setSearchResultsAction(productIds)),
+                    put(setProductsItemsAction(results.products))
+                ]);
+            }
+            if (currentRouteName !== ROUTE_NAME_SEARCH_RESULTS) {
+                navRef.navigation.dispatch(
+                    StackActions.push(ROUTE_NAME_SEARCH_RESULTS)
+                );
+            }
         }
     } catch (error) {
         yield put(setSearchResultsAction([]));

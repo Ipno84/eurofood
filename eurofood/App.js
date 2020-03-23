@@ -3,6 +3,7 @@ import theme, { lightGray } from './src/constants/ThemeConstants';
 
 import Init from './src/components/containers/Init';
 import { NavigationContainer } from '@react-navigation/native';
+import NavigatorRef from './src/helpers/NavigatorRef';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
 import React from 'react';
@@ -14,7 +15,7 @@ const App = () => {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={theme}>
-                    <NavigationContainer>
+                    <NavigationContainer ref={ref => new NavigatorRef(ref)}>
                         <StatusBar
                             backgroundColor={lightGray.toString()}
                             barStyle="dark-content"

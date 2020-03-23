@@ -25,7 +25,6 @@ const CategoriesList = ({ title, items, onEndReached, isChunking }) => {
             contentContainerStyle={{ paddingBottom: 8, marginTop: -16 }}
             data={items}
             renderItem={({ item }) => {
-                console.log(item);
                 return (
                     <CategoryItem
                         id={item.id}

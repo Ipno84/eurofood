@@ -42,3 +42,19 @@ Authorization: Basic UktHTlpSMllTUDZKTkM1NjU5NkQyRkk5NEpGTlhZMkM6
 -   name
 -   description
 -   active
+
+# Drawer links
+
+-   Home
+-   Super Offerte
+-   Offerte
+-   Scegli per categoria
+-   I miei ordini
+-   Il mio profilo
+-   Impostazioni
+-   Logout
+
+# Hardcoded sections ID
+
+-   Offers [51]
+-   Super Offers [86]

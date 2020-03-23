@@ -1,10 +1,12 @@
 import {
+    GET_SEARCH_RESULTS,
     SET_SEARCH_RESULTS,
     SET_SEARCH_SELECTED_CATEGORY_ID,
     SET_SEARCH_TEXT
 } from './../../constants/SearchConstants';
 
 import { REDUCER_NAME_SEARCH } from '../../constants/StoreConstants';
+import { SUCCESS } from '../../constants/BaseConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
@@ -43,6 +45,11 @@ const SearchReducer = (state = initialState, action) => {
             return {
                 ...state,
                 results: action.results
+            };
+        case GET_SEARCH_RESULTS + SUCCESS:
+            return {
+                ...state,
+                results: [...state.results, ...action.ids]
             };
         default:
             return state;

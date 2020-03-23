@@ -6,10 +6,14 @@ import {
     ROUTE_NAME_HOME,
     ROUTE_NAME_LOGIN,
     ROUTE_NAME_OFFER,
+    ROUTE_NAME_ORDERS,
     ROUTE_NAME_PRODUCT,
+    ROUTE_NAME_PROFILE,
     ROUTE_NAME_PROMO,
     ROUTE_NAME_RECIPE,
     ROUTE_NAME_REGISTER,
+    ROUTE_NAME_SEARCH_RESULTS,
+    ROUTE_NAME_SETTINGS,
     ROUTE_NAME_TEMPLATE
 } from './../constants/RouteConstants';
 
@@ -24,12 +28,16 @@ import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
 import Offer from './../components/layout/pages/Offer';
+import Orders from './../components/layout/pages/Orders';
 import { Platform } from 'react-native';
 import Product from './../components/layout/pages/Product';
+import Profile from './../components/layout/pages/Profile';
 import Promo from './../components/layout/pages/Promo';
 import React from 'react';
 import Recipe from './../components/layout/pages/Recipe';
 import Register from './../components/layout/pages/Register';
+import SearchResults from './../components/layout/pages/SearchResults';
+import Settings from './../components/layout/pages/Settings';
 import Stack from './Stack';
 import Template from './../components/layout/pages/Template';
 import { lightGray } from './../constants/ThemeConstants';
@@ -94,13 +102,33 @@ const RoutesMap = [
         name: ROUTE_NAME_TEMPLATE,
         component: Template,
         options: ({ navigation, route }) => ({ title: 'Template' })
+    },
+    {
+        name: ROUTE_NAME_SETTINGS,
+        component: Settings,
+        options: ({ navigation, route }) => ({ title: 'Settings' })
+    },
+    {
+        name: ROUTE_NAME_PROFILE,
+        component: Profile,
+        options: ({ navigation, route }) => ({ title: 'Profile' })
+    },
+    {
+        name: ROUTE_NAME_ORDERS,
+        component: Orders,
+        options: ({ navigation, route }) => ({ title: 'Orders' })
+    },
+    {
+        name: ROUTE_NAME_SEARCH_RESULTS,
+        component: SearchResults,
+        options: ({ navigation, route }) => ({ title: 'SearchResults' })
     }
 ];
 
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_CATEGORIES}
+            initialRouteName={ROUTE_NAME_HOME}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',
@@ -153,7 +181,7 @@ const DrawerNavigator = () => {
     return (
         <Drawer.Navigator
             initialRouteName="Stack"
-            drawerContent={() => <DrawerContent />}>
+            drawerContent={props => <DrawerContent {...props} />}>
             <Drawer.Screen name="Stack" component={StackNavigator} />
         </Drawer.Navigator>
     );

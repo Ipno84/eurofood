@@ -10,3 +10,7 @@ export const ROUTE_NAME_OFFER = 'Offer';
 export const ROUTE_NAME_RECIPE = 'Recipe';
 export const ROUTE_NAME_CART = 'Cart';
 export const ROUTE_NAME_TEMPLATE = 'Template';
+export const ROUTE_NAME_SETTINGS = 'Settings';
+export const ROUTE_NAME_PROFILE = 'Profile';
+export const ROUTE_NAME_ORDERS = 'Orders';
+export const ROUTE_NAME_SEARCH_RESULTS = 'SearchResults';
