@@ -15,14 +15,18 @@ const ProductsGrid = ({ sectionTitle, products }) => {
                 itemDimension={screenWidth / 3}
                 items={products}
                 spacing={8}
-                renderItem={({ item }) => (
-                    <ProductCard
-                        name={item.name}
-                        image={item.image}
-                        price={item.price}
-                        onPress={() => navigate(ROUTE_NAME_PRODUCT)}
-                    />
-                )}
+                renderItem={({ item }) => {
+                    return (
+                        <ProductCard
+                            id={item.id}
+                            name={item.name}
+                            image={item.image}
+                            price={item.price}
+                            wholesale_price={item.wholesale_price}
+                            onPress={() => navigate(ROUTE_NAME_PRODUCT)}
+                        />
+                    );
+                }}
             />
         </>
     );

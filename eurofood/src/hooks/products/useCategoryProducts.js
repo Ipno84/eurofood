@@ -16,7 +16,7 @@ export default function useCategoryProducts(id, chunkCount = 0) {
     const products = useSelector(state =>
         getAssociatedChunkedProductsSelector(state, id)
     );
-    const productCount = useSelector(state =>
+    const productsCount = useSelector(state =>
         getAssociatedProductsCountSelector(state, id)
     );
     const currentChunk = products[count];
@@ -29,7 +29,7 @@ export default function useCategoryProducts(id, chunkCount = 0) {
         : [];
     if (currentChunkMissing.length !== 0)
         getMissingProducts(currentChunkMissing);
-    const isProductsChunking = productCount !== previousProducts.length;
+    const isProductsChunking = productsCount !== previousProducts.length;
     const onProductsEndReached = () => {
         if (currentChunkMissing.length === 0) {
             setCount(count + 1);

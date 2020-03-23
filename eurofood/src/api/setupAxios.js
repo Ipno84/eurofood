@@ -39,16 +39,16 @@ export default function setupAxios() {
 
     axios.interceptors.response.use(
         response => {
-            if (response.config.method === 'get') {
+            if (
+                response.config.method === 'get' &&
+                !response.config.__fromCache
+            ) {
                 const params = queryString.stringify(response.config.params);
                 const value = {
                     date: Math.floor(Date.now() / 1000),
                     data: JSON.stringify(response.data)
                 };
                 store.dispatch(setCacheKeyAction(params, value));
-                if (!response.config.__fromCache) {
-                    console.log('dispatch set products/categories');
-                }
             }
             return response;
         },

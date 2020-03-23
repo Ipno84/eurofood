@@ -1,35 +1,25 @@
 import { orange, screenWidth } from './../../../../constants/ThemeConstants';
 
+import Container from './../../atoms/Container';
 import { FlatGrid } from 'react-native-super-grid';
 import ProductCard from '../../molecules/ProductCard';
-import ProductItem from './../../atoms/Item/ProductItem';
 import Progress from './../../atoms/Progress';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
+import SectionTitle from './../../atoms/Text/SectionTitle';
 import useAppNavigation from '../../../../hooks/useAppNavigation';
 
-const ProductsList = ({ items, onEndReached, isChunking }) => {
+const ProductsList = ({ title, items, onEndReached, isChunking }) => {
     const { navigate } = useAppNavigation();
     return (
-        // <FlatList
-        //     onEndReached={onEndReached}
-        //     contentContainerStyle={{ paddingBottom: 8, marginTop: -16 }}
-        //     data={items}
-        //     initialNumToRender={10}
-        //     maxToRenderPerBatch={10}
-        //     updateCellsBatchingPeriod={1000}
-        //     removeClippedSubviews={true}
-        //     renderItem={({ item, index }) => (
-        //         <ProductItem name={`[${index}] - ${item.name}`} id={item.id} />
-        //     )}
-        //     keyExtractor={(item, index) =>
-        //         item && item.id ? String(item.id) : String(index)
-        //     }
-        //     ListFooterComponent={() =>
-        //         isChunking ? <Progress color={orange.toString()} /> : null
-        //     }
-        // />
         <FlatGrid
+            ListHeaderComponent={() => (
+                <Container>
+                    <SectionTitle bigger={true} fix={true}>
+                        {title}
+                    </SectionTitle>
+                </Container>
+            )}
             itemContainerStyle={{ paddingTop: 4, marginBottom: -4 }}
             itemDimension={screenWidth / 3}
             onEndReached={onEndReached}
@@ -39,12 +29,14 @@ const ProductsList = ({ items, onEndReached, isChunking }) => {
             maxToRenderPerBatch={6}
             updateCellsBatchingPeriod={1000}
             removeClippedSubviews={true}
-            renderItem={({ item, index }) => {
+            renderItem={({ item }) => {
                 return (
                     <ProductCard
+                        id={item.id}
                         name={item.name}
                         image={item.image}
                         price={item.price}
+                        id_default_image={item.id_default_image}
                         onPress={() =>
                             navigate(ROUTE_NAME_PRODUCT, { id: item.id })
                         }

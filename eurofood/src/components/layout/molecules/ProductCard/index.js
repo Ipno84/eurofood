@@ -13,18 +13,23 @@ import generateArrayOfN from './../../../../helpers/generateArrayOfN';
 import { gray } from './../../../../constants/ThemeConstants';
 
 const ProductCard = ({
+    id,
     name,
     image,
     price,
+    wholesale_price,
     inHorizontal,
     isFirst,
-    onPress
+    onPress,
+    id_default_image
 }) => {
     return (
         <Touchable onPress={onPress}>
             <ProductWrapper inHorizontal={inHorizontal} isFirst={isFirst}>
                 <ProductImageWrapper>
                     <ProductImage
+                        id={id}
+                        id_default_image={id_default_image}
                         resizeMethod="scale"
                         source={image}
                         resizeMode="contain"
@@ -34,7 +39,7 @@ const ProductCard = ({
                     <ProductName numberOfLines={2}>{name}</ProductName>
                 </ProductNameWrapper>
                 <ProductPriceWrapper>
-                    <Price price={price} />
+                    <Price price={price} wholesale_price={wholesale_price} />
                 </ProductPriceWrapper>
                 <ProductRatingWrapper>
                     {generateArrayOfN(5).map((e, i) => (
@@ -53,20 +58,19 @@ const ProductCard = ({
 
 export default ProductCard;
 
-const Price = ({ price }) => {
-    if (!price) return null;
-    if (typeof price === 'object') {
-        if (price.regular !== undefined && price.offer !== undefined) {
-            return (
-                <>
-                    <ProductPrice>{price.offer.toFixed(2)} €</ProductPrice>
-                    <ProductPrice strikedthrough={true}>
-                        {price.regular.toFixed(2)} €
-                    </ProductPrice>
-                </>
-            );
-        }
-        return <ProductPrice>{regular.toFixed(2)} €</ProductPrice>;
+const Price = ({ price, wholesale_price }) => {
+    if (!price && !wholesale_price) return null;
+    if (wholesale_price && parseFloat(wholesale_price)) {
+        return (
+            <>
+                <ProductPrice>
+                    {parseFloat(wholesale_price).toFixed(2)} €
+                </ProductPrice>
+                <ProductPrice strikedthrough={true}>
+                    {parseFloat(price).toFixed(2)} €
+                </ProductPrice>
+            </>
+        );
     }
-    return <ProductPrice>{Number(price).toFixed(2)} €</ProductPrice>;
+    return <ProductPrice>{parseFloat(price).toFixed(2)} €</ProductPrice>;
 };

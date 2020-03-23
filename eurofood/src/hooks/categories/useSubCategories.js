@@ -1,21 +1,47 @@
-import generateArrayChunk from '../../helpers/generateArrayChunk';
-import getAssociatedCategoriesSelector from '../../state/selectors/CategoriesSelectors/getAssociatedCategoriesSelector';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function useSubCategories(id, chunkCount = 10) {
-    const [items, setItems] = useState([]);
-    const subCategories = useSelector(state =>
-        getAssociatedCategoriesSelector(state, id)
+import getAssociatedCategoriesCountSelector from '../../state/selectors/CategoriesSelectors/getAssociatedCategoriesCountSelector';
+import getAssociatedChunkedCategoriesSelector from '../../state/selectors/CategoriesSelectors/getAssociatedChunkedCategoriesSelector';
+import getMissingCategoriesAction from '../../state/actions/CategoriesActions/getMissingCategoriesAction';
+
+export default function useSubCategories(id, chunkCount = 0) {
+    const dispatch = useDispatch();
+
+    const getMissingCategories = useCallback(
+        ids => dispatch(getMissingCategoriesAction(ids)),
+        [dispatch]
     );
-    const chunked = generateArrayChunk(subCategories, chunkCount);
-    const itemsArray = subCategories
-        ? subCategories.filter(e => {
-              if (typeof 'string' || typeof 'number') return true;
-          })
+
+    const [count, setCount] = useState(chunkCount);
+    const subCategories = useSelector(state =>
+        getAssociatedChunkedCategoriesSelector(state, id)
+    );
+    const subCategoriesCount = useSelector(state =>
+        getAssociatedCategoriesCountSelector(state, id)
+    );
+    const currentChunk = subCategories[count];
+    const previousCategories = subCategories
+        .slice(0, count + 1)
+        .flat()
+        .filter(e => typeof e === 'object');
+    const currentChunkMissing = currentChunk
+        ? currentChunk.filter(e => typeof e !== 'object')
         : [];
-    const onCategoriesEndReached = props => {
-        console.log(props);
+    if (currentChunkMissing.length !== 0)
+        getMissingCategories(currentChunkMissing);
+    const isCategoriesChunking =
+        subCategoriesCount !== previousCategories.length;
+
+    const onCategoriesEndReached = () => {
+        console.log('reached end');
+        if (currentChunkMissing.length === 0) {
+            setCount(count + 1);
+        }
     };
-    return { subCategories, onCategoriesEndReached };
+    return {
+        subCategories: previousCategories,
+        onCategoriesEndReached,
+        isCategoriesChunking
+    };
 }

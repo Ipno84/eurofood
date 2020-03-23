@@ -11,13 +11,21 @@ const SectionTitle = styled.Text`
                   font-size: 20px;
                   line-height: 20px;
               `}
+    ${({ fix }) =>
+        fix
+            ? css`
+                  padding-top: 0;
+                  margin-top: -4px;
+              `
+            : css`
+                  padding-top: 20px;
+              `}
     
     font-family: ${({ theme }) => theme.fonts.roboto(700, false, true)};
     color: ${({ theme }) => theme.colors.dark(1)};
     text-transform: uppercase;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 20px;
     margin-bottom: -12px;
 `;
 

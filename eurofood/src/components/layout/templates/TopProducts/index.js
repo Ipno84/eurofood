@@ -9,11 +9,11 @@ import { product } from './../../../../assets/images/placeholder';
 import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const products = [
-    { name: 'Product 1', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 2', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 3', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 4', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 5', image: product, price: { regular: 10, offer: 9 } },
+    { name: 'Product 1', image: product, price: 10, wholesale_price: 9 },
+    { name: 'Product 2', image: product, price: 10, wholesale_price: 9 },
+    { name: 'Product 3', image: product, price: 10, wholesale_price: 9 },
+    { name: 'Product 4', image: product, price: 10, wholesale_price: 9 },
+    { name: 'Product 5', image: product, price: 10, wholesale_price: 9 }
 ];
 
 const TopProducts = ({ label }) => {
@@ -33,6 +33,7 @@ const TopProducts = ({ label }) => {
                             name={item.name}
                             image={item.image}
                             price={item.price}
+                            wholesale_price={item.wholesale_price}
                             onPress={() => navigate(ROUTE_NAME_PRODUCT)}
                         />
                     )}

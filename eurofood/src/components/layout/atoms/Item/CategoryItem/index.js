@@ -7,15 +7,12 @@ import Touchable from './../../Button/Touchable';
 import WrapperItem from './WrapperItem';
 import { bevande } from './../../../../../assets/images/categories';
 
-const CategoryItem = ({ image, name, onPress }) => {
+const CategoryItem = ({ id, image, name, onPress }) => {
     return (
         <Touchable onPress={onPress}>
             <WrapperItem>
                 <Left>
-                    <Image
-                        resizeMode="contain"
-                        source={image ? image : bevande}
-                    />
+                    <Image id={id} resizeMode="contain" />
                 </Left>
                 <Right>
                     <Text>{name ? name.toLowerCase() : ''}</Text>

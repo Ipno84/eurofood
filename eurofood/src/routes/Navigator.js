@@ -2,6 +2,7 @@ import {
     ROUTE_NAME_CART,
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
+    ROUTE_NAME_CATEGORY_PRODUCTS,
     ROUTE_NAME_HOME,
     ROUTE_NAME_LOGIN,
     ROUTE_NAME_OFFER,
@@ -15,6 +16,7 @@ import {
 import Cart from './../components/layout/pages/Cart';
 import Categories from './../components/layout/pages/Categories';
 import Category from './../components/layout/pages/Category';
+import CategoryProducts from './../components/layout/pages/Category/Products';
 import Drawer from './Drawer';
 import DrawerContent from './../components/layout/templates/DrawerContent';
 import HeaderButton from './../components/layout/atoms/HeaderButton';
@@ -52,6 +54,11 @@ const RoutesMap = [
         name: ROUTE_NAME_CATEGORY,
         component: Category,
         options: ({ navigation, route }) => ({ title: 'Category' })
+    },
+    {
+        name: ROUTE_NAME_CATEGORY_PRODUCTS,
+        component: CategoryProducts,
+        options: ({ navigation, route }) => ({ title: 'Category Products' })
     },
     {
         name: ROUTE_NAME_CATEGORIES,

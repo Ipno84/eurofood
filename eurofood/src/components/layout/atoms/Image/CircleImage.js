@@ -1,10 +1,30 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
-const CircleImage = styled.Image`
+import React from 'react';
+import useCategoryDefaultImage from '../../../../hooks/categories/useCategoryDefaultImage';
+
+const Image = styled.Image`
     width: 75px;
     height: 75px;
     border-radius: 75px;
     overflow: hidden;
+    ${({ isPlacehoder }) =>
+        !isPlacehoder &&
+        css`
+            transform: scale(3);
+        `}
 `;
+
+const CircleImage = ({ id, resizeMode }) => {
+    const { imageSource, onError } = useCategoryDefaultImage(id);
+    return (
+        <Image
+            resizeMode={resizeMode}
+            source={imageSource}
+            onError={() => onError()}
+            isPlacehoder={typeof imageSource === 'number'}
+        />
+    );
+};
 
 export default CircleImage;

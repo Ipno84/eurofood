@@ -10,7 +10,7 @@ import Right from './Right';
 import Styled from './styled';
 import Touchable from './../../atoms/Button/Touchable';
 
-const ProductLine = ({ name, image, price, odd, onPress }) => {
+const ProductLine = ({ name, image, price, wholesale_price, odd, onPress }) => {
     return (
         <Touchable onPress={onPress}>
             <Styled odd={odd}>
@@ -22,9 +22,9 @@ const ProductLine = ({ name, image, price, odd, onPress }) => {
                         <Name>{name}</Name>
                         <PriceContainer>
                             <CurrentPrice>
-                                {price.offer.toFixed(2)} €
+                                {wholesale_price.toFixed(2)} €
                             </CurrentPrice>
-                            <OldPrice>{price.regular.toFixed(2)} €</OldPrice>
+                            <OldPrice>{price.toFixed(2)} €</OldPrice>
                         </PriceContainer>
                     </InfoContainer>
                 </Right>

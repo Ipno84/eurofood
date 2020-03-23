@@ -19,12 +19,12 @@ const CategoriesHorizontalSelector = ({ categories, title }) => {
                 contentContainerStyle={{ paddingRight: 16 }}
                 renderItem={({ item }) => (
                     <CategoryItem
+                        id={item.id}
                         onPress={() => {
                             if (item) {
                                 navigate(ROUTE_NAME_CATEGORY, { id: item.id });
                             }
                         }}
-                        image={item && item.image ? item.image : bevande}
                         name={item ? item.name : ''}
                     />
                 )}

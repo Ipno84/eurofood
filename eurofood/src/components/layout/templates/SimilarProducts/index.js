@@ -6,10 +6,15 @@ import { product } from './../../../../assets/images/placeholder';
 import useAppNavigation from '../../../../hooks/useAppNavigation';
 
 const products = [
-    { name: 'Product 1', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 2', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 3', image: product, price: { regular: 10, offer: 9 } },
-    { name: 'Product 4', image: product, price: { regular: 10, offer: 9 } },
+    {
+        name: 'Product 1',
+        image: product,
+        price: 10,
+        wholesale_price: 9
+    },
+    { name: 'Product 2', image: product, price: 10, wholesale_price: 9 },
+    { name: 'Product 3', image: product, price: 10, wholesale_price: 9 },
+    { name: 'Product 4', image: product, price: 10, wholesale_price: 9 }
 ];
 
 const SimilarProducts = () => {

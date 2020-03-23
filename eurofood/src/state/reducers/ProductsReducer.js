@@ -3,7 +3,8 @@ import { SET_PRODUCTS_ITEMS } from '../../constants/ProductsConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
-    items: {}
+    items: {},
+    images: {}
 };
 
 export const ProductsReducerTransform = createTransform(
