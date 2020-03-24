@@ -8,3 +8,5 @@ export const ENDPOINT_CATEGORIES = 'categories';
 export const ENDPOINT_PRODUCTS = 'products';
 export const ENDPOINT_IMAGES = 'images';
 export const ENDPOINT_SETTINGS = 'settings.json';
+export const ENDPOINT_STOCK_AVAILABLES = 'stock_availables';
+export const ENDPOINT_SPECIFIC_PRICES = 'specific_prices';

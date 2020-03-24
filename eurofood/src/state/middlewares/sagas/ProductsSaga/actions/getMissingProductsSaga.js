@@ -1,4 +1,4 @@
-import { all, call, put } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 
 import arrayToObject from '../../../../../helpers/arrayToObject';
 import getMissingProductsCall from './../../../../../api/calls/ProductsCalls/getMissingProductsCall';

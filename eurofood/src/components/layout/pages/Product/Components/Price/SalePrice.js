@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-const WholesalePrice = styled.Text`
+const SalePrice = styled.Text`
     font-size: 26px;
     line-height: 26px;
     font-family: ${({ theme }) => theme.fonts.roboto(700, false, true)};
@@ -8,4 +8,4 @@ const WholesalePrice = styled.Text`
     margin-right: 8px;
 `;
 
-export default WholesalePrice;
+export default SalePrice;

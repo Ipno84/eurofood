@@ -1,10 +1,17 @@
+import {
+    SET_PRODUCTS_ITEMS,
+    SET_PRODUCTS_SPECIFIC_PRICES,
+    SET_PRODUCTS_STOCK_AVAILABILITIES
+} from '../../constants/ProductsConstants';
+
 import { REDUCER_NAME_PRODUCTS } from '../../constants/StoreConstants';
-import { SET_PRODUCTS_ITEMS } from '../../constants/ProductsConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
     items: {},
-    images: {}
+    images: {},
+    specificPrices: {},
+    stockAvailabilities: {}
 };
 
 export const ProductsReducerTransform = createTransform(
@@ -31,6 +38,34 @@ const ProductsReducer = (state = initialState, action) => {
                 items: {
                     ...state.items,
                     ...action.items
+                }
+            };
+        case SET_PRODUCTS_SPECIFIC_PRICES:
+            if (action.force) {
+                return {
+                    ...state,
+                    specificPrices: action.specificPrices
+                };
+            }
+            return {
+                ...state,
+                specificPrices: {
+                    ...state.specificPrices,
+                    ...action.specificPrices
+                }
+            };
+        case SET_PRODUCTS_STOCK_AVAILABILITIES:
+            if (action.force) {
+                return {
+                    ...state,
+                    stockAvailabilities: action.stockAvailabilities
+                };
+            }
+            return {
+                ...state,
+                stockAvailabilities: {
+                    ...state.stockAvailabilities,
+                    ...action.stockAvailabilities
                 }
             };
         default:
