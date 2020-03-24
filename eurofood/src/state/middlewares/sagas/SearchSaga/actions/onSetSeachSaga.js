@@ -11,6 +11,7 @@ import {
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import { ROUTE_NAME_SEARCH_RESULTS } from '../../../../../constants/RouteConstants';
 import { StackActions } from '@react-navigation/native';
+import arrayToObject from '../../../../../helpers/arrayToObject';
 import getSearchResultsAction from './../../../../actions/SearchActions/getSearchResultsAction';
 import getSearchSelectedCategoryIdSelector from './../../../../selectors/SearchSelectors/getSearchSelectedCategoryIdSelector';
 import getSearchTextSelector from './../../../../selectors/SearchSelectors/getSearchTextSelector';
@@ -25,7 +26,6 @@ export default function* onSetSeachSaga({ limit, offset }) {
 }
 
 export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
-    console.log(limit, offset);
     try {
         yield delay(minTime);
         const searchText = yield select(getSearchTextSelector);
@@ -43,6 +43,7 @@ export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
             if (limit) params = { ...params, limit };
             if (offset) params = { ...params, offset };
             const results = yield call(searchProductsCall, params);
+            const products = arrayToObject(results.products);
             const productIds =
                 !results || !results.products
                     ? []
@@ -52,12 +53,12 @@ export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
             if (limit && offset) {
                 yield all([
                     put(getSearchResultsAction({ ids: productIds })),
-                    put(setProductsItemsAction(results.products))
+                    put(setProductsItemsAction({ items: products }))
                 ]);
             } else {
                 yield all([
                     put(setSearchResultsAction(productIds)),
-                    put(setProductsItemsAction(results.products))
+                    put(setProductsItemsAction({ items: products }))
                 ]);
             }
             if (currentRouteName !== ROUTE_NAME_SEARCH_RESULTS) {

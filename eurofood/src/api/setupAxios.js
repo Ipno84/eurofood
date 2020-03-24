@@ -3,7 +3,6 @@ import axios from 'axios';
 import getValidDataFromCacheSelector from './../state/selectors/CacheSelectors/getValidDataFromCacheSelector';
 import queryString from 'query-string';
 import setCacheKeyAction from './../state/actions/CacheActions/setCacheKeyAction';
-import settle from 'axios/lib/core/settle';
 import { store } from './../state/store';
 
 export default function setupAxios() {

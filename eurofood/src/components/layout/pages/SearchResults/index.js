@@ -1,57 +1,45 @@
-import React, { useCallback, useEffect } from 'react';
 import { SafeAreaView, SectionList, View } from 'react-native';
-import { batch, useDispatch } from 'react-redux';
+import { orange, screenWidth } from './../../../../constants/ThemeConstants';
 
+import ProductCard from '../../molecules/ProductCard';
+import Progress from './../../atoms/Progress';
+import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
+import React from 'react';
 import SearchSection from './../../organisms/SearchSection';
-import { initialState } from '../../../../state/reducers/SearchReducer';
-import setSearchResultsAction from '../../../../state/actions/SearchActions/setSearchResultsAction';
-import setSearchSelectedCategoryIdAction from '../../../../state/actions/SearchActions/setSearchSelectedCategoryIdAction';
-import setSearchTextAction from '../../../../state/actions/SearchActions/setSearchTextAction';
-import styled from 'styled-components/native';
+import { SectionGrid } from 'react-native-super-grid';
+import useAppNavigation from '../../../../hooks/useAppNavigation';
 import useSearchProducts from '../../../../hooks/products/useSearchProducts';
 
 const SearchResults = () => {
-    const { searchResults, onSearchReachEnd } = useSearchProducts();
-    const dispatch = useDispatch();
-    const reset = useCallback(() => {
-        batch(() => {
-            dispatch(setSearchTextAction(initialState.searchText)),
-                dispatch(setSearchResultsAction(initialState.results)),
-                dispatch(
-                    setSearchSelectedCategoryIdAction(
-                        initialState.selectedCategoryId
-                    )
-                );
-        });
-    }, [dispatch]);
-    useEffect(() => {
-        return () => reset();
-    }, []);
+    const {
+        searchResults,
+        onSearchProductsScroll,
+        isSearching
+    } = useSearchProducts();
+    const { navigate } = useAppNavigation();
+    console.log(isSearching);
     return (
         <SafeAreaView>
-            <SectionList
+            <SectionGrid
+                itemDimension={screenWidth / 3}
                 stickySectionHeadersEnabled={true}
                 sections={[{ data: searchResults }]}
-                keyExtractor={(item, index) => item + index}
-                renderItem={({ item }) => <Item title={item} />}
+                renderItem={({ item }) => (
+                    <ProductCard
+                        id={item.id}
+                        name={item.name}
+                        image={item.image}
+                        price={item.price}
+                        wholesale_price={item.wholesale_price}
+                        onPress={() => navigate(ROUTE_NAME_PRODUCT)}
+                    />
+                )}
                 renderSectionHeader={() => <SearchSection />}
-                onEndReached={onSearchReachEnd}
+                onScroll={onSearchProductsScroll}
             />
+            {isSearching ? <Progress color={orange.toString()} /> : null}
         </SafeAreaView>
     );
 };
 
 export default SearchResults;
-
-function Item({ title }) {
-    return (
-        <View>
-            <Text>{title}</Text>
-        </View>
-    );
-}
-
-const Text = styled.Text`
-    font-size: 22px;
-    padding: 16px;
-`;
