@@ -1,29 +1,31 @@
+import Add from './Components/Add';
 import Price from './Components/Price';
+import ProductAvailability from './Components/ProductAvailability';
+import ProductDescription from './Components/ProductDescription';
 import ProductImage from './Components/ProductImage';
+import ProductInfo from './Components/ProductInfo';
 import ProductName from './Components/ProductName';
 import ProductWrapper from './Components/ProductWrapper';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import getProductPriceInfoSelector from './../../../../state/selectors/ProductsSelectors/getProductPriceInfoSelector';
-import getProductStockQuantitySelector from './../../../../state/selectors/ProductsSelectors/getProductStockQuantitySelector';
+import { ScrollView } from 'react-native';
 import useProduct from './../../../../hooks/products/useProduct';
-import useProductDefaultImage from './../../../../hooks/products/useProductDefaultImage';
-import { useSelector } from 'react-redux';
 
-const id = 3893;
-
-const Product = () => {
-    const product = useProduct(id);
-    const stockQuantity = useSelector(state =>
-        getProductStockQuantitySelector(state, id)
-    );
+const Product = ({ route }) => {
+    useProduct(route.params.id);
     return (
         <SafeAreaView>
-            <ProductWrapper>
-                <ProductName id={id} />
-                <ProductImage id={id} />
-                <Price id={id} />
-            </ProductWrapper>
+            <ScrollView>
+                <ProductWrapper>
+                    <ProductName id={route.params.id} />
+                    <ProductImage id={route.params.id} />
+                    <Price id={route.params.id} />
+                    <ProductAvailability id={route.params.id} />
+                    <Add id={route.params.id} />
+                    <ProductInfo id={route.params.id} />
+                    <ProductDescription id={route.params.id} />
+                </ProductWrapper>
+            </ScrollView>
         </SafeAreaView>
     );
 };

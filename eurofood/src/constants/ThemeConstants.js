@@ -13,6 +13,8 @@ export const gray = Color('#7f7f7f');
 export const alterGray = Color('#c6c6c6');
 export const lightGray = Color('#f5f5f5');
 export const azure = Color('#48aaed');
+export const green = Color('#15572f');
+export const lightGreen = Color('#d4edda');
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
@@ -79,15 +81,18 @@ export default {
         lightGray: (opacity = 1, darken = 0) =>
             getColor(lightGray, opacity, darken),
         azure: (opacity = 1, darken = 0) => getColor(azure, opacity, darken),
+        green: (opacity = 1, darken = 0) => getColor(green, opacity, darken),
+        lightGreen: (opacity = 1, darken = 0) =>
+            getColor(lightGreen, opacity, darken)
     },
     fonts: {
         roboto: (weight = 400, isItalic = false, isCondensed = false) =>
-            getFont('Roboto', weight, isItalic, isCondensed),
+            getFont('Roboto', weight, isItalic, isCondensed)
     },
     sizes: {
         screen: {
             width: screenWidth,
-            height: screenHeight,
-        },
-    },
+            height: screenHeight
+        }
+    }
 };

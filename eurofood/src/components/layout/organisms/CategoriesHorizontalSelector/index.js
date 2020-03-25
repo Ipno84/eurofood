@@ -17,17 +17,21 @@ const CategoriesHorizontalSelector = ({ categories, title }) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ paddingRight: 16 }}
-                renderItem={({ item }) => (
-                    <CategoryItem
-                        id={item.id}
-                        onPress={() => {
-                            if (item) {
-                                navigate(ROUTE_NAME_CATEGORY, { id: item.id });
-                            }
-                        }}
-                        name={item ? item.name : ''}
-                    />
-                )}
+                renderItem={({ item }) =>
+                    item ? (
+                        <CategoryItem
+                            id={item.id}
+                            onPress={() => {
+                                if (item) {
+                                    navigate(ROUTE_NAME_CATEGORY, {
+                                        id: item.id
+                                    });
+                                }
+                            }}
+                            name={item ? item.name : ''}
+                        />
+                    ) : null
+                }
                 keyExtractor={(item, index) =>
                     item && item.id ? String(item.id) : String(index)
                 }
