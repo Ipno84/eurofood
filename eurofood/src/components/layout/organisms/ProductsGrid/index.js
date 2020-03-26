@@ -1,31 +1,23 @@
 import ProductCard from '../../molecules/ProductCard';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
-import SectionTitle from '../../atoms/Text/SectionTitle';
 import StyledFlatGrid from './styled';
+import Title from './Title';
 import { screenWidth } from './../../../../constants/ThemeConstants';
-import useAppNavigation from './../../../../hooks/useAppNavigation';
+import useCategoryProducts from '../../../../hooks/products/useCategoryProducts';
 
-const ProductsGrid = ({ sectionTitle, products }) => {
-    const { navigate } = useAppNavigation();
+const ProductsGrid = ({ id }) => {
+    const { products } = useCategoryProducts(id);
     return (
         <>
-            <SectionTitle>{sectionTitle}</SectionTitle>
+            <Title id={id} />
             <StyledFlatGrid
                 itemDimension={screenWidth / 3}
-                items={products}
+                items={products.slice(0, 4)}
                 spacing={8}
                 renderItem={({ item }) => {
-                    return (
-                        <ProductCard
-                            id={item.id}
-                            name={item.name}
-                            image={item.image}
-                            price={item.price}
-                            wholesale_price={item.wholesale_price}
-                            onPress={() => navigate(ROUTE_NAME_PRODUCT)}
-                        />
-                    );
+                    if (!item) return null;
+                    return <ProductCard id={item.id} />;
                 }}
             />
         </>

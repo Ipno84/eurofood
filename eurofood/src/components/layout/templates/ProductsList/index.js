@@ -14,11 +14,13 @@ const ProductsList = ({ title, items, onEndReached, isChunking }) => {
     return (
         <FlatGrid
             ListHeaderComponent={() => (
-                <Container>
-                    <SectionTitle bigger={true} fix={true}>
-                        {title}
-                    </SectionTitle>
-                </Container>
+                <>
+                    <Container>
+                        <SectionTitle bigger={true} fix={true}>
+                            {title}
+                        </SectionTitle>
+                    </Container>
+                </>
             )}
             itemContainerStyle={{ paddingTop: 4, marginBottom: -4 }}
             itemDimension={screenWidth / 3}
@@ -43,9 +45,6 @@ const ProductsList = ({ title, items, onEndReached, isChunking }) => {
                     />
                 );
             }}
-            ListFooterComponent={() =>
-                isChunking ? <Progress color={orange.toString()} /> : null
-            }
         />
     );
 };

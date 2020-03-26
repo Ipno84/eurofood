@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components/native';
 
 const HeaderButton = styled.View`
+    position: relative;
     ${({ isLeft }) =>
         isLeft
             ? css`

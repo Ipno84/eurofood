@@ -24,6 +24,7 @@ export default function useAppNavigation() {
         removeListener: navigation.removeListener,
         dangerouslyGetParent: navigation.dangerouslyGetParent,
         dangerouslyGetState: navigation.dangerouslyGetState,
-        setOptions: navigation.setOptions
+        setOptions: navigation.setOptions,
+        toggleDrawer: navigation.toggleDrawer
     };
 }

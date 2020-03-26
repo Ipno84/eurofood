@@ -24,9 +24,9 @@ const PriceContainer = ({ id }) => {
                     </RegularPrice>
                 </>
             ) : (
-                <RegularPrice>
+                <SalePrice>
                     {fixPrice(priceInfo.regularPrice, true, 2, true)} €
-                </RegularPrice>
+                </SalePrice>
             )}
             {priceInfo && priceInfo.sale && priceInfo.sale.reduction ? (
                 <Badge id={id} />

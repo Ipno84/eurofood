@@ -17,9 +17,11 @@ const CategoriesList = ({ title, items, onEndReached, isChunking }) => {
     return (
         <FlatList
             ListHeaderComponent={() => (
-                <Container>
-                    <SectionTitle bigger={true}>{title}</SectionTitle>
-                </Container>
+                <>
+                    <Container>
+                        <SectionTitle bigger={true}>{title}</SectionTitle>
+                    </Container>
+                </>
             )}
             onEndReached={onEndReached}
             contentContainerStyle={{ paddingBottom: 8, marginTop: -16 }}
@@ -46,9 +48,6 @@ const CategoriesList = ({ title, items, onEndReached, isChunking }) => {
             }}
             keyExtractor={(item, index) =>
                 item && item.id ? String(item.id) : String(index)
-            }
-            ListFooterComponent={() =>
-                isChunking ? <Progress color={orange.toString()} /> : null
             }
         />
     );

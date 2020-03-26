@@ -17,19 +17,20 @@ import {
     ROUTE_NAME_TEMPLATE
 } from './../constants/RouteConstants';
 
+import BackButton from './../components/layout/atoms/HeaderButton/BackButton';
 import Cart from './../components/layout/pages/Cart';
+import CartButton from './../components/layout/atoms/HeaderButton/CartButton';
 import Categories from './../components/layout/pages/Categories';
 import Category from './../components/layout/pages/Category';
 import CategoryProducts from './../components/layout/pages/Category/Products';
 import Drawer from './Drawer';
 import DrawerContent from './../components/layout/templates/DrawerContent';
-import HeaderButton from './../components/layout/atoms/HeaderButton';
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
+import MenuButton from './../components/layout/atoms/HeaderButton/MenuButton';
 import Offer from './../components/layout/pages/Offer';
 import Orders from './../components/layout/pages/Orders';
-import { Platform } from 'react-native';
 import Product from './../components/layout/pages/Product';
 import Profile from './../components/layout/pages/Profile';
 import Promo from './../components/layout/pages/Promo';
@@ -133,27 +134,11 @@ const StackNavigator = () => {
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',
                 headerLeft: ({ canGoBack }) => {
-                    const back =
-                        Platform.OS === 'ios'
-                            ? 'ios-arrow-back'
-                            : 'md-arrow-back';
-                    return (
-                        <HeaderButton
-                            isLeft={true}
-                            canGoBack={canGoBack}
-                            onPress={() => navigation.toggleDrawer()}
-                            name={canGoBack ? back : 'menu'}
-                        />
-                    );
+                    if (canGoBack) return <BackButton />;
+                    return <MenuButton />;
                 },
                 headerRight: () => {
-                    return (
-                        <HeaderButton
-                            isLeft={false}
-                            onPress={() => navigation.navigate(ROUTE_NAME_CART)}
-                            name="shopping-cart"
-                        />
-                    );
+                    return <CartButton />;
                 },
                 headerStyle: {
                     backgroundColor: lightGray.toString(),

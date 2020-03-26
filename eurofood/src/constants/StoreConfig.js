@@ -1,18 +1,9 @@
-import {
-    REDUCER_NAME_CACHE,
-    REDUCER_NAME_CATEGORIES,
-    REDUCER_NAME_CONTENTS,
-    REDUCER_NAME_PRODUCTS,
-    REDUCER_NAME_SEARCH,
-    REDUCER_NAME_SETTINGS,
-    STORE_KEY,
-    STORE_VERSION
-} from './StoreConstants';
+import { STORE_KEY, STORE_VERSION } from './StoreConstants';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { CacheReducerTransform } from './../state/reducers/CacheReducer';
+import { CartReducerTransform } from './../state/reducers/CartReducer';
 import { CategoriesReducerTransform } from './../state/reducers/CategoriesReducer';
-import { ContentsReducerTransform } from './../state/reducers/ContentsReducer';
 import { ProductsReducerTransform } from './../state/reducers/ProductsReducer';
 import { SearchReducerTransform } from './../state/reducers/SearchReducer';
 import { SettingsReducerTransform } from './../state/reducers/SettingsReducer';
@@ -22,28 +13,12 @@ export default {
     key: STORE_KEY,
     storage: AsyncStorage,
     debug: process.env.NODE_ENV === 'development',
-    // whitelist: [
-    //     REDUCER_NAME_CONTENTS,
-    //     REDUCER_NAME_SETTINGS,
-    //     REDUCER_NAME_CATEGORIES,
-    //     REDUCER_NAME_PRODUCTS,
-    //     REDUCER_NAME_CACHE,
-    //     REDUCER_NAME_SEARCH
-    // ],
-    // blacklist: [
-    //     REDUCER_NAME_CONTENTS,
-    //     REDUCER_NAME_SETTINGS,
-    //     REDUCER_NAME_CATEGORIES,
-    //     REDUCER_NAME_PRODUCTS,
-    //     REDUCER_NAME_CACHE,
-    //     REDUCER_NAME_SEARCH
-    // ],
     transforms: [
-        // ContentsReducerTransform,
         SettingsReducerTransform,
         CategoriesReducerTransform,
         ProductsReducerTransform,
         CacheReducerTransform,
-        SearchReducerTransform
+        SearchReducerTransform,
+        CartReducerTransform
     ]
 };

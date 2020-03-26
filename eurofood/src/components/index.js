@@ -2,6 +2,7 @@ import Alert from './layout/atoms/Alert';
 import BestSellers from './layout/templates/BestSellers';
 import CategoriesGrid from './layout/templates/CategoriesGrid';
 import CategoriesHorizontalSelector from './layout/organisms/CategoriesHorizontalSelector';
+import CategorySection from './layout/templates/CategorySection';
 import HomeBanner from './layout/templates/HomeBanner';
 import HorizontalProducts from './layout/organisms/HorizontalProducts';
 import Infoblock from './layout/molecules/Infoblock';
@@ -21,6 +22,7 @@ const Components = {
     BestSellers,
     CategoriesGrid,
     CategoriesHorizontalSelector,
+    CategorySection,
     MainSectionsHorizontal,
     HomeBanner,
     HorizontalProducts,

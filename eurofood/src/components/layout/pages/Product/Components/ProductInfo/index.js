@@ -22,7 +22,9 @@ const ProductInfo = ({ id }) => {
             </Wrapper>
             <Wrapper>
                 <Label>In magazzino</Label>
-                <Value>{quantity}</Value>
+                <Value>
+                    {quantity} {quantity === 1 ? 'articolo' : 'articoli'}
+                </Value>
             </Wrapper>
         </Container>
     );

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import styled from 'styled-components/native';
 import useProductDefaultImage from './../../../../hooks/products/useProductDefaultImage';
 
@@ -8,11 +7,8 @@ const Image = styled.Image`
     height: 100%;
 `;
 
-const ProductImage = ({ id, resizeMethod, resizeMode, id_default_image }) => {
-    const { imageSource, onError } = useProductDefaultImage(
-        id,
-        id_default_image
-    );
+const ProductImage = ({ id, resizeMethod, resizeMode }) => {
+    const { imageSource, onError } = useProductDefaultImage(id);
     return (
         <Image
             resizeMethod={resizeMethod}

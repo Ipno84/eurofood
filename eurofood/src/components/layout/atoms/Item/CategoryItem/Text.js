@@ -4,6 +4,7 @@ const Text = styled.Text`
     font-family: ${({ theme }) => theme.fonts.roboto(400, false, true)};
     color: ${({ theme }) => theme.colors.dark(1)};
     font-size: 22px;
+    width: 100%;
 `;
 
 export default Text;

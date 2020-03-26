@@ -7,24 +7,37 @@ import IconWrapper from './IconWrapper';
 import InfoWrapper from './InfoWrapper';
 import React from 'react';
 import isProductAvailableSelector from '../../../../../../state/selectors/ProductsSelectors/isProductAvailableSelector';
+import isProductItemActiveSelector from '../../../../../../state/selectors/ProductsSelectors/isProductItemActiveSelector';
 import { useSelector } from 'react-redux';
 
 const Availability = ({ id }) => {
-    const isProductAvailable = !useSelector(state =>
+    const isProductAvailable = useSelector(state =>
         isProductAvailableSelector(state, id)
+    );
+    const isProductItemActive = useSelector(state =>
+        isProductItemActiveSelector(state, id)
     );
     return (
         <InfoWrapper>
-            <BadgeWrapper isProductAvailable={isProductAvailable}>
+            <BadgeWrapper
+                isProductAvailable={isProductAvailable && isProductItemActive}>
                 <IconWrapper>
                     <Icon
                         name="check-bold"
                         size={16}
-                        color={(isProductAvailable ? green : red).toString()}
+                        color={(isProductAvailable && isProductItemActive
+                            ? green
+                            : red
+                        ).toString()}
                     />
                 </IconWrapper>
-                <Badge isProductAvailable={isProductAvailable}>
-                    {isProductAvailable ? 'Disponibile' : 'Non disponibile'}
+                <Badge
+                    isProductAvailable={
+                        isProductAvailable && isProductItemActive
+                    }>
+                    {isProductAvailable && isProductItemActive
+                        ? 'Disponibile'
+                        : 'Non disponibile'}
                 </Badge>
             </BadgeWrapper>
         </InfoWrapper>

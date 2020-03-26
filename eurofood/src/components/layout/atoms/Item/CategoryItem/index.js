@@ -15,7 +15,9 @@ const CategoryItem = ({ id, image, name, onPress }) => {
                     <Image id={id} resizeMode="contain" />
                 </Left>
                 <Right>
-                    <Text>{name ? name.toLowerCase() : ''}</Text>
+                    <Text numberOfLines={1}>
+                        {name ? name.toLowerCase() : ''}
+                    </Text>
                 </Right>
             </WrapperItem>
         </Touchable>

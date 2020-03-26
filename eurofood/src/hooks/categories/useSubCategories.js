@@ -34,7 +34,6 @@ export default function useSubCategories(id, chunkCount = 0) {
         subCategoriesCount !== previousCategories.length;
 
     const onCategoriesEndReached = () => {
-        console.log('reached end');
         if (currentChunkMissing.length === 0) {
             setCount(count + 1);
         }
