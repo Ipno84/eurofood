@@ -7,15 +7,38 @@ import ButtonWrapper from './ButtonWrapper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Item from './Item';
 import React from 'react';
+import Share from 'react-native-share';
 import Text from './Text';
 import Touchable from './../../../../atoms/Button/Touchable';
 import Wrapper from './Wrapper';
+import getProductItemLinkSelector from '../../../../../../state/selectors/ProductsSelectors/getProductItemLinkSelector';
+import getProductItemNameSelector from '../../../../../../state/selectors/ProductsSelectors/getProductItemNameSelector';
+import useProductDefaultImage from '../../../../../../hooks/products/useProductDefaultImage';
+import { useSelector } from 'react-redux';
 
-const Share = ({ id }) => {
+const ProductShare = ({ id }) => {
+    const productName = useSelector(state =>
+        getProductItemNameSelector(state, id)
+    );
+    const productLink = useSelector(state =>
+        getProductItemLinkSelector(state, id)
+    );
+
+    const shareOptions = {
+        title: 'Share via',
+        message: productName,
+        url: productLink
+    };
     return (
         <Wrapper>
             <Item>
-                <Touchable>
+                <Touchable
+                    onPress={() =>
+                        Share.shareSingle({
+                            ...shareOptions,
+                            social: Share.Social.FACEBOOK
+                        })
+                    }>
                     <ButtonWrapper>
                         <Icon
                             name="facebook"
@@ -27,7 +50,13 @@ const Share = ({ id }) => {
                 </Touchable>
             </Item>
             <Item>
-                <Touchable>
+                <Touchable
+                    onPress={() =>
+                        Share.shareSingle({
+                            ...shareOptions,
+                            social: Share.Social.TWITTER
+                        })
+                    }>
                     <ButtonWrapper>
                         <Icon
                             name="twitter"
@@ -42,4 +71,4 @@ const Share = ({ id }) => {
     );
 };
 
-export default Share;
+export default ProductShare;
