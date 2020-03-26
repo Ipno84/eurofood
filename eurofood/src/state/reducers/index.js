@@ -2,6 +2,7 @@ import {
     REDUCER_NAME_CACHE,
     REDUCER_NAME_CART,
     REDUCER_NAME_CATEGORIES,
+    REDUCER_NAME_CLIENT,
     REDUCER_NAME_CONTENTS,
     REDUCER_NAME_PRODUCTS,
     REDUCER_NAME_SEARCH,
@@ -11,6 +12,7 @@ import {
 import CacheReducer from './CacheReducer';
 import CartReducer from './CartReducer';
 import CategoriesReducer from './CategoriesReducer';
+import ClientReducer from './ClientReducer';
 import ContentsReducer from './ContentsReducer';
 import ProductsReducer from './ProductsReducer';
 import SearchReducer from './SearchReducer';
@@ -23,5 +25,6 @@ export default {
     [REDUCER_NAME_PRODUCTS]: ProductsReducer,
     [REDUCER_NAME_CACHE]: CacheReducer,
     [REDUCER_NAME_SEARCH]: SearchReducer,
-    [REDUCER_NAME_CART]: CartReducer
+    [REDUCER_NAME_CART]: CartReducer,
+    [REDUCER_NAME_CLIENT]: ClientReducer
 };

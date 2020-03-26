@@ -3,6 +3,7 @@ import { applyMiddleware, createStore } from 'redux';
 import CacheSaga from './../middlewares/sagas/CacheSaga';
 import CartSaga from './../middlewares/sagas/CartSaga';
 import CategoriesSaga from './../middlewares/sagas/CategoriesSaga';
+import ClientSaga from './../middlewares/sagas/ClientSaga';
 import ProductsSaga from './../middlewares/sagas/ProductsSaga';
 import SearchSaga from './../middlewares/sagas/SearchSaga';
 import SettingsSaga from './../middlewares/sagas/SettingsSaga';
@@ -38,7 +39,8 @@ function configureStore(initialState) {
         ProductsSaga,
         CacheSaga,
         SearchSaga,
-        CartSaga
+        CartSaga,
+        ClientSaga
     };
     store.injectSaga = (key, asyncSaga) => {
         function* combinedSagas() {
@@ -68,6 +70,7 @@ function* combinedSaga() {
     yield fork(CacheSaga);
     yield fork(SearchSaga);
     yield fork(CartSaga);
+    yield fork(ClientSaga);
 }
 
 export { store, persistor };

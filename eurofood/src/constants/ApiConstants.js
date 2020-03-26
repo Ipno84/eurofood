@@ -6,6 +6,8 @@ export const BASIC_PARAMS = { output_format: 'JSON' };
 
 export const ENDPOINT_CATEGORIES = 'categories';
 export const ENDPOINT_PRODUCTS = 'products';
+export const ENDPOINT_CUSTOMERS = 'customers';
+export const ENDPOINT_ADDRESSES = 'addresses';
 export const ENDPOINT_IMAGES = 'images';
 export const ENDPOINT_SETTINGS = 'settings.json';
 export const ENDPOINT_STOCK_AVAILABLES = 'stock_availables';

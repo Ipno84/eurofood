@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 const ListHeaderText = styled.Text`
     text-transform: uppercase;
@@ -10,6 +10,11 @@ const ListHeaderText = styled.Text`
     padding-right: 24px;
     padding-bottom: 8px;
     padding-left: 24px;
+    ${({ center }) =>
+        center &&
+        css`
+            text-align: center;
+        `}
 `;
 
 export default ListHeaderText;

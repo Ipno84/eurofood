@@ -8,3 +8,4 @@ export const REDUCER_NAME_PRODUCTS = 'products';
 export const REDUCER_NAME_CACHE = 'cache';
 export const REDUCER_NAME_SEARCH = 'search';
 export const REDUCER_NAME_CART = 'cart';
+export const REDUCER_NAME_CLIENT = 'client';
