@@ -15,6 +15,8 @@ export const lightGray = Color('#f5f5f5');
 export const azure = Color('#48aaed');
 export const green = Color('#15572f');
 export const lightGreen = Color('#d4edda');
+export const facebookColor = Color('#3b5998');
+export const twitterColor = Color('#1da1f2');
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;

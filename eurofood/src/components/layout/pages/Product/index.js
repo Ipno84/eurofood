@@ -9,6 +9,7 @@ import ProductWrapper from './Components/ProductWrapper';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native';
+import Share from './Components/Share';
 import useProduct from './../../../../hooks/products/useProduct';
 
 const Product = ({ route }) => {
@@ -24,6 +25,7 @@ const Product = ({ route }) => {
                     <Add id={route.params.id} />
                     <ProductInfo id={route.params.id} />
                     <ProductDescription id={route.params.id} />
+                    <Share id={route.params.id} />
                 </ProductWrapper>
             </ScrollView>
         </SafeAreaView>
