@@ -17,6 +17,7 @@ import addToCartAction from './../../../../../../state/actions/CartActions/addTo
 import canAddItemToCartSelector from './../../../../../../state/selectors/CartSelectors/canAddItemToCartSelector';
 import getProductStockQuantitySelector from './../../../../../../state/selectors/ProductsSelectors/getProductStockQuantitySelector';
 import isProductItemActiveSelector from './../../../../../../state/selectors/ProductsSelectors/isProductItemActiveSelector';
+import isUserLoggedInSelector from './../../../../../../state/selectors/ClientSelectors/isUserLoggedInSelector';
 import { white } from './../../../../../../constants/ThemeConstants';
 
 const Add = ({ id }) => {
@@ -35,6 +36,7 @@ const Add = ({ id }) => {
     const isProductItemActive = useSelector(state =>
         isProductItemActiveSelector(state, id)
     );
+    const isUserLoggedIn = useSelector(state => isUserLoggedInSelector(state));
     const onChange = e => {
         let inputQuantity = e.nativeEvent.text;
         if (inputQuantity > stockQuantity) inputQuantity = stockQuantity;
@@ -50,7 +52,7 @@ const Add = ({ id }) => {
         if (inputQuantity <= 0) inputQuantity = 1;
         setQuantity(inputQuantity);
     };
-    if (!isProductItemActive) return null;
+    if (!isProductItemActive || !isUserLoggedIn) return null;
     return (
         <AddWrapper>
             <QuantityWrapper>

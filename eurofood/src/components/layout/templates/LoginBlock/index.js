@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 const LoginBlock = () => {
     const isUserLoggedIn = useSelector(state => isUserLoggedInSelector(state));
     const { navigate } = useAppNavigation();
-    if (!isUserLoggedIn) return null;
+    if (isUserLoggedIn) return null;
     return (
         <Styled>
             <InnerTitle>Accedi per un’esperienza migliore</InnerTitle>

@@ -1,4 +1,5 @@
 import {
+    LOGOUT,
     SET_LOGIN_EMAIL,
     SET_LOGIN_PASSWORD,
     SET_REGISTER_EMAIL,
@@ -122,6 +123,12 @@ const ClientReducer = (state = initialState, action) => {
                     ...state.registerForm,
                     password: action.password
                 }
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                user: initialState.user,
+                company: initialState.company
             };
         default:
             return state;

@@ -5,6 +5,7 @@ import { CacheReducerTransform } from './../state/reducers/CacheReducer';
 import { CartReducerTransform } from './../state/reducers/CartReducer';
 import { CategoriesReducerTransform } from './../state/reducers/CategoriesReducer';
 import { ClientReducerTransform } from './../state/reducers/ClientReducer';
+import { ErrorsReducerTransform } from './../state/reducers/ErrorsReducer';
 import { ProductsReducerTransform } from './../state/reducers/ProductsReducer';
 import { SearchReducerTransform } from './../state/reducers/SearchReducer';
 import { SettingsReducerTransform } from './../state/reducers/SettingsReducer';
@@ -21,6 +22,7 @@ export default {
         CacheReducerTransform,
         SearchReducerTransform,
         CartReducerTransform,
-        ClientReducerTransform
+        ClientReducerTransform,
+        ErrorsReducerTransform
     ]
 };

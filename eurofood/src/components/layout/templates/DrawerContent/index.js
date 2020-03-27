@@ -2,16 +2,21 @@ import {
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
     ROUTE_NAME_HOME,
-    ROUTE_NAME_LOGIN,
     ROUTE_NAME_ORDERS,
     ROUTE_NAME_PROFILE,
     ROUTE_NAME_SETTINGS
 } from '../../../../constants/RouteConstants';
 
+import Container from './Container';
+import FlatList from './FlatList';
+import Footer from './Footer';
+import Header from './Header';
+import Item from './Item';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import Touchable from './../../atoms/Button/Touchable';
-import styled from 'styled-components/native';
+import Separator from './Separator';
+import isUserLoggedInSelector from './../../../../state/selectors/ClientSelectors/isUserLoggedInSelector';
+import { useSelector } from 'react-redux';
 
 const items = [
     {
@@ -20,7 +25,7 @@ const items = [
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_HOME);
         },
-        noGuest: false
+        onlyLogged: false
     },
     {
         id: 'superOffers',
@@ -28,7 +33,7 @@ const items = [
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_CATEGORY, { id: 86 });
         },
-        noGuest: false
+        onlyLogged: false
     },
     {
         id: 'offers',
@@ -36,7 +41,7 @@ const items = [
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_CATEGORY, { id: 51 });
         },
-        noGuest: false
+        onlyLogged: false
     },
     {
         id: 'categories',
@@ -44,7 +49,7 @@ const items = [
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_CATEGORIES);
         },
-        noGuest: false
+        onlyLogged: false
     },
     {
         id: 'myOrders',
@@ -52,7 +57,7 @@ const items = [
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_ORDERS);
         },
-        noGuest: true
+        onlyLogged: true
     },
     {
         id: 'myProfile',
@@ -60,12 +65,12 @@ const items = [
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_PROFILE);
         },
-        noGuest: true
+        onlyLogged: true
     },
     {
         id: 'settings',
         label: 'Impostazioni',
-        noGuest: false,
+        onlyLogged: false,
         action: ({ navigate }) => {
             navigate(ROUTE_NAME_SETTINGS);
         }
@@ -73,14 +78,17 @@ const items = [
 ];
 
 const DrawerContent = ({ navigation }) => {
-    const isUserLoggedIn = false;
-    const name = '';
+    const isUserLoggedIn = useSelector(state => isUserLoggedInSelector(state));
     return (
         <SafeAreaView>
             <Container>
-                <Header name={name} />
+                <Header />
                 <FlatList
-                    data={items.filter(e => e.noGuest === isUserLoggedIn)}
+                    data={
+                        !isUserLoggedIn
+                            ? items.filter(e => !e.onlyLogged)
+                            : items
+                    }
                     renderItem={({ item }) => {
                         return (
                             <Item
@@ -95,84 +103,10 @@ const DrawerContent = ({ navigation }) => {
                     }
                     ItemSeparatorComponent={() => <Separator />}
                 />
-                <Footer
-                    navigation={navigation}
-                    isUserLoggedIn={isUserLoggedIn}
-                />
+                <Footer navigation={navigation} />
             </Container>
         </SafeAreaView>
     );
 };
 
 export default DrawerContent;
-
-const Text = styled.Text`
-    font-size: 18px;
-    line-height: 18px;
-    font-family: ${({ theme }) => theme.fonts.roboto(400, false, true)};
-    padding: 16px;
-`;
-
-const FlatList = styled.FlatList`
-    flex: 1;
-    border-color: ${({ theme }) => theme.colors.alterGray(0.6)};
-    border-width: 1px;
-`;
-
-const Container = styled.View`
-    height: 100%;
-`;
-
-const Separator = styled.View`
-    height: 1px;
-    background-color: ${({ theme }) => theme.colors.alterGray(0.3)};
-    margin-left: 32px;
-`;
-
-const Bar = styled.View`
-    height: 60px;
-    justify-content: center;
-`;
-
-const Header = ({ name }) => {
-    return (
-        <Bar>
-            <Text>Ciao {name ? name : 'ospite'}</Text>
-        </Bar>
-    );
-};
-
-const Footer = ({ isUserLoggedIn, navigation }) => {
-    return (
-        <Bar>
-            <Touchable
-                onPress={() => {
-                    if (isUserLoggedIn) {
-                        console.log('logout');
-                    } else {
-                        navigation.navigate(ROUTE_NAME_LOGIN);
-                    }
-                }}>
-                <ItemText>{isUserLoggedIn ? 'Esci' : 'Accedi'}</ItemText>
-            </Touchable>
-        </Bar>
-    );
-};
-
-const ItemText = styled(Text)`
-    padding-left: 32px;
-`;
-
-const Item = ({ action, label, navigation }) => {
-    return (
-        <Touchable
-            onPress={() =>
-                action &&
-                action({
-                    navigate: navigation.navigate
-                })
-            }>
-            <ItemText>{label}</ItemText>
-        </Touchable>
-    );
-};

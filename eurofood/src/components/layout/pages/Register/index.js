@@ -5,6 +5,7 @@ import {
 import { SafeAreaView, ScrollView } from 'react-native';
 
 import BottomWrapper from './BottomWrapper';
+import ButtonSubmit from './ButtonSubmit';
 import CheckboxGdpr from './CheckboxGdpr';
 import CheckboxNewsletter from './CheckboxNewsletter';
 import Container from './../../atoms/Container';
@@ -20,42 +21,56 @@ import Spacer from './../../atoms/Spacer';
 import Text from './Text';
 import Touchable from './../../atoms/Button/Touchable';
 import Wrapper from './../../atoms/Card/Wrapper';
+import isUserLoggedInSelector from './../../../../state/selectors/ClientSelectors/isUserLoggedInSelector';
 import usePushOrBack from '../../../../hooks/navigation/usePushOrBack';
+import { useSelector } from 'react-redux';
 
 const Register = () => {
     const go = usePushOrBack();
+    const isUserLoggedIn = useSelector(state => isUserLoggedInSelector(state));
     return (
         <SafeAreaView>
             <ScrollView>
-                <Container>
-                    <Wrapper>
-                        <Spacer top={16} />
-                        <ListHeaderText center={true}>
-                            Registrazione
-                        </ListHeaderText>
-                        <Spacer top={32} />
-                        <Gender />
-                        <InputFirstname />
-                        <InputLastname />
-                        <InputEmail />
-                        <InputPassword />
-                        <CheckboxNewsletter />
-                        <CheckboxGdpr />
-                    </Wrapper>
-                </Container>
-                <BottomWrapper>
-                    <Side>
-                        <Touchable onPress={() => go(ROUTE_NAME_LOGIN)}>
-                            <Text>Accedi</Text>
-                        </Touchable>
-                    </Side>
-                    <Side isRight={true}>
-                        <Touchable
-                            onPress={() => go(ROUTE_NAME_FORGOT_PASSWORD)}>
-                            <Text>Recupera password</Text>
-                        </Touchable>
-                    </Side>
-                </BottomWrapper>
+                {!isUserLoggedIn ? (
+                    <>
+                        <Container>
+                            <Wrapper>
+                                <Spacer top={16} />
+                                <ListHeaderText center={true}>
+                                    Registrazione
+                                </ListHeaderText>
+                                <Gender />
+                                <InputFirstname />
+                                <InputLastname />
+                                <InputEmail />
+                                <InputPassword />
+                                <Spacer top={16} />
+                                <CheckboxNewsletter />
+                                <CheckboxGdpr />
+                                <ButtonSubmit />
+                            </Wrapper>
+                        </Container>
+                        <BottomWrapper>
+                            <Side>
+                                <Touchable onPress={() => go(ROUTE_NAME_LOGIN)}>
+                                    <Text>Accedi</Text>
+                                </Touchable>
+                            </Side>
+                            <Side isRight={true}>
+                                <Touchable
+                                    onPress={() =>
+                                        go(ROUTE_NAME_FORGOT_PASSWORD)
+                                    }>
+                                    <Text>Recupera password</Text>
+                                </Touchable>
+                            </Side>
+                        </BottomWrapper>
+                    </>
+                ) : (
+                    <Container>
+                        <Text>Accesso effettuato</Text>
+                    </Container>
+                )}
             </ScrollView>
         </SafeAreaView>
     );

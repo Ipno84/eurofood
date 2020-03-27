@@ -2,8 +2,11 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CardInput from './../../atoms/Input/CardInput';
+import ErrorMessage from './../../atoms/Text/ErrorMessage';
+import { REGISTER_FIRSTNAME_ERROR } from './../../../../constants/ErrorsConstants';
 import getRegisterFirstnameSelector from './../../../../state/selectors/ClientSelectors/getRegisterFirstnameSelector';
 import setRegisterFirstnameAction from './../../../../state/actions/ClientActions/setRegisterFirstnameAction';
+import submitRegisterAction from './../../../../state/actions/ClientActions/submitRegisterAction';
 
 const InputFirstname = () => {
     const dispatch = useDispatch();
@@ -11,13 +14,20 @@ const InputFirstname = () => {
         text => dispatch(setRegisterFirstnameAction(text)),
         [dispatch]
     );
+    const submitRegister = useCallback(() => dispatch(submitRegisterAction()), [
+        dispatch
+    ]);
     const firstname = useSelector(state => getRegisterFirstnameSelector(state));
     return (
-        <CardInput
-            onChange={e => setRegisterFirstname(e.nativeEvent.text)}
-            value={firstname}
-            placeholder="Nome"
-        />
+        <>
+            <CardInput
+                onChange={e => setRegisterFirstname(e.nativeEvent.text)}
+                value={firstname}
+                placeholder="Nome"
+                onSubmitEditing={submitRegister}
+            />
+            <ErrorMessage errorKey={REGISTER_FIRSTNAME_ERROR} />
+        </>
     );
 };
 

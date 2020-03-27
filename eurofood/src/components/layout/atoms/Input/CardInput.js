@@ -13,7 +13,7 @@ const CardInput = styled(Input)`
     padding-left: 6px;
     padding-right: 6px;
     border-color: ${({ theme }) => theme.colors.alterGray(1)};
-    margin-bottom: 16px;
+    margin-top: 16px;
     margin-right: 16px;
     margin-left: 16px;
     flex: 1;
