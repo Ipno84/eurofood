@@ -6,7 +6,7 @@ import Styled from './styled';
 import Touchable from './../Button/Touchable';
 import View from './View';
 import { orange } from './../../../../constants/ThemeConstants';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CartButton = ({ navigation }) => {
     const { navigate } = useAppNavigation();

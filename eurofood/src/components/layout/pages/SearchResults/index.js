@@ -7,7 +7,7 @@ import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import SearchSection from './../../organisms/SearchSection';
 import { SectionGrid } from 'react-native-super-grid';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 import useSearchProducts from '../../../../hooks/products/useSearchProducts';
 
 const SearchResults = () => {

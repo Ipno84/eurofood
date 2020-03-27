@@ -3,6 +3,7 @@ import {
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
     ROUTE_NAME_CATEGORY_PRODUCTS,
+    ROUTE_NAME_FORGOT_PASSWORD,
     ROUTE_NAME_HOME,
     ROUTE_NAME_LOGIN,
     ROUTE_NAME_OFFER,
@@ -25,6 +26,7 @@ import Category from './../components/layout/pages/Category';
 import CategoryProducts from './../components/layout/pages/Category/Products';
 import Drawer from './Drawer';
 import DrawerContent from './../components/layout/templates/DrawerContent';
+import ForgotPassword from './../components/layout/pages/ForgotPassword';
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
@@ -58,6 +60,11 @@ const RoutesMap = [
         name: ROUTE_NAME_REGISTER,
         component: Register,
         options: ({ navigation, route }) => ({ title: 'Register' })
+    },
+    {
+        name: ROUTE_NAME_FORGOT_PASSWORD,
+        component: ForgotPassword,
+        options: ({ navigation, route }) => ({ title: 'ForgotPassword' })
     },
     {
         name: ROUTE_NAME_CATEGORY,
@@ -129,7 +136,7 @@ const RoutesMap = [
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_HOME}
+            initialRouteName={ROUTE_NAME_REGISTER}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',

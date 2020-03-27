@@ -4,7 +4,7 @@ import React from 'react';
 import Styled from './styled';
 import Touchable from './../Button/Touchable';
 import { orange } from './../../../../constants/ThemeConstants';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const HeaderButton = ({ isLeft, name, onPress, canGoBack }) => {
     const { goBack } = useAppNavigation();

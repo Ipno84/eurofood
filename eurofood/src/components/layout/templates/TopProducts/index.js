@@ -6,7 +6,7 @@ import React from 'react';
 import Styled from './styled';
 import Wrapper from './Wrapper';
 import { product } from './../../../../assets/images/placeholder';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const products = [
     { name: 'Product 1', image: product, price: 10, wholesale_price: 9 },

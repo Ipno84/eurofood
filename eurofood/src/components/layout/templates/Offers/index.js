@@ -3,7 +3,7 @@ import ProductsGrid from '../../organisms/ProductsGrid';
 import { ROUTE_NAME_OFFER } from '../../../../constants/RouteConstants';
 import React from 'react';
 import { product } from './../../../../assets/images/placeholder';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const products = [
     { name: 'Product 1', image: product, price: 10, wholesale_price: 9 },

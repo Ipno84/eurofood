@@ -5,7 +5,7 @@ import InScreenTitle from './../../atoms/Text/InScreenTitle';
 import { ROUTE_NAME_CATEGORY } from '../../../../constants/RouteConstants';
 import React from 'react';
 import { bevande } from './../../../../assets/images/categories';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CategoriesHorizontalSelector = ({ categories, title }) => {
     const { navigate } = useAppNavigation();

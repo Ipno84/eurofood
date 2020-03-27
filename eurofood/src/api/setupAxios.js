@@ -10,6 +10,10 @@ export default function setupAxios() {
 
     axios.interceptors.request.use(
         request => {
+            if (request.params && request.params.canSetClientCache) {
+                request.__canSetClientCache = true;
+                delete request.params.canSetClientCache;
+            }
             request.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
             request.headers['Output-Format'] = 'JSON';
             if (request.method === 'get') {
@@ -40,7 +44,8 @@ export default function setupAxios() {
         response => {
             if (
                 response.config.method === 'get' &&
-                !response.config.__fromCache
+                !response.config.__fromCache &&
+                response.config.__canSetClientCache
             ) {
                 const params = queryString.stringify(response.config.params);
                 const value = {

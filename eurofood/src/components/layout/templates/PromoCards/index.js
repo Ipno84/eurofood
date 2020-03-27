@@ -3,7 +3,7 @@ import { ROUTE_NAME_PROMO } from '../../../../constants/RouteConstants';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
 import generateArrayOfN from './../../../../helpers/generateArrayOfN';
-import useAppNavigation from './../../../../hooks/useAppNavigation';
+import useAppNavigation from './../../../../hooks/navigation/useAppNavigation';
 
 const PromoCards = () => {
     const { navigate } = useAppNavigation();

@@ -10,7 +10,7 @@ import Progress from './../../atoms/Progress';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
 import { orange } from './../../../../constants/ThemeConstants';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CategoriesList = ({ title, items, onEndReached, isChunking }) => {
     const { push } = useAppNavigation();

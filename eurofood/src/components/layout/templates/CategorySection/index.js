@@ -8,7 +8,7 @@ import FlatButton from '../../atoms/Button/FlatButton';
 import ProductsGrid from '../../organisms/ProductsGrid';
 import React from 'react';
 import { product } from './../../../../assets/images/placeholder';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CategorySection = ({ id, navKey, buttonLabel }) => {
     const { navigate } = useAppNavigation();

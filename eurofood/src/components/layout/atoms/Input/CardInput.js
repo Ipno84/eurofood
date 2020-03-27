@@ -1,7 +1,7 @@
 import Input from './';
 import styled from 'styled-components/native';
 
-const LoginInput = styled(Input)`
+const CardInput = styled(Input)`
     background-color: ${({ theme }) => theme.colors.lightGray(1)};
     color: ${({ theme }) => theme.colors.dark(1)};
     font-family: ${({ theme }) => theme.fonts.roboto(400, false, true)};
@@ -16,6 +16,7 @@ const LoginInput = styled(Input)`
     margin-bottom: 16px;
     margin-right: 16px;
     margin-left: 16px;
+    flex: 1;
 `;
 
-export default LoginInput;
+export default CardInput;

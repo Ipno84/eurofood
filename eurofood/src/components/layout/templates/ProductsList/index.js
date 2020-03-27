@@ -7,7 +7,7 @@ import Progress from './../../atoms/Progress';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const ProductsList = ({ title, items, onEndReached, isChunking }) => {
     const { navigate } = useAppNavigation();

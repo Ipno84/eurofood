@@ -5,7 +5,7 @@ import React from 'react';
 import RecipePreview from '../../atoms/Image/RecipePreview';
 import RecipeWrapper from '../../atoms/Wrapper/RecipeWrapper';
 import SectionTitle from '../../atoms/Text/SectionTitle';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 import { video } from './../../../../assets/images/placeholder';
 
 const VideoRecipe = () => {

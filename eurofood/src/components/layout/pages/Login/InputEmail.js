@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import LoginInput from './../../atoms/Input/LoginInput';
+import CardInput from './../../atoms/Input/CardInput';
 import getLoginEmailSelector from './../../../../state/selectors/ClientSelectors/getLoginEmailSelector';
 import setLoginEmailAction from './../../../../state/actions/ClientActions/setLoginEmailAction';
 import submitLoginAction from './../../../../state/actions/ClientActions/submitLoginAction';
@@ -17,7 +17,7 @@ const InputEmail = () => {
     ]);
     const email = useSelector(state => getLoginEmailSelector(state));
     return (
-        <LoginInput
+        <CardInput
             value={email}
             placeholder="Email"
             autoCompleteType="email"

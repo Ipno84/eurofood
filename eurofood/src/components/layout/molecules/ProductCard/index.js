@@ -5,7 +5,7 @@ import ProductWrapper from '../../atoms/Card/ProductWrapper';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import Touchable from '../../atoms/Button/Touchable';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const ProductCard = ({ id, inHorizontal, isFirst }) => {
     const { navigate } = useAppNavigation();

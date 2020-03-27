@@ -4,7 +4,7 @@ import {
     condimenti,
     latticini,
     pane,
-    pastaRiso,
+    pastaRiso
 } from './../../../../assets/images/categories';
 
 import CategoryCard from '../../molecules/CategoryCard';
@@ -16,7 +16,7 @@ import TitleWrapper from './TitleWrapper';
 import { category } from './../../../../assets/images/placeholder';
 import { screenWidth } from './../../../../constants/ThemeConstants';
 import styled from 'styled-components/native';
-import useAppNavigation from '../../../../hooks/useAppNavigation';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const categories = [
     { title: 'Pane', imageRight: pane, imageLeft: category },
@@ -24,7 +24,7 @@ const categories = [
     { title: 'Latticini', imageRight: latticini, imageLeft: category },
     { title: 'Bevande', imageRight: bevande, imageLeft: category },
     { title: 'Carni', imageRight: carni, imageLeft: category },
-    { title: 'Condimenti', imageRight: condimenti, imageLeft: category },
+    { title: 'Condimenti', imageRight: condimenti, imageLeft: category }
 ];
 
 const CategoriesGrid = ({ title }) => {
