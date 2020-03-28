@@ -1,8 +1,8 @@
+import { Linking, SafeAreaView, ScrollView } from 'react-native';
 import {
     ROUTE_NAME_FORGOT_PASSWORD,
     ROUTE_NAME_LOGIN
 } from '../../../../constants/RouteConstants';
-import { SafeAreaView, ScrollView } from 'react-native';
 
 import BottomWrapper from './BottomWrapper';
 import ButtonSubmit from './ButtonSubmit';
@@ -59,7 +59,9 @@ const Register = () => {
                             <Side isRight={true}>
                                 <Touchable
                                     onPress={() =>
-                                        go(ROUTE_NAME_FORGOT_PASSWORD)
+                                        Linking.openURL(
+                                            'https://www.eurofoodservice.it/recupero-password'
+                                        )
                                     }>
                                     <Text>Recupera password</Text>
                                 </Touchable>
