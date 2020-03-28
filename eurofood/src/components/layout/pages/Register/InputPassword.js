@@ -10,7 +10,6 @@ import { REGISTER_PASSWORD_ERROR } from './../../../../constants/ErrorsConstants
 import Touchable from './../../atoms/Button/Touchable';
 import getRegisterPasswordSelector from './../../../../state/selectors/ClientSelectors/getRegisterPasswordSelector';
 import setRegisterPasswordAction from './../../../../state/actions/ClientActions/setRegisterPasswordAction';
-import submitRegisterAction from './../../../../state/actions/ClientActions/submitRegisterAction';
 import { white } from './../../../../constants/ThemeConstants';
 
 const InputPassword = () => {
@@ -20,9 +19,6 @@ const InputPassword = () => {
         text => dispatch(setRegisterPasswordAction(text)),
         [dispatch]
     );
-    const submitRegister = useCallback(() => dispatch(submitRegisterAction()), [
-        dispatch
-    ]);
     const password = useSelector(state => getRegisterPasswordSelector(state));
     return (
         <>
@@ -33,7 +29,6 @@ const InputPassword = () => {
                     placeholder="Password"
                     secureTextEntry={secureTextEntry}
                     autoCompleteType="password"
-                    onSubmitEditing={submitRegister}
                 />
                 <Touchable onPress={() => setSecureTextEntry(!secureTextEntry)}>
                     <IconWrapper>

@@ -1,3 +1,4 @@
+import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
 import {
     LOGOUT,
     SET_LOGIN_EMAIL,
@@ -9,11 +10,11 @@ import {
     SET_REGISTER_NEWSLETTER,
     SET_REGISTER_PASSWORD,
     SET_REGISTER_PSGDPR,
-    SUBMIT_LOGIN
+    SUBMIT_LOGIN,
+    SUBMIT_REGISTER
 } from '../../constants/ClientConstants';
 
 import { REDUCER_NAME_CLIENT } from '../../constants/StoreConstants';
-import { SUCCESS } from '../../constants/BaseConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
@@ -23,6 +24,7 @@ export const initialState = {
         email: '',
         password: ''
     },
+    loginSubmitted: false,
     registerForm: {
         id_gender: 1, // 1 = male, 2 = female
         firstname: '',
@@ -32,6 +34,7 @@ export const initialState = {
         newsletter: false, //send 1 if checked
         psgdpr: false //send 1 if checked - https://www.eurofoodservice.it/content/5-condizioni-registrazione-sito
     },
+    registerSubmitted: false,
     companyForm: {}
 };
 
@@ -43,7 +46,9 @@ export const ClientReducerTransform = createTransform(
         return {
             ...outboundState,
             loginForm: initialState.loginForm,
+            loginSubmitted: initialState.loginSubmitted,
             registerForm: initialState.registerForm,
+            registerSubmitted: initialState.registerSubmitted,
             companyForm: initialState.companyForm
         };
     },
@@ -62,11 +67,22 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 loginForm: { ...state.loginForm, password: action.password }
             };
+        case SUBMIT_LOGIN:
+            return {
+                ...state,
+                loginSubmitted: true
+            };
         case SUBMIT_LOGIN + SUCCESS:
             return {
                 ...state,
                 user: action.user,
-                loginForm: initialState.loginForm
+                loginForm: initialState.loginForm,
+                loginSubmitted: false
+            };
+        case SUBMIT_LOGIN + FAILURE:
+            return {
+                ...state,
+                loginSubmitted: false
             };
         case SET_REGISTER_ID_GENDER:
             return {
@@ -123,6 +139,21 @@ const ClientReducer = (state = initialState, action) => {
                     ...state.registerForm,
                     password: action.password
                 }
+            };
+        case SUBMIT_REGISTER:
+            return {
+                ...state,
+                registerSubmitted: true
+            };
+        case SUBMIT_REGISTER + SUCCESS:
+            return {
+                ...state,
+                registerSubmitted: false
+            };
+        case SUBMIT_REGISTER + FAILURE:
+            return {
+                ...state,
+                registerSubmitted: false
             };
         case LOGOUT:
             return {

@@ -1,15 +1,13 @@
-import getCustomersCall from './getCustomersCall';
+import X2JS from 'x2js';
+import createCustomersCall from './createCustomersCall';
 
-let params = {
-    display: '[id,lastname,firstname,email,active]'
-};
-
-export default function registerCall(email, password) {
-    // if (email)
-    //     params = {
-    //         ...params,
-    //         'filter[email]': `[${email}]`
-    //     };
-    // params = { ...params, clientCache: true };
-    // return getCustomersCall(params);
+export default function registerCall(payload) {
+    const jsBody = {
+        prestashop: {
+            customers: payload
+        }
+    };
+    const x2js = new X2JS();
+    const xmlBody = x2js.js2xml(jsBody);
+    return createCustomersCall(xmlBody);
 }

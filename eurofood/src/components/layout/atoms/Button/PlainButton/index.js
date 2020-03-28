@@ -3,10 +3,10 @@ import Styled from './styled';
 import Text from './Text';
 import Touchable from './../Touchable';
 
-const PlainButton = ({ children, onPress }) => {
+const PlainButton = ({ children, onPress, disabled }) => {
     return (
         <Touchable onPress={onPress}>
-            <Styled>
+            <Styled disabled={disabled}>
                 <Text>{children}</Text>
             </Styled>
         </Touchable>

@@ -10,7 +10,6 @@ import { LOGIN_PASSWORD_ERROR } from './../../../../constants/ErrorsConstants';
 import Touchable from './../../atoms/Button/Touchable';
 import getLoginPasswordSelector from './../../../../state/selectors/ClientSelectors/getLoginPasswordSelector';
 import setLoginPasswordAction from './../../../../state/actions/ClientActions/setLoginPasswordAction';
-import submitLoginAction from './../../../../state/actions/ClientActions/submitLoginAction';
 import { white } from './../../../../constants/ThemeConstants';
 
 const InputPassword = () => {
@@ -20,9 +19,6 @@ const InputPassword = () => {
         password => dispatch(setLoginPasswordAction(password)),
         [dispatch]
     );
-    const submitLogin = useCallback(() => dispatch(submitLoginAction()), [
-        dispatch
-    ]);
     const password = useSelector(state => getLoginPasswordSelector(state));
     return (
         <>
@@ -33,7 +29,6 @@ const InputPassword = () => {
                     autoCompleteType="password"
                     onChange={e => setLoginPassword(e.nativeEvent.text)}
                     onSubmitEditing={submitLogin}
-                    secureTextEntry={secureTextEntry}
                 />
                 <Touchable onPress={() => setSecureTextEntry(!secureTextEntry)}>
                     <IconWrapper>

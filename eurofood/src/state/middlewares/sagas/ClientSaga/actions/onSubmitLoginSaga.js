@@ -41,7 +41,10 @@ export default function* onSubmitLoginSaga() {
                 })
             );
             yield put(
-                submitLoginAction({ success: true, user: results.customers[0] })
+                submitLoginAction({
+                    success: true,
+                    user: results.customers[0]
+                })
             );
         }
     } catch (error) {

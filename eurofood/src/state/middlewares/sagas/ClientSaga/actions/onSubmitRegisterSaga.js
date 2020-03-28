@@ -11,6 +11,8 @@ import ValidationError, {
 } from './../../../../../helpers/ValidationError';
 import { all, call, put, select } from 'redux-saga/effects';
 
+import { Alert } from 'react-native';
+import checkUserCall from './../../../../../api/calls/CustomersCalls/checkUserCall';
 import getRegisterEmailSelector from './../../../../selectors/ClientSelectors/getRegisterEmailSelector';
 import getRegisterFirstnameSelector from './../../../../selectors/ClientSelectors/getRegisterFirstnameSelector';
 import getRegisterIdGenderSelector from './../../../../selectors/ClientSelectors/getRegisterIdGenderSelector';
@@ -18,7 +20,7 @@ import getRegisterLastnameSelector from './../../../../selectors/ClientSelectors
 import getRegisterNewsletterSelector from './../../../../selectors/ClientSelectors/getRegisterNewsletterSelector';
 import getRegisterPasswordSelector from './../../../../selectors/ClientSelectors/getRegisterPasswordSelector';
 import getRegisterPsgdprSelector from './../../../../selectors/ClientSelectors/getRegisterPsgdprSelector';
-import isPasswordValid from './../../../../../helpers/isPasswordValid';
+import isRegisterSubmittedSelector from './../../../../selectors/ClientSelectors/isRegisterSubmittedSelector';
 import isValidEmail from './../../../../../helpers/isValidEmail';
 import registerCall from './../../../../../api/calls/CustomersCalls/registerCall';
 import setErrorAction from './../../../../actions/ErrorsActions/setErrorAction';
@@ -28,14 +30,13 @@ export default function* onSubmitRegisterSaga() {
     try {
         const email = yield select(getRegisterEmailSelector);
         const firstname = yield select(getRegisterFirstnameSelector);
-        const idGender = yield select(getRegisterIdGenderSelector);
+        const id_gender = yield select(getRegisterIdGenderSelector);
         const lastname = yield select(getRegisterLastnameSelector);
         const newsletter = yield select(getRegisterNewsletterSelector);
-        const password = yield select(getRegisterPasswordSelector);
+        const passwd = yield select(getRegisterPasswordSelector);
         const psgdpr = yield select(getRegisterPsgdprSelector);
         const emailValid = Boolean(email.length && isValidEmail(email));
-        // const passwordValid = isPasswordValid(password);
-        const passwordValid = password.length > 6;
+        const passwordValid = passwd.length > 6;
         if (!firstname)
             throw new ValidationError('Nome non valido', {
                 key: REGISTER_FIRSTNAME_ERROR
@@ -52,24 +53,45 @@ export default function* onSubmitRegisterSaga() {
             throw new ValidationError('Password non valida', {
                 key: REGISTER_PASSWORD_ERROR
             });
-        if (!newsletter)
-            throw new ValidationError(
-                'Accettare la sottoscrizione alla newsletter',
-                { key: REGISTER_NEWSLETTER_ERROR }
-            );
         if (!psgdpr)
             throw new ValidationError(
                 `Accettare le condizioni per l'utilizzo del'applicazione`,
                 { key: REGISTER_PSGDPR_ERROR }
             );
-        const results = yield call(registerCall, email, password);
-        // if (results && results.customers && results.customers.length) {
-        //     yield put(
-        //         submitLoginAction({
-        //             success: true
-        //         })
-        //     );
-        // }
+        const checkUser = yield call(checkUserCall, email);
+        if (
+            checkUser &&
+            checkUser.customers &&
+            checkUser.customers.length > 0
+        ) {
+            yield put(submitRegisterAction({ error: true }));
+            Alert.alert(
+                'Errore',
+                `Esiste già un utente per l'indirizzo email prescelto ${email}`
+            );
+        } else {
+            const results = yield call(registerCall, {
+                id_gender,
+                firstname,
+                lastname,
+                email,
+                passwd,
+                newsletter: newsletter ? 1 : 0,
+                psgdpr: psgdpr ? 1 : 0
+            });
+            if (results && results.customer) {
+                Alert.alert(
+                    'Congratulazioni',
+                    `Il tuo account è stato creato con successo.
+                    Riceverai una mail contenente un link per l'attivazione del tuo account.`
+                );
+                yield put(
+                    submitLoginAction({
+                        success: true
+                    })
+                );
+            }
+        }
     } catch (error) {
         if (error.name === VALIDATION_CLASS_NAME) {
             yield all([
