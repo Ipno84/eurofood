@@ -6,10 +6,10 @@ import {
 import CategoryItem from './../../atoms/Item/CategoryItem';
 import Container from './../../atoms/Container';
 import { FlatList } from 'react-native';
-import Progress from './../../atoms/Progress';
+// import Progress from './../../atoms/Progress';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
-import { orange } from './../../../../constants/ThemeConstants';
+// import { orange } from './../../../../constants/ThemeConstants';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CategoriesList = ({ title, items, onEndReached, isChunking }) => {

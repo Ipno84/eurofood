@@ -1,6 +1,7 @@
 import { SafeAreaView, Text, View } from 'react-native';
 
 import React from 'react';
+import SectionTitle from './../../atoms/Text/SectionTitle';
 import Touchable from './../../atoms/Button/Touchable';
 import Wrapper from './../../atoms/Card/Wrapper';
 import styled from 'styled-components/native';
@@ -8,7 +9,6 @@ import useOrders from './../../../../hooks/orders/useOrders';
 
 const Orders = () => {
     const { orders } = useOrders();
-    console.log(orders);
     return (
         <SafeAreaView>
             <FlatList
@@ -16,10 +16,14 @@ const Orders = () => {
                     paddingTop: 8,
                     paddingBottom: 8
                 }}
+                ListHeaderComponent={() => (
+                    <TitleWrapper>
+                        <SectionTitle bigger={true}>I miei Ordini</SectionTitle>
+                    </TitleWrapper>
+                )}
                 data={orders}
                 renderItem={({ item }) => {
                     if (!item || (item && !item.id)) return null;
-                    console.log(item.date_add);
                     return (
                         <Touchable>
                             <OrderCardWrapper>
@@ -60,6 +64,10 @@ const OrderCardWrapper = styled(Wrapper)`
     margin-top: 8px;
     margin-bottom: 8px;
     padding: 16px;
+`;
+
+const TitleWrapper = styled.View`
+    margin-bottom: 16px;
 `;
 
 const OrderCardTitle = styled.Text`
