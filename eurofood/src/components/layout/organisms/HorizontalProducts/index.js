@@ -9,7 +9,7 @@ const HorizontalProducts = ({ id }) => {
     const { products, onProductsEndReached } = useCategoryProducts(id);
     return (
         <HorizontalScollerContainer>
-            <Title id={id} />
+            {products && products.length > 0 ? <Title id={id} /> : null}
             <HorizontalList
                 data={products}
                 horizontal={true}

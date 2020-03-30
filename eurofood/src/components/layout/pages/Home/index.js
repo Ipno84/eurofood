@@ -40,12 +40,12 @@ const template = [
                 {
                     component: 'LoginBlock'
                 },
-                {
-                    component: 'PromoCards'
-                },
-                {
-                    component: 'VideoRecipe'
-                },
+                // {
+                //     component: 'PromoCards'
+                // },
+                // {
+                //     component: 'VideoRecipe'
+                // },
                 {
                     component: 'HorizontalProducts',
                     props: {

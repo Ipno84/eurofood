@@ -1,5 +1,5 @@
-import X2JS from 'x2js';
 import createCustomersCall from './createCustomersCall';
+import jsToXml from './../../../helpers/jsToXml';
 
 export default function registerCall(payload) {
     const jsBody = {
@@ -7,7 +7,6 @@ export default function registerCall(payload) {
             customers: payload
         }
     };
-    const x2js = new X2JS();
-    const xmlBody = x2js.js2xml(jsBody);
+    const xmlBody = jsToXml(jsBody);
     return createCustomersCall(xmlBody);
 }

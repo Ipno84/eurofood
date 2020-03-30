@@ -14,7 +14,7 @@ import Label from './Label';
 import QuantityWrapper from './QuantityWrapper';
 import Touchable from './../../../../atoms/Button/Touchable';
 import addToCartAction from './../../../../../../state/actions/CartActions/addToCartAction';
-import canAddItemToCartSelector from './../../../../../../state/selectors/CartSelectors/canAddItemToCartSelector';
+import canAddItemToCurrentCartSelector from './../../../../../../state/selectors/CartSelectors/canAddItemToCurrentCartSelector';
 import getProductStockQuantitySelector from './../../../../../../state/selectors/ProductsSelectors/getProductStockQuantitySelector';
 import isProductItemActiveSelector from './../../../../../../state/selectors/ProductsSelectors/isProductItemActiveSelector';
 import isUserLoggedInSelector from './../../../../../../state/selectors/ClientSelectors/isUserLoggedInSelector';
@@ -30,8 +30,8 @@ const Add = ({ id }) => {
     const stockQuantity = useSelector(state =>
         getProductStockQuantitySelector(state, id)
     );
-    const canAddItemToCart = useSelector(state =>
-        canAddItemToCartSelector(state, id, quantity)
+    const canAddItemToCurrentCart = useSelector(state =>
+        canAddItemToCurrentCartSelector(state, id, quantity)
     );
     const isProductItemActive = useSelector(state =>
         isProductItemActiveSelector(state, id)
@@ -63,7 +63,11 @@ const Add = ({ id }) => {
                             <ButtonText>-</ButtonText>
                         </ButtonWrapper>
                     </Touchable>
-                    <InputNumber onChange={onChange} value={String(quantity)} />
+                    <InputNumber
+                        keyboardType="number-pad"
+                        onChange={onChange}
+                        value={String(quantity)}
+                    />
                     <Touchable onPress={() => onButtonChange(true)}>
                         <ButtonWrapper isLeft={false}>
                             <ButtonText>+</ButtonText>
@@ -72,8 +76,10 @@ const Add = ({ id }) => {
                 </InputWrapper>
             </QuantityWrapper>
             <Touchable
-                onPress={() => canAddItemToCart && addToCart({ id, quantity })}>
-                <AddToCartContainer disabled={!canAddItemToCart}>
+                onPress={() =>
+                    canAddItemToCurrentCart && addToCart({ id, quantity })
+                }>
+                <AddToCartContainer disabled={!canAddItemToCurrentCart}>
                     <AddToCartWrapper>
                         <Icon
                             name="shopping-cart"

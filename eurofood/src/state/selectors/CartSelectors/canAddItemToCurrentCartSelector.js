@@ -1,14 +1,14 @@
 import createCachedSelector from 're-reselect';
-import getCartItemQuantitySelector from './getCartItemQuantitySelector';
+import getCurrentCartItemQuantitySelector from './getCurrentCartItemQuantitySelector';
 import getProductStockQuantitySelector from './../ProductsSelectors/getProductStockQuantitySelector';
 
 export default createCachedSelector(
     [
-        getCartItemQuantitySelector,
+        getCurrentCartItemQuantitySelector,
         getProductStockQuantitySelector,
         (state, id, quantity) => quantity,
         (state, id) => id
     ],
     (cartQuantity, stockQuantity, quantity) =>
-        !(quantity + cartQuantity >= stockQuantity)
+        !(quantity + cartQuantity > stockQuantity)
 )((_, id, quantity) => `${id}_${quantity}`);

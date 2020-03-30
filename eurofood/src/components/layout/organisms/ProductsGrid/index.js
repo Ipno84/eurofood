@@ -10,7 +10,7 @@ const ProductsGrid = ({ id }) => {
     const { products } = useCategoryProducts(id);
     return (
         <>
-            <Title id={id} />
+            {products && products.length ? <Title id={id} /> : null}
             <StyledFlatGrid
                 itemDimension={screenWidth / 3}
                 items={products.slice(0, 4)}

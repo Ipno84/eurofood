@@ -28,6 +28,7 @@ const InputPassword = () => {
                     placeholder="Password"
                     autoCompleteType="password"
                     onChange={e => setLoginPassword(e.nativeEvent.text)}
+                    secureTextEntry={secureTextEntry}
                 />
                 <Touchable onPress={() => setSecureTextEntry(!secureTextEntry)}>
                     <IconWrapper>

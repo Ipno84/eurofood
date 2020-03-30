@@ -11,7 +11,9 @@ const CategoriesHorizontalSelector = ({ categories, title }) => {
     const { navigate } = useAppNavigation();
     return (
         <HorizontalScollerContainer plainBackground={true} shadow={true}>
-            <InScreenTitle>{title}</InScreenTitle>
+            {categories && categories.length > 0 ? (
+                <InScreenTitle>{title}</InScreenTitle>
+            ) : null}
             <HorizontalList
                 data={categories}
                 horizontal={true}
