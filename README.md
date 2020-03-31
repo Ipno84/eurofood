@@ -5,7 +5,8 @@ Eurofood app
 ## API
 
 https://www.eurofoodservice.it/api/
-Authorization: Basic UktHTlpSMllTUDZKTkM1NjU5NkQyRkk5NEpGTlhZMkM6
+Authorization: Basic UktHTlpSMllTUDZKTkM1NjU5NkQyRkk5NEpGTlhZMkM6 // per endpoint pubblici
+Authorization: Basic Q7NI79UCBIUD3Y626LAP3YM92QKTR5UR // sará quella finale
 (su Postman username RKGNZR2YSP6JNC56596D2FI94JFNXY2C)
 
 • lista delle Sezioni (homepage)

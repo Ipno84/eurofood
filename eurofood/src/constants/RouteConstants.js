@@ -14,4 +14,5 @@ export const ROUTE_NAME_TEMPLATE = 'Template';
 export const ROUTE_NAME_SETTINGS = 'Settings';
 export const ROUTE_NAME_PROFILE = 'Profile';
 export const ROUTE_NAME_ORDERS = 'Orders';
+export const ROUTE_NAME_ORDER = 'Order';
 export const ROUTE_NAME_SEARCH_RESULTS = 'SearchResults';

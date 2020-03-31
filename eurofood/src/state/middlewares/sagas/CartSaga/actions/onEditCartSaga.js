@@ -1,12 +1,9 @@
 import { call, cancel, delay, fork, put, select } from 'redux-saga/effects';
 
-import addToCartAction from './../../../../actions/CartActions/addToCartAction';
 import createCartCall from './../../../../../api/calls/CartCalls/createCartCall';
 import editCartCall from './../../../../../api/calls/CartCalls/editCartCall';
 import getCurrentCartIdSelector from './../../../../selectors/CartSelectors/getCurrentCartIdSelector';
-import getCurrentCartItemQuantitySelector from './../../../../selectors/CartSelectors/getCurrentCartItemQuantitySelector';
 import getCurrentCartSelector from './../../../../selectors/CartSelectors/getCurrentCartSelector';
-import getProductStockQuantitySelector from './../../../../selectors/ProductsSelectors/getProductStockQuantitySelector';
 import isUserLoggedInSelector from './../../../../selectors/ClientSelectors/isUserLoggedInSelector';
 import setCurrentCartAction from './../../../../actions/CartActions/setCurrentCartAction';
 

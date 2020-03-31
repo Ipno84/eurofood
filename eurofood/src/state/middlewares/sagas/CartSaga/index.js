@@ -1,3 +1,4 @@
+import backorderWatcher from './watchers/backorderWatcher';
 import { fork } from 'redux-saga/effects';
 import onAddToCartWatcher from './watchers/onAddToCartWatcher';
 import onEditCartWatcher from './watchers/onEditCartWatcher';
@@ -9,4 +10,5 @@ export default function* CartSaga() {
     yield fork(setCurrentCartIdCustomerWatcher);
     yield fork(onEditCartWatcher);
     yield fork(onEmptyCartWatcher);
+    yield fork(backorderWatcher);
 }

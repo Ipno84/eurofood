@@ -7,6 +7,7 @@ import {
     ROUTE_NAME_HOME,
     ROUTE_NAME_LOGIN,
     ROUTE_NAME_OFFER,
+    ROUTE_NAME_ORDER,
     ROUTE_NAME_ORDERS,
     ROUTE_NAME_PRODUCT,
     ROUTE_NAME_PROFILE,
@@ -32,6 +33,7 @@ import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
 import MenuButton from './../components/layout/atoms/HeaderButton/MenuButton';
 import Offer from './../components/layout/pages/Offer';
+import Order from './../components/layout/pages/Order';
 import Orders from './../components/layout/pages/Orders';
 import Product from './../components/layout/pages/Product';
 import Profile from './../components/layout/pages/Profile';
@@ -125,6 +127,11 @@ const RoutesMap = [
         name: ROUTE_NAME_ORDERS,
         component: Orders,
         options: ({ navigation, route }) => ({ title: 'Orders' })
+    },
+    {
+        name: ROUTE_NAME_ORDER,
+        component: Order,
+        options: ({ navigation, route }) => ({ title: 'Order' })
     },
     {
         name: ROUTE_NAME_SEARCH_RESULTS,
