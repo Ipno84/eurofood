@@ -1,4 +1,5 @@
 import {
+    ROUTE_NAME_BILLING_ADDRESS,
     ROUTE_NAME_CART,
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
@@ -16,10 +17,12 @@ import {
     ROUTE_NAME_REGISTER,
     ROUTE_NAME_SEARCH_RESULTS,
     ROUTE_NAME_SETTINGS,
+    ROUTE_NAME_SHIPPING_ADDRESS,
     ROUTE_NAME_TEMPLATE
 } from './../constants/RouteConstants';
 
 import BackButton from './../components/layout/atoms/HeaderButton/BackButton';
+import BillingAddress from './../components/layout/pages/BillingAddress';
 import Cart from './../components/layout/pages/Cart';
 import CartButton from './../components/layout/atoms/HeaderButton/CartButton';
 import Categories from './../components/layout/pages/Categories';
@@ -43,6 +46,7 @@ import Recipe from './../components/layout/pages/Recipe';
 import Register from './../components/layout/pages/Register';
 import SearchResults from './../components/layout/pages/SearchResults';
 import Settings from './../components/layout/pages/Settings';
+import ShippingAddress from './../components/layout/pages/ShippingAddress';
 import Stack from './Stack';
 import Template from './../components/layout/pages/Template';
 import { lightGray } from './../constants/ThemeConstants';
@@ -137,13 +141,23 @@ const RoutesMap = [
         name: ROUTE_NAME_SEARCH_RESULTS,
         component: SearchResults,
         options: ({ navigation, route }) => ({ title: 'SearchResults' })
+    },
+    {
+        name: ROUTE_NAME_SHIPPING_ADDRESS,
+        component: ShippingAddress,
+        options: ({ navigation, route }) => ({ title: 'ShippingAddress' })
+    },
+    {
+        name: ROUTE_NAME_BILLING_ADDRESS,
+        component: BillingAddress,
+        options: ({ navigation, route }) => ({ title: 'BillingAddress' })
     }
 ];
 
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_HOME}
+            initialRouteName={ROUTE_NAME_SHIPPING_ADDRESS}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',

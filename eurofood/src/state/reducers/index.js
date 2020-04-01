@@ -1,4 +1,5 @@
 import {
+    REDUCER_NAME_ADDRESSES,
     REDUCER_NAME_CACHE,
     REDUCER_NAME_CART,
     REDUCER_NAME_CATEGORIES,
@@ -11,6 +12,7 @@ import {
     REDUCER_NAME_SETTINGS
 } from './../../constants/StoreConstants';
 
+import AddressesReducer from './AddressesReducer';
 import CacheReducer from './CacheReducer';
 import CartReducer from './CartReducer';
 import CategoriesReducer from './CategoriesReducer';
@@ -32,5 +34,6 @@ export default {
     [REDUCER_NAME_CART]: CartReducer,
     [REDUCER_NAME_CLIENT]: ClientReducer,
     [REDUCER_NAME_ERRORS]: ErrorsReducer,
-    [REDUCER_NAME_ORDERS]: OrdersReducer
+    [REDUCER_NAME_ORDERS]: OrdersReducer,
+    [REDUCER_NAME_ADDRESSES]: AddressesReducer
 };
