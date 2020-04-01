@@ -24,6 +24,13 @@ const ProductWrapper = styled(Wrapper)`
                           margin-left: 8px;
                       `}
         `}
+    ${({ isInRow }) =>
+        isInRow &&
+        css`
+            margin-left: 4px;
+            margin-right: 4px;
+            flex: 1;
+        `}
 `;
 
 export default ProductWrapper;

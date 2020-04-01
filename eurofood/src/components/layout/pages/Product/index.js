@@ -14,6 +14,7 @@ import useProduct from './../../../../hooks/products/useProduct';
 
 const Product = ({ route }) => {
     useProduct(route.params.id);
+    if (!route.params.id) return null;
     return (
         <SafeAreaView>
             <ScrollView>

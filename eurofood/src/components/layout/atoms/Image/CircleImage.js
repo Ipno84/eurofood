@@ -8,21 +8,21 @@ const Image = styled.Image`
     height: 75px;
     border-radius: 75px;
     overflow: hidden;
-    ${({ isPlacehoder }) =>
-        !isPlacehoder &&
+    ${({ isRemote }) =>
+        isRemote &&
         css`
-            transform: scale(3);
+            transform: scale(2.5);
         `}
 `;
 
 const CircleImage = ({ id, resizeMode }) => {
-    const { imageSource, onError } = useCategoryDefaultImage(id);
+    const { imageSource, onError, isRemote } = useCategoryDefaultImage(id);
     return (
         <Image
             resizeMode={resizeMode}
             source={imageSource}
             onError={() => onError()}
-            isPlacehoder={typeof imageSource === 'number'}
+            isRemote={isRemote}
         />
     );
 };

@@ -1,27 +1,44 @@
+import styled, { css } from 'styled-components/native';
+
 import ProductCard from '../../molecules/ProductCard';
-import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
-import StyledFlatGrid from './styled';
 import Title from './Title';
-import { screenWidth } from './../../../../constants/ThemeConstants';
-import useCategoryProducts from '../../../../hooks/products/useCategoryProducts';
+import useGridCategoryProducts from '../../../../hooks/products/useGridCategoryProducts';
 
 const ProductsGrid = ({ id }) => {
-    const { products } = useCategoryProducts(id);
+    const { productsChunks } = useGridCategoryProducts(id);
     return (
         <>
-            {products && products.length ? <Title id={id} /> : null}
-            <StyledFlatGrid
-                itemDimension={screenWidth / 3}
-                items={products.slice(0, 4)}
-                spacing={8}
-                renderItem={({ item }) => {
-                    if (!item) return null;
-                    return <ProductCard id={item.id} />;
-                }}
-            />
+            {productsChunks && productsChunks.length ? <Title id={id} /> : null}
+            {productsChunks.map((productsChunk, i) => {
+                return (
+                    <Row key={i} isFirst={i === 0}>
+                        {productsChunk.map(item => {
+                            if (!item || typeof item !== 'object') return null;
+                            return (
+                                <ProductCard
+                                    key={item.id}
+                                    isInRow={true}
+                                    id={item.id}
+                                />
+                            );
+                        })}
+                    </Row>
+                );
+            })}
         </>
     );
 };
 
 export default ProductsGrid;
+
+const Row = styled.View`
+    flex-direction: row;
+    padding-left: 16px;
+    padding-right: 16px;
+    ${({ isFirst }) =>
+        isFirst &&
+        css`
+            padding-top: 16px;
+        `}
+`;

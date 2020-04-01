@@ -15,6 +15,7 @@ import useAppNavigation from '../../../../../hooks/navigation/useAppNavigation';
 
 const CartRow = ({ id_product }) => {
     const { navigate } = useAppNavigation();
+    if (!id_product) return null;
     return (
         <Touchable
             onPress={() => navigate(ROUTE_NAME_PRODUCT, { id: id_product })}>

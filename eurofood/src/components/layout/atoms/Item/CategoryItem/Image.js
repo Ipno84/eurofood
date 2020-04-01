@@ -6,21 +6,21 @@ import useCategoryDefaultImage from '../../../../../hooks/categories/useCategory
 const Img = styled.Image`
     height: 50px;
     width: 50px;
-    ${({ isPlacehoder }) =>
-        !isPlacehoder &&
+    ${({ isRemote }) =>
+        isRemote &&
         css`
-            transform: scale(3);
+            transform: scale(2.5);
         `}
 `;
 
 const Image = ({ id, resizeMode }) => {
-    const { imageSource, onError } = useCategoryDefaultImage(id);
+    const { imageSource, onError, isRemote } = useCategoryDefaultImage(id);
     return (
         <Img
             resizeMode={resizeMode}
             source={imageSource}
             onError={() => onError()}
-            isPlacehoder={typeof imageSource === 'number'}
+            isRemote={isRemote}
         />
     );
 };
