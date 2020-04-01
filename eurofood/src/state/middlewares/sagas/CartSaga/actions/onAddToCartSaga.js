@@ -11,7 +11,7 @@ import isUserLoggedInSelector from './../../../../selectors/ClientSelectors/isUs
 import setCurrentCartAction from './../../../../actions/CartActions/setCurrentCartAction';
 
 let addToCartTask;
-export default function* onAddToCardSaga({ id, quantity }) {
+export default function* onAddToCartSaga({ id, quantity }) {
     try {
         const isUserLoggedIn = yield select(state =>
             isUserLoggedInSelector(state)
@@ -43,7 +43,7 @@ export default function* onAddToCardSaga({ id, quantity }) {
 
             // Handling Task
             if (addToCartTask) yield cancel(addToCartTask);
-            addToCartTask = yield fork(onAddToCardSagaTask);
+            addToCartTask = yield fork(onAddToCartSagaTask);
         }
     } catch (error) {
         console.log(error);
@@ -51,7 +51,7 @@ export default function* onAddToCardSaga({ id, quantity }) {
     }
 }
 
-export function* onAddToCardSagaTask() {
+export function* onAddToCartSagaTask() {
     try {
         yield delay(1000);
         const isUserLoggedIn = yield select(state =>

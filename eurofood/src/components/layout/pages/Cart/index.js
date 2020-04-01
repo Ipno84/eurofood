@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
-import styled, { css } from 'styled-components/native';
+import { SafeAreaView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CartRow from './CartRow';
@@ -9,16 +8,15 @@ import PlainButton from './../../atoms/Button/PlainButton';
 import TotalPrice from './TotalPrice';
 import Touchable from './../../atoms/Button/Touchable';
 import emptyCartAction from './../../../../state/actions/CartActions/emptyCartAction';
-import getCurrentCartAssociationsCartRowsSelector from './../../../../state/selectors/CartSelectors/getCurrentCartAssociationsCartRowsSelector';
+import styled from 'styled-components/native';
+import useCartRows from './../../../../hooks/products/useCartRows';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const emptyCart = useCallback(() => dispatch(emptyCartAction()), [
         dispatch
     ]);
-    const cartRows = useSelector(state =>
-        getCurrentCartAssociationsCartRowsSelector(state)
-    );
+    const cartRows = useCartRows();
     if (!cartRows || cartRows.length === 0) {
         return (
             <Container>

@@ -31,10 +31,6 @@ export default function* onSetProductItemsSaga({ items, force }) {
                 )
             ]);
         }
-
-        // const res = yield call(getMissingProductsCall, ids);
-        // const products = arrayToObject(res.products);
-        // yield put(setProductsItemsAction({ items: products }));
     } catch (error) {
         console.log(error);
     }

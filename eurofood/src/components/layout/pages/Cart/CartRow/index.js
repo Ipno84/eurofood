@@ -7,22 +7,29 @@ import ProductName from './ProductName';
 import ProductPartialPrice from './ProductPartialPrice';
 import ProductPrice from './ProductPrice';
 import ProductQuantity from './ProductQuantity';
+import { ROUTE_NAME_PRODUCT } from '../../../../../constants/RouteConstants';
 import React from 'react';
 import Right from './Right';
+import Touchable from './../../../atoms/Button/Touchable';
+import useAppNavigation from '../../../../../hooks/navigation/useAppNavigation';
 
 const CartRow = ({ id_product }) => {
+    const { navigate } = useAppNavigation();
     return (
-        <CartRowWrapper>
-            <Left>
-                <ProductImage id={id_product} />
-            </Left>
-            <Right>
-                <ProductName id={id_product} />
-                <ProductPrice id={id_product} />
-                <ProductPartialPrice id={id_product} />
-                <ProductQuantity id={id_product} />
-            </Right>
-        </CartRowWrapper>
+        <Touchable
+            onPress={() => navigate(ROUTE_NAME_PRODUCT, { id: id_product })}>
+            <CartRowWrapper>
+                <Left>
+                    <ProductImage id={id_product} />
+                </Left>
+                <Right>
+                    <ProductName id={id_product} />
+                    <ProductPrice id={id_product} />
+                    <ProductPartialPrice id={id_product} />
+                    <ProductQuantity id={id_product} />
+                </Right>
+            </CartRowWrapper>
+        </Touchable>
     );
 };
 

@@ -1,17 +1,20 @@
 import {
+    GET_MISSING_PRODUCTS,
     SET_PRODUCTS_ITEMS,
     SET_PRODUCTS_SPECIFIC_PRICES,
     SET_PRODUCTS_STOCK_AVAILABILITIES
 } from '../../constants/ProductsConstants';
 
 import { REDUCER_NAME_PRODUCTS } from '../../constants/StoreConstants';
+import { SUCCESS } from '../../constants/BaseConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
     items: {},
     images: {},
     specificPrices: {},
-    stockAvailabilities: {}
+    stockAvailabilities: {},
+    missingProductsId: []
 };
 
 export const ProductsReducerTransform = createTransform(
@@ -67,6 +70,16 @@ const ProductsReducer = (state = initialState, action) => {
                     ...state.stockAvailabilities,
                     ...action.stockAvailabilities
                 }
+            };
+        case GET_MISSING_PRODUCTS:
+            return {
+                ...state,
+                missingProductsId: [...state.missingProductsId, ...action.ids]
+            };
+        case GET_MISSING_PRODUCTS + SUCCESS:
+            return {
+                ...state,
+                missingProductsId: []
             };
         default:
             return state;
