@@ -1,19 +1,13 @@
-import {
-    ROUTE_NAME_CATEGORY,
-    ROUTE_NAME_CATEGORY_PRODUCTS,
-    ROUTE_NAME_OFFER
-} from '../../../../constants/RouteConstants';
-
 import FlatButton from '../../atoms/Button/FlatButton';
 import ProductsGrid from '../../organisms/ProductsGrid';
 import React from 'react';
-import { product } from './../../../../assets/images/placeholder';
+import { View } from 'react-native';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CategorySection = ({ id, navKey, buttonLabel }) => {
     const { navigate } = useAppNavigation();
     return (
-        <>
+        <View>
             <ProductsGrid id={id} />
             <FlatButton
                 shadow={true}
@@ -21,7 +15,7 @@ const CategorySection = ({ id, navKey, buttonLabel }) => {
                 darkOrange={true}>
                 {buttonLabel}
             </FlatButton>
-        </>
+        </View>
     );
 };
 

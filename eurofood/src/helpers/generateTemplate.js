@@ -5,7 +5,11 @@ import React from 'react';
 
 const COMPONENTS = { ...Components, ScrollView, View, Text };
 
-export default function generateTemplate(componentsMap, keys = []) {
+export default function generateTemplate(
+    componentsMap,
+    keys = [],
+    additionalProps = null
+) {
     try {
         let Components = [];
         if (!componentsMap) return null;
@@ -15,24 +19,30 @@ export default function generateTemplate(componentsMap, keys = []) {
                 const keyProps = keys.join('-');
                 const Component = COMPONENTS[template.component];
                 if (Component) {
+                    if (additionalProps) {
+                        template.props = {
+                            ...template.props,
+                            ...additionalProps
+                        };
+                    }
                     if (template.props) {
                         const { children, ...Props } = template.props;
                         if (!template.props.children) {
                             Components.push(
-                                <Component key={keyProps} {...Props} />,
+                                <Component key={keyProps} {...Props} />
                             );
                         } else {
                             if (typeof children === 'string') {
                                 Components.push(
                                     <Component key={keyProps} {...Props}>
                                         {children}
-                                    </Component>,
+                                    </Component>
                                 );
                             } else if (typeof children === 'object') {
                                 Components.push(
                                     <Component key={keyProps} {...Props}>
                                         {generateTemplate(children, keys)}
-                                    </Component>,
+                                    </Component>
                                 );
                             }
                         }

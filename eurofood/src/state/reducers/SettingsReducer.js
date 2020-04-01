@@ -1,7 +1,8 @@
 import { FAILURE, SUCCESS } from './../../constants/BaseConstants';
 import {
     GET_SERVER_SETTINGS,
-    SET_HOME_TEMPLATE
+    SET_HOME_TEMPLATE,
+    SET_HOME_VIEWABLE_ITEMS
 } from './../../constants/SettingsConstants';
 
 import { REDUCER_NAME_SETTINGS } from '../../constants/StoreConstants';
@@ -9,7 +10,8 @@ import { createTransform } from 'redux-persist';
 
 export const initialState = {
     server: {},
-    home: []
+    home: [],
+    homeViewableItems: []
 };
 
 export const SettingsReducerTransform = createTransform(
@@ -19,7 +21,9 @@ export const SettingsReducerTransform = createTransform(
     outboundState => {
         return {
             ...outboundState,
-            server: initialState.server
+            server: initialState.server,
+            home: initialState.home,
+            homeViewableItems: initialState.homeViewableItems
         };
     },
     {
@@ -39,6 +43,11 @@ const SettingsReducer = (state = initialState, action) => {
             };
         case SET_HOME_TEMPLATE:
             return { ...state, home: action.home };
+        case SET_HOME_VIEWABLE_ITEMS + SUCCESS:
+            return {
+                ...state,
+                homeViewableItems: action.items
+            };
         default:
             return state;
     }

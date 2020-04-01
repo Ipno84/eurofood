@@ -16,6 +16,7 @@ import Spacer from './layout/atoms/Spacer';
 import SuperOffers from './layout/templates/SuperOffers';
 import TopProducts from './layout/templates/TopProducts';
 import VideoRecipe from './layout/organisms/VideoRecipe';
+import VisibilitySensor from './containers/VisibilitySensor';
 
 const Components = {
     Alert,
@@ -35,6 +36,7 @@ const Components = {
     Spacer,
     SuperOffers,
     TopProducts,
-    VideoRecipe
+    VideoRecipe,
+    VisibilitySensor
 };
 export default Components;
