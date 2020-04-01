@@ -9,6 +9,8 @@ const InfoItem = styled(Wrapper)`
     padding-bottom: 16px;
     padding-right: 16px;
     height: 130px;
+    flex: 1;
+    margin: 4px;
 `;
 
 export default InfoItem;
