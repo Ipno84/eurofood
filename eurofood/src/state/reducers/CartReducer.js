@@ -3,7 +3,11 @@ import {
     EMPTY_CART,
     SET_CURRENT_CART,
     SET_CURRENT_CART_ID_CUSTOMER,
-    SET_PRODUCT_CART_ITEM_QUANTITY
+    SET_PRODUCT_CART_ITEM_QUANTITY,
+    SET_SELECTED_BILLING_ADDRESS_ID,
+    SET_SELECTED_SHIPPING_ADDRESS_ID,
+    SHOW_BILLING_ADDRESS_FORM,
+    SHOW_SHIPPING_ADDRESS_FORM
 } from '../../constants/CartConstants';
 import { LOGOUT, SUBMIT_LOGIN } from '../../constants/ClientConstants';
 
@@ -16,7 +20,11 @@ export const initialState = {
         associations: {
             cart_rows: []
         }
-    }
+    },
+    selectedShippingAddressId: null,
+    selectedBillingAddressId: null,
+    showShippingAddressForm: false,
+    showBillingAddressForm: false
 };
 
 export const CartReducerTransform = createTransform(
@@ -25,7 +33,11 @@ export const CartReducerTransform = createTransform(
     },
     outboundState => {
         return {
-            ...outboundState
+            ...outboundState,
+            selectedShippingAddressId: initialState.selectedShippingAddressId,
+            selectedBillingAddressId: initialState.selectedBillingAddressId,
+            showShippingAddressForm: initialState.showShippingAddressForm,
+            showBillingAddressForm: initialState.showBillingAddressForm
         };
     },
     { whitelist: REDUCER_NAME_CART }
@@ -52,17 +64,6 @@ const CartReducer = (state = initialState, action) => {
             };
         case SET_PRODUCT_CART_ITEM_QUANTITY:
         case ADD_TO_CART + SUCCESS:
-            // if (!state.currentCart.associations) {
-            //     state = {
-            //         ...state,
-            //         currentCart: {
-            //             ...(state.currentCart >
-            //                 {
-            //                     associations: { cart_rows: [] }
-            //                 })
-            //         }
-            //     };
-            // }
             const itemIndex = state.currentCart.associations.cart_rows.findIndex(
                 e => parseInt(e.id_product) === parseInt(action.id)
             );
@@ -149,6 +150,38 @@ const CartReducer = (state = initialState, action) => {
                         cart_rows: []
                     }
                 }
+            };
+        case SET_SELECTED_BILLING_ADDRESS_ID:
+            return {
+                ...state,
+                selectedBillingAddressId:
+                    state.selectedBillingAddressId === action.id
+                        ? null
+                        : action.id
+            };
+        case SET_SELECTED_SHIPPING_ADDRESS_ID:
+            return {
+                ...state,
+                selectedShippingAddressId:
+                    state.selectedShippingAddressId === action.id
+                        ? null
+                        : action.id
+            };
+        case SHOW_SHIPPING_ADDRESS_FORM:
+            return {
+                ...state,
+                showShippingAddressForm:
+                    action.show !== undefined
+                        ? action.show
+                        : !state.showShippingAddressForm
+            };
+        case SHOW_BILLING_ADDRESS_FORM:
+            return {
+                ...state,
+                showBillingAddressForm:
+                    action.show !== undefined
+                        ? action.show
+                        : !state.showBillingAddressForm
             };
         case LOGOUT:
             return {

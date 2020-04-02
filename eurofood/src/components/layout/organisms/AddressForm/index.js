@@ -46,7 +46,6 @@ const AddressForm = ({ toggleButton }) => {
     }, [resetAddressForm]);
     return (
         <>
-            {toggleButton()}
             <ScrollView>
                 <Container>
                     <Wrapper>
@@ -118,14 +117,14 @@ const AddressForm = ({ toggleButton }) => {
                             formatOptions={options => Object.keys(options)}
                             formKey="id_state"
                             errorKey={ADDRESS_ID_STATE_ERROR}
-                            headerText="Seleziona la provincia"
+                            placeholder="Seleziona la provincia"
                         />
                         <Select
                             options={CountryList}
                             formatOptions={options => Object.keys(options)}
                             formKey="id_country"
                             errorKey={ADDRESS_ID_COUNTRY_ERROR}
-                            headerText="Seleziona lo stato"
+                            placeholder="Seleziona lo stato"
                         />
                         <Input
                             placeholder="Telefono"
@@ -139,6 +138,7 @@ const AddressForm = ({ toggleButton }) => {
                         <ButtonSubmit />
                     </Wrapper>
                 </Container>
+                {toggleButton()}
             </ScrollView>
         </>
     );

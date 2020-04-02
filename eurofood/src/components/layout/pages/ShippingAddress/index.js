@@ -1,73 +1,66 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AddressForm from './../../organisms/AddressForm';
 import AddressesList from './../../organisms/AddressesList';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import PlainButton from './../../atoms/Button/PlainButton';
-import Touchable from './../../atoms/Button/Touchable';
-import Wrapper from './../../atoms/Card/Wrapper';
-import { orange } from './../../../../constants/ThemeConstants';
-import styled from 'styled-components/native';
+import { ROUTE_NAME_BILLING_ADDRESS } from '../../../../constants/RouteConstants';
+import ToggleAddressButton from './../../molecules/ToggleAddressButton';
+import getSelectedShippingAddressIdSelector from './../../../../state/selectors/CartSelectors/getSelectedShippingAddressIdSelector';
+import isShippingAddressFormVisibileSelector from './../../../../state/selectors/CartSelectors/isShippingAddressFormVisibileSelector';
+import setSelectedShippingAddressIdAction from './../../../../state/actions/CartActions/setSelectedShippingAddressIdAction';
+import showShippingAddressFormAction from './../../../../state/actions/CartActions/showShippingAddressFormAction';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const ShippingAddress = () => {
-    const [showForm, setShowForm] = useState(false);
+    const { navigate } = useAppNavigation();
+    const dispatch = useDispatch();
+    const setSelectedShippingAddressId = useCallback(
+        id => dispatch(setSelectedShippingAddressIdAction(id)),
+        [dispatch]
+    );
+    const toggleShippingAddressForm = useCallback(
+        () => dispatch(showShippingAddressFormAction()),
+        [dispatch]
+    );
+    const selectedShippingAddressId = useSelector(state =>
+        getSelectedShippingAddressIdSelector(state)
+    );
+    const isShippingAddressFormVisibile = useSelector(state =>
+        isShippingAddressFormVisibileSelector(state)
+    );
     return (
         <>
-            {showForm ? (
+            {isShippingAddressFormVisibile ? (
                 <AddressForm
                     toggleButton={() => (
-                        <WrapperButton>
-                            <PlainButton onPress={() => setShowForm(!showForm)}>
-                                Scegli indirizzo
-                            </PlainButton>
-                        </WrapperButton>
+                        <ToggleAddressButton
+                            onPress={() => toggleShippingAddressForm()}>
+                            Scegli indirizzo
+                        </ToggleAddressButton>
                     )}
                 />
             ) : (
-                <AddressesList
-                    toggleButton={() => (
-                        <WrapperButton>
-                            <Touchable onPress={() => setShowForm(!showForm)}>
-                                <NewAddressWrapper>
-                                    <NewAddressText>
-                                        Nuovo indirizzo
-                                    </NewAddressText>
-                                    <IconWrapper>
-                                        <Icon
-                                            size={20}
-                                            name="plus-box-outline"
-                                            color={orange.toString()}
-                                        />
-                                    </IconWrapper>
-                                </NewAddressWrapper>
-                            </Touchable>
-                        </WrapperButton>
-                    )}
-                />
+                <>
+                    <AddressesList
+                        toggleButton={() => (
+                            <ToggleAddressButton
+                                onPress={() => toggleShippingAddressForm()}>
+                                Nuovo indirizzo
+                            </ToggleAddressButton>
+                        )}
+                        onPressAddress={id => setSelectedShippingAddressId(id)}
+                        selectedId={selectedShippingAddressId}
+                    />
+                    <PlainButton
+                        disabled={!selectedShippingAddressId}
+                        onPress={() => navigate(ROUTE_NAME_BILLING_ADDRESS)}>
+                        Procedi
+                    </PlainButton>
+                </>
             )}
         </>
     );
 };
 
 export default ShippingAddress;
-
-const WrapperButton = styled.View`
-    padding-left: 16px;
-    padding-right: 16px;
-`;
-
-const NewAddressText = styled.Text`
-    font-size: 18px;
-    font-family: ${({ theme }) => theme.fonts.roboto(400, false, true)};
-    color: ${({ theme }) => theme.colors.orange(1)};
-    flex: 1;
-`;
-
-const NewAddressWrapper = styled(Wrapper)`
-    padding: 16px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`;
-
-const IconWrapper = styled.View``;

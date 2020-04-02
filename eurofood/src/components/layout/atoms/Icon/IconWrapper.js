@@ -1,10 +1,17 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 const IconWrapper = styled.View`
-    width: 40px;
     align-items: center;
     justify-content: center;
-    margin-right: -3px;
+    ${({ light }) =>
+        light
+            ? css`
+                  height: 20px;
+              `
+            : css`
+                  margin-right: -3px;
+                  width: 40px;
+              `}
 `;
 
 export default IconWrapper;
