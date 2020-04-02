@@ -2,16 +2,22 @@ import {
     CountryList,
     StateList
 } from './../../../../../constants/AddressConstants';
+import React, { useCallback } from 'react';
 
 import AddressItemWrapper from './AddressItemWrapper';
 import InfoText from './InfoText';
-import React from 'react';
 import Title from './Title';
 import Touchable from './../../Button/Touchable';
+import editAddressAction from './../../../../../state/actions/AddressesActions/editAddressAction';
+import { useDispatch } from 'react-redux';
 
 const AddressItem = ({ item, onPress, isSelected }) => {
+    const dispatch = useDispatch();
+    const editAddress = useCallback(() => dispatch(editAddressAction(item)), [
+        dispatch
+    ]);
     return (
-        <Touchable onPress={onPress}>
+        <Touchable onPress={onPress} onLongPress={() => editAddress()}>
             <AddressItemWrapper isSelected={isSelected}>
                 <Title>{item.alias}</Title>
                 <InfoText>

@@ -5,6 +5,8 @@ import AddressForm from './../../organisms/AddressForm';
 import AddressesList from './../../organisms/AddressesList';
 import PlainButton from './../../atoms/Button/PlainButton';
 import { ROUTE_NAME_BILLING_ADDRESS } from '../../../../constants/RouteConstants';
+import SectionTitle from './../../atoms/Text/SectionTitle';
+import TitleWrapper from './../../atoms/Text/TitleWrapper';
 import ToggleAddressButton from './../../molecules/ToggleAddressButton';
 import getSelectedShippingAddressIdSelector from './../../../../state/selectors/CartSelectors/getSelectedShippingAddressIdSelector';
 import isShippingAddressFormVisibileSelector from './../../../../state/selectors/CartSelectors/isShippingAddressFormVisibileSelector';
@@ -31,6 +33,11 @@ const ShippingAddress = () => {
     );
     return (
         <>
+            <TitleWrapper>
+                <SectionTitle bigger={true}>
+                    Indirizzo di spedizione
+                </SectionTitle>
+            </TitleWrapper>
             {isShippingAddressFormVisibile ? (
                 <AddressForm
                     toggleButton={() => (
@@ -54,7 +61,10 @@ const ShippingAddress = () => {
                     />
                     <PlainButton
                         disabled={!selectedShippingAddressId}
-                        onPress={() => navigate(ROUTE_NAME_BILLING_ADDRESS)}>
+                        onPress={() =>
+                            selectedShippingAddressId &&
+                            navigate(ROUTE_NAME_BILLING_ADDRESS)
+                        }>
                         Procedi
                     </PlainButton>
                 </>

@@ -1,21 +1,28 @@
+import { Alert, SafeAreaView, Text } from 'react-native';
 import React, { useCallback } from 'react';
-import { SafeAreaView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CartRow from './CartRow';
 import Container from './../../atoms/Container';
 import PlainButton from './../../atoms/Button/PlainButton';
+import { ROUTE_NAME_SHIPPING_ADDRESS } from '../../../../constants/RouteConstants';
 import TotalPrice from './TotalPrice';
 import Touchable from './../../atoms/Button/Touchable';
 import emptyCartAction from './../../../../state/actions/CartActions/emptyCartAction';
+import isCartQuantitiesValidSelector from './../../../../state/selectors/CartSelectors/isCartQuantitiesValidSelector';
 import styled from 'styled-components/native';
+import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 import useCartRows from './../../../../hooks/products/useCartRows';
 
 const Cart = () => {
+    const { navigate } = useAppNavigation();
     const dispatch = useDispatch();
     const emptyCart = useCallback(() => dispatch(emptyCartAction()), [
         dispatch
     ]);
+    const isCartQuantitiesValid = useSelector(state =>
+        isCartQuantitiesValidSelector(state)
+    );
     const cartRows = useCartRows();
     if (!cartRows || cartRows.length === 0) {
         return (
@@ -55,8 +62,17 @@ const Cart = () => {
                             : String(index)
                     }
                 />
-                <PlainButton onPress={() => alert('create and send order')}>
-                    Invia ordine
+                <PlainButton
+                    disabled={!isCartQuantitiesValid}
+                    onPress={() => {
+                        if (!isCartQuantitiesValid) {
+                            Alert.alert(
+                                'Attenzione',
+                                `Nel tuo carrello sono presenti prodotti in quantitá superiore a quella presente nello stock di magazzino. Riduci la quantitá dei prodotti visualizzati in trasparenza nella lista per proseguire`
+                            );
+                        } else navigate(ROUTE_NAME_SHIPPING_ADDRESS);
+                    }}>
+                    Procedi
                 </PlainButton>
             </ViewContainer>
         </SafeAreaView>

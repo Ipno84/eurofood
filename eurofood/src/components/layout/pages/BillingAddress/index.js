@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AddressForm from './../../organisms/AddressForm';
 import AddressesList from './../../organisms/AddressesList';
+import { Alert } from 'react-native';
 import PlainButton from './../../atoms/Button/PlainButton';
+import SectionTitle from './../../atoms/Text/SectionTitle';
+import TitleWrapper from './../../atoms/Text/TitleWrapper';
 import ToggleAddressButton from './../../molecules/ToggleAddressButton';
 import getSelectedBillingAddressIdSelector from './../../../../state/selectors/CartSelectors/getSelectedBillingAddressIdSelector';
 import isBillingAddressFormVisibileSelector from './../../../../state/selectors/CartSelectors/isBillingAddressFormVisibileSelector';
+import isOrderSubmittedSelector from './../../../../state/selectors/OrdersSelectors/isOrderSubmittedSelector';
 import setSelectedBillingAddressIdAction from './../../../../state/actions/CartActions/setSelectedBillingAddressIdAction';
 import showBillingAddressFormAction from './../../../../state/actions/CartActions/showBillingAddressFormAction';
+import submitOrderAction from './../../../../state/actions/OrdersActions/submitOrderAction';
 
 const BillingAddress = () => {
     const dispatch = useDispatch();
@@ -20,6 +25,12 @@ const BillingAddress = () => {
         () => dispatch(showBillingAddressFormAction()),
         [dispatch]
     );
+    const submitOrder = useCallback(() => dispatch(submitOrderAction()), [
+        dispatch
+    ]);
+    const isOrderSubmitted = useSelector(state =>
+        isOrderSubmittedSelector(state)
+    );
     const selectedBillingAddressId = useSelector(state =>
         getSelectedBillingAddressIdSelector(state)
     );
@@ -28,6 +39,11 @@ const BillingAddress = () => {
     );
     return (
         <>
+            <TitleWrapper>
+                <SectionTitle bigger={true}>
+                    Indirizzo di fatturazione
+                </SectionTitle>
+            </TitleWrapper>
             {isBillingAddressFormVisibile ? (
                 <AddressForm
                     toggleButton={() => (
@@ -49,7 +65,30 @@ const BillingAddress = () => {
                         onPressAddress={id => setSelectedBillingAddressId(id)}
                         selectedId={selectedBillingAddressId}
                     />
-                    <PlainButton>Completa</PlainButton>
+                    <PlainButton
+                        disabled={isOrderSubmitted}
+                        onPress={() => {
+                            if (!isOrderSubmitted) {
+                                if (!selectedBillingAddressId) {
+                                    Alert.alert(
+                                        'Attenzione',
+                                        `Non hai selezionato alcun indirizzo di fatturazione, sei sicuro di voler procedere con l'ordine?`,
+                                        [
+                                            {
+                                                text: 'Annulla',
+                                                style: 'cancel'
+                                            },
+                                            {
+                                                text: 'Procedi',
+                                                onPress: () => submitOrder()
+                                            }
+                                        ]
+                                    );
+                                } else submitOrder();
+                            }
+                        }}>
+                        Completa
+                    </PlainButton>
                 </>
             )}
         </>

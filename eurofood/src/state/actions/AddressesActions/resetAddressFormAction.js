@@ -1,5 +1,5 @@
-import { RESET_ADDRESS_FORM } from '../../../constants/ClientConstants';
+import { RESET_ADDRESS_FORM } from '../../../constants/AddressConstants';
 
-export default function resetAddressFormAction() {
-    return { type: RESET_ADDRESS_FORM };
+export default function resetAddressFormAction(id_customer) {
+    return { type: RESET_ADDRESS_FORM, id_customer };
 }

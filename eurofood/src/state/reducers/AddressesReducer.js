@@ -1,19 +1,25 @@
-import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
 import {
+    EDIT_ADDRESS,
     GET_USER_ADDRESSES,
     RESET_ADDRESS_FORM,
     SET_ADDRESS_KEY_VALUE,
     SUBMIT_ADDRESS
 } from '../../constants/AddressConstants';
+import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
+import { LOGOUT, SUBMIT_LOGIN } from '../../constants/ClientConstants';
+import {
+    SHOW_BILLING_ADDRESS_FORM,
+    SHOW_SHIPPING_ADDRESS_FORM
+} from '../../constants/CartConstants';
 
-import { LOGOUT } from '../../constants/ClientConstants';
 import { REDUCER_NAME_ADDRESSES } from '../../constants/StoreConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
     items: [],
     addressForm: {
-        id_address: '',
+        id: '',
+        id_customer: '',
         alias: '',
         firstname: '',
         lastname: '',
@@ -54,6 +60,32 @@ const AddressesReducer = (state = initialState, action) => {
                     [action.key]: action.value
                 }
             };
+        case SUBMIT_ADDRESS + SUCCESS:
+            if (!action.address || !action.address.id)
+                return {
+                    ...state,
+                    addressSubmitted: false
+                };
+            const id = action.address.id;
+            const itemIndex = state.items.findIndex(
+                e => parseInt(e.id) === parseInt(id)
+            );
+            if (itemIndex === -1) {
+                return {
+                    ...state,
+                    items: [...state.items, action.address],
+                    addressSubmitted: false
+                };
+            }
+            return {
+                ...state,
+                items: [
+                    ...state.items.slice(0, itemIndex),
+                    action.address,
+                    ...state.items.slice(itemIndex + 1)
+                ],
+                addressSubmitted: false
+            };
         case SUBMIT_ADDRESS:
             return {
                 ...state,
@@ -72,7 +104,10 @@ const AddressesReducer = (state = initialState, action) => {
         case RESET_ADDRESS_FORM:
             return {
                 ...state,
-                addressForm: initialState.addressForm
+                addressForm: {
+                    ...initialState.addressForm,
+                    id_customer: action.id_customer ? action.id_customer : ''
+                }
             };
         case LOGOUT:
             return {
@@ -85,6 +120,30 @@ const AddressesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 items: action.addresses
+            };
+        case SUBMIT_LOGIN + SUCCESS:
+            if (!action.user || !action.user.id) return state;
+            return {
+                ...state,
+                addressForm: {
+                    ...state.addressForm,
+                    id_customer: action.user.id
+                }
+            };
+        case EDIT_ADDRESS:
+            return {
+                ...state,
+                addressForm: action.item
+            };
+        case SHOW_BILLING_ADDRESS_FORM:
+        case SHOW_SHIPPING_ADDRESS_FORM:
+            const id_customer = state.addressForm.id_customer;
+            return {
+                ...state,
+                addressForm: id_customer
+                    ? { ...initialState.addressForm, id_customer }
+                    : initialState.addressForm,
+                addressSubmitted: initialState.addressSubmitted
             };
         default:
             return state;

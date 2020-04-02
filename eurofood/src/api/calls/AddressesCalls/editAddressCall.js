@@ -20,8 +20,9 @@ export default function editAddressCall(address) {
         }
     };
     const xmlBody = jsToXml(jsBody);
+    console.log(xmlBody);
     return axios
-        .post(endpoint, xmlBody, {
+        .put(endpoint, xmlBody, {
             headers: { 'Content-Type': 'text/xml' }
         })
         .then(({ data }) => data)

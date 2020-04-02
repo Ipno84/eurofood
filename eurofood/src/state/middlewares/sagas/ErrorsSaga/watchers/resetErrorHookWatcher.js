@@ -9,6 +9,7 @@ import {
     SET_REGISTER_PSGDPR
 } from './../../../../../constants/ClientConstants';
 
+import { SET_ADDRESS_KEY_VALUE } from './../../../../../constants/AddressConstants';
 import resetErrorHookSaga from './../actions/resetErrorHookSaga';
 import { takeLatest } from 'redux-saga/effects';
 
@@ -21,4 +22,5 @@ export default function* resetErrorHookWatcher() {
     yield takeLatest(SET_REGISTER_NEWSLETTER, resetErrorHookSaga);
     yield takeLatest(SET_REGISTER_PASSWORD, resetErrorHookSaga);
     yield takeLatest(SET_REGISTER_PSGDPR, resetErrorHookSaga);
+    yield takeLatest(SET_ADDRESS_KEY_VALUE, resetErrorHookSaga);
 }

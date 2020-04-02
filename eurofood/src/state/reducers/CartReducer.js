@@ -11,12 +11,15 @@ import {
 } from '../../constants/CartConstants';
 import { LOGOUT, SUBMIT_LOGIN } from '../../constants/ClientConstants';
 
+import { EDIT_ADDRESS } from '../../constants/AddressConstants';
+import NavigatorRef from '../../helpers/NavigatorRef';
 import { REDUCER_NAME_CART } from '../../constants/StoreConstants';
 import { SUCCESS } from '../../constants/BaseConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
     currentCart: {
+        id_customer: '',
         associations: {
             cart_rows: []
         }
@@ -187,6 +190,17 @@ const CartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...initialState
+            };
+        case EDIT_ADDRESS:
+            const navRef = new NavigatorRef();
+            const currentRouteName = navRef.getCurrentRouteName();
+            const key =
+                currentRouteName === 'ShippingAddress'
+                    ? 'showShippingAddressForm'
+                    : 'showBillingAddressForm';
+            return {
+                ...state,
+                [key]: true
             };
         default:
             return state;

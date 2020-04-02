@@ -1,12 +1,17 @@
-import { GET_ORDERS, SET_ORDERS_ITEMS } from '../../constants/OrdersConstants';
+import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
+import {
+    GET_ORDERS,
+    SET_ORDERS_ITEMS,
+    SUBMIT_ORDER
+} from '../../constants/OrdersConstants';
 
 import { REDUCER_NAME_ORDERS } from '../../constants/StoreConstants';
-import { SUCCESS } from '../../constants/BaseConstants';
 import { createTransform } from 'redux-persist';
 
 export const initialState = {
     items: {},
-    orders: []
+    orders: [],
+    orderSubmitted: false
 };
 
 export const OrdersReducerTransform = createTransform(
@@ -15,7 +20,8 @@ export const OrdersReducerTransform = createTransform(
     },
     outboundState => {
         return {
-            ...outboundState
+            ...outboundState,
+            orderSubmitted: initialState.orderSubmitted
         };
     },
     { whitelist: REDUCER_NAME_ORDERS }
@@ -41,6 +47,21 @@ const OrdersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orders: action.orders
+            };
+        case SUBMIT_ORDER:
+            return {
+                ...state,
+                orderSubmitted: true
+            };
+        case SUBMIT_ORDER + SUCCESS:
+            return {
+                ...state,
+                orderSubmitted: false
+            };
+        case SUBMIT_ORDER + FAILURE:
+            return {
+                ...state,
+                orderSubmitted: false
             };
         default:
             return state;

@@ -1,5 +1,5 @@
-import { REDUCER_NAME_CLIENT } from '../../../../constants/StoreConstants';
+import { REDUCER_NAME_ADDRESSES } from '../../../../constants/StoreConstants';
 
 export default function getAddressFormSelector(state) {
-    return state[REDUCER_NAME_CLIENT].addressForm;
+    return state[REDUCER_NAME_ADDRESSES].addressForm;
 }

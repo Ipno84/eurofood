@@ -12,7 +12,6 @@ export default function useOrders() {
     const getOrders = useCallback(() => dispatch(getOrdersAction()), [
         dispatch
     ]);
-    // const missingIds = orders.filter(e => typeof e === 'number');
     useEffect(() => {
         if (isUserLoggedIn) getOrders();
     }, [isUserLoggedIn, getOrders]);
