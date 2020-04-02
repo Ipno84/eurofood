@@ -56,7 +56,12 @@ const OrdersReducer = (state = initialState, action) => {
         case SUBMIT_ORDER + SUCCESS:
             return {
                 ...state,
-                orderSubmitted: false
+                orderSubmitted: false,
+                items: {
+                    ...state.items,
+                    ...action.order.item
+                },
+                orders: [...state.orders, action.order.id]
             };
         case SUBMIT_ORDER + FAILURE:
             return {

@@ -19,6 +19,7 @@
         "@react-navigation/stack": "^5.1.1",
         "axios": "^0.19.2",
         "color": "^3.1.2",
+        "mathjs": "^6.6.2",
         "query-string": "^6.11.1",
         "re-reselect": "^3.4.0",
         "react": "16.9.0",
