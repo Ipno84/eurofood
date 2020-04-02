@@ -1,5 +1,7 @@
-import { REDUCER_NAME_CART } from '../../../constants/StoreConstants';
+import { createSelector } from 'reselect';
+import getCurrentCartSelector from './getCurrentCartSelector';
 
-export default function getSelectedBillingAddressIdSelector(state) {
-    return state[REDUCER_NAME_CART].selectedBillingAddressId;
-}
+export default createSelector(
+    [getCurrentCartSelector],
+    currentCart => currentCart.id_address_invoice
+);

@@ -20,12 +20,12 @@ import { createTransform } from 'redux-persist';
 export const initialState = {
     currentCart: {
         id_customer: '',
+        id_address_invoice: '',
+        id_address_delivery: '',
         associations: {
             cart_rows: []
         }
     },
-    selectedShippingAddressId: null,
-    selectedBillingAddressId: null,
     showShippingAddressForm: false,
     showBillingAddressForm: false
 };
@@ -37,8 +37,6 @@ export const CartReducerTransform = createTransform(
     outboundState => {
         return {
             ...outboundState,
-            selectedShippingAddressId: initialState.selectedShippingAddressId,
-            selectedBillingAddressId: initialState.selectedBillingAddressId,
             showShippingAddressForm: initialState.showShippingAddressForm,
             showBillingAddressForm: initialState.showBillingAddressForm
         };
@@ -157,18 +155,18 @@ const CartReducer = (state = initialState, action) => {
         case SET_SELECTED_BILLING_ADDRESS_ID:
             return {
                 ...state,
-                selectedBillingAddressId:
-                    state.selectedBillingAddressId === action.id
-                        ? null
-                        : action.id
+                currentCart: {
+                    ...state.currentCart,
+                    id_address_invoice: action.id
+                }
             };
         case SET_SELECTED_SHIPPING_ADDRESS_ID:
             return {
                 ...state,
-                selectedShippingAddressId:
-                    state.selectedShippingAddressId === action.id
-                        ? null
-                        : action.id
+                currentCart: {
+                    ...state.currentCart,
+                    id_address_delivery: action.id
+                }
             };
         case SHOW_SHIPPING_ADDRESS_FORM:
             return {
