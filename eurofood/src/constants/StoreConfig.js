@@ -1,5 +1,6 @@
 import { STORE_KEY, STORE_VERSION } from './StoreConstants';
 
+import { AddressesReducerTransform } from './../state/reducers/AddressesReducer';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CacheReducerTransform } from './../state/reducers/CacheReducer';
 import { CartReducerTransform } from './../state/reducers/CartReducer';
@@ -23,6 +24,7 @@ export default {
         SearchReducerTransform,
         CartReducerTransform,
         ClientReducerTransform,
-        ErrorsReducerTransform
+        ErrorsReducerTransform,
+        AddressesReducerTransform
     ]
 };

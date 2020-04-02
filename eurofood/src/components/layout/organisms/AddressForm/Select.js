@@ -16,7 +16,14 @@ import { dark } from './../../../../constants/ThemeConstants';
 import getAddressFormKeySelector from './../../../../state/selectors/AddressesSelectors/addressForm/getAddressFormKeySelector';
 import setAddressFormKeyAction from './../../../../state/actions/AddressesActions/setAddressFormKeyAction';
 
-const Select = ({ options, formatOptions, formKey, errorKey, placeholder }) => {
+const Select = ({
+    options,
+    formatOptions,
+    formKey,
+    errorKey,
+    placeholder,
+    scrollRef
+}) => {
     const [selectModalOpen, setSelectModalOpen] = useState(false);
     const dispatch = useDispatch();
     const setAddressFormKey = useCallback(
@@ -44,7 +51,7 @@ const Select = ({ options, formatOptions, formKey, errorKey, placeholder }) => {
                     </IconWrapper>
                 </SelectButtonWrapper>
             </Touchable>
-            <ErrorMessage errorKey={errorKey} />
+            <ErrorMessage scrollRef={scrollRef} errorKey={errorKey} />
             <Modal
                 animationType="slide"
                 visible={selectModalOpen}

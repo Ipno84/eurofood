@@ -30,7 +30,7 @@ export const initialState = {
     addressSubmitted: false
 };
 
-export const ContentsReducerTransform = createTransform(
+export const AddressesReducerTransform = createTransform(
     inboundState => {
         return { ...inboundState };
     },

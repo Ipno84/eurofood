@@ -3,7 +3,7 @@ import { FAILURE, SUCCESS } from '../../../constants/BaseConstants';
 import { SUBMIT_ADDRESS } from '../../../constants/ClientConstants';
 
 export default function submitAddressAction(payload) {
-    if (payload && payload.success && payload.user) {
+    if (payload && payload.success && payload.address) {
         return {
             type: SUBMIT_ADDRESS + SUCCESS,
             address: payload.address

@@ -16,7 +16,7 @@ import {
     CountryList,
     StateList
 } from './../../../../constants/AddressConstants';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ButtonSubmit from './ButtonSubmit';
@@ -32,6 +32,7 @@ import resetAddressFormAction from './../../../../state/actions/AddressesActions
 
 const AddressForm = ({ toggleButton }) => {
     const dispatch = useDispatch();
+    const scrollRef = useRef(null);
     const resetAddressForm = useCallback(
         () => dispatch(resetAddressFormAction()),
         [dispatch]
@@ -46,7 +47,7 @@ const AddressForm = ({ toggleButton }) => {
     }, [resetAddressForm]);
     return (
         <>
-            <ScrollView>
+            <ScrollView ref={scrollRef}>
                 <Container>
                     <Wrapper>
                         <Spacer top={16} />
@@ -59,6 +60,7 @@ const AddressForm = ({ toggleButton }) => {
                             errorKey={ADDRESS_ALIAS_ERROR}
                             autoCompleteType="username"
                             textContentType="nickname"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Nome"
@@ -66,23 +68,27 @@ const AddressForm = ({ toggleButton }) => {
                             errorKey={ADDRESS_FIRSTNAME_ERROR}
                             autoCompleteType="name"
                             textContentType="givenName"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Cognome"
                             formKey="lastname"
                             errorKey={ADDRESS_LASTNAME_ERROR}
                             textContentType="familyName"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Azienda"
                             formKey="company"
                             errorKey={ADDRESS_COMPANY_ERROR}
                             textContentType="organizationName"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Numero P.IVA"
                             formKey="vat_number"
                             errorKey={ADDRESS_VAT_NUMBER_ERROR}
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Indirizzo"
@@ -90,6 +96,7 @@ const AddressForm = ({ toggleButton }) => {
                             errorKey={ADDRESS_ADDRESS1_ERROR}
                             autoCompleteType="street-address"
                             textContentType="streetAddressLine1"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Completamento indirizzo"
@@ -97,6 +104,7 @@ const AddressForm = ({ toggleButton }) => {
                             errorKey={ADDRESS_ADDRESS2_ERROR}
                             autoCompleteType="street-address"
                             textContentType="streetAddressLine2"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="CAP"
@@ -105,12 +113,14 @@ const AddressForm = ({ toggleButton }) => {
                             autoCompleteType="postal-code"
                             textContentType="postalCode"
                             keyboardType="numeric"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Cittá"
                             formKey="city"
                             errorKey={ADDRESS_CITY_ERROR}
                             textContentType="addressCity"
+                            scrollRef={scrollRef}
                         />
                         <Select
                             options={StateList}
@@ -118,6 +128,7 @@ const AddressForm = ({ toggleButton }) => {
                             formKey="id_state"
                             errorKey={ADDRESS_ID_STATE_ERROR}
                             placeholder="Seleziona la provincia"
+                            scrollRef={scrollRef}
                         />
                         <Select
                             options={CountryList}
@@ -125,6 +136,7 @@ const AddressForm = ({ toggleButton }) => {
                             formKey="id_country"
                             errorKey={ADDRESS_ID_COUNTRY_ERROR}
                             placeholder="Seleziona lo stato"
+                            scrollRef={scrollRef}
                         />
                         <Input
                             placeholder="Telefono"
@@ -133,6 +145,7 @@ const AddressForm = ({ toggleButton }) => {
                             autoCompleteType="tel"
                             textContentType="telephoneNumber"
                             keyboardType="phone-pad"
+                            scrollRef={scrollRef}
                         />
                         <Spacer top={16} />
                         <ButtonSubmit />

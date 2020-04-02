@@ -22,11 +22,11 @@ export default function* onSubmitLoginSaga() {
         const email = yield select(getLoginEmailSelector);
         const password = yield select(getLoginPasswordSelector);
         const emailValid = isValidEmail(email);
-        const passwordValid = password.length > 0;
         if (!emailValid)
             throw new ValidationError('Indirizzo email non valido', {
                 key: LOGIN_EMAIL_ERROR
             });
+        const passwordValid = password.length > 0;
         if (!passwordValid)
             throw new ValidationError('Password non valida', {
                 key: LOGIN_PASSWORD_ERROR

@@ -6,7 +6,7 @@ import ErrorMessage from './../../atoms/Text/ErrorMessage';
 import getAddressFormKeySelector from './../../../../state/selectors/AddressesSelectors/addressForm/getAddressFormKeySelector';
 import setAddressFormKeyAction from './../../../../state/actions/AddressesActions/setAddressFormKeyAction';
 
-const Input = ({ placeholder, formKey, errorKey, ...rest }) => {
+const Input = ({ placeholder, formKey, errorKey, scrollRef, ...rest }) => {
     const dispatch = useDispatch();
     const setAddressFormKey = useCallback(
         value => dispatch(setAddressFormKeyAction(formKey, value)),
@@ -23,7 +23,7 @@ const Input = ({ placeholder, formKey, errorKey, ...rest }) => {
                 onChange={e => setAddressFormKey(e.nativeEvent.text)}
                 {...rest}
             />
-            <ErrorMessage errorKey={errorKey} />
+            <ErrorMessage scrollRef={scrollRef} errorKey={errorKey} />
         </>
     );
 };
