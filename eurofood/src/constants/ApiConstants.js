@@ -2,6 +2,7 @@ export const HOST = 'https://www.eurofoodservice.it';
 export const SUFFIX = 'api';
 export const PREFIX = 'eurofood_';
 export const BASIC_TOKEN = 'UktHTlpSMllTUDZKTkM1NjU5NkQyRkk5NEpGTlhZMkM6';
+export const PRIVATE_TOKEN = '842EJPXUF7Q7MZBCFIDH4ML38PHYZBWT';
 
 export const BASIC_PARAMS = { output_format: 'JSON' };
 

@@ -157,7 +157,7 @@ const RoutesMap = [
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_HOME}
+            initialRouteName={ROUTE_NAME_SETTINGS}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',
