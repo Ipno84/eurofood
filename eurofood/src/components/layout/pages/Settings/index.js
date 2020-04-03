@@ -74,7 +74,7 @@ export default Settings;
 
 const SectionWrapper = styled.View`
     background-color: ${({ theme }) => theme.colors.lightGray(1, 0.1)};
-    padding-top: 10px;
+    padding-top: 12px;
     padding-bottom: 8px;
     padding-left: 16px;
     padding-right: 16px;
@@ -82,8 +82,8 @@ const SectionWrapper = styled.View`
     border-bottom-color: ${({ theme }) => theme.colors.alterGray(0.6)};
 `;
 const SectionText = styled.Text`
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 16px;
 `;
 
 const ListItemWrapper = styled.View`

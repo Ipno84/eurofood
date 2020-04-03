@@ -153,7 +153,7 @@ const AddressForm = ({ toggleButton }) => {
                     <ButtonSubmit />
                 </Wrapper>
             </Container>
-            {toggleButton()}
+            {toggleButton && toggleButton()}
         </ScrollView>
     );
 };

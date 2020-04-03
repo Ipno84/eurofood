@@ -1,15 +1,25 @@
-import getCustomersCall from './getCustomersCall';
+import {
+    ENDPOINT_LOGIN,
+    HOST,
+    SUFFIX
+} from './../../../constants/ApiConstants';
 
-let params = {
-    display: '[id,lastname,firstname,email,active]'
-};
+import axios from 'axios';
 
-export default function loginCall(email, password) {
-    if (email)
-        params = {
-            ...params,
-            'filter[email]': `[${email}]`
-        };
-    params = { ...params, clientCache: true };
-    return getCustomersCall(params);
+export default function loginCall(body) {
+    const endpoint = [HOST, SUFFIX, ENDPOINT_LOGIN].join('/');
+    let params = new URLSearchParams();
+    Object.keys(body).forEach(key => {
+        params.append(key, body[key]);
+    });
+    return axios
+        .post(endpoint, params, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(({ data }) => data)
+        .catch(error => {
+            throw error;
+        });
 }

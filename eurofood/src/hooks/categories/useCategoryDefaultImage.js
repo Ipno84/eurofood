@@ -43,14 +43,16 @@ export default function useCategoryDefaultImage(id) {
                         Authorization: 'Basic ' + BASIC_TOKEN
                     }
                 }
-            ).then(res => {
-                if (res.status === 200) {
-                    setImageSource({
-                        uri: `${HOST}/c/${id}-category_default/image.jpg`
-                    });
-                    setIsRemote(true);
-                }
-            });
+            )
+                .then(res => {
+                    if (res.status === 200) {
+                        setImageSource({
+                            uri: `${HOST}/c/${id}-category_default/image.jpg`
+                        });
+                        setIsRemote(true);
+                    }
+                })
+                .catch(error => console.log(error));
         }
     }, [id]);
     const onError = () => setImageSource(category);

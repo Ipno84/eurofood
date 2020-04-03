@@ -6,7 +6,12 @@ import { FlatList } from 'react-native';
 import getAddressesSelector from './../../../../state/selectors/AddressesSelectors/getAddressesSelector';
 import getCurrentUserAddressAction from './../../../../state/actions/AddressesActions/getCurrentUserAddressAction';
 
-const AddressesList = ({ toggleButton, onPressAddress, selectedId }) => {
+const AddressesList = ({
+    toggleButton,
+    onPressAddress,
+    selectedId,
+    getHeader
+}) => {
     const dispatch = useDispatch();
     const getCurrentUserAddress = useCallback(
         () => dispatch(getCurrentUserAddressAction()),
@@ -18,7 +23,14 @@ const AddressesList = ({ toggleButton, onPressAddress, selectedId }) => {
     const addresses = useSelector(state => getAddressesSelector(state));
     return (
         <FlatList
-            ListFooterComponent={() => toggleButton()}
+            ListHeaderComponent={() => {
+                if (getHeader) return getHeader();
+                return null;
+            }}
+            ListFooterComponent={() => {
+                if (toggleButton) return toggleButton();
+                return null;
+            }}
             contentContainerStyle={{ paddingVertical: 8 }}
             data={addresses}
             renderItem={({ item }) => {
@@ -26,7 +38,9 @@ const AddressesList = ({ toggleButton, onPressAddress, selectedId }) => {
                 return (
                     <AddressItem
                         item={item}
-                        onPress={() => onPressAddress(item.id)}
+                        onPress={() =>
+                            onPressAddress && onPressAddress(item.id)
+                        }
                         isSelected={selectedId === item.id}
                     />
                 );

@@ -6,10 +6,12 @@ import CartRow from './CartRow';
 import Container from './../../atoms/Container';
 import PlainButton from './../../atoms/Button/PlainButton';
 import { ROUTE_NAME_SHIPPING_ADDRESS } from '../../../../constants/RouteConstants';
+import Snackbar from 'react-native-snackbar';
 import TotalPrice from './TotalPrice';
 import Touchable from './../../atoms/Button/Touchable';
 import emptyCartAction from './../../../../state/actions/CartActions/emptyCartAction';
 import isCartQuantitiesValidSelector from './../../../../state/selectors/CartSelectors/isCartQuantitiesValidSelector';
+import { orange } from '../../../../constants/ThemeConstants';
 import styled from 'styled-components/native';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 import useCartRows from './../../../../hooks/products/useCartRows';
@@ -66,10 +68,15 @@ const Cart = () => {
                     disabled={!isCartQuantitiesValid}
                     onPress={() => {
                         if (!isCartQuantitiesValid) {
-                            Alert.alert(
-                                'Attenzione',
-                                `Nel tuo carrello sono presenti prodotti in quantitá superiore a quella presente nello stock di magazzino. Riduci la quantitá dei prodotti visualizzati in trasparenza nella lista per proseguire`
-                            );
+                            Snackbar.show({
+                                text: `Nel tuo carrello sono presenti prodotti in quantitá superiore a quella presente nello stock di magazzino. Riduci la quantitá dei prodotti visualizzati in trasparenza nella lista per proseguire`,
+                                duration: Snackbar.LENGTH_INDEFINITE,
+                                action: {
+                                    text: 'OK',
+                                    textColor: orange.toString(),
+                                    onPress: () => Snackbar.dismiss()
+                                }
+                            });
                         } else navigate(ROUTE_NAME_SHIPPING_ADDRESS);
                     }}>
                     Procedi

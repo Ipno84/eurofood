@@ -18,3 +18,4 @@ export const ROUTE_NAME_ORDER = 'Order';
 export const ROUTE_NAME_SEARCH_RESULTS = 'SearchResults';
 export const ROUTE_NAME_SHIPPING_ADDRESS = 'ShippingAddress';
 export const ROUTE_NAME_BILLING_ADDRESS = 'BillingAddress';
+export const ROUTE_NAME_EDIT_ADDRESS = 'EditAddress';

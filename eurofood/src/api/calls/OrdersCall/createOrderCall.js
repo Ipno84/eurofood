@@ -1,6 +1,7 @@
 import {
     ENDPOINT_ORDERS,
     HOST,
+    PREFIX,
     SUFFIX
 } from './../../../constants/ApiConstants';
 
@@ -8,7 +9,7 @@ import axios from 'axios';
 import jsToXml from '../../../helpers/jsToXml';
 
 export default function createOrderCall(order) {
-    const endpoint = [HOST, SUFFIX, ENDPOINT_ORDERS].join('/');
+    const endpoint = [HOST, SUFFIX, PREFIX + ENDPOINT_ORDERS].join('/');
     const jsBody = {
         prestashop: {
             order: {

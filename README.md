@@ -151,3 +151,8 @@ Authorization: Basic Q7NI79UCBIUD3Y626LAP3YM92QKTR5UR // sará quella finale
 ### Per ottenere lo stock di magazzino dei prodotti
 
 -   GET /api/stock_availables?display=[id,id_product,quantity]&filter[id]=[1|2|3...]
+
+### TODO:
+
+-   Gestire il controllo delle immagini in un riduttore (quando un'immagine viene renderizzata per la prima volta, controllarne l'esistenza e poi registrare l'url come sicuro evitando di controllarla successivamente)
+-   Pagina profilo con dati utente, indirizzi, modifica e cancellazione degli indirizzi

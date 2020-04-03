@@ -2,7 +2,6 @@ import {
     REGISTER_EMAIL_ERROR,
     REGISTER_FIRSTNAME_ERROR,
     REGISTER_LASTNAME_ERROR,
-    REGISTER_NEWSLETTER_ERROR,
     REGISTER_PASSWORD_ERROR,
     REGISTER_PSGDPR_ERROR
 } from './../../../../../constants/ErrorsConstants';
@@ -11,7 +10,7 @@ import ValidationError, {
 } from './../../../../../helpers/ValidationError';
 import { all, call, put, select } from 'redux-saga/effects';
 
-import { Alert } from 'react-native';
+import Snackbar from 'react-native-snackbar';
 import checkUserCall from './../../../../../api/calls/CustomersCalls/checkUserCall';
 import getRegisterEmailSelector from './../../../../selectors/ClientSelectors/getRegisterEmailSelector';
 import getRegisterFirstnameSelector from './../../../../selectors/ClientSelectors/getRegisterFirstnameSelector';
@@ -20,8 +19,8 @@ import getRegisterLastnameSelector from './../../../../selectors/ClientSelectors
 import getRegisterNewsletterSelector from './../../../../selectors/ClientSelectors/getRegisterNewsletterSelector';
 import getRegisterPasswordSelector from './../../../../selectors/ClientSelectors/getRegisterPasswordSelector';
 import getRegisterPsgdprSelector from './../../../../selectors/ClientSelectors/getRegisterPsgdprSelector';
-import isRegisterSubmittedSelector from './../../../../selectors/ClientSelectors/isRegisterSubmittedSelector';
 import isValidEmail from './../../../../../helpers/isValidEmail';
+import { orange } from '../../../../../constants/ThemeConstants';
 import registerCall from './../../../../../api/calls/CustomersCalls/registerCall';
 import setErrorAction from './../../../../actions/ErrorsActions/setErrorAction';
 import submitRegisterAction from './../../../../actions/ClientActions/submitRegisterAction';
@@ -65,10 +64,15 @@ export default function* onSubmitRegisterSaga() {
             checkUser.customers.length > 0
         ) {
             yield put(submitRegisterAction({ error: true }));
-            Alert.alert(
-                'Errore',
-                `Esiste già un utente per l'indirizzo email prescelto ${email}`
-            );
+            Snackbar.show({
+                text: `Esiste già un utente per l'indirizzo email prescelto ${email}`,
+                duration: Snackbar.LENGTH_LONG,
+                action: {
+                    text: 'OK',
+                    textColor: orange.toString(),
+                    onPress: () => Snackbar.dismiss()
+                }
+            });
         } else {
             const results = yield call(registerCall, {
                 id_gender,
@@ -80,11 +84,16 @@ export default function* onSubmitRegisterSaga() {
                 psgdpr: psgdpr ? 1 : 0
             });
             if (results && results.customer) {
-                Alert.alert(
-                    'Congratulazioni',
-                    `Il tuo account è stato creato con successo.
-                    Riceverai una mail contenente un link per l'attivazione del tuo account.`
-                );
+                Snackbar.show({
+                    text: `Il tuo account è stato creato con successo.
+                        Riceverai una mail contenente un link per l'attivazione del tuo account.`,
+                    duration: Snackbar.LENGTH_INDEFINITE,
+                    action: {
+                        text: 'OK',
+                        textColor: orange.toString(),
+                        onPress: () => Snackbar.dismiss()
+                    }
+                });
                 yield put(
                     submitLoginAction({
                         success: true

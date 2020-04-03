@@ -1,6 +1,7 @@
 import {
     ENDPOINT_ADDRESSES,
     HOST,
+    PREFIX,
     SUFFIX
 } from './../../../constants/ApiConstants';
 
@@ -11,8 +12,8 @@ export default function editAddressCall(address) {
     const endpoint = [
         HOST,
         SUFFIX,
-        ENDPOINT_ADDRESSES,
-        address.id_address
+        PREFIX + ENDPOINT_ADDRESSES,
+        address.id
     ].join('/');
     const jsBody = {
         prestashop: {
@@ -20,7 +21,6 @@ export default function editAddressCall(address) {
         }
     };
     const xmlBody = jsToXml(jsBody);
-    console.log(xmlBody);
     return axios
         .put(endpoint, xmlBody, {
             headers: { 'Content-Type': 'text/xml' }

@@ -1,6 +1,7 @@
 import {
     ENDPOINT_CARTS,
     HOST,
+    PREFIX,
     SUFFIX
 } from './../../../constants/ApiConstants';
 
@@ -8,7 +9,7 @@ import axios from 'axios';
 import jsToXml from './../../../helpers/jsToXml';
 
 export default function createCartCall(cart) {
-    const endpoint = [HOST, SUFFIX, ENDPOINT_CARTS].join('/');
+    const endpoint = [HOST, SUFFIX, PREFIX + ENDPOINT_CARTS].join('/');
     const jsBody = {
         prestashop: {
             cart: {

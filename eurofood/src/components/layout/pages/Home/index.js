@@ -1,5 +1,5 @@
 import { FlatList, SafeAreaView } from 'react-native';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import generateTemplate from './../../../../helpers/generateTemplate';
@@ -19,11 +19,11 @@ const Home = () => {
             <FlatList
                 data={homeTemplate}
                 contentContainerStyle={{ paddingBottom: 8 }}
-                onViewableItemsChanged={e =>
+                onViewableItemsChanged={e => {
                     setHomeViewableItems({
                         items: e.viewableItems.map(e => e.key)
-                    })
-                }
+                    });
+                }}
                 renderItem={({ item }) => {
                     if (!item) return null;
                     return generateTemplate([item], [], {

@@ -15,6 +15,7 @@ import ValidationError, {
 import { all, call, put, select } from 'redux-saga/effects';
 
 import NavigatorRef from '../../../../../helpers/NavigatorRef';
+import { StackActions } from '@react-navigation/native';
 import createAddressCall from '../../../../../api/calls/AddressesCalls/createAddressCall';
 import editAddressCall from '../../../../../api/calls/AddressesCalls/editAddressCall';
 import getAddressFormKeySelector from './../../../../selectors/AddressesSelectors/addressForm/getAddressFormKeySelector';
@@ -112,8 +113,11 @@ export default function* submitAddressSaga() {
             ];
             if (currentRouteName === 'ShippingAddress') {
                 actions.push(put(showShippingAddressFormAction(false)));
-            } else {
+            } else if (currentRouteName === 'BillingAddress') {
                 actions.push(put(showBillingAddressFormAction(false)));
+            } else if (currentRouteName === 'EditAddress') {
+                const navRef = new NavigatorRef();
+                navRef.navigation.dispatch(StackActions.pop(1));
             }
             yield all(actions);
         }

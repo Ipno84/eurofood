@@ -4,6 +4,7 @@ import {
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
     ROUTE_NAME_CATEGORY_PRODUCTS,
+    ROUTE_NAME_EDIT_ADDRESS,
     ROUTE_NAME_FORGOT_PASSWORD,
     ROUTE_NAME_HOME,
     ROUTE_NAME_LOGIN,
@@ -30,6 +31,7 @@ import Category from './../components/layout/pages/Category';
 import CategoryProducts from './../components/layout/pages/Category/Products';
 import Drawer from './Drawer';
 import DrawerContent from './../components/layout/templates/DrawerContent';
+import EditAddress from '../components/layout/pages/EditAddress';
 import ForgotPassword from './../components/layout/pages/ForgotPassword';
 import Home from './../components/layout/pages/Home';
 import Login from './../components/layout/pages/Login';
@@ -151,13 +153,18 @@ const RoutesMap = [
         name: ROUTE_NAME_BILLING_ADDRESS,
         component: BillingAddress,
         options: ({ navigation, route }) => ({ title: 'BillingAddress' })
+    },
+    {
+        name: ROUTE_NAME_EDIT_ADDRESS,
+        component: EditAddress,
+        options: ({ navigation, route }) => ({ title: 'EditAddress' })
     }
 ];
 
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_SETTINGS}
+            initialRouteName={ROUTE_NAME_HOME}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',

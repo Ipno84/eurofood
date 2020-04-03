@@ -8,7 +8,9 @@ const AddressItemWrapper = styled(Wrapper)`
     margin-top: 8px;
     margin-bottom: 8px;
     border-width: 4px;
-    padding: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
     ${({ isSelected }) =>
         isSelected
             ? css`

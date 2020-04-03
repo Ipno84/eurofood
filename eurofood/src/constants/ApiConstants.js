@@ -13,6 +13,7 @@ export const ENDPOINT_ADDRESSES = 'addresses'; //PREFIX
 export const ENDPOINT_ORDERS = 'orders'; //PREFIX
 export const ENDPOINT_CARTS = 'carts'; //PREFIX
 export const ENDPOINT_IMAGES = 'images';
+export const ENDPOINT_LOGIN = 'login';
 export const ENDPOINT_SETTINGS = 'settings.json';
 export const ENDPOINT_STOCK_AVAILABLES = 'stock_availables';
 export const ENDPOINT_SPECIFIC_PRICES = 'specific_prices';

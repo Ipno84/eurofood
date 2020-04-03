@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
+import getJwtTokenSelector from './getJwtTokenSelector';
 import getUserIdSelector from './getUserIdSelector';
-import isUserActiveSelector from './isUserActiveSelector';
 
 export default createSelector(
-    [getUserIdSelector, isUserActiveSelector],
-    (id, isActive) => Boolean(id && isActive)
+    [getUserIdSelector, getJwtTokenSelector],
+    (id, jwt) => Boolean(id && jwt)
 );

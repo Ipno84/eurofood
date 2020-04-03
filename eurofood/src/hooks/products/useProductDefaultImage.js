@@ -31,13 +31,15 @@ export default function useProductDefaultImage(id) {
                         Authorization: 'Basic ' + BASIC_TOKEN
                     }
                 }
-            ).then(res => {
-                if (res.status === 200) {
-                    setImageSource({
-                        uri: `${HOST}/${idDefaultImage}-large_default/image.jpg`
-                    });
-                }
-            });
+            )
+                .then(res => {
+                    if (res.status === 200) {
+                        setImageSource({
+                            uri: `${HOST}/${idDefaultImage}-large_default/image.jpg`
+                        });
+                    }
+                })
+                .catch(error => console.log(error));
         }
     }, [id, idDefaultImage]);
     const onError = () => setImageSource(product);

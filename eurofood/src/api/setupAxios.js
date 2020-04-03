@@ -1,6 +1,18 @@
-import { BASIC_TOKEN } from './../constants/ApiConstants';
+import {
+    ENDPOINT_LOGIN,
+    HOST,
+    PRIVATE_TOKEN,
+    SUFFIX
+} from './../constants/ApiConstants';
+
+import AxiosError from './../helpers/AxiosError';
+import Snackbar from 'react-native-snackbar';
 import axios from 'axios';
+import getJwtTokenSelector from '../state/selectors/ClientSelectors/getJwtTokenSelector';
 import getValidDataFromCacheSelector from './../state/selectors/CacheSelectors/getValidDataFromCacheSelector';
+import isUserLoggedInSelector from '../state/selectors/ClientSelectors/isUserLoggedInSelector';
+import logoutAction from '../state/actions/ClientActions/logoutAction';
+import { orange } from './../constants/ThemeConstants';
 import queryString from 'query-string';
 import setCacheKeyAction from './../state/actions/CacheActions/setCacheKeyAction';
 import { store } from './../state/store';
@@ -8,16 +20,23 @@ import { store } from './../state/store';
 export default function setupAxios() {
     axios.defaults.withCredentials = true;
 
+    axios.defaults.auth = {
+        username: PRIVATE_TOKEN,
+        password: ''
+    };
+
     axios.interceptors.request.use(
         request => {
             if (request.params && request.params.canSetClientCache) {
                 request.__canSetClientCache = true;
                 delete request.params.canSetClientCache;
             }
-            request.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
+            // request.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
             request.headers['Output-Format'] = 'JSON';
+            const state = store.getState();
+            const jwt = getJwtTokenSelector(state);
+            if (jwt) request.headers['X-Eurofood-Auth'] = jwt;
             if (request.method === 'get') {
-                const state = store.getState();
                 const params = queryString.stringify(request.params);
                 const cached = getValidDataFromCacheSelector(state, params);
                 if (cached) {
@@ -54,8 +73,39 @@ export default function setupAxios() {
                 };
                 store.dispatch(setCacheKeyAction(params, value));
             }
+            const isError = Boolean(
+                response.data.errors && response.data.errors.length
+            );
+            const isForbidden = Boolean(
+                isError && response.data.errors.find(e => e.code === 403)
+            );
+            if (
+                isForbidden &&
+                response.config.url !== `${HOST}/${SUFFIX}/${ENDPOINT_LOGIN}`
+            ) {
+                Snackbar.show({
+                    text: `Non sei autorizzato ad effettuare quest'operazione`,
+                    duration: Snackbar.LENGTH_LONG,
+                    action: {
+                        text: 'OK',
+                        textColor: orange.toString(),
+                        onPress: () => Snackbar.dismiss()
+                    }
+                });
+                const state = store.getState();
+                const isUserLoggedIn = isUserLoggedInSelector(state);
+                if (isUserLoggedIn) store.dispatch(logoutAction());
+            }
+            if (isError) {
+                throw new AxiosError(
+                    'Axios call cancelled',
+                    response.data.errors
+                );
+            }
             return response;
         },
-        error => Promise.reject(error)
+        error => {
+            return Promise.reject(error);
+        }
     );
 }

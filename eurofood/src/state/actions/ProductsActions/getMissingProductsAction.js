@@ -10,7 +10,7 @@ export default function getMissingProductsAction(ids, payload) {
     } else if (payload && payload.error) {
         return {
             type: GET_MISSING_PRODUCTS + FAILURE,
-            error
+            error: payload.error
         };
     }
     return {

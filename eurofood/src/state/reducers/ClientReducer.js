@@ -35,7 +35,8 @@ export const initialState = {
         psgdpr: false //send 1 if checked - https://www.eurofoodservice.it/content/5-condizioni-registrazione-sito
     },
     registerSubmitted: false,
-    companyForm: {}
+    companyForm: {},
+    jwt: ''
 };
 
 export const ClientReducerTransform = createTransform(
@@ -77,7 +78,8 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 user: action.user,
                 loginForm: initialState.loginForm,
-                loginSubmitted: false
+                loginSubmitted: false,
+                jwt: action.jwt
             };
         case SUBMIT_LOGIN + FAILURE:
             return {
@@ -159,7 +161,8 @@ const ClientReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: initialState.user,
-                company: initialState.company
+                company: initialState.company,
+                jwt: initialState.jwt
             };
         default:
             return state;

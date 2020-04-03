@@ -10,10 +10,13 @@ import { all, call, put, select } from 'redux-saga/effects';
 import { CommonActions } from '@react-navigation/native';
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import { ROUTE_NAME_HOME } from '../../../../../constants/RouteConstants';
+import Snackbar from 'react-native-snackbar';
 import getLoginEmailSelector from './../../../../selectors/ClientSelectors/getLoginEmailSelector';
 import getLoginPasswordSelector from './../../../../selectors/ClientSelectors/getLoginPasswordSelector';
 import isValidEmail from './../../../../../helpers/isValidEmail';
 import loginCall from './../../../../../api/calls/CustomersCalls/loginCall';
+import { orange } from '../../../../../constants/ThemeConstants';
+import parseJwtToken from './../../../../../helpers/parseJwtToken';
 import setErrorAction from './../../../../actions/ErrorsActions/setErrorAction';
 import submitLoginAction from './../../../../actions/ClientActions/submitLoginAction';
 
@@ -31,21 +34,25 @@ export default function* onSubmitLoginSaga() {
             throw new ValidationError('Password non valida', {
                 key: LOGIN_PASSWORD_ERROR
             });
-        const results = yield call(loginCall, email, password);
-        if (results && results.customers && results.customers.length) {
-            const navRef = new NavigatorRef();
-            navRef.navigation.dispatch(
-                CommonActions.reset({
-                    index: 1,
-                    routes: [{ name: ROUTE_NAME_HOME }]
-                })
-            );
-            yield put(
-                submitLoginAction({
-                    success: true,
-                    user: results.customers[0]
-                })
-            );
+        const jwt = yield call(loginCall, { email, password });
+        if (jwt) {
+            const user = parseJwtToken(jwt);
+            if (user) {
+                const navRef = new NavigatorRef();
+                navRef.navigation.dispatch(
+                    CommonActions.reset({
+                        index: 1,
+                        routes: [{ name: ROUTE_NAME_HOME }]
+                    })
+                );
+                yield put(
+                    submitLoginAction({
+                        success: true,
+                        user,
+                        jwt
+                    })
+                );
+            }
         }
     } catch (error) {
         if (error.name === VALIDATION_CLASS_NAME) {
@@ -58,6 +65,24 @@ export default function* onSubmitLoginSaga() {
                 ),
                 put(submitLoginAction({ error: true }))
             ]);
+        } else {
+            if (
+                error &&
+                error.payload &&
+                error.payload.length &&
+                error.payload[0].code === 403
+            ) {
+                Snackbar.show({
+                    text: `Le credenziali inserite non sono corrette`,
+                    duration: Snackbar.LENGTH_LONG,
+                    action: {
+                        text: 'OK',
+                        textColor: orange.toString(),
+                        onPress: () => Snackbar.dismiss()
+                    }
+                });
+            }
+            yield put(submitLoginAction({ error: true }));
         }
     }
 }
