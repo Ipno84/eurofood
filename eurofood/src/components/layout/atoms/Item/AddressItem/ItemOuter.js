@@ -6,8 +6,10 @@ import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components/native';
 
 import AddressItemWrapper from './AddressItemWrapper';
+import { Alert } from 'react-native';
 import ItemInner from './ItemInner';
 import Touchable from './../../Button/Touchable';
+import deleteAddressAction from './../../../../../state/actions/AddressesActions/deleteAddressAction';
 import editAddressAction from './../../../../../state/actions/AddressesActions/editAddressAction';
 import useAppNavigation from './../../../../../hooks/navigation/useAppNavigation';
 import { useDispatch } from 'react-redux';
@@ -20,6 +22,10 @@ const ItemOuter = ({ item, isSelected }) => {
     const editAddress = useCallback(() => dispatch(editAddressAction(item)), [
         dispatch
     ]);
+    const deleteAddress = useCallback(
+        () => dispatch(deleteAddressAction({ id: item.id })),
+        [dispatch]
+    );
     return (
         <AddressItemWrapper isSelected={isSelected}>
             <ItemInner item={item} />
@@ -36,7 +42,23 @@ const ItemOuter = ({ item, isSelected }) => {
                         <ButtonText>Modifica</ButtonText>
                     </ButtonWrapper>
                 </Touchable>
-                <Touchable>
+                <Touchable
+                    onPress={() => {
+                        Alert.alert(
+                            'Attenzione',
+                            `Sei sicuro di voler rimuovre quest'indirizzo?`,
+                            [
+                                {
+                                    text: 'No, annulla',
+                                    style: 'cancel'
+                                },
+                                {
+                                    text: 'Si, procedi',
+                                    onPress: () => deleteAddress()
+                                }
+                            ]
+                        );
+                    }}>
                     <ButtonWrapper>
                         <ButtonText>Elimina</ButtonText>
                     </ButtonWrapper>

@@ -1,4 +1,5 @@
 import {
+    DELETE_ADDRESS,
     EDIT_ADDRESS,
     GET_USER_ADDRESSES,
     RESET_ADDRESS_FORM,
@@ -144,6 +145,11 @@ const AddressesReducer = (state = initialState, action) => {
                     ? { ...initialState.addressForm, id_customer }
                     : initialState.addressForm,
                 addressSubmitted: initialState.addressSubmitted
+            };
+        case DELETE_ADDRESS + SUCCESS:
+            return {
+                ...state,
+                items: state.items.filter(e => e.id !== action.id)
             };
         default:
             return state;

@@ -21,6 +21,7 @@ const AddressesList = ({
         getCurrentUserAddress();
     }, [getCurrentUserAddress]);
     const addresses = useSelector(state => getAddressesSelector(state));
+    console.log('onPressAddress', onPressAddress);
     return (
         <FlatList
             ListHeaderComponent={() => {
@@ -38,9 +39,9 @@ const AddressesList = ({
                 return (
                     <AddressItem
                         item={item}
-                        onPress={() =>
-                            onPressAddress && onPressAddress(item.id)
-                        }
+                        onPress={() => {
+                            if (onPressAddress) onPressAddress(item.id);
+                        }}
                         isSelected={selectedId === item.id}
                     />
                 );

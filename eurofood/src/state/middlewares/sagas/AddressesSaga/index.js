@@ -1,3 +1,4 @@
+import deleteAddressWatcher from './watchers/deleteAddressWatcher';
 import { fork } from 'redux-saga/effects';
 import getCurrentUserAddressesWatcher from './watchers/getCurrentUserAddressesWatcher';
 import setAddressFormIdCustomerWatcher from './watchers/setAddressFormIdCustomerWatcher';
@@ -7,4 +8,5 @@ export default function* AddressesSaga() {
     yield fork(getCurrentUserAddressesWatcher);
     yield fork(submitAddressWatcher);
     yield fork(setAddressFormIdCustomerWatcher);
+    yield fork(deleteAddressWatcher);
 }

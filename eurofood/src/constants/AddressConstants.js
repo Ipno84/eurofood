@@ -3,6 +3,7 @@ export const SUBMIT_ADDRESS = 'SUBMIT_ADDRESS';
 export const SET_ADDRESS_KEY_VALUE = 'SET_ADDRESS_KEY_VALUE';
 export const RESET_ADDRESS_FORM = 'RESET_ADDRESS_FORM';
 export const EDIT_ADDRESS = 'EDIT_ADDRESS';
+export const DELETE_ADDRESS = 'DELETE_ADDRESS';
 
 export const StateList = {
     126: 'Agrigento',
