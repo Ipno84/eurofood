@@ -12,6 +12,7 @@ export default function* getServerSettingsSaga() {
             put(setHomeTemplateAction({ home }))
         ]);
     } catch (error) {
+        alert(error.message);
         yield put(getServerSettingsAction({ error }));
     }
 }
