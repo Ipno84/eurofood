@@ -11,7 +11,7 @@ const BackButton = () => {
     const name = Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back';
     return (
         <Touchable onPress={() => goBack()}>
-            <Styled isLeft={true}>
+            <Styled>
                 <Icon size={28} name={name} color={orange.toString()} />
             </Styled>
         </Touchable>

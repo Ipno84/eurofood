@@ -25,7 +25,6 @@ import {
 import BackButton from './../components/layout/atoms/HeaderButton/BackButton';
 import BillingAddress from './../components/layout/pages/BillingAddress';
 import Cart from './../components/layout/pages/Cart';
-import CartButton from './../components/layout/atoms/HeaderButton/CartButton';
 import Categories from './../components/layout/pages/Categories';
 import Category from './../components/layout/pages/Category';
 import CategoryProducts from './../components/layout/pages/Category/Products';
@@ -34,6 +33,7 @@ import DrawerContent from './../components/layout/templates/DrawerContent';
 import EditAddress from '../components/layout/pages/EditAddress';
 import ForgotPassword from './../components/layout/pages/ForgotPassword';
 import Home from './../components/layout/pages/Home';
+import LeftButton from './../components/layout/atoms/HeaderButton/LeftButton';
 import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
 import MenuButton from './../components/layout/atoms/HeaderButton/MenuButton';
@@ -46,6 +46,7 @@ import Promo from './../components/layout/pages/Promo';
 import React from 'react';
 import Recipe from './../components/layout/pages/Recipe';
 import Register from './../components/layout/pages/Register';
+import RightButton from './../components/layout/atoms/HeaderButton/RightButton';
 import SearchResults from './../components/layout/pages/SearchResults';
 import Settings from './../components/layout/pages/Settings';
 import ShippingAddress from './../components/layout/pages/ShippingAddress';
@@ -168,12 +169,11 @@ const StackNavigator = () => {
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',
-                headerLeft: ({ canGoBack }) => {
-                    if (canGoBack) return <BackButton />;
-                    return <MenuButton />;
-                },
+                headerLeft: ({ canGoBack }) => (
+                    <LeftButton canGoBack={canGoBack} />
+                ),
                 headerRight: () => {
-                    return <CartButton />;
+                    return <RightButton />;
                 },
                 headerStyle: {
                     backgroundColor: lightGray.toString(),

@@ -154,5 +154,15 @@ Authorization: Basic Q7NI79UCBIUD3Y626LAP3YM92QKTR5UR // sará quella finale
 
 ### TODO:
 
--   Gestire il controllo delle immagini in un riduttore (quando un'immagine viene renderizzata per la prima volta, controllarne l'esistenza e poi registrare l'url come sicuro evitando di controllarla successivamente)
--   Pagina profilo con dati utente, indirizzi, modifica e cancellazione degli indirizzi
+-   [] Gestire il controllo delle immagini in un riduttore (quando un'immagine viene renderizzata per la prima volta, controllarne l'esistenza e poi registrare l'url come sicuro evitando di controllarla successivamente)
+-   [x] Messaggio di conferma ordine
+-   [x] checkbox su selettore indirizzi
+-   [x] data sull'ordine
+-   [-] css placeholder
+-   [x] avviso login
+-   [x] aggiungere short description\*
+-   [x] breadcrumb
+-   [x] Voce di menù sottocategorie
+-   [-] preview dell'ordine
+
+*   Ho sostituito la normale descrizione con la short description. Anche in questo caso arriva html, ma non ha una formattazione complessa. Quindi, rimuoverla non compromette esteticamente la descrizione stessa. Non appena svilupperemo il sistema per il replacing dei tag html con componenti react faremo il revert di questa funzione

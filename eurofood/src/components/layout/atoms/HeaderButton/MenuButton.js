@@ -9,7 +9,7 @@ const BackButton = () => {
     const { toggleDrawer } = useAppNavigation();
     return (
         <Touchable onPress={() => toggleDrawer()}>
-            <Styled isLeft={true}>
+            <Styled>
                 <Icon size={28} name="menu" color={orange.toString()} />
             </Styled>
         </Touchable>

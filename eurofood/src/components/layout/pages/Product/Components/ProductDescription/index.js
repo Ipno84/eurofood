@@ -1,12 +1,12 @@
 import React from 'react';
 import Text from './Text';
 import Wrapper from './Wrapper';
-import getProductItemDescriptionSelector from './../../../../../../state/selectors/ProductsSelectors/getProductItemDescriptionSelector';
+import getProductItemShortDescriptionSelector from './../../../../../../state/selectors/ProductsSelectors/getProductItemShortDescriptionSelector';
 import { useSelector } from 'react-redux';
 
 const ProductDescription = ({ id }) => {
     const description = useSelector(state =>
-        getProductItemDescriptionSelector(state, id)
+        getProductItemShortDescriptionSelector(state, id)
     );
     return (
         <Wrapper>

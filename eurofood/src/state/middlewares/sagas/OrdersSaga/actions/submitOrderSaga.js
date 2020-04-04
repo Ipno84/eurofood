@@ -9,12 +9,14 @@ import { all, call, put, select } from 'redux-saga/effects';
 
 import { CommonActions } from '@react-navigation/native';
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
+import Snackbar from 'react-native-snackbar';
 import createOrderCall from './../../../../../api/calls/OrdersCall/createOrderCall';
 import getCurrentCartSelector from '../../../../selectors/CartSelectors/getCurrentCartSelector';
 import getProductItemNameSelector from '../../../../selectors/ProductsSelectors/getProductItemNameSelector';
 import getProductItemReferenceSelector from '../../../../selectors/ProductsSelectors/getProductItemReferenceSelector';
 import getProductPriceInfoSelector from '../../../../selectors/ProductsSelectors/getProductPriceInfoSelector';
 import isUserLoggedInSelector from '../../../../selectors/ClientSelectors/isUserLoggedInSelector';
+import { orange } from '../../../../../constants/ThemeConstants';
 import submitOrderAction from './../../../../actions/OrdersActions/submitOrderAction';
 
 export default function* submitOrderSaga() {
@@ -102,6 +104,15 @@ export default function* submitOrderSaga() {
                         ]
                     })
                 );
+                Snackbar.show({
+                    text: `Ordine effettuato con successo.`,
+                    duration: Snackbar.LENGTH_INDEFINITE,
+                    action: {
+                        text: 'OK',
+                        textColor: orange.toString(),
+                        onPress: () => Snackbar.dismiss()
+                    }
+                });
                 yield put(
                     submitOrderAction({
                         success: true,
@@ -116,7 +127,6 @@ export default function* submitOrderSaga() {
             }
         }
     } catch (error) {
-        console.log(error);
         yield put(submitOrderAction({ error }));
     }
 }

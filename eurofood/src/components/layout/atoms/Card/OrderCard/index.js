@@ -17,13 +17,19 @@ import useAppNavigation from '../../../../../hooks/navigation/useAppNavigation';
 import { useDispatch } from 'react-redux';
 
 const formatOrderDate = date => {
-    const newDate = new Date(Date.parse(date));
-    let day = newDate.getDate();
-    let month = newDate.getMonth();
-    let year = newDate.getFullYear();
-    if (day < 10) day = '0' + String(day);
-    if (month < 10) month = '0' + String(month);
-    return `${day}/${month}/${year}`;
+    let justDate = date.split(' ');
+    if (justDate && justDate.length) {
+        justDate = justDate[0];
+        const newDate = new Date(Date.parse(justDate));
+        let day = newDate.getDate();
+        let month = newDate.getMonth();
+        let year = newDate.getFullYear();
+        if (isNaN && (isNaN(day) || isNaN(month) || isNaN(year))) return date;
+        if (day < 10) day = '0' + String(day);
+        if (month < 10) month = '0' + String(month);
+        return `${day}/${month}/${year}`;
+    }
+    return date;
 };
 
 const OrderStatesMap = {

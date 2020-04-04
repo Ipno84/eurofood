@@ -1,4 +1,5 @@
 import Add from './Components/Add';
+import Breadcrumb from './Components/Breadcrumb';
 import Price from './Components/Price';
 import ProductAvailability from './Components/ProductAvailability';
 import ProductDescription from './Components/ProductDescription';
@@ -18,6 +19,7 @@ const Product = ({ route }) => {
     return (
         <SafeAreaView>
             <ScrollView>
+                <Breadcrumb />
                 <ProductWrapper>
                     <ProductName id={route.params.id} />
                     <ProductImage id={route.params.id} />

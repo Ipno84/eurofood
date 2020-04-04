@@ -2,14 +2,10 @@ import styled, { css } from 'styled-components/native';
 
 const HeaderButton = styled.View`
     position: relative;
-    ${({ isLeft }) =>
-        isLeft
-            ? css`
-                  margin-left: 16px;
-              `
-            : css`
-                  margin-right: 16px;
-              `}
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 `;
 
 export default HeaderButton;
