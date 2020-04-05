@@ -5,13 +5,21 @@ import {
     HOST,
     SUFFIX
 } from './../../constants/ApiConstants';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import getImageUriFromCachedImagesSelector from './../../state/selectors/CacheSelectors/getImageUriFromCachedImagesSelector';
 import getProductItemDefaultImageIdSelector from './../../state/selectors/ProductsSelectors/getProductItemDefaultImageIdSelector';
 import { product } from './../../assets/images/placeholder';
-import { useSelector } from 'react-redux';
+import setCachedImageUriAction from './../../state/actions/CacheActions/setCachedImageUriAction';
 
 export default function useProductDefaultImage(id) {
+    const dispatch = useDispatch();
+    const setCachedImageUri = useCallback(
+        ({ key, value }) => dispatch(setCachedImageUriAction({ key, value })),
+        [dispatch]
+    );
+    let url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_PRODUCTS}/${id}/${idDefaultImage}/large_default`;
     const idDefaultImage = useSelector(state =>
         getProductItemDefaultImageIdSelector(state, id)
     );
@@ -22,24 +30,36 @@ export default function useProductDefaultImage(id) {
               }
             : product
     );
+    const cachedUri = useSelector(state =>
+        getImageUriFromCachedImagesSelector(state, url, id && idDefaultImage)
+    );
     useEffect(() => {
-        if (id && idDefaultImage) {
-            fetch(
-                `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_PRODUCTS}/${id}/${idDefaultImage}/large_default`,
-                {
-                    headers: {
-                        Authorization: 'Basic ' + BASIC_TOKEN
-                    }
+        const uri = `${HOST}/${idDefaultImage}-large_default/image.jpg`;
+        if (id && idDefaultImage && !cachedUri) {
+            url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_PRODUCTS}/${id}/${idDefaultImage}/large_default`;
+            fetch(url, {
+                headers: {
+                    Authorization: 'Basic ' + BASIC_TOKEN
                 }
-            )
+            })
                 .then(res => {
                     if (res.status === 200) {
-                        setImageSource({
-                            uri: `${HOST}/${idDefaultImage}-large_default/image.jpg`
+                        setImageSource({ uri });
+                        setCachedImageUri({
+                            key: url,
+                            value: uri
                         });
                     }
                 })
                 .catch(error => console.log(error));
+        } else if (
+            id &&
+            idDefaultImage &&
+            cachedUri &&
+            uri &&
+            cachedUri !== uri
+        ) {
+            setImageSource({ uri });
         }
     }, [id, idDefaultImage]);
     const onError = () => setImageSource(product);

@@ -10,7 +10,8 @@ import { createTransform } from 'redux-persist';
 
 export const initialState = {
     isCachePurged: false,
-    cache: {}
+    cache: {},
+    cachedImagesUri: {}
 };
 
 export const CacheReducerTransform = createTransform(
@@ -20,7 +21,8 @@ export const CacheReducerTransform = createTransform(
     outboundState => {
         return {
             ...outboundState,
-            isCachePurged: initialState.isCachePurged
+            isCachePurged: initialState.isCachePurged,
+            cachedImagesUri: initialState.cachedImagesUri
         };
     },
     { whitelist: REDUCER_NAME_CACHE }

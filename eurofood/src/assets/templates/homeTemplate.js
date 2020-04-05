@@ -110,7 +110,7 @@ const Oldtemplate = [
 ];
 
 export default [
-    /*{
+    {
         component: 'VisibilitySensor',
         keyCheck: 'searchSection',
         props: {
@@ -185,7 +185,7 @@ export default [
             ],
             skeleton: [{ component: 'SkeletonLoginBlock' }]
         }
-    },*/
+    },
     {
         component: 'VisibilitySensor',
         keyCheck: 'horizontalProducts_100',
@@ -230,7 +230,8 @@ export default [
                         id: 102
                     }
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonHorizontalProducts' }]
         }
     },
     {
@@ -245,7 +246,8 @@ export default [
                         id: 103
                     }
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonHorizontalProducts' }]
         }
     },
     {
@@ -253,7 +255,8 @@ export default [
         keyCheck: 'infoBlock',
         props: {
             height: 292,
-            children: [{ component: 'Infoblock' }]
+            children: [{ component: 'Infoblock' }],
+            skeleton: [{ component: 'SkeletonInfoBlock' }]
         }
     }
 ];

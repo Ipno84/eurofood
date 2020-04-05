@@ -16,6 +16,7 @@ import SkeletonCategoryItem from './layout/molecules/CategoryItem/SkeletonCatego
 import SkeletonCategorySection from './layout/templates/CategorySection/SkeletonCategorySection';
 import SkeletonHomeBanner from './layout/templates/HomeBanner/SkeletonHomeBanner';
 import SkeletonHorizontalProducts from './layout/organisms/HorizontalProducts/SkeletonHorizontalProducts';
+import SkeletonInfoBlock from './layout/molecules/Infoblock/SkeletonInfoBlock';
 import SkeletonLoginBlock from './layout/templates/LoginBlock/SkeletonLoginBlock';
 import SkeletonMainSectionsHorizontal from './layout/templates/MainSections/SkeletonMainSectionsHorizontal';
 import SkeletonProductCard from './layout/molecules/ProductCard/SkeletonProductCard';
@@ -31,6 +32,7 @@ const Components = {
     SkeletonCategoryItem,
     SkeletonCategorySection,
     SkeletonHorizontalProducts,
+    SkeletonInfoBlock,
     SkeletonLoginBlock,
     SkeletonProductCard,
     BestSellers,
