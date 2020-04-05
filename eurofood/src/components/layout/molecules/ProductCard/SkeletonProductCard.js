@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components/native';
 import AnimatedLinearGradient from './../../atoms/AnimatedLinearGradient';
 import React from 'react';
 
-const SkeletonProductCard = () => {
+const SkeletonProductCard = ({ fixed }) => {
     return (
-        <Wrapper>
+        <Wrapper fixed={fixed}>
             <Image>
                 <AnimatedLinearGradient />
             </Image>
@@ -25,7 +25,6 @@ const Wrapper = styled.View`
     border-radius: 8px;
     flex-direction: column;
     height: 210px;
-    flex: 1;
     background-color: ${({ theme }) => theme.colors.white(1)};
     shadow-color: ${({ theme }) => theme.colors.alterGray(1)};
     shadow-offset: 0 0;
@@ -34,6 +33,14 @@ const Wrapper = styled.View`
     elevation: 5;
     margin-left: 4px;
     margin-right: 4px;
+    ${({ fixed }) =>
+        fixed
+            ? css`
+                  width: ${fixed}px;
+              `
+            : css`
+                  flex: 1;
+              `}
 `;
 
 const Image = styled.View`

@@ -110,7 +110,7 @@ const Oldtemplate = [
 ];
 
 export default [
-    {
+    /*{
         component: 'VisibilitySensor',
         keyCheck: 'searchSection',
         props: {
@@ -182,9 +182,10 @@ export default [
                 {
                     component: 'LoginBlock'
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonLoginBlock' }]
         }
-    },
+    },*/
     {
         component: 'VisibilitySensor',
         keyCheck: 'horizontalProducts_100',
@@ -197,7 +198,8 @@ export default [
                         id: 100
                     }
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonHorizontalProducts' }]
         }
     },
     {
@@ -212,7 +214,8 @@ export default [
                         id: 101
                     }
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonHorizontalProducts' }]
         }
     },
     {

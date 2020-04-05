@@ -15,6 +15,8 @@ import SimilarProducts from './layout/templates/SimilarProducts';
 import SkeletonCategoryItem from './layout/molecules/CategoryItem/SkeletonCategoryItem';
 import SkeletonCategorySection from './layout/templates/CategorySection/SkeletonCategorySection';
 import SkeletonHomeBanner from './layout/templates/HomeBanner/SkeletonHomeBanner';
+import SkeletonHorizontalProducts from './layout/organisms/HorizontalProducts/SkeletonHorizontalProducts';
+import SkeletonLoginBlock from './layout/templates/LoginBlock/SkeletonLoginBlock';
 import SkeletonMainSectionsHorizontal from './layout/templates/MainSections/SkeletonMainSectionsHorizontal';
 import SkeletonProductCard from './layout/molecules/ProductCard/SkeletonProductCard';
 import SkeletonSearchSection from './layout/organisms/SearchSection/SkeletonSearchSection';
@@ -28,6 +30,8 @@ const Components = {
     Alert,
     SkeletonCategoryItem,
     SkeletonCategorySection,
+    SkeletonHorizontalProducts,
+    SkeletonLoginBlock,
     SkeletonProductCard,
     BestSellers,
     CategoriesGrid,
