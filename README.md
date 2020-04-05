@@ -158,7 +158,7 @@ Authorization: Basic Q7NI79UCBIUD3Y626LAP3YM92QKTR5UR // sará quella finale
 -   [x] Messaggio di conferma ordine
 -   [x] checkbox su selettore indirizzi
 -   [x] data sull'ordine
--   [-] css placeholder
+-   [x] css placeholder
 -   [x] avviso login
 -   [x] aggiungere short description\*
 -   [x] breadcrumb
