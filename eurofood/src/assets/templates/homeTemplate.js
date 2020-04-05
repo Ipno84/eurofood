@@ -115,7 +115,8 @@ export default [
         keyCheck: 'searchSection',
         props: {
             children: [{ component: 'SearchSection' }],
-            height: 80
+            height: 80,
+            skeleton: [{ component: 'SkeletonSearchSection' }]
         }
     },
     {
@@ -123,7 +124,8 @@ export default [
         keyCheck: 'homeBanner',
         props: {
             height: 200,
-            children: [{ component: 'HomeBanner' }]
+            children: [{ component: 'HomeBanner' }],
+            skeleton: [{ component: 'SkeletonHomeBanner' }]
         }
     },
     {
@@ -131,7 +133,8 @@ export default [
         keyCheck: 'mainSectionsHorizontal',
         props: {
             height: 185,
-            children: [{ component: 'MainSectionsHorizontal' }]
+            children: [{ component: 'MainSectionsHorizontal' }],
+            skeleton: [{ component: 'SkeletonMainSectionsHorizontal' }]
         }
     },
     {
@@ -148,7 +151,8 @@ export default [
                         navKey: 'Category_Products'
                     }
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonCategorySection' }]
         }
     },
     {
@@ -165,7 +169,8 @@ export default [
                         navKey: 'Category_Products'
                     }
                 }
-            ]
+            ],
+            skeleton: [{ component: 'SkeletonCategorySection' }]
         }
     },
     {
