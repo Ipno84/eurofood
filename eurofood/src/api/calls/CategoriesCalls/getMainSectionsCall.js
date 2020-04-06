@@ -8,5 +8,6 @@ const params = {
 };
 
 export default function getMainSectionsCall() {
+    params.canSetClientCache = true;
     return getCategoriesCall(params);
 }

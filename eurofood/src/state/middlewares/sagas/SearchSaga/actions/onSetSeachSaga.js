@@ -16,6 +16,7 @@ import getSearchResultsAction from './../../../../actions/SearchActions/getSearc
 import getSearchSelectedCategoryIdSelector from './../../../../selectors/SearchSelectors/getSearchSelectedCategoryIdSelector';
 import getSearchTextSelector from './../../../../selectors/SearchSelectors/getSearchTextSelector';
 import searchProductsCall from './../../../../../api/calls/SearchCalls/searchProductsCall';
+import searchProductsMaxCountCall from './../../../../../api/calls/SearchCalls/searchProductsMaxCountCall';
 import setProductsItemsAction from './../../../../actions/ProductsActions/setProductsItemsAction';
 import setSearchResultsAction from './../../../../actions/SearchActions/setSearchResultsAction';
 
@@ -27,7 +28,7 @@ export default function* onSetSeachSaga({ limit, offset }) {
 
 export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
     try {
-        yield delay(minTime);
+        //yield delay(minTime);
         const searchText = yield select(getSearchTextSelector);
         const selectedCategoryId = yield select(
             getSearchSelectedCategoryIdSelector
@@ -42,7 +43,13 @@ export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
             }
             if (limit) params = { ...params, limit };
             if (offset) params = { ...params, offset };
-            const results = yield call(searchProductsCall, params);
+            const res = yield all([
+                call(searchProductsCall, params),
+                call(searchProductsMaxCountCall, params)
+            ]);
+            const results = res[0];
+            const count =
+                res[1] && res[1].products ? res[1].products.length : 0;
             const products = arrayToObject(results.products);
             const productIds =
                 !results || !results.products
@@ -52,12 +59,18 @@ export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
             const currentRouteName = navRef.getCurrentRouteName();
             if (limit && offset) {
                 yield all([
-                    put(getSearchResultsAction({ ids: productIds })),
+                    put(
+                        getSearchResultsAction({
+                            success: true,
+                            ids: productIds,
+                            count
+                        })
+                    ),
                     put(setProductsItemsAction({ items: products }))
                 ]);
             } else {
                 yield all([
-                    put(setSearchResultsAction(productIds)),
+                    put(setSearchResultsAction(productIds, count)),
                     put(setProductsItemsAction({ items: products }))
                 ]);
             }
@@ -68,6 +81,9 @@ export function* waitSearchTaskSaga({ minTime = 500, limit, offset }) {
             }
         }
     } catch (error) {
-        yield put(setSearchResultsAction([]));
+        yield all([
+            put(setSearchResultsAction([])),
+            put(getSearchResultsAction({ error }))
+        ]);
     }
 }

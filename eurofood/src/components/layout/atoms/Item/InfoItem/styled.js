@@ -8,7 +8,7 @@ const InfoItem = styled(Wrapper)`
     padding-left: 16px;
     padding-bottom: 16px;
     padding-right: 16px;
-    height: 130px;
+    height: 140px;
     flex: 1;
     margin: 4px;
 `;

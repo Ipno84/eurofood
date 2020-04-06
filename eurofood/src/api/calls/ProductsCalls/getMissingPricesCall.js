@@ -10,5 +10,6 @@ export default function getMissingPricesCall(ids) {
             ...params,
             'filter[id_product]': `[${ids.join('|')}]`
         };
+    params.canSetClientCache = true;
     return getSpecificPricesCall(params);
 }

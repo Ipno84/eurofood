@@ -1,73 +1,220 @@
-[
-    {
-        "component": "ScrollView",
-        "props": {
-            "contentContainerStyle": {
-                "paddingBottom": 16
-            },
-            "children": [
-                {
-                    "component": "SearchSection"
-                },
-                {
-                    "component": "HomeBanner"
-                },
-                {
-                    "component": "MainSectionsHorizontal"
-                },
-                {
-                    "component": "CategorySection",
-                    "props": {
-                        "id": 51,
-                        "buttonLabel": "Scopri tutte le offerte",
-                        "navKey": "Category_Products"
+{
+    "categories": {
+        "offers": 50,
+        "superOffers": 86
+    },
+    "server": {
+        "clientCacheDuration": 86400
+    },
+    "home": [
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "searchSection",
+            "props": {
+                "children": [
+                    {
+                        "component": "SearchSection"
                     }
-                },
-                {
-                    "component": "CategorySection",
-                    "props": {
-                        "id": 86,
-                        "buttonLabel": "Scopri tutte le super offerte",
-                        "navKey": "Category_Products"
+                ],
+                "height": 80,
+                "skeleton": [
+                    {
+                        "component": "SkeletonSearchSection"
                     }
-                },
-                {
-                    "component": "LoginBlock"
-                },
-                {
-                    "component": "PromoCards"
-                },
-                {
-                    "component": "VideoRecipe"
-                },
-                {
-                    "component": "HorizontalProducts",
-                    "props": {
-                        "id": 100
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "homeBanner",
+            "props": {
+                "height": 200,
+                "children": [
+                    {
+                        "component": "HomeBanner"
                     }
-                },
-                {
-                    "component": "HorizontalProducts",
-                    "props": {
-                        "id": 101
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHomeBanner"
                     }
-                },
-                {
-                    "component": "HorizontalProducts",
-                    "props": {
-                        "id": 102
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "mainSectionsHorizontal",
+            "props": {
+                "height": 185,
+                "children": [
+                    {
+                        "component": "MainSectionsHorizontal"
                     }
-                },
-                {
-                    "component": "HorizontalProducts",
-                    "props": {
-                        "id": 103
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonMainSectionsHorizontal"
                     }
-                },
-                {
-                    "component": "Infoblock"
-                }
-            ]
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "categorySection_51",
+            "props": {
+                "height": 521,
+                "children": [
+                    {
+                        "component": "CategorySection",
+                        "props": {
+                            "id": 51,
+                            "buttonLabel": "Scopri tutte le offerte",
+                            "navKey": "Category_Products"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonCategorySection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "categorySection_86",
+            "props": {
+                "height": 521,
+                "children": [
+                    {
+                        "component": "CategorySection",
+                        "props": {
+                            "id": 86,
+                            "buttonLabel": "Scopri tutte le super offerte",
+                            "navKey": "Category_Products"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonCategorySection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "loginBlock",
+            "props": {
+                "height": 127,
+                "children": [
+                    {
+                        "component": "LoginBlock"
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonLoginBlock"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_100",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 100
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_101",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 101
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_102",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 102
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_103",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 103
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "infoBlock",
+            "props": {
+                "height": 292,
+                "children": [
+                    {
+                        "component": "Infoblock"
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonInfoBlock"
+                    }
+                ]
+            }
         }
-    }
-]
+    ]
+}

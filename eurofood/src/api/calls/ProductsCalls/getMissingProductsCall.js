@@ -7,5 +7,6 @@ let params = {
 
 export default function getMissingProductsCall(ids) {
     if (ids) params = { ...params, 'filter[id]': `[${ids.join('|')}]` };
+    params.canSetClientCache = true;
     return getProductsCall(params);
 }

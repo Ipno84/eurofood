@@ -67,7 +67,9 @@ const SkeletonInfoBlock = () => {
 
 export default SkeletonInfoBlock;
 
-const Wrapper = styled.View``;
+const Wrapper = styled.View`
+    margin-bottom: 16px;
+`;
 
 const Row = styled.View`
     padding-left: 16px;
@@ -78,7 +80,7 @@ const Row = styled.View`
 `;
 
 const Item = styled.View`
-    height: 130px;
+    height: 140px;
     background-color: ${({ theme }) => theme.colors.white(1)};
     shadow-color: ${({ theme }) => theme.colors.alterGray(1)};
     shadow-offset: 0 0;
