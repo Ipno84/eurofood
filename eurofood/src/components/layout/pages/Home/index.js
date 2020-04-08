@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import generateTemplate from './../../../../helpers/generateTemplate';
 import getHomeTemplateSelector from './../../../../state/selectors/SettingsSelectors/getHomeTemplateSelector';
-import homeTemplate from './../../../../assets/templates/homeTemplate';
+// import homeTemplate from './../../../../assets/templates/homeTemplate';
 import setHomeViewableItemsAction from './../../../../state/actions/SettingsActions/setHomeViewableItemsAction';
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <SafeAreaView>
             <FlatList
-                data={homeTemplate}
+                data={templateReal}
                 contentContainerStyle={{ paddingBottom: 8 }}
                 onViewableItemsChanged={e => {
                     setHomeViewableItems({
