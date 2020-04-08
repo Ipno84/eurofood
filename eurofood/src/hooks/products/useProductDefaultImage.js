@@ -5,7 +5,7 @@ import {
     HOST,
     SUFFIX
 } from './../../constants/ApiConstants';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import getImageUriFromCachedImagesSelector from './../../state/selectors/CacheSelectors/getImageUriFromCachedImagesSelector';
@@ -14,6 +14,7 @@ import { product } from './../../assets/images/placeholder';
 import setCachedImageUriAction from './../../state/actions/CacheActions/setCachedImageUriAction';
 
 export default function useProductDefaultImage(id) {
+    const isMounted = useRef(true);
     const dispatch = useDispatch();
     const setCachedImageUri = useCallback(
         ({ key, value }) => dispatch(setCachedImageUriAction({ key, value })),
@@ -44,7 +45,7 @@ export default function useProductDefaultImage(id) {
             })
                 .then(res => {
                     if (res.status === 200) {
-                        setImageSource({ uri });
+                        isMounted.current && setImageSource({ uri });
                         setCachedImageUri({
                             key: url,
                             value: uri
@@ -59,9 +60,16 @@ export default function useProductDefaultImage(id) {
             uri &&
             cachedUri !== uri
         ) {
-            setImageSource({ uri });
+            isMounted.current && setImageSource({ uri });
         }
     }, [id, idDefaultImage]);
-    const onError = () => setImageSource(product);
+    useEffect(() => {
+        return () => {
+            isMounted.current = false;
+        };
+    });
+    const onError = () => {
+        isMounted.current && setImageSource(product);
+    };
     return { imageSource, onError };
 }

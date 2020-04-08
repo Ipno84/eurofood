@@ -3,23 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import generateArrayChunk from '../../helpers/generateArrayChunk';
 import getAssociatedProductsSelector from '../../state/selectors/CategoriesSelectors/getAssociatedProductsSelector';
-import getMissingProductsAction from '../../state/actions/ProductsActions/getMissingProductsAction';
+import getCategoryAction from '../../state/actions/CategoriesActions/getCategoryAction';
+import isCategoryLoadingSelector from '../../state/selectors/CategoriesSelectors/isCategoryLoadingSelector';
 
 export default function useGridCategoryProducts(id) {
     const dispatch = useDispatch();
-    const getMissingProducts = useCallback(
-        ids => dispatch(getMissingProductsAction(ids)),
-        [dispatch]
-    );
+    const getCategory = useCallback(() => dispatch(getCategoryAction({ id })), [
+        dispatch
+    ]);
 
     const products = useSelector(state =>
         getAssociatedProductsSelector(state, id, 4)
     );
+    const isCategoryLoading = useSelector(state =>
+        isCategoryLoadingSelector(state)
+    );
     useEffect(() => {
-        const ids = products.filter(e => typeof e !== 'object');
-        if (ids && ids.length) getMissingProducts(ids);
-    }, [products, getMissingProducts]);
+        getCategory();
+    }, [getCategory]);
     return {
-        productsChunks: generateArrayChunk(products, 2)
+        productsChunks: products ? generateArrayChunk(products, 2) : null,
+        isCategoryLoading
     };
 }

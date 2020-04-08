@@ -6,13 +6,18 @@ import {
 import CategoryItem from './../../atoms/Item/CategoryItem';
 import Container from './../../atoms/Container';
 import { FlatList } from 'react-native';
-// import Progress from './../../atoms/Progress';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
-// import { orange } from './../../../../constants/ThemeConstants';
+import ViewAll from './../../atoms/Item/CategoryItem/ViewAll';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
-const CategoriesList = ({ title, items, onEndReached, isChunking }) => {
+const CategoriesList = ({
+    mainCategoryId,
+    title,
+    items,
+    onEndReached,
+    isChunking
+}) => {
     const { push } = useAppNavigation();
     return (
         <FlatList
@@ -44,6 +49,18 @@ const CategoriesList = ({ title, items, onEndReached, isChunking }) => {
                             }
                         }}
                     />
+                );
+            }}
+            ListFooterComponent={() => {
+                return (
+                    <ViewAll
+                        onPress={() => {
+                            push(ROUTE_NAME_CATEGORY_PRODUCTS, {
+                                id: mainCategoryId
+                            });
+                        }}>
+                        Tutti i prodotti
+                    </ViewAll>
                 );
             }}
             keyExtractor={(item, index) =>

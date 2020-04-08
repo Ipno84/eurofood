@@ -2,11 +2,18 @@ import HorizontalList from './../../atoms/ScrollView/HorizontalList';
 import HorizontalScollerContainer from './../../atoms/ScrollView/HorizontalScollerContainer';
 import ProductCard from '../../molecules/ProductCard';
 import React from 'react';
+import SkeletonHorizontalProducts from './SkeletonHorizontalProducts';
 import Title from './Title';
 import useCategoryProducts from '../../../../hooks/products/useCategoryProducts';
 
 const HorizontalProducts = ({ id }) => {
-    const { products, onProductsEndReached } = useCategoryProducts(id);
+    const {
+        products,
+        onProductsEndReached,
+        isCategoryLoading
+    } = useCategoryProducts(id);
+    if ((!products || products.length === 0) && isCategoryLoading)
+        return <SkeletonHorizontalProducts />;
     return (
         <HorizontalScollerContainer>
             {products && products.length > 0 ? <Title id={id} /> : null}

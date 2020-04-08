@@ -4,7 +4,8 @@ export default function searchProductsMaxCountCall(payload) {
     const searchText = payload.searchText || '';
     const selectedCategoryId = payload.selectedCategoryId;
     let params = {
-        display: '[id]'
+        display: '[id]',
+        'filter[active]': '[1]'
     };
     if (searchText) {
         params['filter[name]'] = `[${searchText}]%`;

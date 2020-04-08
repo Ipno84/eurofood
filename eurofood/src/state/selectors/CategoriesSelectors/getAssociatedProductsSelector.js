@@ -13,6 +13,6 @@ export default createCachedSelector(
         if (productsIds) {
             return productsIds.map(e => (items && items[e] ? items[e] : e));
         }
-        return [];
+        return null;
     }
 )((state, id, count) => `${id}_${count}`);

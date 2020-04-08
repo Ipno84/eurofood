@@ -1,8 +1,9 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import getAssociatedCategoriesCountSelector from '../../state/selectors/CategoriesSelectors/getAssociatedCategoriesCountSelector';
 import getAssociatedChunkedCategoriesSelector from '../../state/selectors/CategoriesSelectors/getAssociatedChunkedCategoriesSelector';
+import getCategoryAction from '../../state/actions/CategoriesActions/getCategoryAction';
 import getMissingCategoriesAction from '../../state/actions/CategoriesActions/getMissingCategoriesAction';
 
 export default function useSubCategories(id, chunkCount = 0) {
@@ -12,6 +13,9 @@ export default function useSubCategories(id, chunkCount = 0) {
         ids => dispatch(getMissingCategoriesAction(ids)),
         [dispatch]
     );
+    const getCategory = useCallback(() => dispatch(getCategoryAction({ id })), [
+        dispatch
+    ]);
 
     const [count, setCount] = useState(chunkCount);
     const subCategories = useSelector(state =>
@@ -38,6 +42,9 @@ export default function useSubCategories(id, chunkCount = 0) {
             setCount(count + 1);
         }
     };
+    useEffect(() => {
+        getCategory();
+    }, [getCategory]);
     return {
         subCategories: previousCategories,
         onCategoriesEndReached,

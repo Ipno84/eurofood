@@ -1,5 +1,6 @@
 import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
 import {
+    GET_CATEGORY,
     GET_MAIN_SECTIONS,
     SET_CATEGORIES_ITEMS
 } from '../../constants/CategoriesConstants';
@@ -9,7 +10,8 @@ import { createTransform } from 'redux-persist';
 
 export const initialState = {
     items: {},
-    mainSections: []
+    mainSections: [],
+    isCategoryLoading: false
 };
 
 export const CategoriesReducerTransform = createTransform(
@@ -17,7 +19,10 @@ export const CategoriesReducerTransform = createTransform(
         return { ...inboundState };
     },
     outboundState => {
-        return { ...outboundState };
+        return {
+            ...outboundState,
+            isCategoryLoading: initialState.isCategoryLoading
+        };
     },
     { whitelist: REDUCER_NAME_CATEGORIES }
 );
@@ -48,6 +53,17 @@ const CategoriesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 mainSections: action.mainSections
+            };
+        case GET_CATEGORY:
+            return {
+                ...state,
+                isCategoryLoading: true
+            };
+        case GET_CATEGORY + SUCCESS:
+        case GET_CATEGORY + FAILURE:
+            return {
+                ...state,
+                isCategoryLoading: false
             };
         default:
             return state;

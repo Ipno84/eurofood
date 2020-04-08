@@ -1,43 +1,30 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import getAssociatedChunkedProductsSelector from '../../state/selectors/CategoriesSelectors/getAssociatedChunkedProductsSelector';
-import getAssociatedProductsCountSelector from '../../state/selectors/CategoriesSelectors/getAssociatedProductsCountSelector';
-import getMissingProductsAction from '../../state/actions/ProductsActions/getMissingProductsAction';
+import getAssociatedProductsSelector from '../../state/selectors/CategoriesSelectors/getAssociatedProductsSelector';
+import getCategoryAction from '../../state/actions/CategoriesActions/getCategoryAction';
+import isCategoryLoadingSelector from '../../state/selectors/CategoriesSelectors/isCategoryLoadingSelector';
 
-export default function useCategoryProducts(id, chunkCount = 0) {
+export default function useCategoryProducts(id) {
     const dispatch = useDispatch();
-    const getMissingProducts = useCallback(
-        ids => dispatch(getMissingProductsAction(ids)),
-        [dispatch]
-    );
 
-    const [count, setCount] = useState(chunkCount);
+    const getCategory = useCallback(() => dispatch(getCategoryAction({ id })), [
+        dispatch
+    ]);
+
     const products = useSelector(state =>
-        getAssociatedChunkedProductsSelector(state, id)
+        getAssociatedProductsSelector(state, id)
     );
-    const productsCount = useSelector(state =>
-        getAssociatedProductsCountSelector(state, id)
+    const isCategoryLoading = useSelector(state =>
+        isCategoryLoadingSelector(state)
     );
-    const currentChunk = products[count];
-    const previousProducts = products
-        .slice(0, count + 1)
-        .flat()
-        .filter(e => typeof e === 'object');
-    const currentChunkMissing = currentChunk
-        ? currentChunk.filter(e => typeof e !== 'object')
-        : [];
-    if (currentChunkMissing.length !== 0)
-        getMissingProducts(currentChunkMissing);
-    const isProductsChunking = productsCount !== previousProducts.length;
-    const onProductsEndReached = () => {
-        if (currentChunkMissing.length === 0) {
-            setCount(count + 1);
-        }
-    };
+    const onProductsEndReached = () => {};
+    useEffect(() => {
+        getCategory();
+    }, [getCategory]);
     return {
-        products: previousProducts,
+        products,
         onProductsEndReached,
-        isProductsChunking
+        isCategoryLoading
     };
 }

@@ -7,6 +7,7 @@ export default function searchProductsCall(payload) {
     const limit = payload.limit || 10;
     let params = {
         sort: '[name_ASC]',
+        'filter[active]': '[1]',
         display:
             '[id,name,link_rewrite,id_category_default,id_default_image,quantity,type,unit_price_ratio,reference,price,wholesale_price,description,description_short,active]'
     };

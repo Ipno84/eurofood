@@ -1,12 +1,10 @@
-import { orange, screenWidth } from './../../../../constants/ThemeConstants';
-
 import Container from './../../atoms/Container';
 import { FlatGrid } from 'react-native-super-grid';
 import ProductCard from '../../molecules/ProductCard';
-import Progress from './../../atoms/Progress';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
+import { screenWidth } from './../../../../constants/ThemeConstants';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const ProductsList = ({ title, items, onEndReached, isChunking }) => {
