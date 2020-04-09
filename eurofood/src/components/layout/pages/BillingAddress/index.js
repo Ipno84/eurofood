@@ -63,7 +63,7 @@ const BillingAddress = () => {
                             </ToggleAddressButton>
                         )}
                         onPressAddress={id => setSelectedBillingAddressId(id)}
-                        selectedId={selectedBillingAddressId}
+                        selectedId={Number(selectedBillingAddressId)}
                     />
                     <PlainButton
                         disabled={isOrderSubmitted}

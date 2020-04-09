@@ -31,7 +31,13 @@ const ModalSelector = ({
                         }}
                         onPressNotItem={onPressNotItem}
                         headerTitle={headerTitle}
-                        items={items}
+                        items={[
+                            {
+                                id: -1,
+                                name: 'Tutte le categorie'
+                            },
+                            ...items
+                        ]}
                         keyExtractor={(item, index) =>
                             keyExtractor
                                 ? keyExtractor(item, index)

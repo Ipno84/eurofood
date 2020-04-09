@@ -149,6 +149,9 @@ const CartReducer = (state = initialState, action) => {
                 ...state,
                 currentCart: {
                     ...state.currentCart,
+                    id: '',
+                    id_address_delivery: '',
+                    id_address_invoice: '',
                     associations: {
                         cart_rows: []
                     }

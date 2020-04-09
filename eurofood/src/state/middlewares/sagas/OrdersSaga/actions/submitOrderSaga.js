@@ -57,7 +57,7 @@ export default function* submitOrderSaga() {
                 id_currency: currentCart.id_currency,
                 id_lang: currentCart.id_lang,
                 id_customer: currentCart.id_customer,
-                id_carrier: currentCart.id_carrier,
+                id_carrier: currentCart.id_carrier ? currentCart.id_carrier : 7,
                 module: 'ps_cashondelivery',
                 id_shop_group: '1',
                 id_shop: '1',
@@ -70,15 +70,15 @@ export default function* submitOrderSaga() {
                 total_discounts: '0.000000',
                 total_discounts_tax_incl: '0.000000',
                 total_discounts_tax_excl: '0.000000',
-                total_paid: total_paid_tax_incl,
-                total_paid_real: total_paid_tax_incl,
-                total_products,
-                total_products_wt,
-                total_paid_tax_excl,
-                total_paid_tax_incl,
-                total_shipping,
-                total_shipping_tax_incl: total_shipping,
-                total_shipping_tax_excl: shipmentCost,
+                total_paid: roundNumber(total_paid_tax_incl),
+                total_paid_real: roundNumber(total_paid_tax_incl),
+                total_products: roundNumber(total_products),
+                total_products_wt: roundNumber(total_products_wt),
+                total_paid_tax_excl: roundNumber(total_paid_tax_excl),
+                total_paid_tax_incl: roundNumber(total_paid_tax_incl),
+                total_shipping: roundNumber(total_shipping),
+                total_shipping_tax_incl: roundNumber(total_shipping),
+                total_shipping_tax_excl: roundNumber(shipmentCost),
                 carrier_tax_rate: '22.000',
                 total_wrapping: '0.000000',
                 total_wrapping_tax_incl: '0.000000',
@@ -164,4 +164,8 @@ function* getOrderRowData(cart_row) {
         unit_price_tax_excl: salePrice ? salePrice : productPrice,
         unit_price_tax_incl: parseFloat(priceWithTaxes).toFixed(6)
     };
+}
+
+function roundNumber(num) {
+    return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(6);
 }

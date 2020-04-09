@@ -57,10 +57,10 @@ const ShippingAddress = () => {
                             </ToggleAddressButton>
                         )}
                         onPressAddress={id => setSelectedShippingAddressId(id)}
-                        selectedId={selectedShippingAddressId}
+                        selectedId={Number(selectedShippingAddressId)}
                     />
                     <PlainButton
-                        disabled={!selectedShippingAddressId}
+                        disabled={!Boolean(parseInt(selectedShippingAddressId))}
                         onPress={() =>
                             selectedShippingAddressId &&
                             navigate(ROUTE_NAME_BILLING_ADDRESS)

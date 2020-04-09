@@ -13,7 +13,7 @@ const AddressItem = ({ item, onPress, isSelected }) => {
             underlayColor="#00000000"
             onPress={onPress}>
             <CheckWrapper>
-                <CheckInner>
+                <CheckInner pointerEvents="none">
                     <CheckBox
                         value={isSelected}
                         tintColors={{

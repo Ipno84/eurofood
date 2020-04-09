@@ -21,7 +21,6 @@ const AddressesList = ({
         getCurrentUserAddress();
     }, [getCurrentUserAddress]);
     const addresses = useSelector(state => getAddressesSelector(state));
-    console.log('onPressAddress', onPressAddress);
     return (
         <FlatList
             ListHeaderComponent={() => {
