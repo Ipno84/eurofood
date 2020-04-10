@@ -17,6 +17,7 @@ const Home = () => {
     return (
         <SafeAreaView>
             <FlatList
+                scrollEventThrottle={16}
                 data={templateReal}
                 contentContainerStyle={{ paddingBottom: 8 }}
                 onViewableItemsChanged={e => {

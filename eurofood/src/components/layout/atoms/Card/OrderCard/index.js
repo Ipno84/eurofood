@@ -11,6 +11,7 @@ import OrderCardTitle from './OrderCardTitle';
 import OrderCardWrapper from './OrderCardWrapper';
 import { ROUTE_NAME_ORDER } from '../../../../../constants/RouteConstants';
 import Touchable from './../../Button/Touchable';
+import { View } from 'react-native';
 import backorderAction from '../../../../../state/actions/CartActions/backorderAction';
 import { orange } from './../../../../../constants/ThemeConstants';
 import useAppNavigation from '../../../../../hooks/navigation/useAppNavigation';
@@ -72,26 +73,31 @@ const OrderCard = ({ id, reference, date, current_state }) => {
             </OrderCardInner>
             <OrderCardButtonsWrapper>
                 <ButtonSeparator />
-                <Touchable onPress={() => navigate(ROUTE_NAME_ORDER, { id })}>
-                    <OrderCardButtonWrapper>
-                        <Icon
-                            size={16}
-                            name="card-text-outline"
-                            color={orange.toString()}
-                        />
-                        <OrderCardButtonText>Dettagli</OrderCardButtonText>
-                    </OrderCardButtonWrapper>
-                </Touchable>
-                <Touchable onPress={() => backorder()}>
-                    <OrderCardButtonWrapper>
-                        <Icon
-                            size={16}
-                            name="repeat"
-                            color={orange.toString()}
-                        />
-                        <OrderCardButtonText>Riordina</OrderCardButtonText>
-                    </OrderCardButtonWrapper>
-                </Touchable>
+                <View style={{ flex: 1 }}>
+                    <Touchable
+                        onPress={() => navigate(ROUTE_NAME_ORDER, { id })}>
+                        <OrderCardButtonWrapper>
+                            <Icon
+                                size={16}
+                                name="card-text-outline"
+                                color={orange.toString()}
+                            />
+                            <OrderCardButtonText>Dettagli</OrderCardButtonText>
+                        </OrderCardButtonWrapper>
+                    </Touchable>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <Touchable onPress={() => backorder()}>
+                        <OrderCardButtonWrapper>
+                            <Icon
+                                size={16}
+                                name="repeat"
+                                color={orange.toString()}
+                            />
+                            <OrderCardButtonText>Riordina</OrderCardButtonText>
+                        </OrderCardButtonWrapper>
+                    </Touchable>
+                </View>
             </OrderCardButtonsWrapper>
         </OrderCardWrapper>
     );

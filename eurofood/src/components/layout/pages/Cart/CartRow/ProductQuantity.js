@@ -85,7 +85,7 @@ const InputNumber = styled(Input)`
     font-family: ${({ theme }) => theme.fonts.roboto(700)};
     color: ${({ theme }) => theme.colors.gray(1)};
     height: 35px;
-    line-height: 30px;
+    /* line-height: 30px; */
     padding: 0;
     flex: 1;
 `;

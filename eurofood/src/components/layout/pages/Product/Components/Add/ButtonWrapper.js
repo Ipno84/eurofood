@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 const ButtonWrapper = styled.View`
     width: 36px;
+    flex: 1;
     align-items: center;
     justify-content: center;
     border-color: ${({ theme }) => theme.colors.alterGray(1)};

@@ -30,7 +30,6 @@ const Profile = () => {
     return (
         <SafeAreaView>
             <SectionList
-                contentInset
                 sections={sections}
                 stickySectionHeadersEnabled={true}
                 ListHeaderComponent={() => (

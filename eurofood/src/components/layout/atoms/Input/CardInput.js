@@ -16,6 +16,7 @@ const CardInput = styled(Input)`
     margin-top: 16px;
     margin-right: 16px;
     margin-left: 16px;
+    min-height: 42px;
     flex: 1;
 `;
 

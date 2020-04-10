@@ -14,13 +14,13 @@ const ModalSelector = ({
     keyExtractor
 }) => {
     return (
-        <SafeAreaView>
-            <Modal
-                animationType="fade"
-                transparent={true}
-                hardwareAccelerated={true}
-                visible={visibility}
-                onRequestClose={() => setVisibility(false)}>
+        <Modal
+            animationType="fade"
+            transparent={true}
+            hardwareAccelerated={true}
+            visible={visibility}
+            onRequestClose={() => setVisibility(false)}>
+            <SafeAreaView>
                 <ModalWrapper onPress={() => setVisibility(false)}>
                     <SelectionList
                         onScrollToEnd={() => setVisibility(false)}
@@ -45,8 +45,8 @@ const ModalSelector = ({
                         }
                     />
                 </ModalWrapper>
-            </Modal>
-        </SafeAreaView>
+            </SafeAreaView>
+        </Modal>
     );
 };
 

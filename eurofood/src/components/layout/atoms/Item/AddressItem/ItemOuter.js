@@ -1,3 +1,4 @@
+import { Alert, View } from 'react-native';
 import {
     ROUTE_NAME_EDIT_ADDRESS,
     ROUTE_NAME_PROFILE
@@ -6,7 +7,6 @@ import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components/native';
 
 import AddressItemWrapper from './AddressItemWrapper';
-import { Alert } from 'react-native';
 import ItemInner from './ItemInner';
 import Touchable from './../../Button/Touchable';
 import deleteAddressAction from './../../../../../state/actions/AddressesActions/deleteAddressAction';
@@ -31,38 +31,42 @@ const ItemOuter = ({ item, isSelected }) => {
             <ItemInner item={item} />
             <Footer>
                 <Separator />
-                <Touchable
-                    onPress={() => {
-                        editAddress();
-                        if (route && route.name === ROUTE_NAME_PROFILE) {
-                            navigate(ROUTE_NAME_EDIT_ADDRESS);
-                        }
-                    }}>
-                    <ButtonWrapper isFirst={true}>
-                        <ButtonText>Modifica</ButtonText>
-                    </ButtonWrapper>
-                </Touchable>
-                <Touchable
-                    onPress={() => {
-                        Alert.alert(
-                            'Attenzione',
-                            `Sei sicuro di voler rimuovre quest'indirizzo?`,
-                            [
-                                {
-                                    text: 'No, annulla',
-                                    style: 'cancel'
-                                },
-                                {
-                                    text: 'Si, procedi',
-                                    onPress: () => deleteAddress()
-                                }
-                            ]
-                        );
-                    }}>
-                    <ButtonWrapper>
-                        <ButtonText>Elimina</ButtonText>
-                    </ButtonWrapper>
-                </Touchable>
+                <View style={{ flex: 1 }}>
+                    <Touchable
+                        onPress={() => {
+                            editAddress();
+                            if (route && route.name === ROUTE_NAME_PROFILE) {
+                                navigate(ROUTE_NAME_EDIT_ADDRESS);
+                            }
+                        }}>
+                        <ButtonWrapper isFirst={true}>
+                            <ButtonText>Modifica</ButtonText>
+                        </ButtonWrapper>
+                    </Touchable>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <Touchable
+                        onPress={() => {
+                            Alert.alert(
+                                'Attenzione',
+                                `Sei sicuro di voler rimuovre quest'indirizzo?`,
+                                [
+                                    {
+                                        text: 'No, annulla',
+                                        style: 'cancel'
+                                    },
+                                    {
+                                        text: 'Si, procedi',
+                                        onPress: () => deleteAddress()
+                                    }
+                                ]
+                            );
+                        }}>
+                        <ButtonWrapper>
+                            <ButtonText>Elimina</ButtonText>
+                        </ButtonWrapper>
+                    </Touchable>
+                </View>
             </Footer>
         </AddressItemWrapper>
     );
@@ -75,6 +79,7 @@ const Footer = styled.View`
     margin-left: -16px;
     margin-right: -16px;
     margin-bottom: -4px;
+    flex: 1;
 `;
 
 const ButtonWrapper = styled.View`

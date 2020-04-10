@@ -16,7 +16,8 @@ const CategoriesList = ({
     title,
     items,
     onEndReached,
-    isChunking
+    isChunking,
+    noAll
 }) => {
     const { push } = useAppNavigation();
     return (
@@ -52,6 +53,7 @@ const CategoriesList = ({
                 );
             }}
             ListFooterComponent={() => {
+                if (noAll) return null;
                 return (
                     <ViewAll
                         onPress={() => {

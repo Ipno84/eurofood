@@ -1,4 +1,4 @@
-import { FlatList, Modal } from 'react-native';
+import { FlatList, Modal, SafeAreaView } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -56,25 +56,27 @@ const Select = ({
                 animationType="slide"
                 visible={selectModalOpen}
                 onRequestClose={() => setSelectModalOpen(false)}>
-                <Bar>
-                    <BarText>{placeholder}</BarText>
-                </Bar>
-                <FlatList
-                    data={formatOptions(options)}
-                    renderItem={({ item }) => (
-                        <SelectItem
-                            id={item}
-                            options={options}
-                            onPress={() => {
-                                setAddressFormKey(item);
-                                setSelectModalOpen(false);
-                            }}
-                            isSelected={value === item}
-                        />
-                    )}
-                    keyExtractor={item => item}
-                    ItemSeparatorComponent={() => <Separator />}
-                />
+                <SafeAreaView>
+                    <Bar>
+                        <BarText>{placeholder}</BarText>
+                    </Bar>
+                    <FlatList
+                        data={formatOptions(options)}
+                        renderItem={({ item }) => (
+                            <SelectItem
+                                id={item}
+                                options={options}
+                                onPress={() => {
+                                    setAddressFormKey(item);
+                                    setSelectModalOpen(false);
+                                }}
+                                isSelected={value === item}
+                            />
+                        )}
+                        keyExtractor={item => item}
+                        ItemSeparatorComponent={() => <Separator />}
+                    />
+                </SafeAreaView>
             </Modal>
         </>
     );

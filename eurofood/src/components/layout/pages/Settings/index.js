@@ -8,13 +8,14 @@ import Separator from './../../templates/DrawerContent/Separator';
 import Spacer from './../../atoms/Spacer';
 import TitleWrapper from './../../atoms/Text/TitleWrapper';
 import Touchable from './../../atoms/Button/Touchable';
+import { getReadableVersion } from 'react-native-device-info';
 
 const sections = [
     {
         title: 'Informazioni',
         data: [
             {
-                label: `Eurofood version ${APP_VERSION}`,
+                label: `Eurofood version ${getReadableVersion()}`,
                 href: ''
             }
         ]

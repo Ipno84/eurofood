@@ -7,7 +7,11 @@ const Categories = () => {
     const mainSections = useMainSections();
     return (
         <SafeAreaView>
-            <CategoriesList items={mainSections} title="Categorie" />
+            <CategoriesList
+                noAll={true}
+                items={mainSections}
+                title="Categorie"
+            />
         </SafeAreaView>
     );
 };

@@ -1,4 +1,5 @@
-import CheckBox from '@react-native-community/checkbox';
+// import CheckBox from '@react-native-community/checkbox';
+import CheckBox from './../../CheckBox';
 import ItemOuter from './ItemOuter';
 import React from 'react';
 import { TouchableHighlight } from 'react-native';
