@@ -18,6 +18,9 @@ const CatImgMap = {
     12: catImg.salumi,
     19: catImg.farinePanature,
     49: catImg.bevande,
+    50: catImg.inEvidenza,
+    51: catImg.offerte,
+    52: catImg.nuoviArrivi,
     53: catImg.carni,
     54: catImg.condimenti,
     58: catImg.latticini,
@@ -29,7 +32,11 @@ const CatImgMap = {
     68: catImg.piattiProntiPanini,
     69: catImg.stuzzicherie,
     70: catImg.vegano,
-    71: catImg.vegetali
+    71: catImg.vegetali,
+    86: catImg.superOfferte,
+    100: catImg.bar,
+    102: catImg.pizzerie,
+    103: catImg.hotel
 };
 
 export default function useCategoryDefaultImage(id) {
