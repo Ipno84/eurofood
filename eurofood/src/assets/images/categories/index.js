@@ -15,6 +15,7 @@ import pastaRiso from './pasta-riso.png';
 import pesce from './pesce.png';
 import piattiProntiPanini from './piatti-pronti-panini.png';
 import pizzerie from './pizzerie.png';
+import ristoranti from './ristoranti.png';
 import salumi from './salumi.png';
 import stuzzicherie from './stuzzicherie.png';
 import superOfferte from './super-offerte.png';
@@ -43,5 +44,6 @@ export {
     nuoviArrivi,
     offerte,
     pizzerie,
-    superOfferte
+    superOfferte,
+    ristoranti
 };

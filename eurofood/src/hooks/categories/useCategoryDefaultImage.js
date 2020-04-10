@@ -35,6 +35,7 @@ const CatImgMap = {
     71: catImg.vegetali,
     86: catImg.superOfferte,
     100: catImg.bar,
+    101: catImg.ristoranti,
     102: catImg.pizzerie,
     103: catImg.hotel
 };
