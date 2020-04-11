@@ -25,21 +25,8 @@
             }
         },
         {
-            "component": "VisibilitySensor",
-            "keyCheck": "homeBanner",
-            "props": {
-                "height": 200,
-                "children": [
-                    {
-                        "component": "HomeBanner"
-                    }
-                ],
-                "skeleton": [
-                    {
-                        "component": "SkeletonHomeBanner"
-                    }
-                ]
-            }
+            "component": "HomeBanner",
+            "keyCheck": "HomeBanner"
         },
         {
             "component": "VisibilitySensor",
@@ -200,21 +187,8 @@
             }
         },
         {
-            "component": "VisibilitySensor",
-            "keyCheck": "infoBlock",
-            "props": {
-                "height": 292,
-                "children": [
-                    {
-                        "component": "Infoblock"
-                    }
-                ],
-                "skeleton": [
-                    {
-                        "component": "SkeletonInfoBlock"
-                    }
-                ]
-            }
+            "component": "Infoblock",
+            "keyCheck": "Infoblock"
         }
     ]
 }

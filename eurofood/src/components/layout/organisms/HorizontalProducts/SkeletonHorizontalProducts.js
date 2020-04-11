@@ -22,6 +22,7 @@ export default SkeletonHorizontalProducts;
 
 const Wrapper = styled.View`
     height: 266px;
+    margin-top: 16px;
 `;
 
 const Title = styled.View`
