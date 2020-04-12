@@ -1,3 +1,12 @@
+import React from 'react';
 import { TouchableNativeFeedback } from 'react-native';
 
-export default TouchableNativeFeedback;
+const Touchable = ({ style, ...props }) => {
+    return (
+        <TouchableNativeFeedback {...props}>
+            {props.children}
+        </TouchableNativeFeedback>
+    );
+};
+
+export default Touchable;

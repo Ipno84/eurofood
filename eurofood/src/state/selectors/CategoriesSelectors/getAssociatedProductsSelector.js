@@ -9,9 +9,12 @@ export default createCachedSelector(
         (state, id) => id,
         (state, id, count = 0) => count
     ],
-    (productsIds, items) => {
+    (productsIds, items, id, count) => {
         if (productsIds) {
-            return productsIds.map(e => (items && items[e] ? items[e] : e));
+            const products = productsIds.map(e =>
+                items && items[e] ? items[e] : e
+            );
+            return products;
         }
         return null;
     }

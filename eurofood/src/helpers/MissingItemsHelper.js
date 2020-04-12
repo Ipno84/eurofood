@@ -16,37 +16,27 @@ class MissingItemsHelper {
     timeoutValue = 500;
 
     constructor(payload) {
-        console.log(instance);
         if (!instance) instance = this;
 
-        if (payload && payload.products) {
-            console.log(this.products, payload.products);
+        if (payload && payload.products)
             this.products = [...this.products, ...payload.products];
-        }
 
-        if (payload && payload.categories) {
+        if (payload && payload.categories)
             this.categories = [...this.categories, ...payload.categories];
-        }
 
-        if (payload && payload.orders) {
+        if (payload && payload.orders)
             this.orders = [...this.orders, ...payload.orders];
-        }
 
         this.products = this.products.filter(onlyUniqueFilter);
         this.categories = this.categories.filter(onlyUniqueFilter);
         this.orders = this.orders.filter(onlyUniqueFilter);
 
-        if (this.products && this.products.length > 0) {
-            this.onMissingProducts();
-        }
+        if (this.products && this.products.length > 0) this.onMissingProducts();
 
-        if (this.categories && this.categories.length > 0) {
+        if (this.categories && this.categories.length > 0)
             this.onMissingCategories();
-        }
 
-        if (this.orders && this.orders.length > 0) {
-            this.onMissingOrders();
-        }
+        if (this.orders && this.orders.length > 0) this.onMissingOrders();
 
         return instance;
     }
@@ -56,18 +46,15 @@ class MissingItemsHelper {
     }
 
     getProductItems() {
-        const state = this.getState();
-        return getProductsItemsSelector(state);
+        return getProductsItemsSelector(this.getState());
     }
 
     getCategoryItems() {
-        const state = this.getState();
-        return getCategoriesItemsSelector(state);
+        return getCategoriesItemsSelector(this.getState());
     }
 
     getOrderItems() {
-        const state = this.getState();
-        return getOrdersItemsSelector(state);
+        return getOrdersItemsSelector(this.getState());
     }
 
     getProductItemsId() {
