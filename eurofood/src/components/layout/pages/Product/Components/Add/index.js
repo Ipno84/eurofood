@@ -12,15 +12,18 @@ import InputNumber from './InputNumber';
 import InputWrapper from './InputWrapper';
 import Label from './Label';
 import QuantityWrapper from './QuantityWrapper';
+import { ROUTE_NAME_LOGIN } from '../../../../../../constants/RouteConstants';
 import Touchable from './../../../../atoms/Button/Touchable';
 import addToCartAction from './../../../../../../state/actions/CartActions/addToCartAction';
 import canAddItemToCurrentCartSelector from './../../../../../../state/selectors/CartSelectors/canAddItemToCurrentCartSelector';
 import getProductStockQuantitySelector from './../../../../../../state/selectors/ProductsSelectors/getProductStockQuantitySelector';
 import isProductItemActiveSelector from './../../../../../../state/selectors/ProductsSelectors/isProductItemActiveSelector';
 import isUserLoggedInSelector from './../../../../../../state/selectors/ClientSelectors/isUserLoggedInSelector';
+import useAppNavigation from '../../../../../../hooks/navigation/useAppNavigation';
 import { white } from './../../../../../../constants/ThemeConstants';
 
 const Add = ({ id }) => {
+    const { navigate } = useAppNavigation();
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
     const addToCart = useCallback(
@@ -52,7 +55,7 @@ const Add = ({ id }) => {
         if (inputQuantity <= 0) inputQuantity = 1;
         setQuantity(inputQuantity);
     };
-    if (!isProductItemActive || !isUserLoggedIn) return null;
+    if (!isProductItemActive) return null;
     return (
         <AddWrapper>
             <QuantityWrapper>
@@ -76,9 +79,13 @@ const Add = ({ id }) => {
                 </InputWrapper>
             </QuantityWrapper>
             <Touchable
-                onPress={() =>
-                    canAddItemToCurrentCart && addToCart({ id, quantity })
-                }>
+                onPress={() => {
+                    if (canAddItemToCurrentCart && isUserLoggedIn) {
+                        addToCart({ id, quantity });
+                    } else if (!isUserLoggedIn) {
+                        navigate(ROUTE_NAME_LOGIN);
+                    }
+                }}>
                 <AddToCartContainer disabled={!canAddItemToCurrentCart}>
                     <AddToCartWrapper>
                         <Icon

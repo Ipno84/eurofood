@@ -22,12 +22,13 @@ const Product = ({ route }) => {
                 <Breadcrumb />
                 <ProductWrapper>
                     <ProductName id={route.params.id} />
+                    <ProductDescription id={route.params.id} />
                     <ProductImage id={route.params.id} />
                     <Price id={route.params.id} />
                     <ProductAvailability id={route.params.id} />
                     <Add id={route.params.id} />
                     <ProductInfo id={route.params.id} />
-                    <ProductDescription id={route.params.id} />
+                    <ProductDescription long={true} id={route.params.id} />
                     <Share id={route.params.id} />
                 </ProductWrapper>
             </ScrollView>
