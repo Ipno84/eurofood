@@ -19,31 +19,32 @@ const SelectionList = ({
     const [reachedTop, setReachedTop] = useState(false);
     return (
         <SectionList
+            overScrollMode="never"
             stickySectionHeadersEnabled={true}
-            onScroll={e => {
-                if (e.nativeEvent.contentOffset.y <= height && reachedTop) {
-                    setReachedTop(false);
-                } else if (
-                    e.nativeEvent.contentOffset.y > height &&
-                    !reachedTop
-                ) {
-                    setReachedTop(true);
-                }
-            }}
-            onMomentumScrollEnd={e => {
-                if (e.nativeEvent.contentOffset.y === 0 && onScrollToEnd) {
-                    onScrollToEnd();
-                    if (onPressNotItem) onPressNotItem();
-                }
-            }}
-            ListHeaderComponent={() => (
-                <ListHeader
-                    onPress={() => {
-                        if (onPressHeader) onPressHeader();
-                        if (onPressNotItem) onPressNotItem();
-                    }}
-                />
-            )}
+            // onScroll={e => {
+            //     if (e.nativeEvent.contentOffset.y <= height && reachedTop) {
+            //         setReachedTop(false);
+            //     } else if (
+            //         e.nativeEvent.contentOffset.y > height &&
+            //         !reachedTop
+            //     ) {
+            //         setReachedTop(true);
+            //     }
+            // }}
+            // onMomentumScrollEnd={e => {
+            //     if (e.nativeEvent.contentOffset.y === 0 && onScrollToEnd) {
+            //         onScrollToEnd();
+            //         if (onPressNotItem) onPressNotItem();
+            //     }
+            // }}
+            // ListHeaderComponent={() => (
+            //     <ListHeader
+            //         onPress={() => {
+            //             if (onPressHeader) onPressHeader();
+            //             if (onPressNotItem) onPressNotItem();
+            //         }}
+            //     />
+            // )}
             sections={[
                 {
                     title: headerTitle ? headerTitle : null,
@@ -55,9 +56,6 @@ const SelectionList = ({
                     onPress={() => onPressItem && onPressItem(item)}
                     text={item ? item.name : ''}
                 />
-            )}
-            renderSectionHeader={({ section: { title } }) => (
-                <ListSectionHeader shadow={reachedTop} text={title} />
             )}
             keyExtractor={(item, index) =>
                 keyExtractor ? keyExtractor(item, index) : String(index)

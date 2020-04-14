@@ -2,6 +2,7 @@ import { FlatList, SafeAreaView } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import CategoriesModalSelector from '../../organisms/CategoriesModalSelector';
 import generateTemplate from './../../../../helpers/generateTemplate';
 import getHomeTemplateSelector from './../../../../state/selectors/SettingsSelectors/getHomeTemplateSelector';
 // import homeTemplate from './../../../../assets/templates/homeTemplate';
@@ -36,6 +37,7 @@ const Home = () => {
                 }
                 viewabilityConfig={{ itemVisiblePercentThreshold: 0 }}
             />
+            <CategoriesModalSelector />
         </SafeAreaView>
     );
 };

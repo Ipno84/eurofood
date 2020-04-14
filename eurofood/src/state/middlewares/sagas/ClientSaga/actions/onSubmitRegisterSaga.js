@@ -113,5 +113,6 @@ export default function* onSubmitRegisterSaga() {
                 put(submitRegisterAction({ error: true }))
             ]);
         }
+        yield put(submitRegisterAction({ error: true }));
     }
 }

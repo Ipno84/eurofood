@@ -1,9 +1,5 @@
-import { createSelector } from 'reselect';
-import getCategoriesItemsSelector from './getCategoriesItemsSelector';
-import getMainSectionsIdsSelector from './getMainSectionsIdsSelector';
+import { REDUCER_NAME_CATEGORIES } from '../../../constants/StoreConstants';
 
-export default createSelector(
-    [getCategoriesItemsSelector, getMainSectionsIdsSelector],
-    (items, mainSections) =>
-        mainSections.map(id => (items && items[id] ? items[id] : null))
-);
+export default function getMainSectionsSelector(state) {
+    return state[REDUCER_NAME_CATEGORIES].mainSections;
+}

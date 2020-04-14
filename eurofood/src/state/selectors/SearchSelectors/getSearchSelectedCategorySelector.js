@@ -1,11 +1,25 @@
 import { createSelector } from 'reselect';
 import getCategoriesItemsSelector from './../CategoriesSelectors/getCategoriesItemsSelector';
+import getMainSectionsSelector from './../CategoriesSelectors/getMainSectionsSelector';
 import getSearchSelectedCategoryIdSelector from './getSearchSelectedCategoryIdSelector';
 
 export default createSelector(
-    [getSearchSelectedCategoryIdSelector, getCategoriesItemsSelector],
-    (selectedCategoryId, items) =>
-        selectedCategoryId && items && items[selectedCategoryId]
-            ? items[selectedCategoryId]
-            : null
+    [
+        getSearchSelectedCategoryIdSelector,
+        getCategoriesItemsSelector,
+        getMainSectionsSelector
+    ],
+    (selectedCategoryId, items, mainSections) => {
+        if (selectedCategoryId && selectedCategoryId !== -1) {
+            if (items && items[selectedCategoryId])
+                return items[selectedCategoryId];
+            if (mainSections && mainSections.length) {
+                const category = mainSections.find(
+                    e => e.id === selectedCategoryId
+                );
+                if (category) return category;
+            }
+        }
+        return null;
+    }
 );

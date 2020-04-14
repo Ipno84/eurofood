@@ -14,7 +14,9 @@ const ProductCard = ({ id, inHorizontal, isFirst, isInRow }) => {
     if (!id) return <SkeletonProductCard />;
     return (
         <View style={{ flex: 1, height: 220 }}>
-            <Touchable onPress={() => navigate(ROUTE_NAME_PRODUCT, { id })}>
+            <Touchable
+                style={{ flex: 1 }}
+                onPress={() => navigate(ROUTE_NAME_PRODUCT, { id })}>
                 <ProductWrapper
                     inHorizontal={inHorizontal}
                     isFirst={isFirst}

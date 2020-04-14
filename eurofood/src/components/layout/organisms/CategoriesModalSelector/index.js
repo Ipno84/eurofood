@@ -3,33 +3,38 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ModalSelector from './../../molecules/ModalSelector';
 import getMainSectionsSelector from '../../../../state/selectors/CategoriesSelectors/getMainSectionsSelector';
+import getSearchModalVisibilitySelector from '../../../../state/selectors/SearchSelectors/getSearchModalVisibilitySelector';
+import setSearchModalVisibilityAction from '../../../../state/actions/SearchActions/setSearchModalVisibilityAction';
 import setSearchSelectedCategoryIdAction from '../../../../state/actions/SearchActions/setSearchSelectedCategoryIdAction';
 
-const CategoriesModalSelector = ({ visibility, setVisibility }) => {
+const CategoriesModalSelector = () => {
     const dispatch = useDispatch();
     const mainSections = useSelector(state => getMainSectionsSelector(state));
+    const searchModalVisibility = useSelector(state =>
+        getSearchModalVisibilitySelector(state)
+    );
     const setSearchSelectedCategoryId = useCallback(
         id => dispatch(setSearchSelectedCategoryIdAction(id)),
         [dispatch]
     );
+    const setSearchModalVisibility = useCallback(
+        searchModalVisibility =>
+            dispatch(setSearchModalVisibilityAction(searchModalVisibility)),
+        [dispatch]
+    );
     return (
         <ModalSelector
-            visibility={visibility}
-            setVisibility={setVisibility}
-            onPressItem={item => {
-                if (item) {
-                    setSearchSelectedCategoryId(item.id);
-                    setVisibility(false);
-                }
-            }}
-            onPressNotItem={() => {
-                setSearchSelectedCategoryId(null);
-            }}
+            visibility={searchModalVisibility}
+            setVisibility={setSearchModalVisibility}
+            onPressItem={id => setSearchSelectedCategoryId(id)}
             headerTitle="Seleziona una categoria"
-            items={mainSections}
-            keyExtractor={(item, index) =>
-                item ? String(item.id) : String(index)
-            }
+            items={[
+                {
+                    id: -1,
+                    name: 'Tutte le categorie'
+                },
+                ...mainSections
+            ]}
         />
     );
 };
