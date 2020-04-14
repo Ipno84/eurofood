@@ -2,6 +2,7 @@ import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
 import {
     GET_SEARCH_RESULTS,
     RESET_SEARCH,
+    SET_SEARCH_MODAL_VISIBILITY,
     SET_SEARCH_RESULTS,
     SET_SEARCH_SELECTED_CATEGORY_ID,
     SET_SEARCH_TEXT
@@ -15,7 +16,8 @@ export const initialState = {
     selectedCategoryId: -1,
     results: [],
     isSearching: false,
-    count: 0
+    count: 0,
+    searchModalVisibility: false
 };
 
 export const SearchReducerTransform = createTransform(
@@ -29,7 +31,8 @@ export const SearchReducerTransform = createTransform(
             selectedCategoryId: initialState.selectedCategoryId,
             results: initialState.results,
             isSearching: initialState.isSearching,
-            count: initialState.count
+            count: initialState.count,
+            searchModalVisibility: initialState.searchModalVisibility
         };
     },
     { whitelist: REDUCER_NAME_SEARCH }
@@ -37,6 +40,11 @@ export const SearchReducerTransform = createTransform(
 
 const SearchReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_SEARCH_MODAL_VISIBILITY:
+            return {
+                ...state,
+                searchModalVisibility: action.searchModalVisibility
+            };
         case SET_SEARCH_TEXT:
             return {
                 ...state,
@@ -47,7 +55,8 @@ const SearchReducer = (state = initialState, action) => {
                 ...state,
                 selectedCategoryId: action.selectedCategoryId
                     ? action.selectedCategoryId
-                    : initialState.selectedCategoryId
+                    : initialState.selectedCategoryId,
+                searchModalVisibility: false
             };
         case SET_SEARCH_RESULTS:
             return {
@@ -82,7 +91,8 @@ const SearchReducer = (state = initialState, action) => {
                 isSearching: initialState.isSearching,
                 selectedCategoryId: initialState.selectedCategoryId,
                 searchText: initialState.searchText,
-                count: initialState.count
+                count: initialState.count,
+                searchModalVisibility: false
             };
         default:
             return state;
