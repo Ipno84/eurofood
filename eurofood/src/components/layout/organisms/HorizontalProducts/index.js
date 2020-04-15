@@ -6,7 +6,7 @@ import SkeletonHorizontalProducts from './SkeletonHorizontalProducts';
 import Title from './Title';
 import useCategoryProducts from '../../../../hooks/products/useCategoryProducts';
 
-const HorizontalProducts = ({ id }) => {
+const HorizontalProducts = ({ id, bgColor }) => {
     const {
         products,
         onProductsEndReached,
@@ -22,9 +22,11 @@ const HorizontalProducts = ({ id }) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{
-                    paddingTop: 18,
+                    marginTop: 12,
+                    paddingTop: 6,
                     paddingRight: 16,
-                    paddingBottom: 2
+                    paddingBottom: 2,
+                    backgroundColor: bgColor ? bgColor : '#00000000'
                 }}
                 onEndReached={onProductsEndReached}
                 renderItem={({ item, index }) => {

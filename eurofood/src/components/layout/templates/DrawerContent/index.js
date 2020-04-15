@@ -43,14 +43,14 @@ const items = [
         },
         onlyLogged: false
     },
-    {
-        id: 'categories',
-        label: 'Scegli per categoria',
-        action: ({ navigate }) => {
-            navigate(ROUTE_NAME_CATEGORIES);
-        },
-        onlyLogged: false
-    },
+    // {
+    //     id: 'categories',
+    //     label: 'Scegli per categoria',
+    //     action: ({ navigate }) => {
+    //         navigate(ROUTE_NAME_CATEGORIES);
+    //     },
+    //     onlyLogged: false
+    // },
     {
         id: 'myOrders',
         label: 'I miei ordini',

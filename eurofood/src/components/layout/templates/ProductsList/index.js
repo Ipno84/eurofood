@@ -7,19 +7,28 @@ import SectionTitle from './../../atoms/Text/SectionTitle';
 import { screenWidth } from './../../../../constants/ThemeConstants';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
-const ProductsList = ({ title, items, onEndReached, isChunking }) => {
+const ProductsList = ({
+    title,
+    items,
+    onEndReached,
+    isChunking,
+    headerComponent
+}) => {
     const { navigate } = useAppNavigation();
     return (
         <FlatGrid
-            ListHeaderComponent={() => (
-                <>
-                    <Container>
-                        <SectionTitle bigger={true} fix={true}>
-                            {title}
-                        </SectionTitle>
-                    </Container>
-                </>
-            )}
+            ListHeaderComponent={() => {
+                if (headerComponent) return headerComponent();
+                if (title)
+                    return (
+                        <Container>
+                            <SectionTitle bigger={true} fix={true}>
+                                {title}
+                            </SectionTitle>
+                        </Container>
+                    );
+                return null;
+            }}
             itemContainerStyle={{ paddingTop: 4, marginBottom: -4 }}
             itemDimension={screenWidth / 3}
             onEndReached={onEndReached}

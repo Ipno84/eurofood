@@ -8,10 +8,10 @@ import { bevande } from './../../../../assets/images/categories';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const CategoriesHorizontalSelector = ({ categories, title }) => {
-    const { navigate } = useAppNavigation();
+    const { push } = useAppNavigation();
     return (
         <HorizontalScollerContainer plainBackground={true} shadow={true}>
-            {categories && categories.length > 0 ? (
+            {categories && categories.length > 0 && title ? (
                 <InScreenTitle>{title}</InScreenTitle>
             ) : null}
             <HorizontalList
@@ -25,7 +25,7 @@ const CategoriesHorizontalSelector = ({ categories, title }) => {
                             id={item.id}
                             onPress={() => {
                                 if (item) {
-                                    navigate(ROUTE_NAME_CATEGORY, {
+                                    push(ROUTE_NAME_CATEGORY, {
                                         id: item.id
                                     });
                                 }

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CategoriesModalSelector from '../../organisms/CategoriesModalSelector';
 import generateTemplate from './../../../../helpers/generateTemplate';
 import getHomeTemplateSelector from './../../../../state/selectors/SettingsSelectors/getHomeTemplateSelector';
-// import homeTemplate from './../../../../assets/templates/homeTemplate';
+import homeTemplate from './../../../../assets/templates/homeTemplate';
 import setHomeViewableItemsAction from './../../../../state/actions/SettingsActions/setHomeViewableItemsAction';
 
 const Home = () => {

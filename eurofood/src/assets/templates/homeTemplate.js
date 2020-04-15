@@ -190,7 +190,8 @@ export default [
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        id: 100
+                        id: 100,
+                        bgColor: '#ff0000'
                     }
                 }
             ],
@@ -206,7 +207,8 @@ export default [
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        id: 101
+                        id: 101,
+                        bgColor: '#ff0000'
                     }
                 }
             ],
@@ -222,7 +224,8 @@ export default [
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        id: 102
+                        id: 102,
+                        bgColor: '#ff0000'
                     }
                 }
             ],
@@ -238,7 +241,8 @@ export default [
                 {
                     component: 'HorizontalProducts',
                     props: {
-                        id: 103
+                        id: 103,
+                        bgColor: '#ff0000'
                     }
                 }
             ],
