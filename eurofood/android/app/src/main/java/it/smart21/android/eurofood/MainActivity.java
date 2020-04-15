@@ -1,4 +1,4 @@
-package com.eurofood;
+package it.smart21.android.eurofood;
 
 import com.facebook.react.ReactActivity;
 

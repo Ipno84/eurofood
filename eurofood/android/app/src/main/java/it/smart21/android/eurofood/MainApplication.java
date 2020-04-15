@@ -1,4 +1,4 @@
-package com.eurofood;
+package it.smart21.android.eurofood;
 
 import android.app.Application;
 import android.content.Context;
