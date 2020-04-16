@@ -4,7 +4,7 @@
         "superOffers": 86
     },
     "server": {
-        "clientCacheDuration": 86400
+        "clientCacheDuration": 3600
     },
     "home": [
         {

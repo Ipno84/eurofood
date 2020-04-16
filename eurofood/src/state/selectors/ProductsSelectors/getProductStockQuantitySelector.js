@@ -3,8 +3,9 @@ import getProductStockAvailabilitySelector from './getProductStockAvailabilitySe
 
 export default createCachedSelector(
     [getProductStockAvailabilitySelector, (_, id) => id],
-    stockAvailability =>
-        stockAvailability && stockAvailability.quantity
+    stockAvailability => {
+        return stockAvailability && stockAvailability.quantity
             ? parseInt(stockAvailability.quantity)
-            : 0
+            : 0;
+    }
 )((_, id) => id);

@@ -5,12 +5,11 @@ import Value from './Value';
 import Wrapper from './Wrapper';
 import getProductItemReferenceSelector from './../../../../../../state/selectors/ProductsSelectors/getProductItemReferenceSelector';
 import getProductStockQuantitySelector from './../../../../../../state/selectors/ProductsSelectors/getProductStockQuantitySelector';
+import useProductStockQuantity from './../../../../../../hooks/products/useProductStockQuantity';
 import { useSelector } from 'react-redux';
 
 const ProductInfo = ({ id }) => {
-    const quantity = useSelector(state =>
-        getProductStockQuantitySelector(state, id)
-    );
+    const quantity = useProductStockQuantity(id);
     const reference = useSelector(state =>
         getProductItemReferenceSelector(state, id)
     );

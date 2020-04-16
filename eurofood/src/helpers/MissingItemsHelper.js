@@ -95,23 +95,17 @@ class MissingItemsHelper {
     }
 
     onMissingProducts() {
-        console.log('INIT');
         this.productsTimeout = setTimeout(() => {
             clearTimeout(this.productsTimeout);
             this.productsTimeout = null;
             const missing = this.getMissingProductsId();
             this.products = [];
-            console.log(missing);
         }, this.timeoutValue);
     }
 
-    onMissingCategories() {
-        console.log(this.categories);
-    }
+    onMissingCategories() {}
 
-    onMissingOrders() {
-        console.log(this.orders);
-    }
+    onMissingOrders() {}
 }
 
 export const MissingItemsHelperInstance = new MissingItemsHelper();
