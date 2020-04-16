@@ -8,9 +8,6 @@ const SkeletonSearchSection = () => {
             <LeftBox>
                 <AnimatedLinearGradient />
             </LeftBox>
-            <RightBox>
-                <AnimatedLinearGradient />
-            </RightBox>
         </Wrapper>
     );
 };
@@ -18,17 +15,12 @@ const SkeletonSearchSection = () => {
 export default SkeletonSearchSection;
 
 const Wrapper = styled.View`
-    height: 80px;
-    padding: 16px;
+    height: 80px;    
     flex-direction: row;
 `;
 
 const LeftBox = styled.View`
     height: 48px;
-    margin-right: 8px;
     flex: 1;
 `;
 
-const RightBox = styled.View`
-    width: 130px;
-`;

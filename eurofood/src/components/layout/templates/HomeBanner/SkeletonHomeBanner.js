@@ -13,5 +13,5 @@ const SkeletonHomeBanner = () => {
 export default SkeletonHomeBanner;
 
 const Wrapper = styled.View`
-    height: 230px;
+    height: 250px;
 `;

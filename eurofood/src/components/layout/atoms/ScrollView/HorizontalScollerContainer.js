@@ -5,10 +5,9 @@ const HorizontalScollerContainer = styled.View`
         plainBackground &&
         css`
             background-color: ${({ theme }) => theme.colors.white(1)};
-            margin-top: 20px;
             margin-bottom: 20px;
             padding-top: 16px;
-            padding-bottom: 16px;
+            padding-bottom: 3px;
         `}
     ${({ shadow }) =>
         shadow &&

@@ -7,6 +7,7 @@ export default createCachedSelector(
         if (!product) return '';
         return product.description
             .replace(/<\/?[^>]+(>|$)/g, '')
-            .replace(/\r?\n|\r/g, ' ');
+            //.replace(/\r?\n|\r/g, ' ')
+            .replace('<p>', '').replace('</p>', '\n');
     }
 )((_, id) => id);

@@ -9,7 +9,6 @@ const SearchSection = () => {
         <SearchContainer>
             <Bg />
             <SearchInput />
-            <CategorySelector />
         </SearchContainer>
     );
 };
