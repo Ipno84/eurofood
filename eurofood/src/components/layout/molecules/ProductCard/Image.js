@@ -6,7 +6,7 @@ const Image = ({ id }) => {
     if (!id) return null;
     return (
         <ProductImageWrapper>
-            <ProductImage id={id} resizeMethod="scale" resizeMode="contain" />
+            <ProductImage id={id} resizeMethod="scale" resizeMode="center" />
         </ProductImageWrapper>
     );
 };

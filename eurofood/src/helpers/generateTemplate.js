@@ -14,6 +14,7 @@ export default function generateTemplate(
         let Components = [];
         if (!componentsMap) return null;
         componentsMap.forEach((template, i) => {
+            if (typeof template === 'string') return template;
             if (template.component) {
                 keys.push(`${template.component}_${i}`);
                 const keyProps = keys.join('-');

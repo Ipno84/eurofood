@@ -5,10 +5,13 @@ import CategoriesHorizontalSelector from './layout/organisms/CategoriesHorizonta
 import CategorySection from './layout/templates/CategorySection';
 import HomeBanner from './layout/templates/HomeBanner';
 import HorizontalProducts from './layout/organisms/HorizontalProducts';
+import Img from './layout/atoms/Img';
 import Infoblock from './layout/molecules/Infoblock';
+import Li from './layout/atoms/Li';
 import LoginBlock from './layout/templates/LoginBlock';
 import MainSectionsHorizontal from './layout/templates/MainSections/MainSectionsHorizontal';
 import Offers from './layout/templates/Offers';
+import Paragraph from './layout/atoms/Paragraph';
 import PromoCards from './layout/templates/PromoCards';
 import SearchSection from './layout/organisms/SearchSection';
 import SimilarProducts from './layout/templates/SimilarProducts';
@@ -22,8 +25,11 @@ import SkeletonMainSectionsHorizontal from './layout/templates/MainSections/Skel
 import SkeletonProductCard from './layout/molecules/ProductCard/SkeletonProductCard';
 import SkeletonSearchSection from './layout/organisms/SearchSection/SkeletonSearchSection';
 import Spacer from './layout/atoms/Spacer';
+import Span from './layout/atoms/Span';
+import Strong from './layout/atoms/Strong';
 import SuperOffers from './layout/templates/SuperOffers';
 import TopProducts from './layout/templates/TopProducts';
+import Ul from './layout/atoms/Ul';
 import VideoRecipe from './layout/organisms/VideoRecipe';
 import VisibilitySensor from './containers/VisibilitySensor';
 
@@ -55,6 +61,12 @@ const Components = {
     TopProducts,
     VideoRecipe,
     VisibilitySensor,
-    SkeletonMainSectionsHorizontal
+    SkeletonMainSectionsHorizontal,
+    Img,
+    Li,
+    Paragraph,
+    Span,
+    Strong,
+    Ul
 };
 export default Components;
