@@ -9,7 +9,10 @@ export default createCachedSelector(
             return items[id];
         } else if (mainSections && mainSections.length) {
             const foundItem = mainSections.find(
-                e => parseInt(e.id) === parseInt(id)
+                e =>
+                    e &&
+                    typeof e === 'object' &&
+                    parseInt(e.id) === parseInt(id)
             );
             if (foundItem) return foundItem;
         }

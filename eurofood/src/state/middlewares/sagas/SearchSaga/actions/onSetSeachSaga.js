@@ -52,7 +52,11 @@ export function* waitSearchTaskSaga({ limit, offset }) {
                 const productIds =
                     !results || !results.products
                         ? []
-                        : results.products.map(e => e.id);
+                        : results.products
+                              .map(e =>
+                                  e && typeof e === 'object' ? e.id : null
+                              )
+                              .filter(e => e);
                 if (limit && offset) {
                     yield all([
                         put(
@@ -120,7 +124,9 @@ export function* waitSearchTaskSaga({ limit, offset }) {
                                 .toLowerCase()
                                 .indexOf(searchText.toLowerCase()) > -1
                     );
-                    const productIds = searchResults.map(e => e.id);
+                    const productIds = searchResults
+                        .map(e => (e && typeof e === 'object' ? e.id : null))
+                        .filter(e => e);
 
                     yield put(
                         setSearchResultsAction(productIds, productIds.length)

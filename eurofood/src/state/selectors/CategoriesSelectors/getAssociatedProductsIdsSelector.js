@@ -10,7 +10,9 @@ export default createCachedSelector(
     ],
     (associations, id, count) => {
         if (associations && associations.products) {
-            const productsId = associations.products.map(e => e.id);
+            const productsId = associations.products
+                .map(e => (e && typeof e === 'object' ? e.id : null))
+                .filter(e => e);
             if (count) return arrayShuffle(productsId).slice(0, count);
             return productsId;
         }

@@ -6,7 +6,10 @@ export default createCachedSelector(
     (orderRows, id, id_product) => {
         if (orderRows && id_product) {
             const orderRow = orderRows.find(
-                e => parseInt(e.id_product) === parseInt(id_product)
+                e =>
+                    e &&
+                    typeof e === 'object' &&
+                    parseInt(e.id_product) === parseInt(id_product)
             );
             if (orderRow) return orderRow;
         }

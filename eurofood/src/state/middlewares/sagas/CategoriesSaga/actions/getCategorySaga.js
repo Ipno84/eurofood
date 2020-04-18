@@ -38,9 +38,15 @@ export default function* getCategorySaga({ id }) {
                         ...res.category,
                         associations: {
                             ...res.category.associations,
-                            products: associatedProducts.map(e => ({
-                                id: e.id
-                            }))
+                            products: associatedProducts
+                                .map(e =>
+                                    e && typeof e === 'object'
+                                        ? {
+                                              id: e.id
+                                          }
+                                        : null
+                                )
+                                .filter(e => e)
                         }
                     };
                 }

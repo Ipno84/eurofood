@@ -69,7 +69,10 @@ const AddressesReducer = (state = initialState, action) => {
                 };
             const id = action.address.id;
             const itemIndex = state.items.findIndex(
-                e => parseInt(e.id) === parseInt(id)
+                e =>
+                    e &&
+                    typeof e === 'object' &&
+                    parseInt(e.id) === parseInt(id)
             );
             if (itemIndex === -1) {
                 return {

@@ -14,7 +14,9 @@ export default function useCartRows() {
         [dispatch]
     );
     useEffect(() => {
-        const ids = cartRows.map(e => e.id_product);
+        const ids = cartRows
+            .map(e => (e && typeof e === 'object' ? e.id_product : null))
+            .filter(e => e);
         if (ids && ids.length > 0) {
             getMissingProducts(ids);
         }

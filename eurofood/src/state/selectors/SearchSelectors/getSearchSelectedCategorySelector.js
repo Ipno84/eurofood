@@ -15,7 +15,10 @@ export default createSelector(
                 return items[selectedCategoryId];
             if (mainSections && mainSections.length) {
                 const category = mainSections.find(
-                    e => e.id === selectedCategoryId
+                    e =>
+                        e &&
+                        typeof e === 'object' &&
+                        e.id === selectedCategoryId
                 );
                 if (category) return category;
             }

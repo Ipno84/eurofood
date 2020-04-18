@@ -14,7 +14,13 @@ export default function* getOrdersSaga() {
             if (res && res.orders) {
                 const items = arrayToObject(res.orders);
                 const orders =
-                    !res || !res.orders ? [] : res.orders.map(e => e.id);
+                    !res || !res.orders
+                        ? []
+                        : res.orders
+                              .map(e =>
+                                  e && typeof e === 'object' ? e.id : null
+                              )
+                              .filter(e => e);
                 yield all([
                     put(getOrdersAction({ orders, success: true })),
                     put(setOrdersItemsAction({ items }))
