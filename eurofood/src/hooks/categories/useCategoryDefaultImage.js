@@ -42,19 +42,24 @@ const CatImgMap = {
 
 export default function useCategoryDefaultImage(id) {
     const dispatch = useDispatch();
+    const [isRemote, setIsRemote] = useState(false);
+    const cachedUri = useSelector(state =>
+        getImageUriFromCachedImagesSelector(state, url, id)
+    );
     const setCachedImageUri = useCallback(
         ({ key, value }) => dispatch(setCachedImageUriAction({ key, value })),
         [dispatch]
     );
     let url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_CATEGORIES}/${id}/category_default`;
     const [imageSource, setImageSource] = useState(
-        id && CatImgMap[id] ? CatImgMap[id] : category
-    );
-    const [isRemote, setIsRemote] = useState(false);
-    const cachedUri = useSelector(state =>
-        getImageUriFromCachedImagesSelector(state, url, id)
+        id && CatImgMap[id]
+            ? CatImgMap[id]
+            : cachedUri
+            ? { uri: cachedUri }
+            : category
     );
     useEffect(() => {
+        let isSubscribed = true;
         if (id && !CatImgMap[id] && !cachedUri) {
             url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_CATEGORIES}/${id}/category_default`;
             fetch(url, {
@@ -64,26 +69,31 @@ export default function useCategoryDefaultImage(id) {
             })
                 .then(res => {
                     if (res.status === 200) {
-                        setImageSource({
-                            uri: `${HOST}/c/${id}-category_default/image.jpg`
-                        });
+                        isSubscribed &&
+                            setImageSource({
+                                uri: `${HOST}/c/${id}-category_default/image.jpg`
+                            });
                         setCachedImageUri({
                             key: url,
                             value: `${HOST}/c/${id}-category_default/image.jpg`
                         });
-                        setIsRemote(true);
+                        isSubscribed && setIsRemote(true);
                     }
                 })
                 .catch(error => console.log(error));
         } else if (
             cachedUri &&
-            cachedUri !== `${HOST}/c/${id}-category_default/image.jpg`
+            cachedUri !== `${HOST}/c/${id}-category_default/image.jpg` &&
+            isSubscribed
         ) {
             setImageSource({
                 uri: `${HOST}/c/${id}-category_default/image.jpg`
             });
         }
+        return () => (isSubscribed = false);
     }, [id, cachedUri]);
-    const onError = () => setImageSource(category);
+    const onError = () => {
+        if (componentMounted) setImageSource(category);
+    };
     return { imageSource, onError, isRemote };
 }

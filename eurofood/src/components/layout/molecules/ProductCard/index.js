@@ -1,33 +1,46 @@
+import React, { PureComponent } from 'react';
+
 import Image from './Image';
 import Name from './Name';
+import NavigatorRef from './../../../../helpers/NavigatorRef';
 import Price from './Price';
 import ProductWrapper from '../../atoms/Card/ProductWrapper';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
-import React from 'react';
 import SkeletonProductCard from './SkeletonProductCard';
+import { StackActions } from '@react-navigation/native';
 import Touchable from '../../atoms/Button/Touchable';
 import { View } from 'react-native';
-import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
-const ProductCard = ({ id, inHorizontal, isFirst, isInRow }) => {
-    const { navigate } = useAppNavigation();
-    if (!id) return <SkeletonProductCard />;
-    return (
-        <View style={{ flex: 1, height: 220 }}>
-            <Touchable
-                style={{ flex: 1 }}
-                onPress={() => navigate(ROUTE_NAME_PRODUCT, { id })}>
-                <ProductWrapper
-                    inHorizontal={inHorizontal}
-                    isFirst={isFirst}
-                    isInRow={isInRow}>
-                    <Image id={id} />
-                    <Name id={id} />
-                    <Price id={id} />
-                </ProductWrapper>
-            </Touchable>
-        </View>
-    );
-};
+class ProductCard extends PureComponent {
+    constructor(props, context) {
+        super(props, context);
+        this.goToProduct = this.goToProduct.bind(this);
+    }
+
+    goToProduct() {
+        const navRef = new NavigatorRef();
+        navRef.navigation.dispatch(
+            StackActions.push(ROUTE_NAME_PRODUCT, { id: this.props.id })
+        );
+    }
+
+    render() {
+        if (!this.props.id) return <SkeletonProductCard />;
+        return (
+            <View style={{ flex: 1, height: 220 }}>
+                <Touchable style={{ flex: 1 }} onPress={this.goToProduct}>
+                    <ProductWrapper
+                        inHorizontal={this.props.inHorizontal}
+                        isFirst={this.props.isFirst}
+                        isInRow={this.props.isInRow}>
+                        <Image id={this.props.id} />
+                        <Name id={this.props.id} />
+                        <Price id={this.props.id} />
+                    </ProductWrapper>
+                </Touchable>
+            </View>
+        );
+    }
+}
 
 export default ProductCard;

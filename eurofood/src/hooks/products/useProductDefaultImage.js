@@ -14,7 +14,6 @@ import { product } from './../../assets/images/placeholder';
 import setCachedImageUriAction from './../../state/actions/CacheActions/setCachedImageUriAction';
 
 export default function useProductDefaultImage(id) {
-    const isMounted = useRef(true);
     const dispatch = useDispatch();
     const setCachedImageUri = useCallback(
         ({ key, value }) => dispatch(setCachedImageUriAction({ key, value })),
@@ -35,6 +34,7 @@ export default function useProductDefaultImage(id) {
         getImageUriFromCachedImagesSelector(state, url, id && idDefaultImage)
     );
     useEffect(() => {
+        let isSubscribed = true;
         const uri = `${HOST}/${idDefaultImage}-large_default/image.jpg`;
         if (id && idDefaultImage && !cachedUri) {
             url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_PRODUCTS}/${id}/${idDefaultImage}/large_default`;
@@ -45,7 +45,7 @@ export default function useProductDefaultImage(id) {
             })
                 .then(res => {
                     if (res.status === 200) {
-                        isMounted.current && setImageSource({ uri });
+                        isSubscribed && setImageSource({ uri });
                         setCachedImageUri({
                             key: url,
                             value: uri
@@ -58,18 +58,15 @@ export default function useProductDefaultImage(id) {
             idDefaultImage &&
             cachedUri &&
             uri &&
-            cachedUri !== uri
+            cachedUri !== uri &&
+            isSubscribed
         ) {
-            isMounted.current && setImageSource({ uri });
+            setImageSource({ uri });
         }
+        return () => (isSubscribed = false);
     }, [id, idDefaultImage]);
-    useEffect(() => {
-        return () => {
-            isMounted.current = false;
-        };
-    });
     const onError = () => {
-        isMounted.current && setImageSource(product);
+        setImageSource(product);
     };
     return { imageSource, onError };
 }

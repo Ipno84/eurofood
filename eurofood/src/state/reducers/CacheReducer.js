@@ -1,5 +1,6 @@
 import {
     PURGE_EXPIRED_CONTENTS,
+    SET_CACHED_IMAGE_URI,
     SET_CACHE_ITEMS,
     SET_CACHE_KEY
 } from './../../constants/CacheConstants';
@@ -47,6 +48,14 @@ const CacheReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cache: action.items
+            };
+        case SET_CACHED_IMAGE_URI:
+            return {
+                ...state,
+                cachedImagesUri: {
+                    ...state.cache,
+                    [action.key]: action.value
+                }
             };
         default:
             return state;

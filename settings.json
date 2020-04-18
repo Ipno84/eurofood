@@ -90,21 +90,8 @@
             }
         },
         {
-            "component": "VisibilitySensor",
-            "keyCheck": "loginBlock",
-            "props": {
-                "height": 127,
-                "children": [
-                    {
-                        "component": "LoginBlock"
-                    }
-                ],
-                "skeleton": [
-                    {
-                        "component": "SkeletonLoginBlock"
-                    }
-                ]
-            }
+            "component": "LoginBlock",
+            "keyCheck": "loginBlock"
         },
         {
             "component": "Infoblock",
