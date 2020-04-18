@@ -21,10 +21,10 @@ const ProductImage = ({ id }) => {
         <ProductImageWrapper height={height}>
             {isProductItemActive ? <Badge id={id} absolute={true} /> : null}
             <Image
-                onLayout={e => setHeight(e.nativeEvent.layout.width)}
+                resizeMethod="resize"
+                onLayout={e => setHeight(e.nativeEvent.layout.height)}
                 source={imageSource}
                 onError={() => onError()}
-                resizeMode="contain"
             />
         </ProductImageWrapper>
     );
