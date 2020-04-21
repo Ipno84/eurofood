@@ -36,7 +36,9 @@
                 "children": [
                     {
                         "component": "MainSectionsHorizontal",
-                        "excludedCategoriesIds": []
+                        "props": {
+                            "excludedCategoriesIds": [100, 101, 102, 103]
+                        }
                     }
                 ],
                 "skeleton": [

@@ -26,7 +26,8 @@ const HorizontalProducts = ({ id, bgColor }) => {
                     paddingTop: 6,
                     paddingRight: 16,
                     paddingBottom: 2,
-                    backgroundColor: bgColor ? bgColor : '#00000000'
+                    backgroundColor: bgColor ? bgColor : '#00000000',
+                    height: 228
                 }}
                 onEndReached={onProductsEndReached}
                 renderItem={({ item, index }) => {

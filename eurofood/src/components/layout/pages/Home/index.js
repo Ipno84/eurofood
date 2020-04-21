@@ -1,12 +1,14 @@
 import { FlatList, SafeAreaView } from 'react-native';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-//import CategoriesModalSelector from '../../organisms/CategoriesModalSelector';
+import TreeItemsReferences from './../../../../helpers/TreeItemsReferences';
 import generateTemplate from './../../../../helpers/generateTemplate';
 import getHomeTemplateSelector from './../../../../state/selectors/SettingsSelectors/getHomeTemplateSelector';
 //import homeTemplate from './../../../../assets/templates/homeTemplate';
 import setHomeViewableItemsAction from './../../../../state/actions/SettingsActions/setHomeViewableItemsAction';
+
+const treeItemsReferences = new TreeItemsReferences();
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -18,6 +20,12 @@ const Home = () => {
     return (
         <SafeAreaView>
             <FlatList
+                ref={ref =>
+                    treeItemsReferences.addReference({
+                        key: 'homeFlatList',
+                        reference: ref
+                    })
+                }
                 scrollEventThrottle={16}
                 data={templateReal}
                 contentContainerStyle={{ paddingBottom: 8 }}
@@ -37,7 +45,6 @@ const Home = () => {
                 }
                 viewabilityConfig={{ itemVisiblePercentThreshold: 0 }}
             />
-
         </SafeAreaView>
     );
 };
