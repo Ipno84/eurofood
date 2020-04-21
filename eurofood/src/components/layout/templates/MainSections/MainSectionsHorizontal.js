@@ -9,13 +9,19 @@ const MainSectionsHorizontal = ({ excludedCategoriesIds = [] }) => {
         <View style={{ marginBottom: -20 }}>
             <CategoriesHorizontalSelector
                 title="Scegli per categoria"
-                categories={mainSections.filter(e => {
-                    const item =
-                        typeof e === 'object' ? String(e.id) : String(e);
-                    return !excludedCategoriesIds
-                        .map(id => String(id))
-                        .includes(item);
-                })}
+                categories={
+                    excludedCategoriesIds && excludedCategoriesIds.length > 0
+                        ? mainSections.filter(e => {
+                              const item =
+                                  typeof e === 'object'
+                                      ? String(e.id)
+                                      : String(e);
+                              return !excludedCategoriesIds
+                                  .map(id => String(id))
+                                  .includes(item);
+                          })
+                        : mainSections
+                }
             />
         </View>
     );
