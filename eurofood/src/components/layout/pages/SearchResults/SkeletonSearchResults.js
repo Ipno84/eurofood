@@ -1,6 +1,7 @@
 import AnimatedLinearGradient from './../../atoms/AnimatedLinearGradient';
 import React from 'react';
 import SkeletonProductCard from '../../molecules/ProductCard/SkeletonProductCard';
+import { isTablet } from 'react-native-device-detection';
 import styled from 'styled-components/native';
 
 const SkeletonSearchResults = () => {
@@ -9,15 +10,49 @@ const SkeletonSearchResults = () => {
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
+                {isTablet ? (
+                    <>
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                    </>
+                ) : null}
             </Row>
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
+                {isTablet ? (
+                    <>
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                    </>
+                ) : null}
             </Row>
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
+                {isTablet ? (
+                    <>
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                    </>
+                ) : null}
             </Row>
+            {isTablet ? (
+                <>
+                    <Row>
+                        <SkeletonProductCard isInRow={true} isFirst={true} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                    </Row>
+                    <Row>
+                        <SkeletonProductCard isInRow={true} isFirst={true} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                        <SkeletonProductCard isInRow={true} isFirst={false} />
+                    </Row>
+                </>
+            ) : null}
         </Wrapper>
     );
 };

@@ -5,6 +5,7 @@
     "scripts": {
         "android": "react-native run-android ",
         "ios": "react-native run-ios",
+        "ios:ipad": "react-native run-ios --simulator='iPad Pro (9.7-inch)'",
         "start": "react-native start --reset-cache",
         "test": "jest",
         "lint": "eslint .",
@@ -27,6 +28,7 @@
         "react": "16.9.0",
         "react-native": "0.61.5",
         "react-native-auto-height-image": "^3.0.0",
+        "react-native-device-detection": "^0.2.1",
         "react-native-device-info": "^5.5.4",
         "react-native-gesture-handler": "^1.6.0",
         "react-native-linear-gradient": "^2.5.6",
