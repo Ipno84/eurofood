@@ -10,7 +10,7 @@ const AnimatedLinearGradient = () => {
         Animated.loop(
             Animated.timing(opacity, {
                 toValue: 2,
-                duration: 2000,
+                duration: 1000,
                 easing: Easing.ease,
                 useNativeDriver: true
             }),
@@ -22,7 +22,7 @@ const AnimatedLinearGradient = () => {
     }, []);
     return (
         <LinearGradient
-            colors={['#e2e2e2', '#e6e6e6']}
+            colors={['#e6e6e6', '#e9e9e9']}
             style={{
                 flex: 1,
                 borderRadius: 4,
