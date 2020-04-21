@@ -1,16 +1,21 @@
 import CategoriesHorizontalSelector from '../../organisms/CategoriesHorizontalSelector';
 import React from 'react';
-import useMainSections from '../../../../hooks/categories/useMainSections';
 import { View } from 'react-native';
+import useMainSections from '../../../../hooks/categories/useMainSections';
 
-const MainSectionsHorizontal = () => {
+const MainSectionsHorizontal = ({ excludedCategoriesIds = [] }) => {
     const mainSections = useMainSections();
     return (
         <View style={{ marginBottom: -20 }}>
-
             <CategoriesHorizontalSelector
                 title="Scegli per categoria"
-                categories={mainSections}
+                categories={mainSections.filter(e => {
+                    const item =
+                        typeof e === 'object' ? String(e.id) : String(e);
+                    return !excludedCategoriesIds
+                        .map(id => String(id))
+                        .includes(item);
+                })}
             />
         </View>
     );
