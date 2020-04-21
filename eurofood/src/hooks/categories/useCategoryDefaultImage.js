@@ -95,5 +95,10 @@ export default function useCategoryDefaultImage(id) {
     const onError = () => {
         if (componentMounted) setImageSource(category);
     };
-    return { imageSource, onError, isRemote };
+    return {
+        imageSource,
+        onError,
+        isRemote,
+        isDefault: imageSource === category
+    };
 }

@@ -3,7 +3,10 @@ import { FlatGrid } from 'react-native-super-grid';
 import ProductCard from '../../molecules/ProductCard';
 import React from 'react';
 import SectionTitle from './../../atoms/Text/SectionTitle';
+import { isTablet } from 'react-native-device-detection';
 import { screenWidth } from './../../../../constants/ThemeConstants';
+
+const itemWidth = isTablet ? screenWidth / 6 : screenWidth / 3;
 
 const ProductsList = ({ title, items, onEndReached, headerComponent }) => {
     return (
@@ -21,7 +24,7 @@ const ProductsList = ({ title, items, onEndReached, headerComponent }) => {
                 return null;
             }}
             itemContainerStyle={{ paddingTop: 4, marginBottom: -4 }}
-            itemDimension={screenWidth / 3}
+            itemDimension={itemWidth}
             // onEndReached={onEndReached}
             items={items}
             spacing={8}
