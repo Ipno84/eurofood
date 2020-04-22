@@ -1,5 +1,6 @@
+import { CommonActions, StackActions } from '@react-navigation/native';
+
 import { ROUTE_NAME_HOME } from './../constants/RouteConstants';
-import { StackActions } from '@react-navigation/native';
 
 let instance = null;
 
@@ -70,6 +71,10 @@ class NavigatorRef {
         } else {
             this.navigation.dispatch(StackActions.push(routeName, params));
         }
+    }
+
+    reset(params) {
+        if (params) this.navigation.dispatch(CommonActions.reset(params));
     }
 }
 
