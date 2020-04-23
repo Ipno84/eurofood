@@ -61,23 +61,20 @@ export default function setupAxios() {
 
     axios.interceptors.response.use(
         response => {
-            if (
-                response.config.method === 'get' &&
-                !response.config.__fromCache &&
-                response.config.__canSetClientCache
-            ) {
-                const params = queryString.stringify(response.config.params);
-                const value = {
-                    date: Math.floor(Date.now() / 1000),
-                    data: JSON.stringify(response.data)
-                };
-                store.dispatch(setCacheKeyAction(params, value));
-            }
+            const isServerError = Boolean(
+                response.status &&
+                    !isNaN(response.status) &&
+                    response.status >= 400
+            );
             const isError = Boolean(
-                response.data.errors && response.data.errors.length
+                response.data &&
+                    response.data.errors &&
+                    response.data.errors.length
             );
             const isForbidden = Boolean(
-                isError && response.data.errors.find(e => e.code === 403)
+                isError &&
+                    response.data &&
+                    response.data.errors.find(e => e.code === 403)
             );
             if (
                 isForbidden &&
@@ -101,6 +98,20 @@ export default function setupAxios() {
                     'Axios call cancelled',
                     response.data.errors
                 );
+            }
+            if (
+                response.config.method === 'get' &&
+                !response.config.__fromCache &&
+                response.config.__canSetClientCache &&
+                !isServerError &&
+                !isError
+            ) {
+                const params = queryString.stringify(response.config.params);
+                const value = {
+                    date: Math.floor(Date.now() / 1000),
+                    data: JSON.stringify(response.data)
+                };
+                store.dispatch(setCacheKeyAction(params, value));
             }
             return response;
         },

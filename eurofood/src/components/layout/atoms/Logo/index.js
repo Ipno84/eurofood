@@ -35,7 +35,10 @@ const Logo = () => {
                             animated: true
                         });
                     } else if (homeFlatList) {
-                        navRef.pushOrBack(ROUTE_NAME_HOME);
+                        navRef.reset({
+                            index: 1,
+                            routes: [{ name: ROUTE_NAME_HOME }]
+                        });
                         timeout = setTimeout(() => {
                             homeFlatList.scrollToOffset({
                                 offset: 0,
