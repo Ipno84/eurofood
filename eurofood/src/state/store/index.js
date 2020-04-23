@@ -14,6 +14,7 @@ import composeEnhancers from './composeEnhancers';
 import createReducer from './createReducer';
 import createSagaMiddleware from 'redux-saga';
 import { fork } from 'redux-saga/effects';
+import { getAsyncStorageData } from './../../constants/StoreConfig';
 import { persistStore } from 'redux-persist';
 import rootReducers from './../reducers';
 

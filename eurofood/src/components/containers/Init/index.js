@@ -4,9 +4,23 @@ import React from 'react';
 import useGetSettings from './../../../hooks/useGetSettings';
 
 const Init = () => {
-    const canRenderApp = useGetSettings();
-    if (canRenderApp) return <Navigator />;
-    return <LoaderScreen />;
+    const {
+        hasServerSettings,
+        isLoadingSettings,
+        isCachePurged,
+        getServerSettings
+    } = useGetSettings();
+    return (
+        <>
+            <Navigator />
+            <LoaderScreen
+                hasServerSettings={hasServerSettings}
+                isLoadingSettings={isLoadingSettings}
+                isCachePurged={isCachePurged}
+                getServerSettings={getServerSettings}
+            />
+        </>
+    );
 };
 
 export default Init;

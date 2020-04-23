@@ -37,7 +37,8 @@ const CatImgMap = {
     100: catImg.bar,
     101: catImg.ristoranti,
     102: catImg.pizzerie,
-    103: catImg.hotel
+    103: catImg.hotel,
+    109: catImg.attrezzature
 };
 
 export default function useCategoryDefaultImage(id) {

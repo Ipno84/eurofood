@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import getServerSettingsAction from '../state/actions/SettingsActions/getServerSettingsAction';
 import hasServerSettingsSelector from './../state/selectors/SettingsSelectors/hasServerSettingsSelector';
 import isCachePurgedSelector from './../state/selectors/CacheSelectors/isCachePurgedSelector';
+import isLoadingSettingsSelector from './../state/selectors/SettingsSelectors/isLoadingSettingsSelector';
 import purgeExpiredContentsAction from '../state/actions/CacheActions/purgeExpiredContentsAction';
 
 export default function useGetSettings() {
     const dispatch = useDispatch();
     const hasServerSettings = useSelector(state =>
         hasServerSettingsSelector(state)
+    );
+    const isLoadingSettings = useSelector(state =>
+        isLoadingSettingsSelector(state)
     );
     const isCachePurged = useSelector(state => isCachePurgedSelector(state));
     const getServerSettings = useCallback(
@@ -24,5 +28,10 @@ export default function useGetSettings() {
         if (!hasServerSettings) getServerSettings();
         if (hasServerSettings && !isCachePurged) purgeExpiredContents();
     }, [hasServerSettings, isCachePurged]);
-    return hasServerSettings && isCachePurged;
+    return {
+        hasServerSettings,
+        isLoadingSettings,
+        isCachePurged,
+        getServerSettings
+    };
 }
