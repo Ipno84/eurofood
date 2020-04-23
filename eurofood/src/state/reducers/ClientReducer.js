@@ -115,7 +115,7 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 registerForm: {
                     ...state.registerForm,
-                    psgdpr: action.psgdpr
+                    psgdpr: !state.registerForm.psgdpr
                 }
             };
         case SET_REGISTER_LASTNAME:
@@ -131,7 +131,7 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 registerForm: {
                     ...state.registerForm,
-                    newsletter: action.newsletter
+                    newsletter: !state.registerForm.newsletter
                 }
             };
         case SET_REGISTER_PASSWORD:
