@@ -782,7 +782,7 @@
 			baseConfigurationReference = CB7EDFB0C16342E580FBF9F5 /* Pods-eurofood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = PNNUMZK47T;
 				INFOPLIST_FILE = eurofood/Info.plist;
@@ -805,7 +805,7 @@
 			baseConfigurationReference = 8C7B2638C0C77A1937938276 /* Pods-eurofood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = PNNUMZK47T;
 				INFOPLIST_FILE = eurofood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
