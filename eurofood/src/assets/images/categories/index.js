@@ -1,3 +1,4 @@
+import attrezzature from './attrezzature.png';
 import bar from './bar.png';
 import bevande from './bevande.png';
 import carni from './carni.png';
@@ -23,6 +24,7 @@ import vegano from './vegano.png';
 import vegetali from './vegetali.png';
 
 export {
+    attrezzature,
     bevande,
     carni,
     condimenti,

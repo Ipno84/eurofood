@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 
+import LogoImage from './LogoImage';
 import NavigatorRef from './../../../../helpers/NavigatorRef';
 import { ROUTE_NAME_HOME } from '../../../../constants/RouteConstants';
 import Touchable from './../Button/Touchable';
 import TreeItemsReferences from './../../../../helpers/TreeItemsReferences';
-import { logo } from './../../../../assets/images';
 import styled from 'styled-components/native';
 
 const treeItemsReferences = new TreeItemsReferences();
@@ -47,15 +47,7 @@ const Logo = () => {
                         }, 0);
                     }
                 }}>
-                <Container>
-                    <Image resizeMode="contain" source={logo} />
-                    <Bars>
-                        <Bar color={'#F0DF15'} />
-                        <Bar color={'#F3A30C'} />
-                        <Bar color={'#DA3216'} />
-                        <Bar color={'#AE1F1A'} />
-                    </Bars>
-                </Container>
+                <LogoImage />
             </Touchable>
         </Wrapper>
     );
@@ -64,20 +56,3 @@ const Logo = () => {
 export default Logo;
 
 const Wrapper = styled.View``;
-
-const Container = styled.View``;
-
-const Image = styled.Image`
-    width: 180px;
-    height: 40px;
-`;
-
-const Bars = styled.View`
-    height: 4px;
-    flex-direction: row;
-`;
-
-const Bar = styled.View`
-    background-color: ${({ color }) => color};
-    flex: 1;
-`;

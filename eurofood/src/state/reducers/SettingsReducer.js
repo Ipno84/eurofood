@@ -11,7 +11,8 @@ import { createTransform } from 'redux-persist';
 export const initialState = {
     server: {},
     home: [],
-    homeViewableItems: []
+    homeViewableItems: [],
+    isLoadingSettings: false
 };
 
 export const SettingsReducerTransform = createTransform(
@@ -33,13 +34,20 @@ export const SettingsReducerTransform = createTransform(
 
 const SettingsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_SERVER_SETTINGS:
+            return { ...state, isLoadingSettings: true };
         case GET_SERVER_SETTINGS + SUCCESS:
-            return { ...state, server: action.server };
+            return {
+                ...state,
+                server: action.server,
+                isLoadingSettings: false
+            };
         case GET_SERVER_SETTINGS + FAILURE:
             return {
                 ...state,
                 server: initialState.server,
-                home: initialState.home
+                home: initialState.home,
+                isLoadingSettings: false
             };
         case SET_HOME_TEMPLATE:
             return { ...state, home: action.home };
