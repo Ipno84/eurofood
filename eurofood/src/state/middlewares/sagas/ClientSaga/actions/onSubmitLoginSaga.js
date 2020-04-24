@@ -38,13 +38,10 @@ export default function* onSubmitLoginSaga() {
         if (jwt) {
             const user = parseJwtToken(jwt);
             if (user) {
-                const navRef = new NavigatorRef();
-                navRef.navigation.dispatch(
-                    CommonActions.reset({
-                        index: 1,
-                        routes: [{ name: ROUTE_NAME_HOME }]
-                    })
-                );
+                NavigatorRef.reset({
+                    index: 1,
+                    routes: [{ name: ROUTE_NAME_HOME }]
+                });
                 yield put(
                     submitLoginAction({
                         success: true,

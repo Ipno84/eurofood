@@ -94,7 +94,7 @@ export default function useCategoryDefaultImage(id) {
         return () => (isSubscribed = false);
     }, [id, cachedUri]);
     const onError = () => {
-        if (componentMounted) setImageSource(category);
+        if (isSubscribed) setImageSource(category);
     };
     return {
         imageSource,

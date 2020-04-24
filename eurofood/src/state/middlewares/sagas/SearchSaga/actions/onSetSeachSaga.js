@@ -133,13 +133,10 @@ export function* waitSearchTaskSaga({ limit, offset }) {
                     );
                 }
             }
-            const navRef = new NavigatorRef();
-            const currentRouteName = navRef.getCurrentRouteName();
+            const currentRouteName = NavigatorRef.getCurrentRouteName();
 
             if (currentRouteName !== ROUTE_NAME_SEARCH_RESULTS) {
-                navRef.navigation.dispatch(
-                    StackActions.push(ROUTE_NAME_SEARCH_RESULTS)
-                );
+                NavigatorRef.push(ROUTE_NAME_SEARCH_RESULTS);
             }
         }
     } catch (error) {

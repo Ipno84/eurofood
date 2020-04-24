@@ -2,7 +2,6 @@ import { call, put, select } from 'redux-saga/effects';
 
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import { ROUTE_NAME_CART } from '../../../../../constants/RouteConstants';
-import { StackActions } from '@react-navigation/native';
 import createCartCall from './../../../../../api/calls/CartCalls/createCartCall';
 import editCartCall from './../../../../../api/calls/CartCalls/editCartCall';
 import getCartCall from './../../../../../api/calls/CartCalls/getCartCall';
@@ -37,10 +36,7 @@ export default function* backorderSaga({ id }) {
                         result = yield call(createCartCall, newCart);
                     }
                     if (result && result.cart) {
-                        const navRef = new NavigatorRef();
-                        navRef.navigation.dispatch(
-                            StackActions.push(ROUTE_NAME_CART)
-                        );
+                        NavigatorRef.push(ROUTE_NAME_CART);
                         yield put(setCurrentCartAction(result.cart));
                     }
                 }

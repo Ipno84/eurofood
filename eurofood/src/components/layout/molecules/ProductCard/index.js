@@ -7,7 +7,6 @@ import Price from './Price';
 import ProductWrapper from '../../atoms/Card/ProductWrapper';
 import { ROUTE_NAME_PRODUCT } from '../../../../constants/RouteConstants';
 import SkeletonProductCard from './SkeletonProductCard';
-import { StackActions } from '@react-navigation/native';
 import Touchable from '../../atoms/Button/Touchable';
 import { View } from 'react-native';
 
@@ -18,10 +17,7 @@ class ProductCard extends PureComponent {
     }
 
     goToProduct() {
-        const navRef = new NavigatorRef();
-        navRef.navigation.dispatch(
-            StackActions.push(ROUTE_NAME_PRODUCT, { id: this.props.id })
-        );
+        NavigatorRef.push(ROUTE_NAME_PRODUCT, { id: this.props.id });
     }
 
     render() {

@@ -15,7 +15,6 @@ import ValidationError, {
 import { all, call, put, select } from 'redux-saga/effects';
 
 import NavigatorRef from '../../../../../helpers/NavigatorRef';
-import { StackActions } from '@react-navigation/native';
 import createAddressCall from '../../../../../api/calls/AddressesCalls/createAddressCall';
 import editAddressCall from '../../../../../api/calls/AddressesCalls/editAddressCall';
 import getAddressFormKeySelector from './../../../../selectors/AddressesSelectors/addressForm/getAddressFormKeySelector';
@@ -101,8 +100,7 @@ export default function* submitAddressSaga() {
             results = yield call(createAddressCall, address);
         }
         if (results && results.address) {
-            const navRef = new NavigatorRef();
-            const currentRouteName = navRef.getCurrentRouteName();
+            const currentRouteName = NavigatorRef.getCurrentRouteName();
             let actions = [
                 put(
                     submitAddressAction({
@@ -116,8 +114,7 @@ export default function* submitAddressSaga() {
             } else if (currentRouteName === 'BillingAddress') {
                 actions.push(put(showBillingAddressFormAction(false)));
             } else if (currentRouteName === 'EditAddress') {
-                const navRef = new NavigatorRef();
-                navRef.navigation.dispatch(StackActions.pop(1));
+                NavigatorRef.back();
             }
             yield all(actions);
         }

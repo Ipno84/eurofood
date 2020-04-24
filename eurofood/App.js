@@ -15,7 +15,8 @@ const App = () => {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={theme}>
-                    <NavigationContainer ref={ref => new NavigatorRef(ref)}>
+                    <NavigationContainer
+                        ref={ref => NavigatorRef.setNavigation(ref)}>
                         <StatusBar
                             backgroundColor={lightGray.toString()}
                             barStyle="dark-content"

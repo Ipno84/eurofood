@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import LogoImage from './LogoImage';
 import NavigatorRef from './../../../../helpers/NavigatorRef';
 import { ROUTE_NAME_HOME } from '../../../../constants/RouteConstants';
-import Touchable from './../Button/Touchable';
+import { TouchableOpacity } from 'react-native';
 import TreeItemsReferences from './../../../../helpers/TreeItemsReferences';
 import styled from 'styled-components/native';
 
@@ -22,10 +22,9 @@ const Logo = () => {
     }, []);
     return (
         <Wrapper>
-            <Touchable
+            <TouchableOpacity
                 onPress={() => {
-                    const navRef = new NavigatorRef();
-                    const isHome = navRef.isCurrentRouteHome();
+                    const isHome = NavigatorRef.isCurrentRouteHome();
                     const homeFlatList = treeItemsReferences.getReference(
                         'homeFlatList'
                     );
@@ -35,7 +34,7 @@ const Logo = () => {
                             animated: true
                         });
                     } else if (homeFlatList) {
-                        navRef.reset({
+                        NavigatorRef.reset({
                             index: 1,
                             routes: [{ name: ROUTE_NAME_HOME }]
                         });
@@ -48,7 +47,7 @@ const Logo = () => {
                     }
                 }}>
                 <LogoImage />
-            </Touchable>
+            </TouchableOpacity>
         </Wrapper>
     );
 };

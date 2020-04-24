@@ -195,8 +195,7 @@ const CartReducer = (state = initialState, action) => {
                 ...initialState
             };
         case EDIT_ADDRESS:
-            const navRef = new NavigatorRef();
-            const currentRouteName = navRef.getCurrentRouteName();
+            const currentRouteName = NavigatorRef.getCurrentRouteName();
             const key =
                 currentRouteName === 'ShippingAddress'
                     ? 'showShippingAddressForm'

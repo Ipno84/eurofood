@@ -1,4 +1,8 @@
-import { CommonActions, StackActions } from '@react-navigation/native';
+import {
+    CommonActions,
+    DrawerActions,
+    StackActions
+} from '@react-navigation/native';
 
 import { ROUTE_NAME_HOME } from './../constants/RouteConstants';
 
@@ -7,14 +11,16 @@ let instance = null;
 class NavigatorRef {
     constructor(ref) {
         if (!instance) instance = this;
-
         if (ref) this.navigation = ref;
-
         return instance;
     }
 
+    setNavigation(navigation) {
+        if (navigation) this.navigation = navigation;
+    }
+
     getCurrentRootState() {
-        return this.navigation.getRootState();
+        return this.navigation ? this.navigation.getRootState() : null;
     }
 
     getCurrentRouteName() {
@@ -59,7 +65,7 @@ class NavigatorRef {
 
     isCurrentRouteHome() {
         const currentRoute = this.getCurrentRouteName();
-        return currentRoute === ROUTE_NAME_HOME;
+        return currentRoute && currentRoute === ROUTE_NAME_HOME;
     }
 
     pushOrBack(routeName, params) {
@@ -67,15 +73,38 @@ class NavigatorRef {
         const prevRouteName = this.getPrevRouteName();
         if (currentRouteName === routeName) return;
         if (prevRouteName === routeName) {
-            this.navigation.dispatch(StackActions.pop(1));
+            if (this.navigation) this.navigation.dispatch(StackActions.pop(1));
         } else {
-            this.navigation.dispatch(StackActions.push(routeName, params));
+            if (this.navigation)
+                this.navigation.dispatch(StackActions.push(routeName, params));
         }
     }
 
+    back() {
+        if (this.navigation) this.navigation.dispatch(StackActions.pop(1));
+    }
+
+    push(routeName, params) {
+        if (this.navigation)
+            this.navigation.dispatch(StackActions.push(routeName, params));
+    }
+
     reset(params) {
-        if (params) this.navigation.dispatch(CommonActions.reset(params));
+        if (params && this.navigation)
+            this.navigation.dispatch(CommonActions.reset(params));
+    }
+
+    openDrawer() {
+        if (this.navigation)
+            this.navigation.dispatch(DrawerActions.openDrawer());
+    }
+
+    closeDrawer() {
+        if (this.navigation)
+            this.navigation.dispatch(DrawerActions.closeDrawer());
     }
 }
 
-export default NavigatorRef;
+const NavigatorRefInstance = new NavigatorRef();
+
+export default NavigatorRefInstance;

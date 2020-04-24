@@ -90,20 +90,17 @@ export default function* submitOrderSaga() {
             };
             const result = yield call(createOrderCall, order);
             if (result && result.order) {
-                const navRef = new NavigatorRef();
-                navRef.navigation.dispatch(
-                    CommonActions.reset({
-                        index: 1,
-                        routes: [
-                            { name: ROUTE_NAME_HOME },
-                            { name: ROUTE_NAME_ORDERS },
-                            {
-                                name: ROUTE_NAME_ORDER,
-                                params: { id: result.order.id }
-                            }
-                        ]
-                    })
-                );
+                NavigatorRef.reset({
+                    index: 1,
+                    routes: [
+                        { name: ROUTE_NAME_HOME },
+                        { name: ROUTE_NAME_ORDERS },
+                        {
+                            name: ROUTE_NAME_ORDER,
+                            params: { id: result.order.id }
+                        }
+                    ]
+                });
                 Snackbar.show({
                     text: `Ordine effettuato con successo.`,
                     duration: Snackbar.LENGTH_INDEFINITE,
