@@ -7,7 +7,7 @@ import {
     HOST,
     SUFFIX
 } from './../../constants/ApiConstants';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { category } from './../../assets/images/placeholder';
@@ -42,6 +42,7 @@ const CatImgMap = {
 };
 
 export default function useCategoryDefaultImage(id) {
+    let isSubscribed = useRef(false);
     const dispatch = useDispatch();
     const [isRemote, setIsRemote] = useState(false);
     const cachedUri = useSelector(state =>
@@ -60,7 +61,7 @@ export default function useCategoryDefaultImage(id) {
             : category
     );
     useEffect(() => {
-        let isSubscribed = true;
+        isSubscribed.current = true;
         if (id && !CatImgMap[id] && !cachedUri) {
             url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_CATEGORIES}/${id}/category_default`;
             fetch(url, {
@@ -71,6 +72,7 @@ export default function useCategoryDefaultImage(id) {
                 .then(res => {
                     if (res.status === 200) {
                         isSubscribed &&
+                            isSubscribed.current &&
                             setImageSource({
                                 uri: `${HOST}/c/${id}-category_default/image.jpg`
                             });
@@ -78,23 +80,26 @@ export default function useCategoryDefaultImage(id) {
                             key: url,
                             value: `${HOST}/c/${id}-category_default/image.jpg`
                         });
-                        isSubscribed && setIsRemote(true);
+                        isSubscribed &&
+                            isSubscribed.current &&
+                            setIsRemote(true);
                     }
                 })
                 .catch(error => console.log(error));
         } else if (
             cachedUri &&
             cachedUri !== `${HOST}/c/${id}-category_default/image.jpg` &&
-            isSubscribed
+            isSubscribed &&
+            isSubscribed.current
         ) {
             setImageSource({
                 uri: `${HOST}/c/${id}-category_default/image.jpg`
             });
         }
-        return () => (isSubscribed = false);
+        return () => (isSubscribed.current = false);
     }, [id, cachedUri]);
     const onError = () => {
-        if (isSubscribed) setImageSource(category);
+        isSubscribed && isSubscribed.current && setImageSource(category);
     };
     return {
         imageSource,

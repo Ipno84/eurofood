@@ -14,6 +14,7 @@ import { product } from './../../assets/images/placeholder';
 import setCachedImageUriAction from './../../state/actions/CacheActions/setCachedImageUriAction';
 
 export default function useProductDefaultImage(id) {
+    let isSubscribed = useRef(false);
     const dispatch = useDispatch();
     const setCachedImageUri = useCallback(
         ({ key, value }) => dispatch(setCachedImageUriAction({ key, value })),
@@ -34,7 +35,7 @@ export default function useProductDefaultImage(id) {
         getImageUriFromCachedImagesSelector(state, url, id && idDefaultImage)
     );
     useEffect(() => {
-        let isSubscribed = true;
+        isSubscribed.current = true;
         const uri = `${HOST}/${idDefaultImage}-large_default/image.jpg`;
         if (id && idDefaultImage && !cachedUri) {
             url = `${HOST}/${SUFFIX}/${ENDPOINT_IMAGES}/${ENDPOINT_PRODUCTS}/${id}/${idDefaultImage}/large_default`;
@@ -45,7 +46,9 @@ export default function useProductDefaultImage(id) {
             })
                 .then(res => {
                     if (res.status === 200) {
-                        isSubscribed && setImageSource({ uri });
+                        isSubscribed &&
+                            isSubscribed.current &&
+                            setImageSource({ uri });
                         setCachedImageUri({
                             key: url,
                             value: uri
@@ -59,14 +62,15 @@ export default function useProductDefaultImage(id) {
             cachedUri &&
             uri &&
             cachedUri !== uri &&
-            isSubscribed
+            isSubscribed &&
+            isSubscribed.current
         ) {
             setImageSource({ uri });
         }
-        return () => (isSubscribed = false);
+        return () => (isSubscribed.current = false);
     }, [id, idDefaultImage]);
     const onError = () => {
-        setImageSource(product);
+        isSubscribed && isSubscribed.current && setImageSource(product);
     };
     return { imageSource, onError };
 }
