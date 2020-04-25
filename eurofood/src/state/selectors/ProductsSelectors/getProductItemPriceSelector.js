@@ -6,8 +6,8 @@ export default createCachedSelector(
     [getProductItemSelector, (_, id) => id],
     product => {
         if (!product) return 0;
-        let price = product.price_without_reduction
-            ? product.price_without_reduction
+        let price = product.price_without_reduction_without_tax
+            ? product.price_without_reduction_without_tax
             : product.price;
         return fixPrice(price, true, 2);
     }
