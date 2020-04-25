@@ -28,6 +28,7 @@ const formatOrderDate = date => {
             let year = newDate.getFullYear();
             if (isNaN && (isNaN(day) || isNaN(month) || isNaN(year)))
                 return date;
+            month = month + 1;
             if (day < 10) day = '0' + String(day);
             if (month < 10) month = '0' + String(month);
             return `${day}/${month}/${year}`;
