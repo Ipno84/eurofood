@@ -16,6 +16,6 @@ export default function getProductImagesAction(payload) {
     }
     return {
         type: GET_PRODUCT_IMAGES,
-        id
+        id: payload.id
     };
 }

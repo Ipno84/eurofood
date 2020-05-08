@@ -6,6 +6,7 @@ import ProductImageWrapper from './ProductImageWrapper';
 import getProductItemDefaultImageIdSelector from '../../../../../../state/selectors/ProductsSelectors/getProductItemDefaultImageIdSelector';
 import isProductItemActiveSelector from '../../../../../../state/selectors/ProductsSelectors/isProductItemActiveSelector';
 import useProductDefaultImage from '../../../../../../hooks/products/useProductDefaultImage';
+import useProductImages from '../../../../../../hooks/products/useProductImages';
 import { useSelector } from 'react-redux';
 
 const ProductImage = ({ id }) => {
@@ -15,6 +16,7 @@ const ProductImage = ({ id }) => {
     const isProductItemActive = useSelector(state =>
         isProductItemActiveSelector(state, id)
     );
+    useProductImages(id, defaultImageId);
     const { imageSource, onError } = useProductDefaultImage(id, defaultImageId);
     const [height, setHeight] = useState(0);
     return (

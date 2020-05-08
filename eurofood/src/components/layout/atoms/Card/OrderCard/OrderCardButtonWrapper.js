@@ -6,6 +6,7 @@ const OrderCardButtonWrapper = styled.View`
     align-items: center;
     padding: 16px;
     flex-direction: row;
+    height: 45px;
 `;
 
 export default OrderCardButtonWrapper;

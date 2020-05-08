@@ -159,3 +159,17 @@ Authorization: Basic Q7NI79UCBIUD3Y626LAP3YM92QKTR5UR // sará quella finale
 *   Ho sostituito la normale descrizione con la short description. Anche in questo caso arriva html, ma non ha una formattazione complessa. Quindi, rimuoverla non compromette esteticamente la descrizione stessa. Non appena svilupperemo il sistema per il replacing dei tag html con componenti react faremo il revert di questa funzione
 
 https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
+
+## VPN
+
+FortiClient
+michele.nigri
+TxE7jo\_;m
+
+Edit &etc&host
+192.168.10.233 svil-upgrade.eurofoodservice.it
+
+## Notification
+
+lucrezia.perrone@eurofoodservice.it
+Eurofood_2019
