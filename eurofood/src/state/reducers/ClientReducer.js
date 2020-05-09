@@ -5,13 +5,14 @@ import {
     SET_LOGIN_PASSWORD,
     SET_REGISTER_EMAIL,
     SET_REGISTER_FIRSTNAME,
-    SET_REGISTER_ID_GENDER,
+    SET_REGISTER_ID_USER_TYPE,
     SET_REGISTER_LASTNAME,
     SET_REGISTER_NEWSLETTER,
     SET_REGISTER_PASSWORD,
     SET_REGISTER_PSGDPR,
     SUBMIT_LOGIN,
-    SUBMIT_REGISTER
+    SUBMIT_REGISTER,
+    USER_TYPE_PRIVATE
 } from '../../constants/ClientConstants';
 
 import { REDUCER_NAME_CLIENT } from '../../constants/StoreConstants';
@@ -26,11 +27,23 @@ export const initialState = {
     },
     loginSubmitted: false,
     registerForm: {
-        id_gender: 1, // 1 = male, 2 = female
+        id_gender: USER_TYPE_PRIVATE, // 5 = private, 6 = business
         firstname: '',
         lastname: '',
         email: '',
         password: '',
+        businessTypeData: {
+            company: '',
+            vat_number: '',
+            sdi: '',
+            pec: '',
+            address: '',
+            postcode: '',
+            city: '',
+            id_state: '',
+            id_country: '',
+            phone: ''
+        },
         newsletter: false, //send 1 if checked
         psgdpr: false //send 1 if checked - https://www.eurofoodservice.it/content/5-condizioni-registrazione-sito
     },
@@ -86,12 +99,12 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 loginSubmitted: false
             };
-        case SET_REGISTER_ID_GENDER:
+        case SET_REGISTER_ID_USER_TYPE:
             return {
                 ...state,
                 registerForm: {
                     ...state.registerForm,
-                    id_gender: action.idGender
+                    id_gender: action.idUserType
                 }
             };
         case SET_REGISTER_EMAIL:

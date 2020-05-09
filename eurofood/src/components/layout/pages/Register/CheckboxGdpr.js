@@ -65,6 +65,7 @@ export default CheckboxGdpr;
 
 const CheckWrapper = styled.View`
     flex-direction: row;
+    min-height: 70px;
 `;
 
 const CheckInner = styled.View`

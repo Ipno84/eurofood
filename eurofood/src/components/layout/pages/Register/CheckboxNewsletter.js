@@ -54,6 +54,7 @@ export default CheckboxNewsletter;
 
 const CheckWrapper = styled.View`
     flex-direction: row;
+    min-height: 40px;
 `;
 
 const CheckInner = styled.View`

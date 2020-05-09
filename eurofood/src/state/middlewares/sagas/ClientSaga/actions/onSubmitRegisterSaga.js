@@ -14,7 +14,7 @@ import Snackbar from 'react-native-snackbar';
 import checkUserCall from './../../../../../api/calls/CustomersCalls/checkUserCall';
 import getRegisterEmailSelector from './../../../../selectors/ClientSelectors/getRegisterEmailSelector';
 import getRegisterFirstnameSelector from './../../../../selectors/ClientSelectors/getRegisterFirstnameSelector';
-import getRegisterIdGenderSelector from './../../../../selectors/ClientSelectors/getRegisterIdGenderSelector';
+import getRegisterIdUserTypeSelector from './../../../../selectors/ClientSelectors/getRegisterIdUserTypeSelector';
 import getRegisterLastnameSelector from './../../../../selectors/ClientSelectors/getRegisterLastnameSelector';
 import getRegisterNewsletterSelector from './../../../../selectors/ClientSelectors/getRegisterNewsletterSelector';
 import getRegisterPasswordSelector from './../../../../selectors/ClientSelectors/getRegisterPasswordSelector';
@@ -29,7 +29,7 @@ export default function* onSubmitRegisterSaga() {
     try {
         const email = yield select(getRegisterEmailSelector);
         const firstname = yield select(getRegisterFirstnameSelector);
-        const id_gender = yield select(getRegisterIdGenderSelector);
+        const idUserType = yield select(getRegisterIdUserTypeSelector);
         const lastname = yield select(getRegisterLastnameSelector);
         const newsletter = yield select(getRegisterNewsletterSelector);
         const passwd = yield select(getRegisterPasswordSelector);
@@ -75,7 +75,7 @@ export default function* onSubmitRegisterSaga() {
             });
         } else {
             const results = yield call(registerCall, {
-                id_gender,
+                id_gender: idUserType,
                 firstname,
                 lastname,
                 email,
