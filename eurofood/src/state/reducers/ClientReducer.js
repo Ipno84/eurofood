@@ -3,13 +3,23 @@ import {
     LOGOUT,
     SET_LOGIN_EMAIL,
     SET_LOGIN_PASSWORD,
+    SET_REGISTER_ADDRESS,
+    SET_REGISTER_CITY,
+    SET_REGISTER_COMPANY,
     SET_REGISTER_EMAIL,
     SET_REGISTER_FIRSTNAME,
+    SET_REGISTER_ID_COUNTRY,
+    SET_REGISTER_ID_STATE,
     SET_REGISTER_ID_USER_TYPE,
     SET_REGISTER_LASTNAME,
     SET_REGISTER_NEWSLETTER,
     SET_REGISTER_PASSWORD,
+    SET_REGISTER_PEC,
+    SET_REGISTER_PHONE,
+    SET_REGISTER_POSTCODE,
     SET_REGISTER_PSGDPR,
+    SET_REGISTER_SDI,
+    SET_REGISTER_VAT_NUMBER,
     SUBMIT_LOGIN,
     SUBMIT_REGISTER,
     USER_TYPE_PRIVATE
@@ -153,6 +163,116 @@ const ClientReducer = (state = initialState, action) => {
                 registerForm: {
                     ...state.registerForm,
                     password: action.password
+                }
+            };
+        case SET_REGISTER_COMPANY:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        company: action.company
+                    }
+                }
+            };
+        case SET_REGISTER_VAT_NUMBER:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        vat_number: action.vat_number
+                    }
+                }
+            };
+        case SET_REGISTER_SDI:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        sdi: action.sdi
+                    }
+                }
+            };
+        case SET_REGISTER_PEC:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        pec: action.pec
+                    }
+                }
+            };
+        case SET_REGISTER_ADDRESS:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        address: action.address
+                    }
+                }
+            };
+        case SET_REGISTER_POSTCODE:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        postcode: action.postcode
+                    }
+                }
+            };
+        case SET_REGISTER_CITY:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        city: action.city
+                    }
+                }
+            };
+        case SET_REGISTER_ID_STATE:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        id_state: action.id_state
+                    }
+                }
+            };
+        case SET_REGISTER_ID_COUNTRY:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        id_country: action.id_country
+                    }
+                }
+            };
+        case SET_REGISTER_PHONE:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    businessTypeData: {
+                        ...state.registerForm.businessTypeData,
+                        phone: action.phone
+                    }
                 }
             };
         case SUBMIT_REGISTER:
