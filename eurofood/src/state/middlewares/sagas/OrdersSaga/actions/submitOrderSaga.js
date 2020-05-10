@@ -7,7 +7,6 @@ import {
 } from '../../../../../constants/RouteConstants';
 import { all, call, put, select } from 'redux-saga/effects';
 
-import { CommonActions } from '@react-navigation/native';
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import Snackbar from 'react-native-snackbar';
 import createOrderCall from './../../../../../api/calls/OrdersCall/createOrderCall';
@@ -58,10 +57,10 @@ export default function* submitOrderSaga() {
                 id_lang: currentCart.id_lang,
                 id_customer: currentCart.id_customer,
                 id_carrier: currentCart.id_carrier ? currentCart.id_carrier : 7,
-                module: 'ps_cashondelivery',
                 id_shop_group: '1',
                 id_shop: '1',
                 secure_key: currentCart.secure_key,
+                module: 'ps_cashondelivery',
                 payment: 'Cash on delivery (COD)',
                 recyclable: currentCart.recyclable,
                 gift: currentCart.gift,

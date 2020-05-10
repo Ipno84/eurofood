@@ -8,7 +8,36 @@ export default function* getServerSettingsSaga() {
     try {
         const { server, home } = yield call(getServerSettingsCall);
         yield all([
-            put(getServerSettingsAction({ server })),
+            put(
+                getServerSettingsAction({
+                    // TODO: remove static paymentMethods
+                    server: {
+                        ...server,
+                        paymentMethods: [
+                            {
+                                module: 'ps_cashondelivery',
+                                payment: 'Pagamento in contrassegno',
+                                active: 1
+                            },
+                            {
+                                module: 'stripe_official',
+                                payment: 'Pagamento con Stripe',
+                                active: 1
+                            },
+                            {
+                                module: 'ps_checkpayment',
+                                payment: 'Pagamento con assegno',
+                                active: 0
+                            },
+                            {
+                                module: 'ps_wirepayment',
+                                payment: 'Bonifico bancario',
+                                active: 0
+                            }
+                        ]
+                    }
+                })
+            ),
             put(setHomeTemplateAction({ home }))
         ]);
     } catch (error) {

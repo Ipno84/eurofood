@@ -177,3 +177,8 @@ https://stackoverflow.com/questions/49426174/cannot-push-to-android-emulator-bec
 
 lucrezia.perrone@eurofoodservice.it
 Eurofood_2019
+
+## Backend TODO
+
+-   [ ] add is_gender to jwt token
+-   [ ] fix get product images
