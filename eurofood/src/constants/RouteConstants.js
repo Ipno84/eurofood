@@ -1,6 +1,7 @@
 export const ROUTE_NAME_HOME = 'Home';
 export const ROUTE_NAME_LOGIN = 'Login';
 export const ROUTE_NAME_REGISTER = 'Register';
+export const ROUTE_NAME_REGISTER_BUSINESS = 'RegisterBusiness';
 export const ROUTE_NAME_FORGOT_PASSWORD = 'ForgotPassword';
 export const ROUTE_NAME_CATEGORY = 'Category';
 export const ROUTE_NAME_CATEGORY_PRODUCTS = 'Category_Products';

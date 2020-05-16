@@ -1,6 +1,7 @@
 import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
 import {
     LOGOUT,
+    SET_HAS_TO_COMPLETE_BUSINESS_REGISTRATION,
     SET_LOGIN_EMAIL,
     SET_LOGIN_PASSWORD,
     SET_REGISTER_ADDRESS,
@@ -20,6 +21,7 @@ import {
     SET_REGISTER_PSGDPR,
     SET_REGISTER_SDI,
     SET_REGISTER_VAT_NUMBER,
+    SUBMIT_BILLING_ADDRESS,
     SUBMIT_LOGIN,
     SUBMIT_REGISTER,
     USER_TYPE_PRIVATE
@@ -58,8 +60,10 @@ export const initialState = {
         psgdpr: false //send 1 if checked - https://www.eurofoodservice.it/content/5-condizioni-registrazione-sito
     },
     registerSubmitted: false,
+    billingAddressSubmitted: false,
     companyForm: {},
-    jwt: ''
+    jwt: '',
+    hasToCompleteBusinessRegistration: false
 };
 
 export const ClientReducerTransform = createTransform(
@@ -73,7 +77,9 @@ export const ClientReducerTransform = createTransform(
             loginSubmitted: initialState.loginSubmitted,
             registerForm: initialState.registerForm,
             registerSubmitted: initialState.registerSubmitted,
-            companyForm: initialState.companyForm
+            companyForm: initialState.companyForm,
+            hasToCompleteBusinessRegistration:
+                initialState.hasToCompleteBusinessRegistration
         };
     },
     { whitelist: REDUCER_NAME_CLIENT }
@@ -290,12 +296,33 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 registerSubmitted: false
             };
+        case SUBMIT_BILLING_ADDRESS:
+            return {
+                ...state,
+                billingAddressSubmitted: true
+            };
+        case SUBMIT_BILLING_ADDRESS + SUCCESS:
+            return {
+                ...state,
+                billingAddressSubmitted: false
+            };
+        case SUBMIT_BILLING_ADDRESS + FAILURE:
+            return {
+                ...state,
+                billingAddressSubmitted: false
+            };
         case LOGOUT:
             return {
                 ...state,
                 user: initialState.user,
                 company: initialState.company,
                 jwt: initialState.jwt
+            };
+        case SET_HAS_TO_COMPLETE_BUSINESS_REGISTRATION:
+            return {
+                ...state,
+                hasToCompleteBusinessRegistration:
+                    action.hasToCompleteBusinessRegistration
             };
         default:
             return state;

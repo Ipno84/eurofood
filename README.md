@@ -182,3 +182,7 @@ Eurofood_2019
 
 -   [ ] add is_gender to jwt token
 -   [ ] fix get product images
+
+## Multidex Android issue
+
+https://developer.android.com/studio/build/multidex#kotlin

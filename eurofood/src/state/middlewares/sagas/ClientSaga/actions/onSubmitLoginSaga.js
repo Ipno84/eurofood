@@ -7,10 +7,10 @@ import ValidationError, {
 } from './../../../../../helpers/ValidationError';
 import { all, call, put, select } from 'redux-saga/effects';
 
-import { CommonActions } from '@react-navigation/native';
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import { ROUTE_NAME_HOME } from '../../../../../constants/RouteConstants';
 import Snackbar from 'react-native-snackbar';
+import { USER_TYPE_BUSINESS } from '../../../../../constants/ClientConstants';
 import getLoginEmailSelector from './../../../../selectors/ClientSelectors/getLoginEmailSelector';
 import getLoginPasswordSelector from './../../../../selectors/ClientSelectors/getLoginPasswordSelector';
 import isValidEmail from './../../../../../helpers/isValidEmail';
@@ -18,6 +18,7 @@ import loginCall from './../../../../../api/calls/CustomersCalls/loginCall';
 import { orange } from '../../../../../constants/ThemeConstants';
 import parseJwtToken from './../../../../../helpers/parseJwtToken';
 import setErrorAction from './../../../../actions/ErrorsActions/setErrorAction';
+import setHasToCompleteBusinessRegistrationAction from '../../../../actions/ClientActions/setHasToCompleteBusinessRegistrationAction';
 import submitLoginAction from './../../../../actions/ClientActions/submitLoginAction';
 
 export default function* onSubmitLoginSaga() {
@@ -38,17 +39,30 @@ export default function* onSubmitLoginSaga() {
         if (jwt) {
             const user = parseJwtToken(jwt);
             if (user) {
-                NavigatorRef.reset({
-                    index: 1,
-                    routes: [{ name: ROUTE_NAME_HOME }]
-                });
-                yield put(
-                    submitLoginAction({
-                        success: true,
-                        user,
-                        jwt
-                    })
-                );
+                let actions = [
+                    put(
+                        submitLoginAction({
+                            success: true,
+                            user,
+                            jwt
+                        })
+                    )
+                ];
+                if (
+                    user.id_default_group &&
+                    parseInt(user.id_default_group) === USER_TYPE_BUSINESS &&
+                    !user.billing_address_id
+                ) {
+                    actions.push(
+                        put(setHasToCompleteBusinessRegistrationAction(true))
+                    );
+                } else {
+                    NavigatorRef.reset({
+                        index: 1,
+                        routes: [{ name: ROUTE_NAME_HOME }]
+                    });
+                }
+                yield all(actions);
             }
         }
     } catch (error) {

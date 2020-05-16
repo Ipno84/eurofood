@@ -1,8 +1,8 @@
-// export const HOST = `https://${
-//     process.env.NODE_ENV === 'development' ? 'svil-upgrade' : 'www'
-// }.eurofoodservice.it`;
-export const HOST = `https://${
-    process.env.NODE_ENV === 'development' ? 'www' : 'www'
+export const PROTOCOL = `http${
+    process.env.NODE_ENV === 'development' ? '' : 's'
+}://`;
+export const HOST = `${PROTOCOL}${
+    process.env.NODE_ENV === 'development' ? 'svil-upgrade' : 'www'
 }.eurofoodservice.it`;
 export const SUFFIX = 'api';
 export const PREFIX = 'eurofood_';

@@ -5,7 +5,6 @@ import {
 } from '../../../../constants/RouteConstants';
 
 import BottomWrapper from './BottomWrapper';
-import BusinessRegistrationFields from './BusinessRegistrationFields';
 import ButtonSubmit from './ButtonSubmit';
 import CheckboxGdpr from './CheckboxGdpr';
 import CheckboxNewsletter from './CheckboxNewsletter';
@@ -45,7 +44,6 @@ const Register = () => {
                                 <InputLastname />
                                 <InputEmail />
                                 <InputPassword />
-                                <BusinessRegistrationFields />
                                 <Spacer top={16} />
                                 <CheckboxNewsletter />
                                 <CheckboxGdpr />
