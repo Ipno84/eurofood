@@ -10,6 +10,7 @@ import {
     SET_REGISTER_EMAIL,
     SET_REGISTER_FIRSTNAME,
     SET_REGISTER_ID_COUNTRY,
+    SET_REGISTER_ID_CUSTOMER,
     SET_REGISTER_ID_STATE,
     SET_REGISTER_ID_USER_TYPE,
     SET_REGISTER_LASTNAME,
@@ -21,14 +22,17 @@ import {
     SET_REGISTER_PSGDPR,
     SET_REGISTER_SDI,
     SET_REGISTER_VAT_NUMBER,
+    SET_USER,
     SUBMIT_BILLING_ADDRESS,
     SUBMIT_LOGIN,
     SUBMIT_REGISTER,
+    USER_TYPE_BUSINESS,
     USER_TYPE_PRIVATE
 } from '../../constants/ClientConstants';
 
 import { REDUCER_NAME_CLIENT } from '../../constants/StoreConstants';
 import { createTransform } from 'redux-persist';
+import parseJwtToken from './../../helpers/parseJwtToken';
 
 export const initialState = {
     user: {},
@@ -39,7 +43,8 @@ export const initialState = {
     },
     loginSubmitted: false,
     registerForm: {
-        id_gender: USER_TYPE_PRIVATE, // 5 = private, 6 = business
+        id_customer: '',
+        id_default_group: USER_TYPE_PRIVATE, // 5 = private, 6 = business
         firstname: '',
         lastname: '',
         email: '',
@@ -53,7 +58,7 @@ export const initialState = {
             postcode: '',
             city: '',
             id_state: '',
-            id_country: '',
+            id_country: '10',
             phone: ''
         },
         newsletter: false, //send 1 if checked
@@ -71,7 +76,7 @@ export const ClientReducerTransform = createTransform(
         return { ...inboundState };
     },
     outboundState => {
-        return {
+        let state = {
             ...outboundState,
             loginForm: initialState.loginForm,
             loginSubmitted: initialState.loginSubmitted,
@@ -81,12 +86,32 @@ export const ClientReducerTransform = createTransform(
             hasToCompleteBusinessRegistration:
                 initialState.hasToCompleteBusinessRegistration
         };
+        try {
+            const user = parseJwtToken(outboundState.jwt);
+            if (
+                user.id_default_group &&
+                parseInt(user.id_default_group) === USER_TYPE_BUSINESS &&
+                !user.billing_address_id
+            ) {
+                state = {
+                    ...state,
+                    user: initialState.user,
+                    jwt: initialState.jwt
+                };
+            }
+        } catch (error) {}
+        return state;
     },
     { whitelist: REDUCER_NAME_CLIENT }
 );
 
 const ClientReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_USER:
+            return {
+                ...state,
+                user: action.user
+            };
         case SET_LOGIN_EMAIL:
             return {
                 ...state,
@@ -115,12 +140,20 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 loginSubmitted: false
             };
+        case SET_REGISTER_ID_CUSTOMER:
+            return {
+                ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    id_customer: action.id_customer
+                }
+            };
         case SET_REGISTER_ID_USER_TYPE:
             return {
                 ...state,
                 registerForm: {
                     ...state.registerForm,
-                    id_gender: action.idUserType
+                    id_default_group: action.idUserType
                 }
             };
         case SET_REGISTER_EMAIL:
@@ -289,6 +322,10 @@ const ClientReducer = (state = initialState, action) => {
         case SUBMIT_REGISTER + SUCCESS:
             return {
                 ...state,
+                registerForm: {
+                    ...state.registerForm,
+                    id_customer: action.id_customer
+                },
                 registerSubmitted: false
             };
         case SUBMIT_REGISTER + FAILURE:
@@ -304,7 +341,8 @@ const ClientReducer = (state = initialState, action) => {
         case SUBMIT_BILLING_ADDRESS + SUCCESS:
             return {
                 ...state,
-                billingAddressSubmitted: false
+                billingAddressSubmitted: false,
+                hasToCompleteBusinessRegistration: false
             };
         case SUBMIT_BILLING_ADDRESS + FAILURE:
             return {

@@ -69,6 +69,7 @@ export default function* onSubmitRegisterSaga() {
             );
 
         const checkUser = yield call(checkUserCall, email);
+        console.log('checkUser', checkUser);
         if (
             checkUser &&
             checkUser.customers &&
@@ -86,8 +87,13 @@ export default function* onSubmitRegisterSaga() {
             });
             throw new Error(errorText);
         } else {
+            // N.B.: id_gender must have the opposite value to id_default_group for backend reasons
             const registerBody = {
-                id_gender: idUserType,
+                id_gender:
+                    idUserType === USER_TYPE_PRIVATE
+                        ? USER_TYPE_BUSINESS
+                        : USER_TYPE_PRIVATE,
+                id_default_group: idUserType,
                 firstname,
                 lastname,
                 email,
@@ -96,18 +102,20 @@ export default function* onSubmitRegisterSaga() {
                 psgdpr: psgdpr ? 1 : 0
             };
             const results = yield call(registerCall, registerBody);
+            console.log('results', results);
             if (results && results.customer) {
                 let actions = [
                     put(
                         submitRegisterAction({
-                            success: true
+                            success: true,
+                            id_customer: results.customer.id
                         })
                     )
                 ];
                 if (idUserType === USER_TYPE_PRIVATE) {
                     Snackbar.show({
                         text: `Il tuo account è stato creato con successo.
-                        Riceverai una mail contenente un link per l'attivazione del tuo account.`,
+Riceverai una mail contenente un link per l'attivazione del tuo account.`,
                         duration: Snackbar.LENGTH_INDEFINITE,
                         action: {
                             text: 'OK',

@@ -3,5 +3,5 @@ import getRegisterBusinessTypeDataSelector from './getRegisterBusinessTypeDataSe
 
 export default createSelector(
     [getRegisterBusinessTypeDataSelector],
-    businessTypeData => businessTypeData.vat_number
+    businessTypeData => String(businessTypeData.vat_number)
 );

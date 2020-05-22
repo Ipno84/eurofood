@@ -22,6 +22,12 @@ export default function useHasToCompleteBusinessRegistration() {
             ),
         [dispatch, isLoggedUserBusinessType, hasUserBillingAddress]
     );
+    /*
+    const setHasToCompleteBusinessRegistration = useCallback(
+        () => dispatch(setHasToCompleteBusinessRegistrationAction(true)),
+        [dispatch, isLoggedUserBusinessType, hasUserBillingAddress]
+    );
+    */
     useEffect(() => {
         setHasToCompleteBusinessRegistration();
     }, [

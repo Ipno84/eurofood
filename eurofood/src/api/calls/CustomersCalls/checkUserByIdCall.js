@@ -4,11 +4,11 @@ let params = {
     display: '[id]'
 };
 
-export default function checkUserCall(email) {
-    if (email)
+export default function checkUserByIdCall(id) {
+    if (id)
         params = {
             ...params,
-            'filter[email]': `[${email}]`
+            'filter[id]': `[${id}]`
         };
     params = { ...params };
     return getCustomersCall(params);
