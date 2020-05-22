@@ -14,6 +14,8 @@ import getCurrentCartSelector from '../../../../selectors/CartSelectors/getCurre
 import getProductItemNameSelector from '../../../../selectors/ProductsSelectors/getProductItemNameSelector';
 import getProductItemReferenceSelector from '../../../../selectors/ProductsSelectors/getProductItemReferenceSelector';
 import getProductPriceInfoSelector from '../../../../selectors/ProductsSelectors/getProductPriceInfoSelector';
+import getUserBillingAddressIdSelector from '../../../../selectors/ClientSelectors/getUserBillingAddressIdSelector';
+import isLoggedUserBusinessTypeSelector from '../../../../selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
 import isUserLoggedInSelector from '../../../../selectors/ClientSelectors/isUserLoggedInSelector';
 import { orange } from '../../../../../constants/ThemeConstants';
 import submitOrderAction from './../../../../actions/OrdersActions/submitOrderAction';
@@ -22,6 +24,10 @@ export default function* submitOrderSaga() {
     try {
         const isUserLoggedIn = yield select(isUserLoggedInSelector);
         if (!isUserLoggedIn) throw new Error('Utente non loggato');
+        const isLoggedUserBusinessType = yield select(
+            isLoggedUserBusinessTypeSelector
+        );
+        const billingAddressId = yield select(getUserBillingAddressIdSelector);
         const currentCart = yield select(getCurrentCartSelector);
         if (currentCart) {
             const orderRows = yield all(
@@ -51,7 +57,9 @@ export default function* submitOrderSaga() {
                 total_products + shipmentCost + totalTaxes;
             const order = {
                 id_address_delivery: currentCart.id_address_delivery,
-                id_address_invoice: currentCart.id_address_invoice,
+                id_address_invoice: isLoggedUserBusinessType
+                    ? billingAddressId
+                    : currentCart.id_address_invoice,
                 id_cart: currentCart.id,
                 id_currency: currentCart.id_currency,
                 id_lang: currentCart.id_lang,

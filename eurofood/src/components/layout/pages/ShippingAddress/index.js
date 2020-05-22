@@ -7,6 +7,7 @@ import PlainButton from './../../atoms/Button/PlainButton';
 import { ROUTE_NAME_BILLING_ADDRESS } from '../../../../constants/RouteConstants';
 import { SafeAreaView } from 'react-native';
 import SectionTitle from './../../atoms/Text/SectionTitle';
+import SubmitOrProceedButton from '../../molecules/SubmitOrProceedButton';
 import TitleWrapper from './../../atoms/Text/TitleWrapper';
 import ToggleAddressButton from './../../molecules/ToggleAddressButton';
 import getSelectedShippingAddressIdSelector from './../../../../state/selectors/CartSelectors/getSelectedShippingAddressIdSelector';
@@ -64,7 +65,8 @@ const ShippingAddress = () => {
                             }
                             selectedId={Number(selectedShippingAddressId)}
                         />
-                        <PlainButton
+                        <SubmitOrProceedButton isShippingAddressPage={true} />
+                        {/* <PlainButton
                             disabled={
                                 !Boolean(parseInt(selectedShippingAddressId))
                             }
@@ -73,7 +75,7 @@ const ShippingAddress = () => {
                                 navigate(ROUTE_NAME_BILLING_ADDRESS)
                             }>
                             Procedi
-                        </PlainButton>
+                        </PlainButton> */}
                     </>
                 )}
             </Wrap>

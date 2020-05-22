@@ -7,6 +7,7 @@ import { Alert } from 'react-native';
 import PlainButton from './../../atoms/Button/PlainButton';
 import { SafeAreaView } from 'react-native';
 import SectionTitle from './../../atoms/Text/SectionTitle';
+import SubmitOrProceedButton from '../../molecules/SubmitOrProceedButton';
 import TitleWrapper from './../../atoms/Text/TitleWrapper';
 import ToggleAddressButton from './../../molecules/ToggleAddressButton';
 import getSelectedBillingAddressIdSelector from './../../../../state/selectors/CartSelectors/getSelectedBillingAddressIdSelector';
@@ -70,7 +71,8 @@ const BillingAddress = () => {
                             }
                             selectedId={Number(selectedBillingAddressId)}
                         />
-                        <PlainButton
+                        <SubmitOrProceedButton />
+                        {/* <PlainButton
                             disabled={isOrderSubmitted}
                             onPress={() => {
                                 if (!isOrderSubmitted) {
@@ -93,7 +95,7 @@ const BillingAddress = () => {
                                 }
                             }}>
                             Completa
-                        </PlainButton>
+                        </PlainButton> */}
                     </>
                 )}
             </Wrap>
