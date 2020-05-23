@@ -7,7 +7,6 @@ import {
 } from '../../../../../constants/RouteConstants';
 import { all, call, put, select } from 'redux-saga/effects';
 
-import { CommonActions } from '@react-navigation/native';
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import Snackbar from 'react-native-snackbar';
 import createOrderCall from './../../../../../api/calls/OrdersCall/createOrderCall';
@@ -15,6 +14,8 @@ import getCurrentCartSelector from '../../../../selectors/CartSelectors/getCurre
 import getProductItemNameSelector from '../../../../selectors/ProductsSelectors/getProductItemNameSelector';
 import getProductItemReferenceSelector from '../../../../selectors/ProductsSelectors/getProductItemReferenceSelector';
 import getProductPriceInfoSelector from '../../../../selectors/ProductsSelectors/getProductPriceInfoSelector';
+import getUserBillingAddressIdSelector from '../../../../selectors/ClientSelectors/getUserBillingAddressIdSelector';
+import isLoggedUserBusinessTypeSelector from '../../../../selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
 import isUserLoggedInSelector from '../../../../selectors/ClientSelectors/isUserLoggedInSelector';
 import { orange } from '../../../../../constants/ThemeConstants';
 import submitOrderAction from './../../../../actions/OrdersActions/submitOrderAction';
@@ -23,6 +24,10 @@ export default function* submitOrderSaga() {
     try {
         const isUserLoggedIn = yield select(isUserLoggedInSelector);
         if (!isUserLoggedIn) throw new Error('Utente non loggato');
+        const isLoggedUserBusinessType = yield select(
+            isLoggedUserBusinessTypeSelector
+        );
+        const billingAddressId = yield select(getUserBillingAddressIdSelector);
         const currentCart = yield select(getCurrentCartSelector);
         if (currentCart) {
             const orderRows = yield all(
@@ -52,16 +57,18 @@ export default function* submitOrderSaga() {
                 total_products + shipmentCost + totalTaxes;
             const order = {
                 id_address_delivery: currentCart.id_address_delivery,
-                id_address_invoice: currentCart.id_address_invoice,
+                id_address_invoice: isLoggedUserBusinessType
+                    ? billingAddressId
+                    : currentCart.id_address_invoice,
                 id_cart: currentCart.id,
                 id_currency: currentCart.id_currency,
                 id_lang: currentCart.id_lang,
                 id_customer: currentCart.id_customer,
                 id_carrier: currentCart.id_carrier ? currentCart.id_carrier : 7,
-                module: 'ps_cashondelivery',
                 id_shop_group: '1',
                 id_shop: '1',
                 secure_key: currentCart.secure_key,
+                module: 'ps_cashondelivery',
                 payment: 'Cash on delivery (COD)',
                 recyclable: currentCart.recyclable,
                 gift: currentCart.gift,

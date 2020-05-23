@@ -2,6 +2,7 @@ import { persistor, store } from './src/state/store';
 import theme, { lightGray } from './src/constants/ThemeConstants';
 
 import Init from './src/components/containers/Init';
+import ModalRegisterBusiness from './src/components/layout/templates/ModalRegisterBusiness';
 import { NavigationContainer } from '@react-navigation/native';
 import NavigatorRef from './src/helpers/NavigatorRef';
 import NotificationHandler from './src/components/containers/NotificationHandler';
@@ -24,6 +25,7 @@ const App = () => {
                         />
                         <NotificationHandler />
                         <Init />
+                        <ModalRegisterBusiness />
                     </NavigationContainer>
                 </ThemeProvider>
             </PersistGate>

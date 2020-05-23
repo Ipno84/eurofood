@@ -4,7 +4,7 @@ import jsToXml from './../../../helpers/jsToXml';
 export default function registerCall(payload) {
     const jsBody = {
         prestashop: {
-            customers: payload
+            customer: payload
         }
     };
     const xmlBody = jsToXml(jsBody);

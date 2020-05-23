@@ -1,7 +1,8 @@
 import AnimatedLinearGradient from './../../atoms/AnimatedLinearGradient';
 import React from 'react';
 import SkeletonProductCard from '../../molecules/ProductCard/SkeletonProductCard';
-import { isTablet } from 'react-native-device-detection';
+import isTabletDevice from '../../../../helpers/isTabletDevice';
+// import { isTablet } from 'react-native-device-detection';
 import styled from 'styled-components/native';
 
 const SkeletonSearchResults = () => {
@@ -10,7 +11,7 @@ const SkeletonSearchResults = () => {
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
-                {isTablet ? (
+                {isTabletDevice() ? (
                     <>
                         <SkeletonProductCard isInRow={true} isFirst={false} />
                         <SkeletonProductCard isInRow={true} isFirst={false} />
@@ -20,7 +21,7 @@ const SkeletonSearchResults = () => {
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
-                {isTablet ? (
+                {isTabletDevice() ? (
                     <>
                         <SkeletonProductCard isInRow={true} isFirst={false} />
                         <SkeletonProductCard isInRow={true} isFirst={false} />
@@ -30,14 +31,14 @@ const SkeletonSearchResults = () => {
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
-                {isTablet ? (
+                {isTabletDevice() ? (
                     <>
                         <SkeletonProductCard isInRow={true} isFirst={false} />
                         <SkeletonProductCard isInRow={true} isFirst={false} />
                     </>
                 ) : null}
             </Row>
-            {isTablet ? (
+            {isTabletDevice() ? (
                 <>
                     <Row>
                         <SkeletonProductCard isInRow={true} isFirst={true} />

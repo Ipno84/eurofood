@@ -37,6 +37,20 @@ target 'eurofood' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
+  # Stripe
+  pod 'Stripe', '~> 14.0.0'
+
+  # Install additional dependencies
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Crash'
+  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Performance'
+  pod 'Firebase/Storage'
+
+
   target 'eurofoodTests' do
     inherit! :search_paths
     # Pods for testing

@@ -4,6 +4,7 @@ import {
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
     ROUTE_NAME_CATEGORY_PRODUCTS,
+    ROUTE_NAME_CHECKOUT,
     ROUTE_NAME_EDIT_ADDRESS,
     ROUTE_NAME_FORGOT_PASSWORD,
     ROUTE_NAME_HOME,
@@ -28,6 +29,7 @@ import Cart from './../components/layout/pages/Cart';
 import Categories from './../components/layout/pages/Categories';
 import Category from './../components/layout/pages/Category';
 import CategoryProducts from './../components/layout/pages/Category/Products';
+import Checkout from '../components/layout/pages/Checkout';
 import Drawer from './Drawer';
 import DrawerContent from './../components/layout/templates/DrawerContent';
 import EditAddress from '../components/layout/pages/EditAddress';
@@ -159,6 +161,11 @@ const RoutesMap = [
         name: ROUTE_NAME_EDIT_ADDRESS,
         component: EditAddress,
         options: ({ navigation, route }) => ({ title: 'EditAddress' })
+    },
+    {
+        name: ROUTE_NAME_CHECKOUT,
+        component: Checkout,
+        options: ({ navigation, route }) => ({ title: 'Checkout' })
     }
 ];
 
