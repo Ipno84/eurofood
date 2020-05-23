@@ -13,7 +13,10 @@ export default function getServerSettingsCall() {
             Authorization: 'Basic ' + btoa(PRIVATE_TOKEN + ':' + '')
         }
     })
-        .then(response => response.json())
+        .then(response => {
+            return localSettings;
+            return response.json();
+        })
         .then(data => data)
         .catch(error => {
             console.log(error);

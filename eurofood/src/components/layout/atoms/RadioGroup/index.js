@@ -3,6 +3,7 @@ import RadioBorder from './RadioBorder';
 import RadioSelection from './RadioSelection';
 import React from 'react';
 import Touchable from './../Button/Touchable';
+import { View } from 'react-native';
 import Wrapper from './Wrapper';
 
 const RadioGroup = ({
@@ -12,7 +13,6 @@ const RadioGroup = ({
     ItemInner,
     onRadioPress
 }) => {
-    console.log('activeKey', activeKey);
     return options.map(option => {
         return (
             <ItemWrapper key={option.optionKey}>
@@ -26,6 +26,19 @@ const RadioGroup = ({
                             </RadioBorder>
                             {option.optionLabel ? (
                                 <Label>{option.optionLabel}</Label>
+                            ) : null}
+                            {option.optionLabels ? (
+                                <View>
+                                    {option.optionLabels.map((e, i) => (
+                                        <View key={e}>
+                                            <Label
+                                                bold={i === 0}
+                                                italic={i === 2}>
+                                                {e}
+                                            </Label>
+                                        </View>
+                                    ))}
+                                </View>
                             ) : null}
                         </Wrapper>
                     </ItemInner>

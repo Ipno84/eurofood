@@ -5,21 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import RadioGroup from '../../atoms/RadioGroup';
 import Wrapper from '../../atoms/Card/Wrapper';
 import getActivePaymentMethodsSelector from './../../../../state/selectors/SettingsSelectors/getActivePaymentMethodsSelector';
-import getSelectedPaymentMethodSelector from './../../../../state/selectors/OrdersSelectors/getSelectedPaymentMethodSelector';
-import setSelectedPaymentMethodAction from './../../../../state/actions/OrdersActions/setSelectedPaymentMethodAction';
-import stripe from 'tipsi-stripe';
+import getSelectedPaymentMethodIdSelector from './../../../../state/selectors/CheckoutSelectors/getSelectedPaymentMethodIdSelector';
+import setSelectedPaymentMethodIdAction from './../../../../state/actions/CheckoutActions/setSelectedPaymentMethodIdAction';
 
-console.log(stripe);
+// import stripe from 'tipsi-stripe';
 
-const Checkout = () => {
+const PaymentMethod = () => {
     const dispatch = useDispatch();
     const items = useSelector(state => getActivePaymentMethodsSelector(state));
-    const selectedPaymentMethod = useSelector(state =>
-        getSelectedPaymentMethodSelector(state)
+    const selectedPaymentMethodId = useSelector(state =>
+        getSelectedPaymentMethodIdSelector(state)
     );
-    const setSelectedPaymentMethod = useCallback(
-        selectedPaymentMethod =>
-            dispatch(setSelectedPaymentMethodAction(selectedPaymentMethod)),
+    const setSelectedPaymentMethodId = useCallback(
+        selected => dispatch(setSelectedPaymentMethodIdAction(selected)),
         [dispatch]
     );
     return (
@@ -27,19 +25,10 @@ const Checkout = () => {
             <RadioGroup
                 options={items.map(e => ({
                     optionKey: e.module,
-                    optionLabel: e.payment
+                    optionLabel: e.name
                 }))}
-                activeKey={
-                    selectedPaymentMethod && selectedPaymentMethod.module
-                        ? selectedPaymentMethod.module
-                        : null
-                }
-                onRadioPress={item =>
-                    setSelectedPaymentMethod({
-                        module: item.optionKey,
-                        payment: item.optionLabel
-                    })
-                }
+                activeKey={selectedPaymentMethodId}
+                onRadioPress={item => setSelectedPaymentMethodId(item.id)}
                 ItemWrapper={ItemWrapper}
                 ItemInner={ItemInner}
             />
@@ -47,7 +36,7 @@ const Checkout = () => {
     );
 };
 
-export default Checkout;
+export default PaymentMethod;
 
 const CheckoutWrapper = styled(Wrapper)`
     margin-left: 16px;

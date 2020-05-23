@@ -1,23 +1,25 @@
-import * as math from 'mathjs';
+// import * as math from 'mathjs';
 
 import {
     ROUTE_NAME_HOME,
     ROUTE_NAME_ORDER,
     ROUTE_NAME_ORDERS
 } from '../../../../../constants/RouteConstants';
-import { all, call, put, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 
 import NavigatorRef from './../../../../../helpers/NavigatorRef';
 import Snackbar from 'react-native-snackbar';
 import createOrderCall from './../../../../../api/calls/OrdersCall/createOrderCall';
+import getCartTotalsSelector from '../../../../selectors/CartSelectors/getCartTotalsSelector';
 import getCurrentCartSelector from '../../../../selectors/CartSelectors/getCurrentCartSelector';
-import getProductItemNameSelector from '../../../../selectors/ProductsSelectors/getProductItemNameSelector';
-import getProductItemReferenceSelector from '../../../../selectors/ProductsSelectors/getProductItemReferenceSelector';
-import getProductPriceInfoSelector from '../../../../selectors/ProductsSelectors/getProductPriceInfoSelector';
+// import getProductItemNameSelector from '../../../../selectors/ProductsSelectors/getProductItemNameSelector';
+// import getProductItemReferenceSelector from '../../../../selectors/ProductsSelectors/getProductItemReferenceSelector';
+// import getProductPriceInfoSelector from '../../../../selectors/ProductsSelectors/getProductPriceInfoSelector';
 import getUserBillingAddressIdSelector from '../../../../selectors/ClientSelectors/getUserBillingAddressIdSelector';
 import isLoggedUserBusinessTypeSelector from '../../../../selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
 import isUserLoggedInSelector from '../../../../selectors/ClientSelectors/isUserLoggedInSelector';
 import { orange } from '../../../../../constants/ThemeConstants';
+import roundNumber from './../../../../../helpers/roundNumber';
 import submitOrderAction from './../../../../actions/OrdersActions/submitOrderAction';
 
 export default function* submitOrderSaga() {
@@ -30,31 +32,38 @@ export default function* submitOrderSaga() {
         const billingAddressId = yield select(getUserBillingAddressIdSelector);
         const currentCart = yield select(getCurrentCartSelector);
         if (currentCart) {
-            const orderRows = yield all(
-                currentCart.associations.cart_rows.map(function*(cart_row) {
-                    const orderRow = yield call(getOrderRowData, cart_row);
-                    return orderRow;
-                })
-            );
-            const total_products = orderRows.reduce((total, cartItem) => {
-                const subTotal = math
-                    .chain(cartItem.product_quantity)
-                    .multiply(cartItem.unit_price_tax_excl)
-                    .done();
-                return math
-                    .chain(total)
-                    .add(subTotal)
-                    .done();
-            }, 0);
-            const totalProductsTaxes = total_products * 0.1;
-            const total_products_wt = total_products + totalProductsTaxes;
-            const shipmentCost = 3.5;
-            const shipmentCostTaxes = shipmentCost * 0.22;
-            const total_shipping = shipmentCost + shipmentCostTaxes;
-            const totalTaxes = totalProductsTaxes + shipmentCostTaxes;
-            const total_paid_tax_excl = total_products + shipmentCost;
-            const total_paid_tax_incl =
-                total_products + shipmentCost + totalTaxes;
+            const {
+                total_products_wt,
+                total_shipping_tax_excl,
+                total_shipping,
+                total_paid_tax_excl,
+                total_paid_tax_incl
+            } = yield select(getCartTotalsSelector);
+            // const orderRows = yield all(
+            //     currentCart.associations.cart_rows.map(function*(cart_row) {
+            //         const orderRow = yield call(getOrderRowData, cart_row);
+            //         return orderRow;
+            //     })
+            // );
+            // const total_products = orderRows.reduce((total, cartItem) => {
+            //     const subTotal = math
+            //         .chain(cartItem.product_quantity)
+            //         .multiply(cartItem.unit_price_tax_excl)
+            //         .done();
+            //     return math
+            //         .chain(total)
+            //         .add(subTotal)
+            //         .done();
+            // }, 0);
+            // const totalProductsTaxes = total_products * 0.1;
+            // const total_products_wt = total_products + totalProductsTaxes;
+            // const shipmentCost = 3.5;
+            // const shipmentCostTaxes = shipmentCost * 0.22;
+            // const total_shipping = shipmentCost + shipmentCostTaxes;
+            // const totalTaxes = totalProductsTaxes + shipmentCostTaxes;
+            // const total_paid_tax_excl = total_products + shipmentCost;
+            // const total_paid_tax_incl =
+            //     total_products + shipmentCost + totalTaxes;
             const order = {
                 id_address_delivery: currentCart.id_address_delivery,
                 id_address_invoice: isLoggedUserBusinessType
@@ -85,7 +94,7 @@ export default function* submitOrderSaga() {
                 total_paid_tax_incl: roundNumber(total_paid_tax_incl),
                 total_shipping: roundNumber(total_shipping),
                 total_shipping_tax_incl: roundNumber(total_shipping),
-                total_shipping_tax_excl: roundNumber(shipmentCost),
+                total_shipping_tax_excl: roundNumber(total_shipping_tax_excl),
                 carrier_tax_rate: '22.000',
                 total_wrapping: '0.000000',
                 total_wrapping_tax_incl: '0.000000',
@@ -135,41 +144,41 @@ export default function* submitOrderSaga() {
     }
 }
 
-function* getOrderRowData(cart_row) {
-    const reference = yield select(state =>
-        getProductItemReferenceSelector(state, cart_row.id_product)
-    );
-    const name = yield select(state =>
-        getProductItemNameSelector(state, cart_row.id_product)
-    );
-    const priceInfo = yield select(state =>
-        getProductPriceInfoSelector(state, cart_row.id_product)
-    );
-    const productPrice = parseFloat(priceInfo.regularPrice).toFixed(6);
-    const salePrice = priceInfo.sale
-        ? parseFloat(priceInfo.sale.price).toFixed(6)
-        : null;
-    let priceWithTaxes =
-        (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) +
-        (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) * 0.1;
-    return {
-        product_id: cart_row.id_product,
-        product_attribute_id: cart_row.id_product_attribute,
-        product_quantity: cart_row.quantity,
-        id_customization: cart_row.id_customization
-            ? cart_row.id_customization
-            : '0',
-        product_ean13: '',
-        product_isbn: '',
-        product_upc: '',
-        product_reference: reference,
-        product_name: name,
-        product_price: productPrice,
-        unit_price_tax_excl: salePrice ? salePrice : productPrice,
-        unit_price_tax_incl: parseFloat(priceWithTaxes).toFixed(6)
-    };
-}
+// function* getOrderRowData(cart_row) {
+//     const reference = yield select(state =>
+//         getProductItemReferenceSelector(state, cart_row.id_product)
+//     );
+//     const name = yield select(state =>
+//         getProductItemNameSelector(state, cart_row.id_product)
+//     );
+//     const priceInfo = yield select(state =>
+//         getProductPriceInfoSelector(state, cart_row.id_product)
+//     );
+//     const productPrice = parseFloat(priceInfo.regularPrice).toFixed(6);
+//     const salePrice = priceInfo.sale
+//         ? parseFloat(priceInfo.sale.price).toFixed(6)
+//         : null;
+//     let priceWithTaxes =
+//         (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) +
+//         (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) * 0.1;
+//     return {
+//         product_id: cart_row.id_product,
+//         product_attribute_id: cart_row.id_product_attribute,
+//         product_quantity: cart_row.quantity,
+//         id_customization: cart_row.id_customization
+//             ? cart_row.id_customization
+//             : '0',
+//         product_ean13: '',
+//         product_isbn: '',
+//         product_upc: '',
+//         product_reference: reference,
+//         product_name: name,
+//         product_price: productPrice,
+//         unit_price_tax_excl: salePrice ? salePrice : productPrice,
+//         unit_price_tax_incl: parseFloat(priceWithTaxes).toFixed(6)
+//     };
+// }
 
-function roundNumber(num) {
-    return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(6);
-}
+// function roundNumber(num) {
+//     return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(6);
+// }

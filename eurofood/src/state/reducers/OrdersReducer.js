@@ -2,7 +2,6 @@ import { FAILURE, SUCCESS } from '../../constants/BaseConstants';
 import {
     GET_ORDERS,
     SET_ORDERS_ITEMS,
-    SET_SELECTED_PAYMENT_METHOD,
     SUBMIT_ORDER
 } from '../../constants/OrdersConstants';
 
@@ -12,8 +11,7 @@ import { createTransform } from 'redux-persist';
 export const initialState = {
     items: {},
     orders: [],
-    orderSubmitted: false,
-    selectedPaymentMethod: null
+    orderSubmitted: false
 };
 
 export const OrdersReducerTransform = createTransform(
@@ -23,8 +21,7 @@ export const OrdersReducerTransform = createTransform(
     outboundState => {
         return {
             ...outboundState,
-            orderSubmitted: initialState.orderSubmitted,
-            selectedPaymentMethod: initialState.selectedPaymentMethod
+            orderSubmitted: initialState.orderSubmitted
         };
     },
     { whitelist: REDUCER_NAME_ORDERS }
@@ -71,11 +68,6 @@ const OrdersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderSubmitted: false
-            };
-        case SET_SELECTED_PAYMENT_METHOD:
-            return {
-                ...state,
-                selectedPaymentMethod: action.selectedPaymentMethod
             };
         default:
             return state;

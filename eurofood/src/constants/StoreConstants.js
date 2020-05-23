@@ -12,3 +12,4 @@ export const REDUCER_NAME_CART = 'cart';
 export const REDUCER_NAME_CLIENT = 'client';
 export const REDUCER_NAME_ERRORS = 'errors';
 export const REDUCER_NAME_ADDRESSES = 'addresses';
+export const REDUCER_NAME_CHECKOUT = 'checkout';
