@@ -31,6 +31,7 @@
         "react-native-device-detection": "^0.2.1",
         "react-native-device-info": "^5.5.4",
         "react-native-gesture-handler": "^1.6.0",
+        "react-native-input-credit-card": "^0.5.5",
         "react-native-linear-gradient": "^2.5.6",
         "react-native-onesignal": "^3.7.3",
         "react-native-reanimated": "^1.7.0",

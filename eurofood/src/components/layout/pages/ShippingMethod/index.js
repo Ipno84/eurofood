@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
-import styled, { css } from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ChooseMethodItemInner from './../../atoms/Item/ChooseMethodItemInner';
+import ChooseMethodItemWrapper from './../../atoms/Item/ChooseMethodItemWrapper';
+import ChooseMethodWrapper from '../../atoms/Wrapper/ChooseMethodWrapper';
 import ListHeaderText from './../../atoms/Text/ListHeaderText';
 import RadioGroup from '../../atoms/RadioGroup';
 import Spacer from './../../atoms/Spacer';
 import Totals from '../../molecules/Totals';
-import Wrapper from '../../atoms/Card/Wrapper';
 import fixPrice from '../../../../helpers/fixPrice';
 import getCarrierMethodsSelector from './../../../../state/selectors/SettingsSelectors/getCarrierMethodsSelector';
 import getSelectedCarrierMethodIdSelector from './../../../../state/selectors/CheckoutSelectors/getSelectedCarrierMethodIdSelector';
@@ -26,7 +27,7 @@ const ShippingMethod = () => {
         <>
             <Spacer top={16} />
             <ListHeaderText center={true}>Metodo di spedizione</ListHeaderText>
-            <CheckoutWrapper>
+            <ChooseMethodWrapper>
                 <RadioGroup
                     options={items.map(e => ({
                         optionKey: e.id,
@@ -44,44 +45,16 @@ const ShippingMethod = () => {
                         ]
                     }))}
                     activeKey={selectedCarrierMethodId}
-                    onRadioPress={item =>
-                        setSelectedCarrierMethodId(item.optionKey)
+                    onRadioPress={({ optionKey }) =>
+                        setSelectedCarrierMethodId(optionKey)
                     }
-                    ItemWrapper={ItemWrapper}
-                    ItemInner={ItemInner}
+                    ItemWrapper={ChooseMethodItemWrapper}
+                    ItemInner={ChooseMethodItemInner}
                 />
-            </CheckoutWrapper>
+            </ChooseMethodWrapper>
             <Totals />
         </>
     );
 };
 
 export default ShippingMethod;
-
-const CheckoutWrapper = styled(Wrapper)`
-    margin-left: 16px;
-    margin-right: 16px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-`;
-
-const CheckoutItem = styled.View`
-    ${({ isLast }) =>
-        !isLast &&
-        css`
-            border-bottom-width: 1px;
-            border-bottom-color: ${({ theme }) => theme.colors.lightGray(1)};
-            border-style: solid;
-        `}
-`;
-
-const ItemInner = styled.View`
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-`;
-
-const ItemWrapper = ({ children }) => {
-    return <CheckoutItem>{children}</CheckoutItem>;
-};
