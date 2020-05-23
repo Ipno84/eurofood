@@ -6,12 +6,13 @@ import React from 'react';
 import SearchSection from './../../organisms/SearchSection';
 import { SectionGrid } from 'react-native-super-grid';
 import SkeletonSearchResults from './SkeletonSearchResults';
-import { isTablet } from 'react-native-device-detection';
+import isTabletDevice from '../../../../helpers/isTabletDevice';
+// import { isTablet } from 'react-native-device-detection';
 import { screenWidth } from './../../../../constants/ThemeConstants';
 import styled from 'styled-components/native';
 import useSearchProducts from '../../../../hooks/products/useSearchProducts';
 
-const itemWidth = isTablet ? screenWidth / 6 : screenWidth / 3;
+const itemWidth = isTabletDevice() ? screenWidth / 6 : screenWidth / 3;
 
 const SearchResults = () => {
     const {
