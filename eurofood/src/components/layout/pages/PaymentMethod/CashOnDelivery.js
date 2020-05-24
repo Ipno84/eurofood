@@ -4,14 +4,18 @@ import React from 'react';
 import isSelectedPaymentModuleSelector from '../../../../state/selectors/CheckoutSelectors/isSelectedPaymentModuleSelector';
 import { useSelector } from 'react-redux';
 
-const CashOnDelivery = () => {
+const CashOnDelivery = ({ submitOrder, isOrderSubmitted }) => {
     const isSelectedPaymentModule = useSelector(state =>
         isSelectedPaymentModuleSelector(state, 'ps_cashondelivery')
     );
     if (!isSelectedPaymentModule) return null;
     return (
         <Container>
-            <PlainButton>Completa</PlainButton>
+            <PlainButton
+                disabled={isOrderSubmitted}
+                onPress={() => !isOrderSubmitted && submitOrder()}>
+                Completa
+            </PlainButton>
         </Container>
     );
 };

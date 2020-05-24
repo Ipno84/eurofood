@@ -177,7 +177,7 @@ const RoutesMap = [
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_PAYMENT_METHOD}
+            initialRouteName={ROUTE_NAME_HOME}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',

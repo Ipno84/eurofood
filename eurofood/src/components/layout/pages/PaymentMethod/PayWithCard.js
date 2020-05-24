@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CreditCardInput } from 'react-native-input-credit-card';
 import PlainButton from '../../atoms/Button/PlainButton';
 import Spacer from '../../atoms/Spacer';
 import isSelectedPaymentModuleSelector from '../../../../state/selectors/CheckoutSelectors/isSelectedPaymentModuleSelector';
 import { red } from '../../../../constants/ThemeConstants';
+import setStripeTokenAction from '../../../../state/actions/CheckoutActions/setStripeTokenAction';
 import stripe from 'tipsi-stripe';
 import styled from 'styled-components/native';
-import { useSelector } from 'react-redux';
 
-const PayWithCard = () => {
+const PayWithCard = ({ isOrderSubmitted }) => {
+    const dispatch = useDispatch();
+    const setStripeToken = useCallback(
+        token => dispatch(setStripeTokenAction(token)),
+        [dispatch]
+    );
     const [cardForm, setCardForm] = useState({
         status: {
             number: 'incomplete',
@@ -20,7 +26,6 @@ const PayWithCard = () => {
         valid: false,
         values: { number: '', expiry: '', cvc: '', name: '', type: undefined }
     });
-    const [token, setToken] = useState(null);
     const isSelectedPaymentModule = useSelector(state =>
         isSelectedPaymentModuleSelector(state, 'stripe_official')
     );
@@ -52,7 +57,6 @@ const PayWithCard = () => {
             <Container>
                 <PlainButton
                     onPress={() => {
-                        console.log(cardForm);
                         stripe
                             .createTokenWithCard({
                                 number: cardForm.values.number,
@@ -65,14 +69,12 @@ const PayWithCard = () => {
                                 cvc: cardForm.values.cvc,
                                 name: cardForm.values.name
                             })
-                            .then(success => setToken(success))
+                            .then(token => setStripeToken(token))
                             .catch(e => console.log('error', e));
-                        // stripe
-                        //     .paymentRequestWithCardForm()
-                        //     .then(e => console.log('success', e))
-                        //     .catch(e => console.log('error', e));
                     }}
-                    disabled={!cardForm.valid}>
+                    disabled={
+                        !cardForm.valid || (isOrderSubmitted && cardForm.valid)
+                    }>
                     Paga
                 </PlainButton>
             </Container>

@@ -26,6 +26,7 @@ export default function createOrderCall(order) {
         }
     };
     const xmlBody = jsToXml(jsBody);
+    console.log(xmlBody);
     return axios
         .post(endpoint, xmlBody, {
             headers: { 'Content-Type': 'text/xml' }

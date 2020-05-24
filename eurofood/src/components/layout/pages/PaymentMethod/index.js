@@ -12,7 +12,9 @@ import RadioGroup from '../../atoms/RadioGroup';
 import Spacer from './../../atoms/Spacer';
 import getPaymentMethodsSelector from './../../../../state/selectors/SettingsSelectors/getPaymentMethodsSelector';
 import getSelectedPaymentMethodIdSelector from './../../../../state/selectors/CheckoutSelectors/getSelectedPaymentMethodIdSelector';
+import isOrderSubmittedSelector from '../../../../state/selectors/OrdersSelectors/isOrderSubmittedSelector';
 import setSelectedPaymentMethodIdAction from './../../../../state/actions/CheckoutActions/setSelectedPaymentMethodIdAction';
+import submitOrderAction from '../../../../state/actions/OrdersActions/submitOrderAction';
 
 const PaymentMethod = () => {
     const dispatch = useDispatch();
@@ -24,6 +26,17 @@ const PaymentMethod = () => {
         selected => dispatch(setSelectedPaymentMethodIdAction(selected)),
         [dispatch]
     );
+
+    const submitOrder = useCallback(() => dispatch(submitOrderAction()), [
+        dispatch
+    ]);
+    const isOrderSubmitted = useSelector(state =>
+        isOrderSubmittedSelector(state)
+    );
+    const subProps = {
+        submitOrder,
+        isOrderSubmitted
+    };
     return (
         <SafeAreaView>
             <ScrollView>
@@ -45,8 +58,8 @@ const PaymentMethod = () => {
                         ItemInner={ChooseMethodItemInner}
                     />
                 </ChooseMethodWrapper>
-                <CashOnDelivery />
-                <PayWithCard />
+                <CashOnDelivery {...subProps} />
+                <PayWithCard {...subProps} />
             </ScrollView>
         </SafeAreaView>
     );

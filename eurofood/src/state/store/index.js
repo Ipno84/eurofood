@@ -4,6 +4,7 @@ import AddressesSaga from './../middlewares/sagas/AddressesSaga';
 import CacheSaga from './../middlewares/sagas/CacheSaga';
 import CartSaga from './../middlewares/sagas/CartSaga';
 import CategoriesSaga from './../middlewares/sagas/CategoriesSaga';
+import CheckoutSaga from './../middlewares/sagas/CheckoutSaga';
 import ClientSaga from './../middlewares/sagas/ClientSaga';
 import ErrorsSaga from './../middlewares/sagas/ErrorsSaga';
 import OrdersSaga from './../middlewares/sagas/OrdersSaga';
@@ -47,7 +48,8 @@ function configureStore(initialState) {
         ClientSaga,
         ErrorsSaga,
         OrdersSaga,
-        AddressesSaga
+        AddressesSaga,
+        CheckoutSaga
     };
     store.injectSaga = (key, asyncSaga) => {
         function* combinedSagas() {
@@ -81,6 +83,7 @@ function* combinedSaga() {
     yield fork(ErrorsSaga);
     yield fork(OrdersSaga);
     yield fork(AddressesSaga);
+    yield fork(CheckoutSaga);
 }
 
 export { store, persistor };

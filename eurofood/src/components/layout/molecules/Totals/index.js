@@ -1,8 +1,7 @@
-import styled, { css } from 'styled-components/native';
-
 import React from 'react';
 import TotalsLabel from '../../atoms/Text/TotalsLabel';
 import TotalsRow from '../../atoms/Item/TotalsRow';
+import TotalsText from '../../atoms/Text/TotalsText';
 import TotalsWrapper from '../../atoms/Wrapper/TotalsWrapper';
 import fixPrice from '../../../../helpers/fixPrice';
 import getCartTotalsSelector from '../../../../state/selectors/CartSelectors/getCartTotalsSelector';

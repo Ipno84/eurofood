@@ -12,6 +12,9 @@ import Snackbar from 'react-native-snackbar';
 import createOrderCall from './../../../../../api/calls/OrdersCall/createOrderCall';
 import getCartTotalsSelector from '../../../../selectors/CartSelectors/getCartTotalsSelector';
 import getCurrentCartSelector from '../../../../selectors/CartSelectors/getCurrentCartSelector';
+import getSelectedPaymentMethodModuleSelector from '../../../../selectors/CheckoutSelectors/getSelectedPaymentMethodModuleSelector';
+import getSelectedPaymentMethodNameSelector from '../../../../selectors/CheckoutSelectors/getSelectedPaymentMethodNameSelector';
+import getStripeTokenSelector from '../../../../selectors/CheckoutSelectors/getStripeTokenSelector';
 // import getProductItemNameSelector from '../../../../selectors/ProductsSelectors/getProductItemNameSelector';
 // import getProductItemReferenceSelector from '../../../../selectors/ProductsSelectors/getProductItemReferenceSelector';
 // import getProductPriceInfoSelector from '../../../../selectors/ProductsSelectors/getProductPriceInfoSelector';
@@ -64,6 +67,12 @@ export default function* submitOrderSaga() {
             // const total_paid_tax_excl = total_products + shipmentCost;
             // const total_paid_tax_incl =
             //     total_products + shipmentCost + totalTaxes;
+            const paymentModule = yield select(
+                getSelectedPaymentMethodModuleSelector
+            );
+            const paymentName = yield select(
+                getSelectedPaymentMethodNameSelector
+            );
             const order = {
                 id_address_delivery: currentCart.id_address_delivery,
                 id_address_invoice: isLoggedUserBusinessType
@@ -77,8 +86,8 @@ export default function* submitOrderSaga() {
                 id_shop_group: '1',
                 id_shop: '1',
                 secure_key: currentCart.secure_key,
-                module: 'ps_cashondelivery',
-                payment: 'Cash on delivery (COD)',
+                module: paymentModule,
+                payment: paymentName,
                 recyclable: currentCart.recyclable,
                 gift: currentCart.gift,
                 gift_message: currentCart.gift_message,
@@ -104,6 +113,8 @@ export default function* submitOrderSaga() {
                     order_rows: orderRows
                 }
             };
+            const token = yield select(getStripeTokenSelector);
+            if (token) order['token'] = token;
             const result = yield call(createOrderCall, order);
             if (result && result.order) {
                 NavigatorRef.reset({
