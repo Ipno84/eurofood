@@ -1,6 +1,8 @@
 import {
     facebookColor,
-    twitterColor
+    instagramColor,
+    twitterColor,
+    whatsappColor
 } from './../../../../../../constants/ThemeConstants';
 
 import ButtonWrapper from './ButtonWrapper';
@@ -30,44 +32,85 @@ const ProductShare = ({ id }) => {
         url: productLink
     };
     return (
-        <Wrapper>
-            <Item>
-                <Touchable
-                    onPress={() =>
-                        Share.shareSingle({
-                            ...shareOptions,
-                            social: Share.Social.FACEBOOK
-                        })
-                    }>
-                    <ButtonWrapper>
-                        <Icon
-                            name="facebook"
-                            color={facebookColor.toString()}
-                            size={20}
-                        />
-                        <Text>Condividi</Text>
-                    </ButtonWrapper>
-                </Touchable>
-            </Item>
-            <Item>
-                <Touchable
-                    onPress={() =>
-                        Share.shareSingle({
-                            ...shareOptions,
-                            social: Share.Social.TWITTER
-                        })
-                    }>
-                    <ButtonWrapper>
-                        <Icon
-                            name="twitter"
-                            color={twitterColor.toString()}
-                            size={22}
-                        />
-                        <Text>Twitta</Text>
-                    </ButtonWrapper>
-                </Touchable>
-            </Item>
-        </Wrapper>
+        <>
+            <Wrapper>
+                <Item>
+                    <Touchable
+                        onPress={() =>
+                            Share.shareSingle({
+                                ...shareOptions,
+                                social: Share.Social.FACEBOOK
+                            })
+                        }>
+                        <ButtonWrapper>
+                            <Icon
+                                name="facebook"
+                                color={facebookColor.toString()}
+                                size={20}
+                            />
+                            <Text>Condividi</Text>
+                        </ButtonWrapper>
+                    </Touchable>
+                </Item>
+                <Item>
+                    <Touchable
+                        onPress={() =>
+                            Share.shareSingle({
+                                ...shareOptions,
+                                social: Share.Social.TWITTER
+                            })
+                        }>
+                        <ButtonWrapper>
+                            <Icon
+                                name="twitter"
+                                color={twitterColor.toString()}
+                                size={22}
+                            />
+                            <Text>Twitta</Text>
+                        </ButtonWrapper>
+                    </Touchable>
+                </Item>
+            </Wrapper>
+            <Wrapper>
+                <Item>
+                    <Touchable
+                        onPress={() =>
+                            Share.shareSingle({
+                                ...shareOptions,
+                                social: Share.Social.WHATSAPP,
+                                whatsAppNumber: ''
+                            })
+                        }>
+                        <ButtonWrapper>
+                            <Icon
+                                name="whatsapp"
+                                color={whatsappColor.toString()}
+                                size={20}
+                            />
+                            <Text>Whatsapp</Text>
+                        </ButtonWrapper>
+                    </Touchable>
+                </Item>
+                <Item>
+                    <Touchable
+                        onPress={() =>
+                            Share.shareSingle({
+                                ...shareOptions,
+                                social: Share.Social.INSTAGRAM
+                            })
+                        }>
+                        <ButtonWrapper>
+                            <Icon
+                                name="instagram"
+                                color={instagramColor.toString()}
+                                size={22}
+                            />
+                            <Text>Instagram</Text>
+                        </ButtonWrapper>
+                    </Touchable>
+                </Item>
+            </Wrapper>
+        </>
     );
 };
 

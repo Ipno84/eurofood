@@ -1,5 +1,6 @@
 import {
     GET_MISSING_PRODUCTS,
+    GET_PRODUCT_IMAGES,
     SET_PRODUCTS_ITEMS,
     SET_PRODUCTS_SPECIFIC_PRICES,
     SET_PRODUCTS_STOCK_AVAILABILITIES
@@ -80,6 +81,14 @@ const ProductsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 missingProductsId: []
+            };
+        case GET_PRODUCT_IMAGES + SUCCESS:
+            return {
+                ...state,
+                images: {
+                    ...state.images,
+                    [action.id]: action.urls
+                }
             };
         default:
             return state;

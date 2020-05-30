@@ -15,7 +15,6 @@ export default function getProductImagesCall(params = {}) {
         ENDPOINT_PRODUCTS,
         params.idProduct
     ].join('/');
-    console.log(endpoint);
     delete params.idProduct;
     return axios
         .get(endpoint, { params })

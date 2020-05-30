@@ -1,9 +1,12 @@
-export const PROTOCOL = `http${
+/*export const PROTOCOL = `http${
     process.env.NODE_ENV === 'development' ? '' : 's'
 }://`;
 export const HOST = `${PROTOCOL}${
     process.env.NODE_ENV === 'development' ? 'svil-upgrade' : 'www'
 }.eurofoodservice.it`;
+*/
+export const PROTOCOL = 'https://';
+export const HOST = `${PROTOCOL}www.eurofoodservice.it`;
 export const SUFFIX = 'api';
 export const PREFIX = 'eurofood_';
 export const BASIC_TOKEN = 'UktHTlpSMllTUDZKTkM1NjU5NkQyRkk5NEpGTlhZMkM6';

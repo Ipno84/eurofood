@@ -17,6 +17,8 @@ export const green = Color('#15572f');
 export const lightGreen = Color('#d4edda');
 export const facebookColor = Color('#3b5998');
 export const twitterColor = Color('#1da1f2');
+export const whatsappColor = Color('#25d366');
+export const instagramColor = Color('#a2292e');
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Badge from './../Badge';
+import Carousel from './Carousel';
 import Image from './Image';
 import ProductImageWrapper from './ProductImageWrapper';
 import getProductItemDefaultImageIdSelector from '../../../../../../state/selectors/ProductsSelectors/getProductItemDefaultImageIdSelector';
@@ -22,6 +23,7 @@ const ProductImage = ({ id }) => {
     return (
         <ProductImageWrapper height={height}>
             {isProductItemActive ? <Badge id={id} absolute={true} /> : null}
+            <Carousel id={id} height={height} />
             <Image
                 resizeMethod="resize"
                 onLayout={e => setHeight(e.nativeEvent.layout.height)}
