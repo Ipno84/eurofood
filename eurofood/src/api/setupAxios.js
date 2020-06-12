@@ -63,18 +63,18 @@ export default function setupAxios() {
         response => {
             const isServerError = Boolean(
                 response.status &&
-                    !isNaN(response.status) &&
-                    response.status >= 400
+                !isNaN(response.status) &&
+                response.status >= 400
             );
             const isError = Boolean(
                 response.data &&
-                    response.data.errors &&
-                    response.data.errors.length
+                response.data.errors &&
+                response.data.errors.length
             );
             const isForbidden = Boolean(
                 isError &&
-                    response.data &&
-                    response.data.errors.find(e => e.code === 403)
+                response.data &&
+                response.data.errors.find(e => e.code === 403)
             );
             if (
                 isForbidden &&
@@ -94,6 +94,7 @@ export default function setupAxios() {
                 if (isUserLoggedIn) store.dispatch(logoutAction());
             }
             if (isError) {
+                console.log(response.config);
                 throw new AxiosError(
                     'Axios call cancelled',
                     response.data.errors
