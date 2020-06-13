@@ -69,7 +69,6 @@ export default function* onSubmitRegisterSaga() {
             );
 
         const checkUser = yield call(checkUserCall, email);
-        console.log('checkUser', checkUser);
         if (
             checkUser &&
             checkUser.customers &&
@@ -102,7 +101,6 @@ export default function* onSubmitRegisterSaga() {
                 psgdpr: psgdpr ? 1 : 0
             };
             const results = yield call(registerCall, registerBody);
-            console.log('results', results);
             if (results && results.customer) {
                 let actions = [
                     put(

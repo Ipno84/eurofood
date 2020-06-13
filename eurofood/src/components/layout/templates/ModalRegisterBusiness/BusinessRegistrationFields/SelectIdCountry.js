@@ -14,6 +14,7 @@ import SelectButtonWrapper from './../../../atoms/Wrapper/SelectButtonWrapper';
 import SelectItem from './../../../atoms/Item/SelectItem';
 import Separator from './../../../atoms/Spacer/Separator';
 import Touchable from './../../../atoms/Button/Touchable';
+import { View } from 'react-native';
 import { dark } from './../../../../../constants/ThemeConstants';
 import getRegisterBusinessTypeDataIdCountrySelector from './../../../../../state/selectors/ClientSelectors/getRegisterBusinessTypeDataIdCountrySelector';
 import setRegisterIdCountryAction from './../../../../../state/actions/ClientActions/setRegisterIdCountryAction';
@@ -34,51 +35,55 @@ const SelectIdCountry = ({
         getRegisterBusinessTypeDataIdCountrySelector(state)
     );
     return (
-        <>
-            <Touchable onPress={() => setSelectModalOpen(true)}>
-                <SelectButtonWrapper>
-                    <SelectButtonText isSelected={value}>
-                        {value && options && options[value]
-                            ? options[value]
-                            : placeholder}
-                    </SelectButtonText>
-                    <IconWrapper light={true}>
-                        <Icon
-                            size={28}
-                            name="menu-down"
-                            color={dark.toString()}
+        <View style={{ alignItems: 'flex-start' }}>
+            <View style={{ width: '100%' }}>
+                <Touchable onPress={() => setSelectModalOpen(true)}>
+                    <View style={{ minHeight: 55 }}>
+                        <SelectButtonWrapper>
+                            <SelectButtonText isSelected={value}>
+                                {value && options && options[value]
+                                    ? options[value]
+                                    : placeholder}
+                            </SelectButtonText>
+                            <IconWrapper light={true}>
+                                <Icon
+                                    size={28}
+                                    name="menu-down"
+                                    color={dark.toString()}
+                                />
+                            </IconWrapper>
+                        </SelectButtonWrapper>
+                    </View>
+                </Touchable>
+                <ErrorMessage errorKey={errorKey} />
+                <Modal
+                    animationType="slide"
+                    visible={selectModalOpen}
+                    onRequestClose={() => setSelectModalOpen(false)}>
+                    <SafeAreaView>
+                        <Bar>
+                            <BarText>{placeholder}</BarText>
+                        </Bar>
+                        <FlatList
+                            data={formatOptions(options)}
+                            renderItem={({ item }) => (
+                                <SelectItem
+                                    id={item}
+                                    options={options}
+                                    onPress={() => {
+                                        setRegisterIdCountry(item);
+                                        setSelectModalOpen(false);
+                                    }}
+                                    isSelected={value === item}
+                                />
+                            )}
+                            keyExtractor={item => item}
+                            ItemSeparatorComponent={() => <Separator />}
                         />
-                    </IconWrapper>
-                </SelectButtonWrapper>
-            </Touchable>
-            <ErrorMessage errorKey={errorKey} />
-            <Modal
-                animationType="slide"
-                visible={selectModalOpen}
-                onRequestClose={() => setSelectModalOpen(false)}>
-                <SafeAreaView>
-                    <Bar>
-                        <BarText>{placeholder}</BarText>
-                    </Bar>
-                    <FlatList
-                        data={formatOptions(options)}
-                        renderItem={({ item }) => (
-                            <SelectItem
-                                id={item}
-                                options={options}
-                                onPress={() => {
-                                    setRegisterIdCountry(item);
-                                    setSelectModalOpen(false);
-                                }}
-                                isSelected={value === item}
-                            />
-                        )}
-                        keyExtractor={item => item}
-                        ItemSeparatorComponent={() => <Separator />}
-                    />
-                </SafeAreaView>
-            </Modal>
-        </>
+                    </SafeAreaView>
+                </Modal>
+            </View>
+        </View>
     );
 };
 

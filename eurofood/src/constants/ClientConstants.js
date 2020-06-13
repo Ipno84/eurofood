@@ -26,5 +26,5 @@ export const SET_HAS_TO_COMPLETE_BUSINESS_REGISTRATION =
 export const SUBMIT_BILLING_ADDRESS = 'SUBMIT_BILLING_ADDRESS';
 export const SET_USER = 'SET_USER';
 
-export const USER_TYPE_PRIVATE = 5;
-export const USER_TYPE_BUSINESS = 6;
+export const USER_TYPE_PRIVATE = 6;
+export const USER_TYPE_BUSINESS = 5;
