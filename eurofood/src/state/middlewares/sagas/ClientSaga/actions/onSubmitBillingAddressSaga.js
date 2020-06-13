@@ -16,8 +16,9 @@ import ValidationError, {
 import { all, call, put, select } from 'redux-saga/effects';
 
 import NavigatorRef from '../../../../../helpers/NavigatorRef';
+import { ROUTE_NAME_HOME } from '../../../../../constants/RouteConstants';
 import Snackbar from 'react-native-snackbar';
-import checkUserByIdCall from '../../../../../api/calls/CustomersCalls/checkUserByIdCall';
+// import checkUserByIdCall from '../../../../../api/calls/CustomersCalls/checkUserByIdCall';
 import createAddressCall from '../../../../../api/calls/AddressesCalls/createAddressCall';
 import getRegisterBusinessTypeDataAddressSelector from '../../../../selectors/ClientSelectors/getRegisterBusinessTypeDataAddressSelector';
 import getRegisterBusinessTypeDataCitySelector from '../../../../selectors/ClientSelectors/getRegisterBusinessTypeDataCitySelector';
@@ -123,65 +124,63 @@ export default function* onSubmitBillingAddressSaga() {
             throw new ValidationError(`Numero di telefono non valido`, {
                 key: REGISTER_PHONE_ERROR
             });
-        const checkUser = yield call(
-            checkUserByIdCall,
-            id_customer ? id_customer : id_customer_form
-        );
-        if (
-            checkUser &&
-            checkUser.customers &&
-            checkUser.customers.length > 0
-        ) {
-            const results = yield call(createAddressCall, {
-                alias: 'Indirizzo di fatturazione',
-                id_customer: id_customer ? id_customer : id_customer_form,
-                firstname,
-                lastname,
-                company,
-                vat_number,
-                sdi,
-                pec,
-                address1,
-                postcode,
-                city,
-                id_state,
-                id_country,
-                phone
-            });
-            if (results && results.address) {
-                const user = yield select(getUserSelector);
-                let actions = [
-                    put(submitBillingAddressAction({ success: true }))
-                ];
-                if (user && id_customer) {
-                    actions.push(
-                        put(
-                            setUserAction({
-                                ...user,
-                                billing_address_id: results.address.id
-                            })
-                        )
-                    );
-                    actions.push(
-                        put(setHasToCompleteBusinessRegistrationAction(false))
-                    );
-                }
-                NavigatorRef.reset({
-                    index: 1,
-                    routes: [{ name: ROUTE_NAME_HOME }]
-                });
-                Snackbar.show({
-                    text: `Indirizzo di fatturazione salvato correttamente`,
-                    duration: Snackbar.LENGTH_LONG,
-                    action: {
-                        text: 'OK',
-                        textColor: orange.toString(),
-                        onPress: () => Snackbar.dismiss()
-                    }
-                });
-                yield all(actions);
+        // const checkUser = yield call(
+        //     checkUserByIdCall,
+        //     id_customer ? id_customer : id_customer_form
+        // );
+        // if (
+        //     checkUser &&
+        //     checkUser.customers &&
+        //     checkUser.customers.length > 0
+        // ) {
+        const results = yield call(createAddressCall, {
+            alias: 'Indirizzo di fatturazione',
+            id_customer: id_customer ? id_customer : id_customer_form,
+            firstname,
+            lastname,
+            company,
+            vat_number,
+            sdi,
+            pec,
+            address1,
+            postcode,
+            city,
+            id_state,
+            id_country,
+            phone
+        });
+        if (results && results.address) {
+            const user = yield select(getUserSelector);
+            let actions = [put(submitBillingAddressAction({ success: true }))];
+            if (user && id_customer) {
+                actions.push(
+                    put(
+                        setUserAction({
+                            ...user,
+                            billing_address_id: results.address.id
+                        })
+                    )
+                );
+                actions.push(
+                    put(setHasToCompleteBusinessRegistrationAction(false))
+                );
             }
+            NavigatorRef.reset({
+                index: 1,
+                routes: [{ name: ROUTE_NAME_HOME }]
+            });
+            Snackbar.show({
+                text: `Indirizzo di fatturazione salvato correttamente`,
+                duration: Snackbar.LENGTH_LONG,
+                action: {
+                    text: 'OK',
+                    textColor: orange.toString(),
+                    onPress: () => Snackbar.dismiss()
+                }
+            });
+            yield all(actions);
         }
+        // }
     } catch (error) {
         console.log(error);
         let actions = [put(submitBillingAddressAction({ error: true }))];

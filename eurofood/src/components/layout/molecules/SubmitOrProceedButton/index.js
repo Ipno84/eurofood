@@ -1,9 +1,9 @@
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Alert } from 'react-native';
 import PlainButton from '../../atoms/Button/PlainButton';
 import { ROUTE_NAME_BILLING_ADDRESS } from '../../../../constants/RouteConstants';
-import React from 'react';
 import getSelectedBillingAddressIdSelector from '../../../../state/selectors/CartSelectors/getSelectedBillingAddressIdSelector';
 import getSelectedShippingAddressIdSelector from '../../../../state/selectors/CartSelectors/getSelectedShippingAddressIdSelector';
 import isLoggedUserBusinessTypeSelector from './../../../../state/selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';

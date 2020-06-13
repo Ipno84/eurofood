@@ -8,6 +8,7 @@ import IconWrapper from './IconWrapper';
 import InputWrapper from './InputWrapper';
 import { LOGIN_PASSWORD_ERROR } from './../../../../constants/ErrorsConstants';
 import Touchable from './../../atoms/Button/Touchable';
+import { View } from 'react-native';
 import getLoginPasswordSelector from './../../../../state/selectors/ClientSelectors/getLoginPasswordSelector';
 import setLoginPasswordAction from './../../../../state/actions/ClientActions/setLoginPasswordAction';
 import { white } from './../../../../constants/ThemeConstants';

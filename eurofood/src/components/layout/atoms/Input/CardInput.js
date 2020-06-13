@@ -24,7 +24,7 @@ const CardInput = styled(Input)`
 
 export default props => {
     return (
-        <View style={{ minHeight: 55 }}>
+        <View style={{ minHeight: 55, width: '100%', flex: 1 }}>
             <CardInput {...props} />
         </View>
     );
