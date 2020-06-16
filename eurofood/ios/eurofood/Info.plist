@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Push notifications</string>
 	<key>OneSignal_app_groups_key</key>
 	<string>group.mobi.ketchapp.eurofood</string>
 	<key>UIAppFonts</key>
