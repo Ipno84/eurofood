@@ -24,10 +24,13 @@ import getRegisterNewsletterSelector from './../../../../selectors/ClientSelecto
 import getRegisterPasswordSelector from './../../../../selectors/ClientSelectors/getRegisterPasswordSelector';
 import getRegisterPsgdprSelector from './../../../../selectors/ClientSelectors/getRegisterPsgdprSelector';
 import isValidEmail from './../../../../../helpers/isValidEmail';
+import loginCall from '../../../../../api/calls/CustomersCalls/loginCall';
 import { orange } from '../../../../../constants/ThemeConstants';
+import parseJwtToken from '../../../../../helpers/parseJwtToken';
 import registerCall from './../../../../../api/calls/CustomersCalls/registerCall';
 import setErrorAction from './../../../../actions/ErrorsActions/setErrorAction';
 import setHasToCompleteBusinessRegistrationAction from './../../../../actions/ClientActions/setHasToCompleteBusinessRegistrationAction';
+import submitLoginAction from '../../../../actions/ClientActions/submitLoginAction';
 import submitRegisterAction from './../../../../actions/ClientActions/submitRegisterAction';
 
 export default function* onSubmitRegisterSaga() {
@@ -110,7 +113,7 @@ export default function* onSubmitRegisterSaga() {
                         })
                     )
                 ];
-                if (idUserType === USER_TYPE_PRIVATE) {
+                if (parseInt(results.customer.id_default_group) === USER_TYPE_PRIVATE) {
                     Snackbar.show({
                         text: `Il tuo account è stato creato con successo.
 Riceverai una mail contenente un link per l'attivazione del tuo account.`,
@@ -121,10 +124,33 @@ Riceverai una mail contenente un link per l'attivazione del tuo account.`,
                             onPress: () => Snackbar.dismiss()
                         }
                     });
-                } else if (idUserType === USER_TYPE_BUSINESS) {
-                    actions.push(
-                        put(setHasToCompleteBusinessRegistrationAction(true))
-                    );
+                } else if (parseInt(results.customer.id_default_group) === USER_TYPE_BUSINESS) {
+
+                    // Replicate login logic
+                    const jwt = yield call(loginCall, { email, password: passwd });
+                    if (jwt) {
+                        const user = parseJwtToken(jwt);
+                        if (user) {
+                            actions = [
+                                put(
+                                    submitLoginAction({
+                                        success: true,
+                                        user,
+                                        jwt
+                                    })
+                                )
+                            ];
+                            if (
+                                user.id_default_group &&
+                                parseInt(user.id_default_group) === USER_TYPE_BUSINESS &&
+                                !user.billing_address_id
+                            ) {
+                                actions.push(
+                                    put(setHasToCompleteBusinessRegistrationAction(true))
+                                );
+                            }
+                        }
+                    }
                 }
                 yield all(actions);
             }

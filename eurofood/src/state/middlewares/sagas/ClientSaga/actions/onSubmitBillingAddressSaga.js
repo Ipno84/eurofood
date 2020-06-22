@@ -182,7 +182,6 @@ export default function* onSubmitBillingAddressSaga() {
         }
         // }
     } catch (error) {
-        console.log(error);
         let actions = [put(submitBillingAddressAction({ error: true }))];
         if (error.name === VALIDATION_CLASS_NAME) {
             actions.push(

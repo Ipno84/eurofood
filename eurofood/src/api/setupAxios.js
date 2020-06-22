@@ -74,7 +74,8 @@ export default function setupAxios() {
             const isForbidden = Boolean(
                 isError &&
                 response.data &&
-                response.data.errors.find(e => e.code === 403)
+                response.data.errors.find(e => e.code === 403) &&
+                response.data.errors.find(e => e.message === 'Forbidden')
             );
             if (
                 isForbidden &&
