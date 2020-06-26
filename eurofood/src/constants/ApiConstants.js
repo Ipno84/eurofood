@@ -14,6 +14,7 @@ export const BASIC_PARAMS = { output_format: 'JSON' };
 
 export const ENDPOINT_CATEGORIES = 'categories';
 export const ENDPOINT_PRODUCTS = 'products';
+export const ENDPOINT_SEARCH = 'search'; // PREFIX
 export const ENDPOINT_CUSTOMERS = 'customers'; //PREFIX
 export const ENDPOINT_ADDRESSES = 'addresses'; //PREFIX
 export const ENDPOINT_ORDERS = 'orders'; //PREFIX

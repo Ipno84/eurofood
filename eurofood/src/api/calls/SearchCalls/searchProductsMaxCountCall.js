@@ -1,4 +1,4 @@
-import getProductsCall from './../ProductsCalls/getProductsCall';
+import getSearchProductsCall from './getSearchProductsCall';
 
 export default function searchProductsMaxCountCall(payload) {
     const searchText = payload.searchText || '';
@@ -15,5 +15,5 @@ export default function searchProductsMaxCountCall(payload) {
     }
     params.canSetClientCache = true;
 
-    return getProductsCall(params);
+    return getSearchProductsCall(params);
 }
