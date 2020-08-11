@@ -131,7 +131,7 @@ android {
         applicationId "it.smart21.android.eurofood"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 422
+        versionCode 425
         versionName "4.2.0"
         multiDexEnabled true
     }
