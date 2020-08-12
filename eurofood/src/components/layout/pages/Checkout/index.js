@@ -7,9 +7,6 @@ import Wrapper from '../../atoms/Card/Wrapper';
 import getActivePaymentMethodsSelector from './../../../../state/selectors/SettingsSelectors/getActivePaymentMethodsSelector';
 import getSelectedPaymentMethodSelector from './../../../../state/selectors/OrdersSelectors/getSelectedPaymentMethodSelector';
 import setSelectedPaymentMethodAction from './../../../../state/actions/OrdersActions/setSelectedPaymentMethodAction';
-import stripe from 'tipsi-stripe';
-
-console.log(stripe);
 
 const Checkout = () => {
     const dispatch = useDispatch();

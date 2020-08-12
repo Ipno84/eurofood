@@ -4,7 +4,6 @@ import {
     ROUTE_NAME_CATEGORIES,
     ROUTE_NAME_CATEGORY,
     ROUTE_NAME_CATEGORY_PRODUCTS,
-    ROUTE_NAME_CHECKOUT,
     ROUTE_NAME_EDIT_ADDRESS,
     ROUTE_NAME_FORGOT_PASSWORD,
     ROUTE_NAME_HOME,
@@ -12,6 +11,7 @@ import {
     ROUTE_NAME_OFFER,
     ROUTE_NAME_ORDER,
     ROUTE_NAME_ORDERS,
+    ROUTE_NAME_PAYMENT_METHOD,
     ROUTE_NAME_PRODUCT,
     ROUTE_NAME_PROFILE,
     ROUTE_NAME_PROMO,
@@ -20,16 +20,16 @@ import {
     ROUTE_NAME_SEARCH_RESULTS,
     ROUTE_NAME_SETTINGS,
     ROUTE_NAME_SHIPPING_ADDRESS,
+    ROUTE_NAME_SHIPPING_METHOD,
     ROUTE_NAME_TEMPLATE
 } from './../constants/RouteConstants';
 
-import BackButton from './../components/layout/atoms/HeaderButton/BackButton';
 import BillingAddress from './../components/layout/pages/BillingAddress';
 import Cart from './../components/layout/pages/Cart';
 import Categories from './../components/layout/pages/Categories';
 import Category from './../components/layout/pages/Category';
 import CategoryProducts from './../components/layout/pages/Category/Products';
-import Checkout from '../components/layout/pages/Checkout';
+// import Checkout from '../components/layout/pages/Checkout';
 import Drawer from './Drawer';
 import DrawerContent from './../components/layout/templates/DrawerContent';
 import EditAddress from '../components/layout/pages/EditAddress';
@@ -38,10 +38,10 @@ import Home from './../components/layout/pages/Home';
 import LeftButton from './../components/layout/atoms/HeaderButton/LeftButton';
 import Login from './../components/layout/pages/Login';
 import Logo from './../components/layout/atoms/Logo';
-import MenuButton from './../components/layout/atoms/HeaderButton/MenuButton';
 import Offer from './../components/layout/pages/Offer';
 import Order from './../components/layout/pages/Order';
 import Orders from './../components/layout/pages/Orders';
+import PaymentMethod from '../components/layout/pages/PaymentMethod';
 import Product from './../components/layout/pages/Product';
 import Profile from './../components/layout/pages/Profile';
 import Promo from './../components/layout/pages/Promo';
@@ -52,6 +52,7 @@ import RightButton from './../components/layout/atoms/HeaderButton/RightButton';
 import SearchResults from './../components/layout/pages/SearchResults';
 import Settings from './../components/layout/pages/Settings';
 import ShippingAddress from './../components/layout/pages/ShippingAddress';
+import ShippingMethod from '../components/layout/pages/ShippingMethod';
 import Stack from './Stack';
 import Template from './../components/layout/pages/Template';
 import { lightGray } from './../constants/ThemeConstants';
@@ -162,17 +163,27 @@ const RoutesMap = [
         component: EditAddress,
         options: ({ navigation, route }) => ({ title: 'EditAddress' })
     },
+    // {
+    //     name: ROUTE_NAME_CHECKOUT,
+    //     component: Checkout,
+    //     options: ({ navigation, route }) => ({ title: 'Checkout' })
+    // },
     {
-        name: ROUTE_NAME_CHECKOUT,
-        component: Checkout,
-        options: ({ navigation, route }) => ({ title: 'Checkout' })
+        name: ROUTE_NAME_PAYMENT_METHOD,
+        component: PaymentMethod,
+        options: ({ navigation, route }) => ({ title: 'PaymentMethod' })
+    },
+    {
+        name: ROUTE_NAME_SHIPPING_METHOD,
+        component: ShippingMethod,
+        options: ({ navigation, route }) => ({ title: 'ShippingMethod' })
     }
 ];
 
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName={ROUTE_NAME_HOME}
+            initialRouteName={ROUTE_NAME_PAYMENT_METHOD}
             screenOptions={({ route, navigation }) => ({
                 headerTitle: props => <Logo {...props} />,
                 headerTitleAlign: 'center',

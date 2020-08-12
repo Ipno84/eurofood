@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '11.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 target 'eurofood' do
@@ -34,11 +34,12 @@ target 'eurofood' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-
+  # OneSignal Push Notifications
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
-#  # Stripe
-#  pod 'Stripe', '~> 14.0.0'
+  # Stripe
+  pod 'Stripe', '~> 19.0.1'
+  pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
 #
 #  # Install additional dependencies
 #  pod 'Firebase/Core'

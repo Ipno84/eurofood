@@ -247,6 +247,10 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - Stripe (19.0.1)
+  - tipsi-stripe (8.0.0-beta.10):
+    - React
+    - Stripe (>= 19.0.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -292,12 +296,15 @@ DEPENDENCIES:
   - RNShare (from `../node_modules/react-native-share`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - Stripe (~> 19.0.1)
+  - tipsi-stripe (from `../node_modules/tipsi-stripe`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
     - OneSignal
+    - Stripe
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -376,6 +383,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-snackbar"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  tipsi-stripe:
+    :path: "../node_modules/tipsi-stripe"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -420,8 +429,10 @@ SPEC CHECKSUMS:
   RNShare: c19dbe4a7224098cd3cfc4d3b92c886ca817b3f0
   RNSnackbar: 2924764545b779c3dd130f875cd481d4162a6f3b
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  Stripe: 03313f9520a0786e2c00d9a7a2672c11e08821af
+  tipsi-stripe: 624337e28b13c127fef45c09de0e1e37cba25151
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 8c1a7a8342084b1eb66b95c07b799b979ad4a8d2
+PODFILE CHECKSUM: ccde0f027fa4b6948420369f5ae5a058c7aa5858
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1
