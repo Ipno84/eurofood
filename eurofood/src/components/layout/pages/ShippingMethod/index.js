@@ -69,6 +69,7 @@ const ShippingMethod = () => {
                     }}>
                     Procedi
                 </PlainButton>
+                <Spacer top={16} />
             </Container>
         </>
     );

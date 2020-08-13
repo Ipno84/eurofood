@@ -5,7 +5,6 @@ import {
     SUFFIX
 } from './../../../constants/ApiConstants';
 
-import Reactotron from './../../../../reactotron.config'
 import axios from 'axios';
 import jsToXml from '../../../helpers/jsToXml';
 
@@ -27,7 +26,7 @@ export default function createOrderCall(order) {
         }
     };
     const xmlBody = jsToXml(jsBody);
-    if (__DEV__) Reactotron.debug(xmlBody);
+    if (__DEV__) global.Reactotron.debug(xmlBody);
     return axios
         .post(endpoint, xmlBody, {
             headers: { 'Content-Type': 'text/xml' }

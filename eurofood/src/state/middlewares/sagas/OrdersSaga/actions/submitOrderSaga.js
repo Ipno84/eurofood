@@ -31,11 +31,14 @@ export default function* submitOrderSaga() {
         const currentCart = yield select(getCurrentCartSelector);
         if (currentCart) {
             const {
+                total_products,
                 total_products_wt,
                 total_shipping_tax_excl,
                 total_shipping,
                 total_paid_tax_excl,
-                total_paid_tax_incl
+                total_paid_tax_incl,
+                totalTaxes,
+                orderRows
             } = yield select(getCartTotalsSelector);
 
             const paymentModule = yield select(
@@ -85,8 +88,13 @@ export default function* submitOrderSaga() {
                     order_rows: orderRows
                 }
             };
+
+            global.Reactotron.debug(order, true);
+
             const token = yield select(getStripeTokenSelector);
             if (token) order['token'] = token;
+            
+            global.Reactotron.debug(order, true);
 
             const result = yield call(createOrderCall, order);
             if (result && result.order) {
@@ -124,6 +132,7 @@ export default function* submitOrderSaga() {
             }
         }
     } catch (error) {
+        console.error(error);
         yield put(submitOrderAction({ error }));
     }
 }

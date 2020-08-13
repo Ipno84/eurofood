@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CreditCardInput } from 'react-native-input-credit-card';
 import PlainButton from '../../atoms/Button/PlainButton';
-import Reactotron from './../../../../../reactotron.config';
 import Spacer from '../../atoms/Spacer';
 import isSelectedPaymentModuleSelector from '../../../../state/selectors/CheckoutSelectors/isSelectedPaymentModuleSelector';
 import { red } from '../../../../constants/ThemeConstants';
@@ -71,11 +70,13 @@ const PayWithCard = ({ isOrderSubmitted }) => {
                         stripe
                             .createTokenWithCard(tokenPayload)
                             .then(token => {
-                                if (__DEV__) Reactotron.debug(token, true);
+                                if (__DEV__)
+                                    global.Reactotron.debug(token, true);
                                 setStripeToken(token);
                             })
                             .catch(error => {
-                                if (__DEV__) Reactotron.debug(error, true);
+                                if (__DEV__)
+                                    global.Reactotron.debug(error, true);
                             });
                     }}
                     disabled={

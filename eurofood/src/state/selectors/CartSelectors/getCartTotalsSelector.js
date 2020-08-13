@@ -87,7 +87,8 @@ export default createSelector(
             total_shipping,
             total_paid_tax_excl,
             total_paid_tax_incl,
-            totalTaxes
+            totalTaxes,
+            orderRows
         };
     }
 );

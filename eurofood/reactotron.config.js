@@ -17,4 +17,6 @@ Reactotron.setAsyncStorageHandler(AsyncStorage) // AsyncStorage would either com
     })
     .connect();
 
+global.Reactotron = Reactotron;
+
 export default Reactotron;
