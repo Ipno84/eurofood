@@ -66,6 +66,11 @@ export default function setupAxios() {
                     !isNaN(response.status) &&
                     response.status >= 400
             );
+            const isServerGenericError = Boolean(
+                response.status &&
+                    !isNaN(response.status) &&
+                    response.status == 500
+            );
             const isError = Boolean(
                 response.data &&
                     response.data.errors &&
@@ -77,6 +82,17 @@ export default function setupAxios() {
                     response.data.errors.find(e => e.code === 403) &&
                     response.data.errors.find(e => e.message === 'Forbidden')
             );
+            if (isServerGenericError) {
+                Snackbar.show({
+                    text: `Qualcosa è andato storto, ritenta quest'operazione più tardi`,
+                    duration: Snackbar.LENGTH_LONG,
+                    action: {
+                        text: 'OK',
+                        textColor: orange.toString(),
+                        onPress: () => Snackbar.dismiss()
+                    }
+                });
+            }
             if (
                 isForbidden &&
                 response.config.url !== `${HOST}/${SUFFIX}/${ENDPOINT_LOGIN}`
