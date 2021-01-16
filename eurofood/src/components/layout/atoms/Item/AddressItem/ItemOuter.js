@@ -80,6 +80,7 @@ const Footer = styled.View`
     margin-right: -16px;
     margin-bottom: -4px;
     flex: 1;
+    height: 56px;
 `;
 
 const ButtonWrapper = styled.View`

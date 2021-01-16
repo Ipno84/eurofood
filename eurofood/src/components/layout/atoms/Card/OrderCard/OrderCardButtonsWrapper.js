@@ -6,6 +6,7 @@ const OrderCardButtonsWrapper = styled.View`
     border-top-width: 1px;
     border-top-color: ${({ theme }) => theme.colors.dark(0.1)};
     position: relative;
+    height: 42px;
 `;
 
 export default OrderCardButtonsWrapper;
