@@ -7,7 +7,8 @@ import {
     ADDRESS_ID_STATE_ERROR,
     ADDRESS_LASTNAME_ERROR,
     ADDRESS_PHONE_ERROR,
-    ADDRESS_POSTCODE_ERROR
+    ADDRESS_POSTCODE_ERROR,
+    ADDRESS_VAT_NUMBER_ERROR
 } from './../../../../../constants/ErrorsConstants';
 import ValidationError, {
     VALIDATION_CLASS_NAME
@@ -19,6 +20,8 @@ import createAddressCall from '../../../../../api/calls/AddressesCalls/createAdd
 import editAddressCall from '../../../../../api/calls/AddressesCalls/editAddressCall';
 import getAddressFormKeySelector from './../../../../selectors/AddressesSelectors/addressForm/getAddressFormKeySelector';
 import getAddressFormSelector from './../../../../selectors/AddressesSelectors/addressForm/getAddressFormSelector';
+import isFiscalCodeValid from '../../../../../helpers/isFiscalCodeValid';
+import isLoggedUserBusinessTypeSelector from '../../../../selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
 import isPostcodeValid from '../../../../../helpers/isPostcodeValid';
 import removeObjectProperty from '../../../../../helpers/removeObjectProperty';
 import setErrorAction from './../../../../actions/ErrorsActions/setErrorAction';
@@ -29,12 +32,13 @@ import submitAddressAction from './../../../../actions/AddressesActions/submitAd
 export default function* submitAddressSaga() {
     try {
         let address = yield select(getAddressFormSelector);
+        const isBusiness = yield select(isLoggedUserBusinessTypeSelector);
 
         const company = yield select(getAddressFormKeySelector, 'company'); //Optional
         const vat_number = yield select(
             getAddressFormKeySelector,
             'vat_number'
-        ); //Optional
+        ); //Optional if business
         const address2 = yield select(getAddressFormKeySelector, 'address2'); //Optional
 
         //VALIDATION
@@ -83,10 +87,21 @@ export default function* submitAddressSaga() {
             throw new ValidationError('Numero di telefono non valido', {
                 key: ADDRESS_PHONE_ERROR
             });
+        if (!isBusiness && vat_number) {
+            const isVatNumberValid = isFiscalCodeValid(vat_number);
+            if (!isVatNumberValid)
+                throw new ValidationError('Codice fiscale non valido', {
+                    key: ADDRESS_VAT_NUMBER_ERROR
+                });
+        }
 
-        if (company) address = { ...address, company };
+        if (isBusiness && company) address = { ...address, company };
         if (vat_number) address = { ...address, vat_number };
         if (address2) address = { ...address, address2 };
+
+        if (address.company === '') address = { ...address, company: '-' };
+        if (address.vat_number === '')
+            address = { ...address, vat_number: '-' };
 
         let results;
         if (address.id) {
@@ -94,9 +109,6 @@ export default function* submitAddressSaga() {
         } else {
             if (address.id === '')
                 address = removeObjectProperty(address, 'id');
-            if (address.company === '') address = { ...address, company: '-' };
-            if (address.vat_number === '')
-                address = { ...address, vat_number: '-' };
             results = yield call(createAddressCall, address);
         }
         if (results && results.address) {

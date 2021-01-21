@@ -1,0 +1,234 @@
+{
+    "categories": {
+        "offers": 50,
+        "superOffers": 86
+    },
+    "server": {
+        "clientCacheDuration": 3600,
+        "carriers": [
+            {
+                "id": 1,
+                "name": "Eurofood Srl",
+                "price": 0,
+                "delay": "Ritiro in negozio",
+                "is_default": false,
+                "active": 1
+            },
+            {
+                "id": 7,
+                "name": "Trasporto Eurofood",
+                "price": 3.5,
+                "delay": "Consegna in 24/48h",
+                "is_default": true,
+                "active": 1
+            }
+        ],
+        "paymentMethods": [
+            {
+                "id": 1,
+                "name": "Paga con carta",
+                "module": "stripe_official",
+                "description": "",
+                "logos": [
+                    "modules/stripe_official/views/img/logo_american_express.png",
+                    "modules/stripe_official/views/img/logo_cb.png",
+                    "modules/stripe_official/views/img/logo_diners_club.png",
+                    "modules/stripe_official/views/img/logo_discovers.png",
+                    "modules/stripe_official/views/img/logo_jcb.png",
+                    "modules/stripe_official/views/img/logo_mastercard.png",
+                    "modules/stripe_official/views/img/logo_union_pay.png",
+                    "modules/stripe_official/views/img/logo_visa.png"
+                ],
+                "is_default": false,
+                "active": 1
+            },
+            {
+                "id": 7,
+                "name": "Pagamento tramite contrassegno",
+                "module": "ps_cashondelivery",
+                "description": "Si paga per la merce al momento della consegna",
+                "is_default": true,
+                "active": 1
+            }
+        ]
+    },
+    "home": [
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "searchSection",
+            "props": {
+                "children": [
+                    {
+                        "component": "SearchSection"
+                    }
+                ],
+                "height": 80,
+                "skeleton": [
+                    {
+                        "component": "SkeletonSearchSection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "HomeBanner",
+            "keyCheck": "HomeBanner"
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "mainSectionsHorizontal",
+            "props": {
+                "height": 185,
+                "children": [
+                    {
+                        "component": "MainSectionsHorizontal",
+                        "props": {
+                            "excludedCategoriesIds": [100, 101, 102, 103]
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonMainSectionsHorizontal"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "categorySection_51",
+            "props": {
+                "height": 521,
+                "children": [
+                    {
+                        "component": "CategorySection",
+                        "props": {
+                            "id": 51,
+                            "buttonLabel": "Scopri tutte le offerte",
+                            "navKey": "Category_Products"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonCategorySection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "categorySection_86",
+            "props": {
+                "height": 521,
+                "children": [
+                    {
+                        "component": "CategorySection",
+                        "props": {
+                            "id": 86,
+                            "buttonLabel": "Scopri tutte le super offerte",
+                            "navKey": "Category_Products"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonCategorySection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "LoginBlock",
+            "keyCheck": "loginBlock"
+        },
+        {
+            "component": "Infoblock",
+            "keyCheck": "Infoblock"
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_100",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 100,
+                            "bgColor": "#eedc00"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_101",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 101,
+                            "bgColor": "#f1a400"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_102",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 102,
+                            "bgColor": "#d43317"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_103",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 103,
+                            "bgColor": "#ad2017"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        }
+    ]
+}

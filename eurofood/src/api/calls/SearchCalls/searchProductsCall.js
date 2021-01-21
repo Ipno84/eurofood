@@ -1,4 +1,4 @@
-import getProductsCall from './../ProductsCalls/getProductsCall';
+import getSearchProductsCall from './getSearchProductsCall';
 
 export default function searchProductsCall(payload) {
     const searchText = payload.searchText || '';
@@ -23,5 +23,5 @@ export default function searchProductsCall(payload) {
         params['limit'] = `${offset},${limit}`;
     }
     params.canSetClientCache = true;
-    return getProductsCall(params);
+    return getSearchProductsCall(params);
 }

@@ -21,6 +21,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - OneSignal (2.13.1)
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
@@ -186,6 +187,9 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-checkbox (0.3.0):
     - React
+  - react-native-onesignal (3.7.3):
+    - OneSignal (= 2.13.1)
+    - React (< 1.0.0, >= 0.13.0)
   - react-native-safe-area-context (0.7.3):
     - React
   - React-RCTActionSheet (0.61.5):
@@ -243,6 +247,10 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - Stripe (19.0.1)
+  - tipsi-stripe (8.0.0-beta.10):
+    - React
+    - Stripe (>= 19.0.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -252,6 +260,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - OneSignal (< 3.0, >= 2.9.3)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -264,6 +273,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - "react-native-checkbox (from `../node_modules/@react-native-community/checkbox`)"
+  - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -286,11 +296,15 @@ DEPENDENCIES:
   - RNShare (from `../node_modules/react-native-share`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - Stripe (~> 19.0.1)
+  - tipsi-stripe (from `../node_modules/tipsi-stripe`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - OneSignal
+    - Stripe
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -325,6 +339,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-checkbox:
     :path: "../node_modules/@react-native-community/checkbox"
+  react-native-onesignal:
+    :path: "../node_modules/react-native-onesignal"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-RCTActionSheet:
@@ -367,6 +383,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-snackbar"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  tipsi-stripe:
+    :path: "../node_modules/tipsi-stripe"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -378,6 +396,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  OneSignal: fa98eaa90372bb367b6a4a1c1622ffb9832c7600
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -388,6 +407,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-checkbox: 2d04aeb0c7e2c2cbd9a9a902ca6a5cf642688d09
+  react-native-onesignal: ece470306f7486853454793e954ac00eaa28f2dd
   react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
@@ -409,8 +429,10 @@ SPEC CHECKSUMS:
   RNShare: c19dbe4a7224098cd3cfc4d3b92c886ca817b3f0
   RNSnackbar: 2924764545b779c3dd130f875cd481d4162a6f3b
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  Stripe: 03313f9520a0786e2c00d9a7a2672c11e08821af
+  tipsi-stripe: 624337e28b13c127fef45c09de0e1e37cba25151
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 9df285d24353dc9af36322782f02dc1a2014aad8
+PODFILE CHECKSUM: ccde0f027fa4b6948420369f5ae5a058c7aa5858
 
 COCOAPODS: 1.9.1

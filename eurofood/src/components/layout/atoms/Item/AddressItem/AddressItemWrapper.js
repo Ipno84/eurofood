@@ -11,7 +11,11 @@ const AddressItemWrapper = styled(Wrapper)`
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 12px;
-    flex: 1;
+    ${({ isTouchable }) =>
+        !isTouchable &&
+        css`
+            flex: 1;
+        `}
     ${({ isSelected }) =>
         isSelected
             ? css`

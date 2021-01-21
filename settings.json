@@ -1,0 +1,210 @@
+{
+    "categories": {
+        "offers": 50,
+        "superOffers": 86
+    },
+    "server": {
+        "clientCacheDuration": 3600
+    },
+    "home": [
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "searchSection",
+            "props": {
+                "children": [
+                    {
+                        "component": "SearchSection"
+                    }
+                ],
+                "height": 80,
+                "skeleton": [
+                    {
+                        "component": "SkeletonSearchSection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "HomeBanner",
+            "keyCheck": "HomeBanner"
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "mainSectionsHorizontal",
+            "props": {
+                "height": 185,
+                "children": [
+                    {
+                        "component": "MainSectionsHorizontal",
+                        "props": {
+                            "excludedCategoriesIds": [100, 101, 102, 103]
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonMainSectionsHorizontal"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "categorySection_51",
+            "props": {
+                "height": 521,
+                "children": [
+                    {
+                        "component": "CategorySection",
+                        "props": {
+                            "id": 51,
+                            "buttonLabel": "Scopri tutte le offerte",
+                            "navKey": "Category_Products"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonCategorySection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "categorySection_86",
+            "props": {
+                "height": 521,
+                "children": [
+                    {
+                        "component": "CategorySection",
+                        "props": {
+                            "id": 86,
+                            "buttonLabel": "Scopri tutte le super offerte",
+                            "navKey": "Category_Products"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonCategorySection"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "LoginBlock",
+            "keyCheck": "loginBlock"
+        },
+        {
+            "component": "Infoblock",
+            "keyCheck": "Infoblock"
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_100",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 100,
+                            "bgColor": "#eedc00"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_101",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 101,
+                            "bgColor": "#f1a400"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_102",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 102,
+                            "bgColor": "#d43317"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        },
+        {
+            "component": "VisibilitySensor",
+            "keyCheck": "horizontalProducts_103",
+            "props": {
+                "height": 266,
+                "children": [
+                    {
+                        "component": "HorizontalProducts",
+                        "props": {
+                            "id": 103,
+                            "bgColor": "#ad2017"
+                        }
+                    }
+                ],
+                "skeleton": [
+                    {
+                        "component": "SkeletonHorizontalProducts"
+                    }
+                ]
+            }
+        }
+    ],
+    "paymentsMethods": [
+        {
+            "module": "ps_cashondelivery",
+            "payment": "Pagamento in contrassegno",
+            "active": 1
+        },
+        {
+            "module": "stripe_official",
+            "payment": "Pagamento con Stripe",
+            "active": 1
+        },
+        {
+            "module": "ps_checkpayment",
+            "payment": "Pagamento con assegno",
+            "active": 0
+        },
+        {
+            "module": "ps_wirepayment",
+            "payment": "Bonifico bancario",
+            "active": 0
+        }
+    ]
+}

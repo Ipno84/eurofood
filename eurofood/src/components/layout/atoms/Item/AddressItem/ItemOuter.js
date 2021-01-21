@@ -15,7 +15,7 @@ import useAppNavigation from './../../../../../hooks/navigation/useAppNavigation
 import { useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 
-const ItemOuter = ({ item, isSelected }) => {
+const ItemOuter = ({ item, isSelected, isTouchable }) => {
     const route = useRoute();
     const { navigate } = useAppNavigation();
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ItemOuter = ({ item, isSelected }) => {
         [dispatch]
     );
     return (
-        <AddressItemWrapper isSelected={isSelected}>
+        <AddressItemWrapper isSelected={isSelected} isTouchable={isTouchable}>
             <ItemInner item={item} />
             <Footer>
                 <Separator />
@@ -80,6 +80,7 @@ const Footer = styled.View`
     margin-right: -16px;
     margin-bottom: -4px;
     flex: 1;
+    height: 56px;
 `;
 
 const ButtonWrapper = styled.View`

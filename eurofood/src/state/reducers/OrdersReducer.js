@@ -61,7 +61,8 @@ const OrdersReducer = (state = initialState, action) => {
                     ...state.items,
                     ...action.order.item
                 },
-                orders: [...state.orders, action.order.id]
+                orders: [...state.orders, action.order.id],
+                selectedPaymentMethod: initialState.selectedPaymentMethod
             };
         case SUBMIT_ORDER + FAILURE:
             return {

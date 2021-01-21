@@ -1,9 +1,10 @@
 import {
-    BASIC_TOKEN,
     ENDPOINT_SETTINGS,
     HOST,
     PRIVATE_TOKEN
 } from './../../../constants/ApiConstants';
+
+import localSettings from './../../../../settings.json';
 
 export default function getServerSettingsCall() {
     const endpoint = [HOST, ENDPOINT_SETTINGS].join('/');
@@ -12,6 +13,14 @@ export default function getServerSettingsCall() {
             Authorization: 'Basic ' + btoa(PRIVATE_TOKEN + ':' + '')
         }
     })
-        .then(response => response.json())
-        .then(data => data);
+        .then(response => {
+            // TODO: remove force local settings
+            return localSettings;
+            return response.json();
+        })
+        .then(data => data)
+        .catch(error => {
+            console.log(error);
+            return localSettings;
+        });
 }

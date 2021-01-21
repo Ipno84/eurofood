@@ -10,6 +10,6 @@ export default function checkUserCall(email) {
             ...params,
             'filter[email]': `[${email}]`
         };
-    params = { ...params, clientCache: true };
+    params = { ...params };
     return getCustomersCall(params);
 }

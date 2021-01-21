@@ -1,4 +1,6 @@
 import Input from './';
+import React from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 
 const CardInput = styled(Input)`
@@ -20,4 +22,10 @@ const CardInput = styled(Input)`
     flex: 1;
 `;
 
-export default CardInput;
+export default props => {
+    return (
+        <View style={{ minHeight: 55, width: '100%', flex: 1 }}>
+            <CardInput {...props} />
+        </View>
+    );
+};

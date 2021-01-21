@@ -9,7 +9,6 @@ import ButtonSubmit from './ButtonSubmit';
 import CheckboxGdpr from './CheckboxGdpr';
 import CheckboxNewsletter from './CheckboxNewsletter';
 import Container from './../../atoms/Container';
-import Gender from './Gender';
 import InputEmail from './InputEmail';
 import InputFirstname from './InputFirstname';
 import InputLastname from './InputLastname';
@@ -20,6 +19,7 @@ import Side from './Side';
 import Spacer from './../../atoms/Spacer';
 import Text from './Text';
 import Touchable from './../../atoms/Button/Touchable';
+import UserType from './UserType';
 import Wrapper from './../../atoms/Card/Wrapper';
 import isUserLoggedInSelector from './../../../../state/selectors/ClientSelectors/isUserLoggedInSelector';
 import usePushOrBack from '../../../../hooks/navigation/usePushOrBack';
@@ -39,7 +39,7 @@ const Register = () => {
                                 <ListHeaderText center={true}>
                                     Registrazione
                                 </ListHeaderText>
-                                <Gender />
+                                <UserType />
                                 <InputFirstname />
                                 <InputLastname />
                                 <InputEmail />
@@ -67,6 +67,7 @@ const Register = () => {
                                 </Touchable>
                             </Side>
                         </BottomWrapper>
+                        <Spacer top={16} />
                     </>
                 ) : (
                     <Container>

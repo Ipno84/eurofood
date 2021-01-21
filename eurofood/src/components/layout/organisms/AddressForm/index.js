@@ -29,12 +29,16 @@ import Spacer from './../../atoms/Spacer';
 import Wrapper from './../../atoms/Card/Wrapper';
 import getAddressFormKeySelector from './../../../../state/selectors/AddressesSelectors/addressForm/getAddressFormKeySelector';
 import getUserIdSelector from '../../../../state/selectors/ClientSelectors/getUserIdSelector';
+import isLoggedUserBusinessTypeSelector from '../../../../state/selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
 import resetAddressFormAction from './../../../../state/actions/AddressesActions/resetAddressFormAction';
 
 const AddressForm = ({ toggleButton }) => {
     const dispatch = useDispatch();
     const scrollRef = useRef(null);
     const idCustomer = useSelector(state => getUserIdSelector(state));
+    const isBusiness = useSelector(state =>
+        isLoggedUserBusinessTypeSelector(state)
+    );
     const resetAddressForm = useCallback(
         () => dispatch(resetAddressFormAction(idCustomer)),
         [dispatch]
@@ -79,15 +83,19 @@ const AddressForm = ({ toggleButton }) => {
                         textContentType="familyName"
                         scrollRef={scrollRef}
                     />
+                    {isBusiness ? (
+                        <Input
+                            placeholder="Azienda"
+                            formKey="company"
+                            errorKey={ADDRESS_COMPANY_ERROR}
+                            textContentType="organizationName"
+                            scrollRef={scrollRef}
+                        />
+                    ) : null}
                     <Input
-                        placeholder="Azienda"
-                        formKey="company"
-                        errorKey={ADDRESS_COMPANY_ERROR}
-                        textContentType="organizationName"
-                        scrollRef={scrollRef}
-                    />
-                    <Input
-                        placeholder="Numero P.IVA"
+                        placeholder={
+                            isBusiness ? 'Numero P.IVA' : 'Codice Fiscale'
+                        }
                         formKey="vat_number"
                         errorKey={ADDRESS_VAT_NUMBER_ERROR}
                         scrollRef={scrollRef}

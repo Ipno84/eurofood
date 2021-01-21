@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Text from './Text';
+import { View } from 'react-native';
 import getErrorMessageSelector from '../../../../../state/selectors/ErrorsSelectors/getErrorMessageSelector';
 import { useSelector } from 'react-redux';
 
@@ -16,9 +17,11 @@ const ErrorMessage = ({ errorKey, scrollRef }) => {
     }, [errorMessage, layout, scrollRef]);
     if (!errorMessage) return null;
     return (
-        <Text onLayout={e => setLayout(e.nativeEvent.layout)}>
-            {errorMessage}
-        </Text>
+        <View style={{ minHeight: 20, paddingTop: 3 }}>
+            <Text onLayout={e => setLayout(e.nativeEvent.layout)}>
+                {errorMessage}
+            </Text>
+        </View>
     );
 };
 

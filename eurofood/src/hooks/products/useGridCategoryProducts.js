@@ -5,7 +5,9 @@ import generateArrayChunk from '../../helpers/generateArrayChunk';
 import getAssociatedProductsSelector from '../../state/selectors/CategoriesSelectors/getAssociatedProductsSelector';
 import getCategoryAction from '../../state/actions/CategoriesActions/getCategoryAction';
 import isCategoryLoadingSelector from '../../state/selectors/CategoriesSelectors/isCategoryLoadingSelector';
-import { isTablet } from 'react-native-device-detection';
+import isTabletDevice from '../../helpers/isTabletDevice';
+
+// import { isTablet } from 'react-native-device-detection';
 
 export default function useGridCategoryProducts(id) {
     const dispatch = useDispatch();
@@ -14,7 +16,7 @@ export default function useGridCategoryProducts(id) {
     ]);
 
     const products = useSelector(state =>
-        getAssociatedProductsSelector(state, id, isTablet ? 8 : 4)
+        getAssociatedProductsSelector(state, id, isTabletDevice() ? 8 : 4)
     );
     const isCategoryLoading = useSelector(state =>
         isCategoryLoadingSelector(state)
@@ -24,7 +26,7 @@ export default function useGridCategoryProducts(id) {
     }, [getCategory]);
     return {
         productsChunks: products
-            ? generateArrayChunk(products, isTablet ? 4 : 2)
+            ? generateArrayChunk(products, isTabletDevice() ? 4 : 2)
             : null,
         isCategoryLoading
     };

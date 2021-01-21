@@ -1,7 +1,8 @@
 import AnimatedLinearGradient from '../../atoms/AnimatedLinearGradient';
 import React from 'react';
 import SkeletonProductCard from '../../molecules/ProductCard/SkeletonProductCard';
-import { isTablet } from 'react-native-device-detection';
+import isTabletDevice from '../../../../helpers/isTabletDevice';
+// import { isTablet } from 'react-native-device-detection';
 import styled from 'styled-components/native';
 
 const SkeletonHorizontalProducts = () => {
@@ -14,7 +15,7 @@ const SkeletonHorizontalProducts = () => {
                 <SkeletonProductCard fixed={147} />
                 <SkeletonProductCard fixed={147} />
                 <SkeletonProductCard fixed={147} />
-                {isTablet ? (
+                {isTabletDevice() ? (
                     <>
                         <SkeletonProductCard fixed={147} />
                         <SkeletonProductCard fixed={147} />

@@ -26,6 +26,7 @@ export default function createOrderCall(order) {
         }
     };
     const xmlBody = jsToXml(jsBody);
+    if (__DEV__) global.Reactotron.debug(xmlBody);
     return axios
         .post(endpoint, xmlBody, {
             headers: { 'Content-Type': 'text/xml' }

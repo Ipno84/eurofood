@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '11.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 target 'eurofood' do
@@ -34,8 +34,23 @@ target 'eurofood' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-
+  # OneSignal Push Notifications
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
+  # Stripe
+  pod 'Stripe', '~> 19.0.1'
+  pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
+#
+#  # Install additional dependencies
+#  pod 'Firebase/Core'
+#  pod 'Firebase/Auth'
+#  pod 'Firebase/Crash'
+#  pod 'Firebase/Database'
+#  pod 'Firebase/Firestore'
+#  pod 'Firebase/Messaging'
+#  pod 'Firebase/Performance'
+#  pod 'Firebase/Storage'
+
 
   target 'eurofoodTests' do
     inherit! :search_paths
@@ -53,4 +68,8 @@ target 'eurofood-tvOS' do
     # Pods for testing
   end
 
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignal', '>= 2.9.3', '< 3.0'
 end

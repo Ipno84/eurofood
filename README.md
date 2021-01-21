@@ -164,12 +164,25 @@ https://medium.com/better-programming/react-native-add-app-icons-and-launch-scre
 
 FortiClient
 michele.nigri
-TxE7jo\_;m
+TxE7jo\_;m (without backslash)
 
-Edit &etc&host
+Edit /etc/host
 192.168.10.233 svil-upgrade.eurofoodservice.it
+
+### Root emulator
+
+https://stackoverflow.com/questions/49426174/cannot-push-to-android-emulator-because-of-read-only-file-system
 
 ## Notification
 
 lucrezia.perrone@eurofoodservice.it
 Eurofood_2019
+
+## Backend TODO
+
+-   [ ] add is_gender to jwt token
+-   [ ] fix get product images
+
+## Multidex Android issue
+
+https://developer.android.com/studio/build/multidex#kotlin

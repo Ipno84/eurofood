@@ -9,6 +9,7 @@ import { AddressesReducerTransform } from './../state/reducers/AddressesReducer'
 import { CacheReducerTransform } from './../state/reducers/CacheReducer';
 import { CartReducerTransform } from './../state/reducers/CartReducer';
 import { CategoriesReducerTransform } from './../state/reducers/CategoriesReducer';
+import { CheckoutReducerTransform } from './../state/reducers/CheckoutReducer';
 import { ClientReducerTransform } from './../state/reducers/ClientReducer';
 import FilesystemStorage from 'redux-persist-filesystem-storage';
 import { OrdersReducerTransform } from './../state/reducers/OrdersReducer';
@@ -30,6 +31,7 @@ export default {
         CartReducerTransform,
         ClientReducerTransform,
         AddressesReducerTransform,
-        OrdersReducerTransform
+        OrdersReducerTransform,
+        CheckoutReducerTransform
     ]
 };

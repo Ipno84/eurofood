@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AddressForm from './../../organisms/AddressForm';
 import AddressesList from './../../organisms/AddressesList';
-import PlainButton from './../../atoms/Button/PlainButton';
-import { ROUTE_NAME_BILLING_ADDRESS } from '../../../../constants/RouteConstants';
+import ProceedToCarrier from '../../molecules/ProceedToCarrier';
 import { SafeAreaView } from 'react-native';
 import SectionTitle from './../../atoms/Text/SectionTitle';
 import TitleWrapper from './../../atoms/Text/TitleWrapper';
@@ -14,10 +13,8 @@ import isShippingAddressFormVisibileSelector from './../../../../state/selectors
 import setSelectedShippingAddressIdAction from './../../../../state/actions/CartActions/setSelectedShippingAddressIdAction';
 import showShippingAddressFormAction from './../../../../state/actions/CartActions/showShippingAddressFormAction';
 import styled from 'styled-components/native';
-import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 
 const ShippingAddress = () => {
-    const { navigate } = useAppNavigation();
     const dispatch = useDispatch();
     const setSelectedShippingAddressId = useCallback(
         id => dispatch(setSelectedShippingAddressIdAction(id)),
@@ -64,16 +61,7 @@ const ShippingAddress = () => {
                             }
                             selectedId={Number(selectedShippingAddressId)}
                         />
-                        <PlainButton
-                            disabled={
-                                !Boolean(parseInt(selectedShippingAddressId))
-                            }
-                            onPress={() =>
-                                selectedShippingAddressId &&
-                                navigate(ROUTE_NAME_BILLING_ADDRESS)
-                            }>
-                            Procedi
-                        </PlainButton>
+                        <ProceedToCarrier isShippingAddressPage={true} />
                     </>
                 )}
             </Wrap>

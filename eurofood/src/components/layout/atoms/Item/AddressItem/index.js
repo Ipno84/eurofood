@@ -7,7 +7,14 @@ import { orange } from './../../../../../constants/ThemeConstants';
 import styled from 'styled-components/native';
 
 const AddressItem = ({ item, onPress, isSelected }) => {
-    if (!onPress) return <ItemOuter item={item} isSelected={isSelected} />;
+    if (!onPress)
+        return (
+            <ItemOuter
+                item={item}
+                isSelected={isSelected}
+                isTouchable={false}
+            />
+        );
     return (
         <TouchableHighlight
             activeOpacity={0.6}
@@ -24,7 +31,11 @@ const AddressItem = ({ item, onPress, isSelected }) => {
                         onChange={onPress}
                     />
                 </CheckInner>
-                <ItemOuter item={item} isSelected={isSelected} />
+                <ItemOuter
+                    item={item}
+                    isSelected={isSelected}
+                    isTouchable={false}
+                />
             </CheckWrapper>
         </TouchableHighlight>
     );

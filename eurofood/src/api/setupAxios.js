@@ -74,7 +74,8 @@ export default function setupAxios() {
             const isForbidden = Boolean(
                 isError &&
                     response.data &&
-                    response.data.errors.find(e => e.code === 403)
+                    response.data.errors.find(e => e.code === 403) &&
+                    response.data.errors.find(e => e.message === 'Forbidden')
             );
             if (
                 isForbidden &&
@@ -116,6 +117,25 @@ export default function setupAxios() {
             return response;
         },
         error => {
+            const isServerGenericError = Boolean(
+                error &&
+                    error.response &&
+                    error.response.status &&
+                    !isNaN(error.response.status) &&
+                    error.response.status == 500
+            );
+
+            if (isServerGenericError) {
+                Snackbar.show({
+                    text: `Qualcosa è andato storto, ritenta quest'operazione più tardi`,
+                    duration: Snackbar.LENGTH_LONG,
+                    action: {
+                        text: 'OK',
+                        textColor: orange.toString(),
+                        onPress: () => Snackbar.dismiss()
+                    }
+                });
+            }
             return Promise.reject(error);
         }
     );

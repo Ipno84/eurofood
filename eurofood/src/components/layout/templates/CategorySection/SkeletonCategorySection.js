@@ -1,7 +1,8 @@
 import AnimatedLinearGradient from './../../atoms/AnimatedLinearGradient';
 import React from 'react';
 import SkeletonProductCard from '../../molecules/ProductCard/SkeletonProductCard';
-import { isTablet } from 'react-native-device-detection';
+import isTabletDevice from '../../../../helpers/isTabletDevice';
+// import { isTablet } from 'react-native-device-detection';
 import styled from 'styled-components/native';
 
 const SkeletonCategorySection = () => {
@@ -21,7 +22,7 @@ const SkeletonCategorySection = () => {
                     isInRow={true}
                     isFirst={false}
                 />
-                {isTablet ? (
+                {isTabletDevice() ? (
                     <>
                         <SkeletonProductCard
                             isHorizontal={true}
@@ -39,7 +40,7 @@ const SkeletonCategorySection = () => {
             <Row>
                 <SkeletonProductCard isInRow={true} isFirst={true} />
                 <SkeletonProductCard isInRow={true} isFirst={false} />
-                {isTablet ? (
+                {isTabletDevice() ? (
                     <>
                         <SkeletonProductCard isInRow={true} isFirst={true} />
                         <SkeletonProductCard isInRow={true} isFirst={false} />

@@ -3,19 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AddressForm from './../../organisms/AddressForm';
 import AddressesList from './../../organisms/AddressesList';
-import { Alert } from 'react-native';
-import PlainButton from './../../atoms/Button/PlainButton';
+import ProceedToCarrier from '../../molecules/ProceedToCarrier';
 import { SafeAreaView } from 'react-native';
 import SectionTitle from './../../atoms/Text/SectionTitle';
+// import SubmitOrProceedButton from '../../molecules/SubmitOrProceedButton';
 import TitleWrapper from './../../atoms/Text/TitleWrapper';
 import ToggleAddressButton from './../../molecules/ToggleAddressButton';
 import getSelectedBillingAddressIdSelector from './../../../../state/selectors/CartSelectors/getSelectedBillingAddressIdSelector';
 import isBillingAddressFormVisibileSelector from './../../../../state/selectors/CartSelectors/isBillingAddressFormVisibileSelector';
-import isOrderSubmittedSelector from './../../../../state/selectors/OrdersSelectors/isOrderSubmittedSelector';
+// import isOrderSubmittedSelector from './../../../../state/selectors/OrdersSelectors/isOrderSubmittedSelector';
 import setSelectedBillingAddressIdAction from './../../../../state/actions/CartActions/setSelectedBillingAddressIdAction';
 import showBillingAddressFormAction from './../../../../state/actions/CartActions/showBillingAddressFormAction';
 import styled from 'styled-components/native';
-import submitOrderAction from './../../../../state/actions/OrdersActions/submitOrderAction';
+
+// import submitOrderAction from './../../../../state/actions/OrdersActions/submitOrderAction';
 
 const BillingAddress = () => {
     const dispatch = useDispatch();
@@ -27,12 +28,12 @@ const BillingAddress = () => {
         () => dispatch(showBillingAddressFormAction()),
         [dispatch]
     );
-    const submitOrder = useCallback(() => dispatch(submitOrderAction()), [
-        dispatch
-    ]);
-    const isOrderSubmitted = useSelector(state =>
-        isOrderSubmittedSelector(state)
-    );
+    // const submitOrder = useCallback(() => dispatch(submitOrderAction()), [
+    //     dispatch
+    // ]);
+    // const isOrderSubmitted = useSelector(state =>
+    //     isOrderSubmittedSelector(state)
+    // );
     const selectedBillingAddressId = useSelector(state =>
         getSelectedBillingAddressIdSelector(state)
     );
@@ -70,7 +71,8 @@ const BillingAddress = () => {
                             }
                             selectedId={Number(selectedBillingAddressId)}
                         />
-                        <PlainButton
+                        {/* <SubmitOrProceedButton /> */}
+                        {/* <PlainButton
                             disabled={isOrderSubmitted}
                             onPress={() => {
                                 if (!isOrderSubmitted) {
@@ -93,7 +95,8 @@ const BillingAddress = () => {
                                 }
                             }}>
                             Completa
-                        </PlainButton>
+                        </PlainButton> */}
+                        <ProceedToCarrier />
                     </>
                 )}
             </Wrap>
