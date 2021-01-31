@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
-import getCarrierMethodsSelector from './../SettingsSelectors/getCarrierMethodsSelector';
+import getCarriersSelector from './../CarriersSelectors/getCarriersSelector';
 import getSelectedCarrierMethodIdSelector from './getSelectedCarrierMethodIdSelector';
 
 export default createSelector(
-    [getCarrierMethodsSelector, getSelectedCarrierMethodIdSelector],
-    (carrierMethods, selectedCarrierMethodId) => {
-        const carrierMethod = carrierMethods.find(
+    [getCarriersSelector, getSelectedCarrierMethodIdSelector],
+    (carriers, selectedCarrierMethodId) => {
+        const carrierMethod = carriers.find(
             e => Number(e.id) === Number(selectedCarrierMethodId)
         );
         return carrierMethod ? carrierMethod : null;

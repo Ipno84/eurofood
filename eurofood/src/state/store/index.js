@@ -11,6 +11,7 @@ import OrdersSaga from './../middlewares/sagas/OrdersSaga';
 import ProductsSaga from './../middlewares/sagas/ProductsSaga';
 import SearchSaga from './../middlewares/sagas/SearchSaga';
 import SettingsSaga from './../middlewares/sagas/SettingsSaga';
+import CarriersSaga from './../middlewares/sagas/CarriersSaga';
 import composeEnhancers from './composeEnhancers';
 import createReducer from './createReducer';
 import createSagaMiddleware from 'redux-saga';
@@ -48,7 +49,8 @@ function configureStore(initialState) {
         ClientSaga,
         ErrorsSaga,
         OrdersSaga,
-        CheckoutSaga
+        CheckoutSaga,
+        CarriersSaga
     };
     store.injectSaga = (key, asyncSaga) => {
         function* combinedSagas() {
@@ -83,6 +85,7 @@ function* combinedSaga() {
     yield fork(OrdersSaga);
     yield fork(AddressesSaga);
     yield fork(CheckoutSaga);
+    yield fork(CarriersSaga);
 }
 
 export { store, persistor };
