@@ -89,12 +89,8 @@ export default function* submitOrderSaga() {
                 }
             };
 
-            global.Reactotron.debug(order, true);
-
             const token = yield select(getStripeTokenSelector);
             if (token) order['token'] = token;
-            
-            global.Reactotron.debug(order, true);
 
             const result = yield call(createOrderCall, order);
             if (result && result.order) {

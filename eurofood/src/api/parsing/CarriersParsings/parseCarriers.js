@@ -1,14 +1,21 @@
 export default function parseCarriers(carriers) {
-    return carriers.map(({ id, name, is_free, delay }, index) => {
-        // TODO: set right price
-        const price = Number(is_free) === 1 ? 0 : 4;
-        return {
-            is_default: index === 0,
-            id,
-            name,
-            price,
-            delay,
-            active: 1
-        };
-    });
+    const parsedCarriers = carriers
+        .map(
+            (
+                { id, id_carrier, name, is_free, delay, price_without_tax },
+                index
+            ) => {
+                const price = Number(is_free) === 1 ? 0 : price_without_tax;
+                return {
+                    is_default: index === 0,
+                    id: id ? id : id_carrier,
+                    name,
+                    price,
+                    delay,
+                    active: 1
+                };
+            }
+        )
+        .filter(parsedCarrier => typeof parsedCarrier.price !== 'undefined');
+    return parsedCarriers;
 }

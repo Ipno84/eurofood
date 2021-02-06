@@ -70,14 +70,9 @@ const PayWithCard = ({ isOrderSubmitted }) => {
                         stripe
                             .createTokenWithCard(tokenPayload)
                             .then(token => {
-                                if (__DEV__)
-                                    global.Reactotron.debug(token, true);
                                 setStripeToken(token);
                             })
-                            .catch(error => {
-                                if (__DEV__)
-                                    global.Reactotron.debug(error, true);
-                            });
+                            .catch(error => {});
                     }}
                     disabled={
                         !cardForm.valid || (isOrderSubmitted && cardForm.valid)
