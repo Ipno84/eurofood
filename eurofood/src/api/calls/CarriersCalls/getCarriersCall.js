@@ -1,23 +1,32 @@
 import {
     ENDPOINT_CARRIERS,
     HOST,
+    PREFIX,
     SUFFIX
 } from './../../../constants/ApiConstants';
 
 import axios from 'axios';
 
-export default function getCarriersCall(params = {}) {
-    const endpoint = [HOST, SUFFIX, ENDPOINT_CARRIERS].join('/');
+export default function getCarriersCall(cartId) {
+    const endpoint = [HOST, SUFFIX, PREFIX + ENDPOINT_CARRIERS, cartId].join(
+        '/'
+    );
 
-    const carrierParams = ['id', 'name', 'is_free', 'delay'];
+    const carrierParams = [
+        'id_carrier',
+        'name',
+        'is_free',
+        'price_with_tax',
+        'price_without_tax',
+        'delay'
+    ];
 
-    params = {
-        ...params,
+    const params = {
         display: `[${carrierParams.join(', ')}]`,
         'filter[deleted]': '[0]',
         'filter[active]': '[1]',
-        sort: '[position_ASC]',
-        useBasicToken: true
+        sort: '[position_ASC]'
+        //useBasicToken: true
     };
 
     return axios

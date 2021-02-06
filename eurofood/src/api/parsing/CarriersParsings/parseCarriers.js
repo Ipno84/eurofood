@@ -5,7 +5,8 @@ export default function parseCarriers(carriers) {
                 { id, id_carrier, name, is_free, delay, price_without_tax },
                 index
             ) => {
-                const price = Number(is_free) === 1 ? 0 : price_without_tax;
+                const price =
+                    Number(is_free) === 1 ? 0 : parseFloat(price_without_tax);
                 return {
                     is_default: index === 0,
                     id: id ? id : id_carrier,
@@ -16,6 +17,10 @@ export default function parseCarriers(carriers) {
                 };
             }
         )
-        .filter(parsedCarrier => typeof parsedCarrier.price !== 'undefined');
+        .filter(
+            parsedCarrier =>
+                typeof parsedCarrier.price !== 'undefined' &&
+                !isNaN(parsedCarrier.price)
+        );
     return parsedCarriers;
 }

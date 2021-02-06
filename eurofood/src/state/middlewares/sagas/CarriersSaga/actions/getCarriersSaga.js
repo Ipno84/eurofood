@@ -10,13 +10,7 @@ import setSelectedCarrierMethodIdAction from '../../../../actions/CheckoutAction
 export default function* getCarriersSaga() {
     try {
         const cartId = yield select(getCurrentCartIdSelector);
-        const shippingAddressId = yield select(
-            getSelectedShippingAddressIdSelector
-        );
-        const carriers = yield call(getCarriersCall, {
-            id_cart: cartId,
-            id_address_delivedy: shippingAddressId
-        });
+        const carriers = yield call(getCarriersCall, cartId);
 
         const parsedCarriers = parseCarriers(carriers.carriers);
 
