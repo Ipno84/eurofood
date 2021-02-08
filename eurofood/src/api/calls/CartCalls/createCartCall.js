@@ -18,11 +18,9 @@ export default function createCartCall(cart) {
                 id_lang: 1,
                 associations: {
                     ...cart.associations,
-                    cart_rows: cart.associations.cart_rows.map(item => {
-                        return {
-                            cart_row: item
-                        };
-                    })
+                    cart_rows: cart.associations.cart_rows.map(item => ({
+                        cart_row: item
+                    }))
                 }
             }
         }
