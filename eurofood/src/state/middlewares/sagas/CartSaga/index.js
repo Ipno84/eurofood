@@ -5,6 +5,7 @@ import onEditCartWatcher from './watchers/onEditCartWatcher';
 import onEmptyCartWatcher from './watchers/onEmptyCartWatcher';
 import setCurrentCartIdCustomerWatcher from './watchers/setCurrentCartIdCustomerWatcher';
 import onSetSelectedShippingAddressIdWatcher from './watchers/onSetSelectedShippingAddressIdWatcher';
+import onSetSelectedCarrierMethodWatcher from './watchers/onSetSelectedCarrierMethodWatcher';
 
 export default function* CartSaga() {
     yield fork(onAddToCartWatcher);
@@ -13,4 +14,5 @@ export default function* CartSaga() {
     yield fork(onEmptyCartWatcher);
     yield fork(backorderWatcher);
     yield fork(onSetSelectedShippingAddressIdWatcher);
+    yield fork(onSetSelectedCarrierMethodWatcher);
 }

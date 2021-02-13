@@ -10,6 +10,7 @@ import {
     SHOW_SHIPPING_ADDRESS_FORM
 } from '../../constants/CartConstants';
 import { LOGOUT, SUBMIT_LOGIN } from '../../constants/ClientConstants';
+import { SET_SELECTED_CARRIER_METHOD } from '../../constants/CheckoutConstants';
 
 import { EDIT_ADDRESS } from '../../constants/AddressConstants';
 import NavigatorRef from '../../helpers/NavigatorRef';
@@ -48,6 +49,14 @@ export const CartReducerTransform = createTransform(
 
 const CartReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_SELECTED_CARRIER_METHOD:
+            return {
+                ...state,
+                currentCart: {
+                    ...state.currentCart,
+                    id_carrier: action.selectedCarrierMethodId
+                }
+            };
         case SET_CURRENT_CART_ID_CUSTOMER:
             return {
                 ...state,
