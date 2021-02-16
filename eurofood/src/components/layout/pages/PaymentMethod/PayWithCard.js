@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import { CreditCardInput } from 'react-native-input-credit-card';
 import PlainButton from '../../atoms/Button/PlainButton';
