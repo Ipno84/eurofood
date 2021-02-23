@@ -1,5 +1,5 @@
 import { ROUTE_NAME_PAYMENT_METHOD } from '../../../../constants/RouteConstants';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ChooseMethodItemInner from './../../atoms/Item/ChooseMethodItemInner';
@@ -19,14 +19,14 @@ import getCarriersSelector from './../../../../state/selectors/CarriersSelectors
 import setSelectedCarrierMethodIdAction from './../../../../state/actions/CheckoutActions/setSelectedCarrierMethodIdAction';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 import getCarriersAction from '../../../../state/actions/CarriersActions/getCarriersAction';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, InteractionManager, View } from 'react-native';
 import { darkOrange } from '../../../../constants/ThemeConstants';
 
 const ShippingMethod = () => {
+    const [init, setInit] = useState(false);
     const isLoading = useSelector(isGetCarriersLoadingSelector);
     const { navigate } = useAppNavigation();
     const dispatch = useDispatch();
-    const items = useSelector(state => getCarrierMethodsSelector(state));
     const carriers = useSelector(getCarriersSelector);
     const selectedCarrierMethodId = useSelector(state =>
         getSelectedCarrierMethodIdSelector(state)
@@ -42,9 +42,12 @@ const ShippingMethod = () => {
 
     useEffect(() => {
         getCarriers();
-    }, [getCarriers]);
+        InteractionManager.runAfterInteractions(() => {
+            setInit(true);
+        });
+    }, [getCarriers, setInit]);
 
-    if (isLoading)
+    if (isLoading || !init)
         return (
             <View
                 style={{

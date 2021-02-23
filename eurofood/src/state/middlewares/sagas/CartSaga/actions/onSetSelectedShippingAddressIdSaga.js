@@ -46,7 +46,8 @@ export function* onSetSelectedShippingAddressIdSagaTask(id) {
                 if (currentCartId) {
                     result = yield call(editCartCall, {
                         ...currentCart,
-                        id_address_delivery: id
+                        id_address_delivery: id,
+                        id_address_invoice: id
                     });
                 } else result = yield call(createCartCall, currentCart);
                 if (result && result.cart) {
@@ -55,6 +56,7 @@ export function* onSetSelectedShippingAddressIdSagaTask(id) {
                         cart = {
                             ...cart,
                             id_address_delivery: id,
+                            id_address_invoice: id,
                             associations: {
                                 cart_rows: []
                             }

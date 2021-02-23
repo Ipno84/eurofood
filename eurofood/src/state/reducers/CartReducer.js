@@ -30,7 +30,8 @@ export const initialState = {
         }
     },
     showShippingAddressForm: false,
-    showBillingAddressForm: false
+    showBillingAddressForm: false,
+    loading: false
 };
 
 export const CartReducerTransform = createTransform(
@@ -54,7 +55,8 @@ const CartReducer = (state = initialState, action) => {
                 ...state,
                 currentCart: {
                     ...state.currentCart,
-                    id_carrier: action.selectedCarrierMethodId
+                    id_carrier: action.selectedCarrierMethodId,
+                    loading: true
                 }
             };
         case SET_CURRENT_CART_ID_CUSTOMER:
@@ -146,12 +148,14 @@ const CartReducer = (state = initialState, action) => {
                         associations: {
                             cart_rows: []
                         }
-                    }
+                    },
+                    loading: false
                 };
             }
             return {
                 ...state,
-                currentCart: action.cart
+                currentCart: action.cart,
+                loading: false
             };
         case EMPTY_CART:
             return {
@@ -172,7 +176,8 @@ const CartReducer = (state = initialState, action) => {
                 currentCart: {
                     ...state.currentCart,
                     id_address_invoice: action.id
-                }
+                },
+                loading: true
             };
         case SET_SELECTED_SHIPPING_ADDRESS_ID:
             return {
@@ -180,7 +185,8 @@ const CartReducer = (state = initialState, action) => {
                 currentCart: {
                     ...state.currentCart,
                     id_address_delivery: action.id
-                }
+                },
+                loading: true
             };
         case SHOW_SHIPPING_ADDRESS_FORM:
             return {

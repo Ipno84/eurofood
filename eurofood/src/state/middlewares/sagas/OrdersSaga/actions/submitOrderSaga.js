@@ -16,6 +16,7 @@ import getStripeTokenSelector from '../../../../selectors/CheckoutSelectors/getS
 import getUserBillingAddressIdSelector from '../../../../selectors/ClientSelectors/getUserBillingAddressIdSelector';
 import isLoggedUserBusinessTypeSelector from '../../../../selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
 import isUserLoggedInSelector from '../../../../selectors/ClientSelectors/isUserLoggedInSelector';
+import getSelectedCarrierMethodTaxPercentageSelector from '../../../../selectors/CheckoutSelectors/getSelectedCarrierMethodTaxPercentageSelector';
 import { orange } from '../../../../../constants/ThemeConstants';
 import roundNumber from './../../../../../helpers/roundNumber';
 import submitOrderAction from './../../../../actions/OrdersActions/submitOrderAction';
@@ -28,6 +29,9 @@ export default function* submitOrderSaga() {
             isLoggedUserBusinessTypeSelector
         );
         const billingAddressId = yield select(getUserBillingAddressIdSelector);
+        const carrierTaxRate = yield select(
+            getSelectedCarrierMethodTaxPercentageSelector
+        );
         const currentCart = yield select(getCurrentCartSelector);
         if (currentCart) {
             const {
@@ -79,7 +83,7 @@ export default function* submitOrderSaga() {
                 total_shipping: roundNumber(total_shipping),
                 total_shipping_tax_incl: roundNumber(total_shipping),
                 total_shipping_tax_excl: roundNumber(total_shipping_tax_excl),
-                carrier_tax_rate: '22.000',
+                carrier_tax_rate: roundNumber(carrierTaxRate, 3),
                 total_wrapping: '0.000000',
                 total_wrapping_tax_incl: '0.000000',
                 total_wrapping_tax_excl: '0.000000',

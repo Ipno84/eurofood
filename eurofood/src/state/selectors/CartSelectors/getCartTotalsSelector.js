@@ -6,14 +6,16 @@ import getProductItemNameSelector from '../ProductsSelectors/getProductItemNameS
 import getProductItemReferenceSelector from '../ProductsSelectors/getProductItemReferenceSelector';
 import getProductPriceInfoSelector from '../ProductsSelectors/getProductPriceInfoSelector';
 import getSelectedCarrierMethodPriceSelector from './../CheckoutSelectors/getSelectedCarrierMethodPriceSelector';
+import getSelectedCarrierMethodTaxPercentageSelector from './../CheckoutSelectors/getSelectedCarrierMethodTaxPercentageSelector';
 
 export default createSelector(
     [
         getCurrentCartSelector,
         getSelectedCarrierMethodPriceSelector,
+        getSelectedCarrierMethodTaxPercentageSelector,
         state => state
     ],
-    (currentCart, shipmentCost, state) => {
+    (currentCart, shipmentCost, shipmentTaxPercentage, state) => {
         if (
             !currentCart ||
             !currentCart.associations ||
@@ -43,7 +45,7 @@ export default createSelector(
             let priceWithTaxes =
                 (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) +
                 (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) *
-                    0.1;
+                    (priceInfo.taxPercentage ? priceInfo.taxPercentage : 1);
 
             return {
                 product_id: id_product,
@@ -71,10 +73,24 @@ export default createSelector(
                 .add(subTotal)
                 .done();
         }, 0);
+        const total_products_with_taxes = orderRows.reduce(
+            (total, cartItem) => {
+                const { product_quantity, unit_price_tax_incl } = cartItem;
+                const subTotal = math
+                    .chain(product_quantity)
+                    .multiply(unit_price_tax_incl)
+                    .done();
+                return math
+                    .chain(total)
+                    .add(subTotal)
+                    .done();
+            },
+            0
+        );
 
-        const totalProductsTaxes = total_products * 0.1;
+        const totalProductsTaxes = total_products_with_taxes;
         const total_products_wt = total_products + totalProductsTaxes;
-        const shipmentCostTaxes = shipmentCost * 0.22;
+        const shipmentCostTaxes = shipmentCost * shipmentTaxPercentage;
         const total_shipping = shipmentCost + shipmentCostTaxes;
         const totalTaxes = totalProductsTaxes + shipmentCostTaxes;
         const total_paid_tax_excl = total_products + shipmentCost;
