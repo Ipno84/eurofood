@@ -1,23 +1,47 @@
 import createCachedSelector from 're-reselect';
 import fixPrice from '../../../helpers/fixPrice';
 import getProductItemSelector from './getProductItemSelector';
+import getProductSpecificPriceSelector from './getProductSpecificPriceSelector';
 
 export default createCachedSelector(
-    [getProductItemSelector, (_, id) => id],
-    product => {
+    [getProductItemSelector, getProductSpecificPriceSelector, (_, id) => id],
+    (product, specificPrice, id) => {
+        if (parseInt(id) === 9853) {
+            debugger;
+        }
         let taxPercentage = 0;
         if (product) {
-            if (product.price && product.price_tax_exc) {
-                taxPercentage = product.price / product.price_tax_exc - 1;
-            }
+            let price = product.price;
+            let priceTaxExcluded = product.price_tax_exc;
+            if (price) price = parseFloat(price);
+            if (priceTaxExcluded)
+                priceTaxExcluded = parseFloat(priceTaxExcluded);
             if (
-                product.price_without_reduction &&
-                product.price_without_reduction_without_tax
+                price &&
+                priceTaxExcluded &&
+                !isNaN(price) &&
+                !isNaN(priceTaxExcluded)
+            ) {
+                taxPercentage = price / priceTaxExcluded - 1;
+            }
+            let priceWithoutReduction = product.price_without_reduction;
+            let priceWithoutReductionWithoutTax =
+                product.price_without_reduction_without_tax;
+
+            if (priceWithoutReduction)
+                priceWithoutReduction = parseFloat(priceWithoutReduction);
+            if (priceWithoutReductionWithoutTax)
+                priceWithoutReductionWithoutTax = parseFloat(
+                    priceWithoutReductionWithoutTax
+                );
+            if (
+                priceWithoutReduction &&
+                priceWithoutReductionWithoutTax &&
+                !isNaN(priceWithoutReduction) &&
+                !isNaN(priceWithoutReductionWithoutTax)
             ) {
                 taxPercentage =
-                    product.price_without_reduction /
-                        product.price_without_reduction_without_tax -
-                    1;
+                    priceWithoutReduction / priceWithoutReductionWithoutTax - 1;
             }
         }
         if (!isNaN(taxPercentage)) {

@@ -43,9 +43,9 @@ export default createSelector(
                 : null;
 
             let priceWithTaxes =
-                (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) +
                 (salePrice ? parseFloat(salePrice) : parseFloat(productPrice)) *
-                    (priceInfo.taxPercentage ? priceInfo.taxPercentage : 1);
+                (priceInfo.taxPercentage ? priceInfo.taxPercentage : 1);
+            debugger;
 
             return {
                 product_id: id_product,
