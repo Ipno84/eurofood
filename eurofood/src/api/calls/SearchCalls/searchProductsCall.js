@@ -9,7 +9,7 @@ export default function searchProductsCall(payload) {
         sort: '[name_ASC]',
         'filter[active]': '[1]',
         display:
-            '[id,name,link_rewrite,id_category_default,id_default_image,quantity,type,unit_price_ratio,reference,price,wholesale_price,description,description_short,active,price_tax_exc]'
+            '[id,name,link_rewrite,id_category_default,id_default_image,quantity,type,unit_price_ratio,reference,price,wholesale_price,description,description_short,active]'
     };
     if (searchText) {
         params['filter[name]'] = `[${searchText}]%`;

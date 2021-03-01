@@ -1,13 +1,13 @@
 import createCachedSelector from 're-reselect';
 import fixPrice from '../../../helpers/fixPrice';
 import getProductItemSelector from './getProductItemSelector';
-import getProductSpecificPriceSelector from './getProductSpecificPriceSelector';
 
 export default createCachedSelector(
-    [getProductItemSelector, getProductSpecificPriceSelector, (_, id) => id],
-    (product, specificPrice, id) => {
-        if (parseInt(id) === 9853) {
-            debugger;
+    [getProductItemSelector, (_, id) => id],
+    (product, id) => {
+        if (typeof product.tax_rate !== 'undefined') {
+            const formattedTaxRate = parseFloat(product.tax_rate);
+            if (!isNaN(formattedTaxRate)) return formattedTaxRate / 100;
         }
         let taxPercentage = 0;
         if (product) {
