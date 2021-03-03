@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ActivityIndicator, View } from 'react-native';
 
 import { CreditCardInput } from 'react-native-input-credit-card';
 import PlainButton from '../../atoms/Button/PlainButton';
@@ -70,19 +71,31 @@ const PayWithCard = ({ isOrderSubmitted }) => {
                         stripe
                             .createTokenWithCard(tokenPayload)
                             .then(token => {
-                                if (__DEV__)
-                                    global.Reactotron.debug(token, true);
                                 setStripeToken(token);
                             })
-                            .catch(error => {
-                                if (__DEV__)
-                                    global.Reactotron.debug(error, true);
-                            });
+                            .catch(error => {});
+                    }}
+                    left={() => {
+                        if (!isOrderSubmitted) return null;
+                        return (
+                            <View
+                                style={{
+                                    position: 'absolute',
+                                    top: 13,
+                                    left: 13
+                                }}>
+                                <ActivityIndicator
+                                    animating={true}
+                                    size="small"
+                                    color="#fff"
+                                />
+                            </View>
+                        );
                     }}
                     disabled={
                         !cardForm.valid || (isOrderSubmitted && cardForm.valid)
                     }>
-                    Paga
+                    {isOrderSubmitted ? 'Elaborazione ordine...' : 'Paga'}
                 </PlainButton>
             </Container>
         </>

@@ -8,7 +8,7 @@ import isUserLoggedInSelector from './../../../../selectors/ClientSelectors/isUs
 import setCurrentCartAction from './../../../../actions/CartActions/setCurrentCartAction';
 
 let editCartTask;
-export default function* onEditCartSaga({ id, quantity }) {
+export default function* onEditCartSaga() {
     try {
         const isUserLoggedIn = yield select(state =>
             isUserLoggedInSelector(state)

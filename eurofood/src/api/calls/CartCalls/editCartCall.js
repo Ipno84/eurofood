@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 import jsToXml from './../../../helpers/jsToXml';
 
-export default function createCartCall(cart) {
+export default function editCartCall(cart) {
     const endpoint = [HOST, SUFFIX, PREFIX + ENDPOINT_CARTS].join('/');
     const jsBody = {
         prestashop: {
@@ -18,11 +18,9 @@ export default function createCartCall(cart) {
                 id_lang: 1,
                 associations: {
                     ...cart.associations,
-                    cart_rows: cart.associations.cart_rows.map(item => {
-                        return {
-                            cart_row: item
-                        };
-                    })
+                    cart_rows: cart.associations.cart_rows.map(item => ({
+                        cart_row: item
+                    }))
                 }
             }
         }

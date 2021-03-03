@@ -10,6 +10,7 @@ import {
     SHOW_SHIPPING_ADDRESS_FORM
 } from '../../constants/CartConstants';
 import { LOGOUT, SUBMIT_LOGIN } from '../../constants/ClientConstants';
+import { SET_SELECTED_CARRIER_METHOD } from '../../constants/CheckoutConstants';
 
 import { EDIT_ADDRESS } from '../../constants/AddressConstants';
 import NavigatorRef from '../../helpers/NavigatorRef';
@@ -29,7 +30,8 @@ export const initialState = {
         }
     },
     showShippingAddressForm: false,
-    showBillingAddressForm: false
+    showBillingAddressForm: false,
+    loading: false
 };
 
 export const CartReducerTransform = createTransform(
@@ -48,6 +50,15 @@ export const CartReducerTransform = createTransform(
 
 const CartReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_SELECTED_CARRIER_METHOD:
+            return {
+                ...state,
+                currentCart: {
+                    ...state.currentCart,
+                    id_carrier: action.selectedCarrierMethodId,
+                    loading: true
+                }
+            };
         case SET_CURRENT_CART_ID_CUSTOMER:
             return {
                 ...state,
@@ -137,12 +148,14 @@ const CartReducer = (state = initialState, action) => {
                         associations: {
                             cart_rows: []
                         }
-                    }
+                    },
+                    loading: false
                 };
             }
             return {
                 ...state,
-                currentCart: action.cart
+                currentCart: action.cart,
+                loading: false
             };
         case EMPTY_CART:
             return {
@@ -163,7 +176,8 @@ const CartReducer = (state = initialState, action) => {
                 currentCart: {
                     ...state.currentCart,
                     id_address_invoice: action.id
-                }
+                },
+                loading: true
             };
         case SET_SELECTED_SHIPPING_ADDRESS_ID:
             return {
@@ -171,7 +185,8 @@ const CartReducer = (state = initialState, action) => {
                 currentCart: {
                     ...state.currentCart,
                     id_address_delivery: action.id
-                }
+                },
+                loading: true
             };
         case SHOW_SHIPPING_ADDRESS_FORM:
             return {

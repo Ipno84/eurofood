@@ -2,7 +2,8 @@ import {
     ENDPOINT_LOGIN,
     HOST,
     PRIVATE_TOKEN,
-    SUFFIX
+    SUFFIX,
+    BASIC_TOKEN
 } from './../constants/ApiConstants';
 
 import AxiosError from './../helpers/AxiosError';
@@ -27,15 +28,22 @@ export default function setupAxios() {
 
     axios.interceptors.request.use(
         request => {
+            request.headers['Output-Format'] = 'JSON';
+            const state = store.getState();
+
             if (request.params && request.params.canSetClientCache) {
                 request.__canSetClientCache = true;
                 delete request.params.canSetClientCache;
             }
-            // request.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
-            request.headers['Output-Format'] = 'JSON';
-            const state = store.getState();
-            const jwt = getJwtTokenSelector(state);
-            if (jwt) request.headers['X-Eurofood-Auth'] = jwt;
+            if (request.params && request.params.useBasicToken) {
+                delete request.auth;
+                request.headers['Authorization'] = 'Basic ' + BASIC_TOKEN;
+
+                delete request.params.useBasicToken;
+            } else {
+                const jwt = getJwtTokenSelector(state);
+                if (jwt) request.headers['X-Eurofood-Auth'] = jwt;
+            }
             if (request.method === 'get') {
                 const params = queryString.stringify(request.params);
                 const cached = getValidDataFromCacheSelector(state, params);

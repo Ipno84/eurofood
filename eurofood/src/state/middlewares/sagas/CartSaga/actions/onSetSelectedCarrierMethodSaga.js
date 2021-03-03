@@ -1,56 +1,31 @@
 import { call, cancel, delay, fork, put, select } from 'redux-saga/effects';
 
-import addToCartAction from './../../../../actions/CartActions/addToCartAction';
 import createCartCall from './../../../../../api/calls/CartCalls/createCartCall';
 import editCartCall from './../../../../../api/calls/CartCalls/editCartCall';
 import getCurrentCartIdSelector from './../../../../selectors/CartSelectors/getCurrentCartIdSelector';
-import getCurrentCartItemQuantitySelector from './../../../../selectors/CartSelectors/getCurrentCartItemQuantitySelector';
 import getCurrentCartSelector from './../../../../selectors/CartSelectors/getCurrentCartSelector';
-import getProductStockQuantitySelector from './../../../../selectors/ProductsSelectors/getProductStockQuantitySelector';
 import isUserLoggedInSelector from './../../../../selectors/ClientSelectors/isUserLoggedInSelector';
 import setCurrentCartAction from './../../../../actions/CartActions/setCurrentCartAction';
 
-let addToCartTask;
-export default function* onAddToCartSaga({ id, quantity }) {
+let setSelectedCarrierMethodTask;
+export default function* onSetSelectedCarrierMethodSaga() {
     try {
         const isUserLoggedIn = yield select(state =>
             isUserLoggedInSelector(state)
         );
         if (isUserLoggedIn) {
-            const stockQuantity = yield select(state =>
-                getProductStockQuantitySelector(state, id)
+            if (setSelectedCarrierMethodTask)
+                yield cancel(setSelectedCarrierMethodTask);
+            setSelectedCarrierMethodTask = yield fork(
+                onSetSelectedCarrierMethodSagaTask
             );
-            const cartQuantity = yield select(state =>
-                getCurrentCartItemQuantitySelector(state, id)
-            );
-
-            let addToCartPayload = { id, success: true, quantity: 0 };
-            if (
-                cartQuantity === 0 &&
-                stockQuantity &&
-                quantity <= stockQuantity
-            ) {
-                addToCartPayload.quantity = quantity;
-            } else if (
-                cartQuantity &&
-                stockQuantity &&
-                cartQuantity + quantity <= stockQuantity
-            ) {
-                addToCartPayload.quantity = cartQuantity + quantity;
-            }
-            if (addToCartPayload.quantity)
-                yield put(addToCartAction(addToCartPayload));
-
-            // Handling Task
-            if (addToCartTask) yield cancel(addToCartTask);
-            addToCartTask = yield fork(onAddToCartSagaTask);
         }
     } catch (error) {
-        yield put(addToCartAction({ error: true }));
+        console.log(error);
     }
 }
 
-export function* onAddToCartSagaTask() {
+export function* onSetSelectedCarrierMethodSagaTask() {
     try {
         yield delay(1000);
         const isUserLoggedIn = yield select(state =>

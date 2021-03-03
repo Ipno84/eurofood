@@ -9,7 +9,8 @@ import {
     REDUCER_NAME_ORDERS,
     REDUCER_NAME_PRODUCTS,
     REDUCER_NAME_SEARCH,
-    REDUCER_NAME_SETTINGS
+    REDUCER_NAME_SETTINGS,
+    REDUCER_NAME_CARRIERS
 } from './../../constants/StoreConstants';
 
 import AddressesReducer from './AddressesReducer';
@@ -23,6 +24,7 @@ import OrdersReducer from './OrdersReducer';
 import ProductsReducer from './ProductsReducer';
 import SearchReducer from './SearchReducer';
 import SettingsReducer from './SettingsReducer';
+import CarriersReducer from './CarriersReducer';
 
 export default {
     [REDUCER_NAME_SETTINGS]: SettingsReducer,
@@ -35,5 +37,6 @@ export default {
     [REDUCER_NAME_ERRORS]: ErrorsReducer,
     [REDUCER_NAME_ORDERS]: OrdersReducer,
     [REDUCER_NAME_ADDRESSES]: AddressesReducer,
-    [REDUCER_NAME_CHECKOUT]: CheckoutReducer
+    [REDUCER_NAME_CHECKOUT]: CheckoutReducer,
+    [REDUCER_NAME_CARRIERS]: CarriersReducer
 };

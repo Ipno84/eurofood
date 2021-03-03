@@ -9,6 +9,7 @@ import React from 'react';
 import getSelectedBillingAddressIdSelector from '../../../../state/selectors/CartSelectors/getSelectedBillingAddressIdSelector';
 import getSelectedShippingAddressIdSelector from '../../../../state/selectors/CartSelectors/getSelectedShippingAddressIdSelector';
 import isLoggedUserBusinessTypeSelector from './../../../../state/selectors/ClientSelectors/isLoggedUserBusinessTypeSelector';
+import isCartLoadingSelector from './../../../../state/selectors/CartSelectors/isCartLoadingSelector';
 import useAppNavigation from '../../../../hooks/navigation/useAppNavigation';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +19,7 @@ const ProceedToCarrier = ({ isShippingAddressPage }) => {
     const selectedShippingAddressId = useSelector(state =>
         getSelectedShippingAddressIdSelector(state)
     );
+    const isCartLoading = useSelector(state => isCartLoadingSelector(state));
     const isLoggedUserBusinessType = useSelector(state =>
         isLoggedUserBusinessTypeSelector(state)
     );
@@ -28,7 +30,10 @@ const ProceedToCarrier = ({ isShippingAddressPage }) => {
         if (isShippingAddressPage) {
             return (
                 <PlainButton
-                    disabled={!Boolean(parseInt(selectedShippingAddressId))}
+                    disabled={
+                        !Boolean(parseInt(selectedShippingAddressId)) ||
+                        isCartLoading
+                    }
                     onPress={() =>
                         selectedShippingAddressId &&
                         navigate(ROUTE_NAME_BILLING_ADDRESS)
@@ -64,8 +69,16 @@ const ProceedToCarrier = ({ isShippingAddressPage }) => {
     }
     return (
         <PlainButton
-            disabled={!Boolean(parseInt(selectedShippingAddressId))}
-            onPress={() => navigate(ROUTE_NAME_SHIPPING_METHOD)}>
+            disabled={
+                !Boolean(parseInt(selectedShippingAddressId)) || isCartLoading
+            }
+            onPress={() => {
+                if (
+                    Boolean(parseInt(selectedShippingAddressId)) &&
+                    !isCartLoading
+                )
+                    navigate(ROUTE_NAME_SHIPPING_METHOD);
+            }}>
             Procedi
         </PlainButton>
     );

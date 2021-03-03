@@ -45,6 +45,7 @@ export default function* getServerSettingsSaga() {
             put(setHomeTemplateAction({ home }))
         ];
 
+        /*
         if (server.carriers) {
             const defaultCarrier = server.carriers.find(e => e.is_default);
             if (defaultCarrier) {
@@ -53,6 +54,7 @@ export default function* getServerSettingsSaga() {
                 );
             }
         }
+        */
         if (server.paymentMethods) {
             const defaultPayment = server.paymentMethods.find(
                 e => e.is_default

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import getCarrierMethodsSelector from './../SettingsSelectors/getCarrierMethodsSelector';
+import getCarriersSelector from './../CarriersSelectors/getCarriersSelector';
 
-export default createSelector([getCarrierMethodsSelector], carrierMethods => {
-    const carrierMethod = carrierMethods.find(e => e.is_default);
-    return carrierMethod ? carrierMethod : null;
+export default createSelector([getCarriersSelector], carriers => {
+    const carrier = carriers.find(e => e.is_default);
+    return carrier ? carrier : null;
 });

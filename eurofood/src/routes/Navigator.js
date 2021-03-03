@@ -24,6 +24,8 @@ import {
     ROUTE_NAME_TEMPLATE
 } from './../constants/RouteConstants';
 
+import { TransitionPresets } from '@react-navigation/stack';
+
 import BillingAddress from './../components/layout/pages/BillingAddress';
 import Cart from './../components/layout/pages/Cart';
 import Categories from './../components/layout/pages/Categories';
@@ -208,7 +210,12 @@ const StackNavigator = () => {
                     key={`route-${name}-${i}`}
                     name={name}
                     component={component}
-                    options={props => options(props)}
+                    options={props => {
+                        return {
+                            ...options(props),
+                            ...TransitionPresets.SlideFromRightIOS
+                        };
+                    }}
                 />
             ))}
         </Stack.Navigator>
