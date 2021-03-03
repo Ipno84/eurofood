@@ -1,6 +1,6 @@
 {
     "name": "eurofood",
-    "version": "4.1.1",
+    "version": "4.3.0",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
@@ -10,7 +10,8 @@
         "test": "jest",
         "lint": "eslint .",
         "reset": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean --force && npm i",
-        "adb:reverse": "adb reverse tcp:9090 tcp:9090"
+        "adb:reverse": "adb reverse tcp:9090 tcp:9090",
+        "version": "./node_modules/react-native-set-version/build/index.js <version>"
     },
     "dependencies": {
         "@react-native-community/async-storage": "^1.8.1",
@@ -65,6 +66,7 @@
         "jest": "^24.9.0",
         "metro-react-native-babel-preset": "^0.56.0",
         "prettier": "^1.19.1",
+        "react-native-set-version": "^1.1.2",
         "react-test-renderer": "16.9.0",
         "reactotron-react-native": "^5.0.0"
     },
