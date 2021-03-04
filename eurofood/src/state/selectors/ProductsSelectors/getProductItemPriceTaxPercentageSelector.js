@@ -5,7 +5,7 @@ import getProductItemSelector from './getProductItemSelector';
 export default createCachedSelector(
     [getProductItemSelector, (_, id) => id],
     (product, id) => {
-        if (typeof product.tax_rate !== 'undefined') {
+        if (typeof product?.tax_rate !== 'undefined') {
             const formattedTaxRate = parseFloat(product.tax_rate);
             if (!isNaN(formattedTaxRate)) return formattedTaxRate / 100;
         }
