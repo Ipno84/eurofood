@@ -23,9 +23,9 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* eurofoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* eurofoodTests.m */; };
-		2E23080C258360C91F54972D /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 360DACEAC2F3F15CCCF45434 /* libPods-OneSignalNotificationServiceExtension.a */; };
 		30212AE4248E55080087939A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212AE3248E55080087939A /* NotificationService.swift */; };
 		30212AE8248E55080087939A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30212AE1248E55080087939A /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30CED0D725F22A3B004C9145 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CED0D625F22A3B004C9145 /* libPods-OneSignalNotificationServiceExtension.a */; };
 		6F9B296DEB4C4D20864F1F7F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 894E655D85714B6E8712430E /* Roboto-Black.ttf */; };
 		809423FD6BF51969E5C12C74 /* libPods-eurofood-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 527A06A9EC1C119B418BE6FC /* libPods-eurofood-tvOS.a */; };
 		838D7819BB0447FC82D9ED22 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55E4DE1CD86E4F3FA8659FAC /* Roboto-Light.ttf */; };
@@ -107,6 +107,8 @@
 		30212AE3248E55080087939A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		30212AE5248E55080087939A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30212AED248E56C50087939A /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		30CED0D425F22A2F004C9145 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30CED0D625F22A3B004C9145 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DA1C25378D451E9358D532 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		360DACEAC2F3F15CCCF45434 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4648876AE870491695C1E89F /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -186,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E23080C258360C91F54972D /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+				30CED0D725F22A3B004C9145 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30CED0D625F22A3B004C9145 /* libPods-OneSignalNotificationServiceExtension.a */,
+				30CED0D425F22A2F004C9145 /* libPods-OneSignalNotificationServiceExtension.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				9B4E9C42B9BEB39DAF978ED4 /* libPods-eurofood.a */,
@@ -961,7 +965,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96FA628E58E932B31F3E557A /* Pods-eurofood-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -989,7 +992,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE7317EC342A33CB4902528B /* Pods-eurofood-tvOS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1084,9 +1086,9 @@
 				DEVELOPMENT_TEAM = PNNUMZK47T;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.ketchapp.eurofood.-OneSignalNotificationServiceExtension";
@@ -1117,13 +1119,15 @@
 				DEVELOPMENT_TEAM = PNNUMZK47T;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.ketchapp.eurofood.-OneSignalNotificationServiceExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
