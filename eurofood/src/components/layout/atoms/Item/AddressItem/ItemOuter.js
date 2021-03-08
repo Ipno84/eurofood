@@ -31,8 +31,9 @@ const ItemOuter = ({ item, isSelected, isTouchable }) => {
             <ItemInner item={item} />
             <Footer>
                 <Separator />
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, height: 56 }}>
                     <Touchable
+                        style={{ flex: 1 }}
                         onPress={() => {
                             editAddress();
                             if (route && route.name === ROUTE_NAME_PROFILE) {
@@ -44,8 +45,9 @@ const ItemOuter = ({ item, isSelected, isTouchable }) => {
                         </ButtonWrapper>
                     </Touchable>
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, height: 56, flexDirection: 'row' }}>
                     <Touchable
+                        style={{ flex: 1 }}
                         onPress={() => {
                             Alert.alert(
                                 'Attenzione',
@@ -90,6 +92,7 @@ const ButtonWrapper = styled.View`
     position: relative;
     margin-top: 9px;
     overflow: hidden;
+    height: 46px;
     ${({ isFirst }) =>
         isFirst &&
         css`

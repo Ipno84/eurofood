@@ -5,6 +5,7 @@ const OrderCardButtonText = styled.Text`
     line-height: 20px;
     margin-left: 8px;
     color: ${({ theme }) => theme.colors.orange(1)};
+    height: 20px;
 `;
 
 export default OrderCardButtonText;

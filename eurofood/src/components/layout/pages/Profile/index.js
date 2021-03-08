@@ -27,52 +27,67 @@ const Profile = () => {
         { title: 'Dati personali', type: 'userData', data: [1] },
         { title: 'Indirizzi', type: 'addresses', data: addresses }
     ];
+
+    const ListHeaderComponent = useCallback(() => {
+        return (
+            <TitleWrapper>
+                <Spacer top={8} />
+                <SectionTitle bigger={true}>Profilo</SectionTitle>
+                <Spacer top={16} />
+            </TitleWrapper>
+        );
+    }, []);
+
+    const renderItem = useCallback(
+        ({ item, section, index }) => {
+            if (section.type === 'addresses') {
+                return (
+                    <>
+                        {index === 0 ? <Spacer top={10} /> : null}
+                        <AddressItem item={item} />
+                    </>
+                );
+            } else if (section.type === 'userData') {
+                return (
+                    <Container>
+                        <Text>
+                            <Text bold={true}>Nome</Text>
+                            <Text>: {user.firstname}</Text>
+                        </Text>
+                        <Text>
+                            <Text bold={true}>Cognome</Text>
+                            <Text>: {user.lastname}</Text>
+                        </Text>
+                        <Text>
+                            <Text bold={true}>Email</Text>
+                            <Text>: {user.email}</Text>
+                        </Text>
+                    </Container>
+                );
+            }
+            return null;
+        },
+        [user]
+    );
+
+    const renderSectionHeader = useCallback(
+        ({ section: { title } }) => (
+            <SectionWrapper>
+                <SectionText>{title}</SectionText>
+            </SectionWrapper>
+        ),
+        []
+    );
+
     return (
         <SafeAreaView>
             <SectionList
                 sections={sections}
                 stickySectionHeadersEnabled={true}
-                ListHeaderComponent={() => (
-                    <TitleWrapper>
-                        <Spacer top={8} />
-                        <SectionTitle bigger={true}>Profilo</SectionTitle>
-                        <Spacer top={16} />
-                    </TitleWrapper>
-                )}
+                ListHeaderComponent={ListHeaderComponent}
                 keyExtractor={(item, index) => item + index}
-                renderItem={({ item, section, index }) => {
-                    if (section.type === 'addresses') {
-                        return (
-                            <>
-                                {index === 0 ? <Spacer top={10} /> : null}
-                                <AddressItem item={item} />
-                            </>
-                        );
-                    } else if (section.type === 'userData') {
-                        return (
-                            <Container>
-                                <Text>
-                                    <Text bold={true}>Nome</Text>
-                                    <Text>: {user.firstname}</Text>
-                                </Text>
-                                <Text>
-                                    <Text bold={true}>Cognome</Text>
-                                    <Text>: {user.lastname}</Text>
-                                </Text>
-                                <Text>
-                                    <Text bold={true}>Email</Text>
-                                    <Text>: {user.email}</Text>
-                                </Text>
-                            </Container>
-                        );
-                    }
-                    return null;
-                }}
-                renderSectionHeader={({ section: { title } }) => (
-                    <SectionWrapper>
-                        <SectionText>{title}</SectionText>
-                    </SectionWrapper>
-                )}
+                renderItem={renderItem}
+                renderSectionHeader={renderSectionHeader}
             />
         </SafeAreaView>
     );
