@@ -52,10 +52,10 @@ target 'eurofood' do
 #  pod 'Firebase/Storage'
 
 
-  target 'eurofoodTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+#  target 'eurofoodTests' do
+#    inherit! :search_paths
+#    # Pods for testing
+#  end
 
   use_native_modules!
 end
